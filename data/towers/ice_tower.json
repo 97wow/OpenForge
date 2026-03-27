@@ -1,0 +1,22 @@
+{
+  "id": "ice_tower",
+  "name": "冰塔",
+  "description": "减速敌人，控制型防御塔",
+  "tier": 1,
+  "cost": 100,
+  "damage": 8,
+  "attack_speed": 1.0,
+  "range": 160,
+  "attack_type": "single",
+  "targeting": "first",
+  "upgrade_costs": [80, 160, 300],
+  "upgrade_damage": [12, 18, 25],
+  "on_hit_effects": [
+    {
+      "buff_id": "frost_slow",
+      "duration": 2.0,
+      "value": 0.5
+    }
+  ],
+  "tags": ["magic", "control", "slow_debuff"]
+}

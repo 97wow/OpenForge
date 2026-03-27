@@ -1,0 +1,17 @@
+{
+  "id": "cannon_tower",
+  "name": "炮塔",
+  "description": "范围攻击，伤害高但攻速慢",
+  "tier": 1,
+  "cost": 120,
+  "damage": 40,
+  "attack_speed": 0.6,
+  "range": 150,
+  "attack_type": "aoe",
+  "aoe_radius": 64,
+  "targeting": "cluster",
+  "upgrade_costs": [100, 200, 400],
+  "upgrade_damage": [65, 100, 160],
+  "on_hit_effects": [],
+  "tags": ["physical", "aoe", "slow"]
+}

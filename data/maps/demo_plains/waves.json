@@ -1,0 +1,50 @@
+[
+  {
+    "wave_index": 0,
+    "name": "侦查部队",
+    "groups": [
+      {"enemy_id": "goblin", "count": 5, "interval": 1.2, "delay": 0.0}
+    ]
+  },
+  {
+    "wave_index": 1,
+    "name": "哥布林突袭",
+    "groups": [
+      {"enemy_id": "goblin", "count": 8, "interval": 1.0, "delay": 0.0},
+      {"enemy_id": "goblin", "count": 4, "interval": 0.8, "delay": 6.0}
+    ]
+  },
+  {
+    "wave_index": 2,
+    "name": "兽人先锋",
+    "groups": [
+      {"enemy_id": "orc", "count": 3, "interval": 2.0, "delay": 0.0},
+      {"enemy_id": "goblin", "count": 6, "interval": 1.0, "delay": 3.0}
+    ]
+  },
+  {
+    "wave_index": 3,
+    "name": "混合部队",
+    "groups": [
+      {"enemy_id": "goblin", "count": 10, "interval": 0.8, "delay": 0.0},
+      {"enemy_id": "orc", "count": 5, "interval": 1.5, "delay": 2.0}
+    ]
+  },
+  {
+    "wave_index": 4,
+    "name": "重装突击",
+    "groups": [
+      {"enemy_id": "orc", "count": 8, "interval": 1.2, "delay": 0.0},
+      {"enemy_id": "goblin", "count": 15, "interval": 0.6, "delay": 5.0}
+    ]
+  },
+  {
+    "wave_index": 5,
+    "name": "BOSS: 巨魔来袭",
+    "groups": [
+      {"enemy_id": "goblin", "count": 10, "interval": 0.5, "delay": 0.0},
+      {"enemy_id": "orc", "count": 5, "interval": 1.0, "delay": 2.0},
+      {"enemy_id": "troll", "count": 1, "interval": 0.0, "delay": 8.0}
+    ]
+  }
+]

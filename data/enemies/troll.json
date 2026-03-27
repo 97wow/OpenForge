@@ -1,0 +1,11 @@
+{
+  "id": "troll",
+  "name": "巨魔",
+  "description": "BOSS级怪物，高血量高护甲",
+  "hp": 800,
+  "speed": 40,
+  "armor": 8,
+  "gold_reward": 50,
+  "lives_cost": 3,
+  "tags": ["boss", "armored", "heavy"]
+}

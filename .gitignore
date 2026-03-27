@@ -1,0 +1,21 @@
+# Godot 4
+.godot/
+*.import
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# Export
+export/
+*.pck
+*.zip
+
+# Debug
+*.log
