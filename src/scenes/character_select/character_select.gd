@@ -46,7 +46,7 @@ func _build_ui() -> void:
 
 	# 标题
 	var title := Label.new()
-	title.text = "Choose Your Hero"
+	title.text = tr("CHOOSE_HERO")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 36)
 	outer.add_child(title)
@@ -63,7 +63,7 @@ func _build_ui() -> void:
 
 	# 返回按钮
 	var back_btn := Button.new()
-	back_btn.text = "< Back"
+	back_btn.text = tr("BACK")
 	back_btn.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
 	back_btn.offset_left = 20
 	back_btn.offset_top = -50

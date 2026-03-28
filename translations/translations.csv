@@ -1,0 +1,46 @@
+keys,en,zh_CN,ja,ko
+GAME_TITLE,OpenForge,OpenForge,OpenForge,OpenForge
+PRESS_ANY_KEY,Press any key to continue,按任意键继续,何かキーを押してください,아무 키나 누르세요
+CREATE_PLAY_SHARE,"Create. Play. Share.",创造·游玩·分享,創る・遊ぶ・共有する,만들고 · 플레이 · 공유
+START_GAME,Start Game,开始游戏,ゲーム開始,게임 시작
+COLLECTION,Collection,收藏,コレクション,컬렉션
+LEADERBOARD,Leaderboard,排行榜,ランキング,랭킹
+SETTINGS,Settings,设置,設定,설정
+QUIT,Quit,退出,終了,종료
+BACK,< Back,< 返回,< 戻る,< 뒤로
+SELECT_MAP,Select Map,选择地图,マップ選択,맵 선택
+ENTER,Enter,进入,入る,입장
+DIFFICULTY,Difficulty,难度,難易度,난이도
+COMING_SOON,Coming Soon,即将推出,近日公開,곧 출시
+CHOOSE_HERO,Choose Your Hero,选择你的英雄,ヒーローを選べ,영웅을 선택하세요
+SELECT_CLASS,Select {0},选择{0},「{0}」を選ぶ,{0} 선택
+WARRIOR,Warrior,战士,ウォリアー,전사
+RANGER,Ranger,游侠,レンジャー,레인저
+MAGE,Mage,法师,メイジ,마법사
+STR,STR,力量,力,힘
+AGI,AGI,敏捷,敏,민첩
+INT,INT,智力,知,지능
+STA,STA,耐力,耐,체력
+DEF,DEF,护甲,防,방어
+LEVEL_UP,Level Up! Lv.{0},升级！Lv.{0},レベルアップ！Lv.{0},레벨 업! Lv.{0}
+CHOOSE_CARD,Choose a Card,选择一张卡片,カードを選べ,카드를 선택하세요
+CARDS_COUNT,Cards: {0} / {1},卡片: {0} / {1},カード: {0} / {1},카드: {0} / {1}
+PICK,Pick,选择,選ぶ,선택
+SET_COMPLETE,SET COMPLETE: {0}!,套装完成：{0}！,セット完成：{0}！,세트 완성: {0}!
+VICTORY,VICTORY!,胜利！,勝利！,승리!
+DEFEAT,DEFEAT!,失败！,敗北！,패배!
+SURVIVED,Survived {0} minutes!,存活了{0}分钟！,{0}分間生き延びた！,{0}분 생존!
+FOUNTAIN_DESTROYED,Fountain destroyed!,泉水被摧毁！,泉が破壊された！,분수가 파괴되었습니다!
+HERO_FALLEN,Hero has fallen!,英雄阵亡！,ヒーローが倒れた！,영웅이 쓰러졌습니다!
+DARK_FOUNTAIN_DESTROYED,Dark Fountain destroyed!,暗黑之泉被摧毁！,闇の泉が破壊された！,어둠의 분수가 파괴되었습니다!
+WAVE,Wave,波次,ウェーブ,웨이브
+GOLD,Gold,金币,ゴールド,골드
+HP,HP,生命,HP,HP
+OUR_FOUNTAIN,Our Fountain,我方泉水,味方の泉,아군 분수
+ENEMY_FOUNTAIN,Enemy Fountain,敌方泉水,敵の泉,적 분수
+NO_CARDS,No cards available,没有可用卡片,カードがありません,사용 가능한 카드 없음
+COMMON,Common,普通,コモン,일반
+UNCOMMON,Uncommon,稀有,アンコモン,고급
+RARE,Rare,史诗,レア,희귀
+LEGENDARY,Legendary,传说,レジェンダリー,전설
+VERSION,v{0} Alpha,v{0} 测试版,v{0} アルファ,v{0} 알파

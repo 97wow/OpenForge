@@ -71,28 +71,33 @@ theme_override_constants/separation = 12
 layout_mode = 2
 custom_minimum_size = Vector2(280, 50)
 theme_override_font_sizes/font_size = 20
-text = "Start Game"
+text = "START_GAME"
+auto_translate_mode = 1
 
 [node name="CollectionButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
-text = "Collection"
+text = "COLLECTION"
+auto_translate_mode = 1
 
 [node name="LeaderboardButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
-text = "Leaderboard"
+text = "LEADERBOARD"
+auto_translate_mode = 1
 
 [node name="SettingsButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
-text = "Settings"
+text = "SETTINGS"
+auto_translate_mode = 1
 
 [node name="QuitButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
-text = "Quit"
+text = "QUIT"
+auto_translate_mode = 1

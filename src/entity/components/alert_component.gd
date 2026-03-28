@@ -89,12 +89,12 @@ func _process(delta: float) -> void:
 			_current_target = null
 		return
 
-	# 检查是否需要返回原位
+	# 检查是否需要返回原位（警戒范围内完全无敌人才归位）
 	if _has_home and not _is_approaching:
-		var enemies_in_range: Array = EngineAPI.find_entities_in_area(
-			_entity.global_position, attack_range, target_tag
+		var enemies_nearby: Array = EngineAPI.find_entities_in_area(
+			_entity.global_position, alert_range, target_tag
 		)
-		if enemies_in_range.is_empty():
+		if enemies_nearby.is_empty():
 			_start_return_delayed()
 			return
 

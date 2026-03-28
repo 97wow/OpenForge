@@ -207,17 +207,36 @@ func _on_player_shoot(data: Dictionary) -> void:
 	var proj_id: String = data.get("projectile_id", "arrow")
 	var shooter: Node2D = data.get("shooter", null)
 
-	spawn(proj_id, pos, {
-		"components": {
-			"projectile": {
-				"direction": dir,
-				"speed": spd,
-				"damage": dmg,
-				"source": shooter,
-				"target_tag": "enemy",
+	# 读取卡片能力
+	var pierce: int = int(EngineAPI.get_variable("hero_pierce_count", 0))
+	var extra_proj: int = int(EngineAPI.get_variable("hero_extra_projectiles", 0))
+	var spread_angle: float = float(EngineAPI.get_variable("hero_spread_angle", 10))
+
+	# 计算投射物数量和方向
+	var total_projectiles: int = 1 + extra_proj
+	var directions: Array[Vector2] = []
+	if total_projectiles == 1:
+		directions.append(dir)
+	else:
+		var half_spread := deg_to_rad(spread_angle * (total_projectiles - 1) * 0.5)
+		var step := deg_to_rad(spread_angle)
+		for i in range(total_projectiles):
+			var angle_offset := -half_spread + step * i
+			directions.append(dir.rotated(angle_offset))
+
+	for shoot_dir in directions:
+		spawn(proj_id, pos, {
+			"components": {
+				"projectile": {
+					"direction": shoot_dir,
+					"speed": spd,
+					"damage": dmg,
+					"source": shooter,
+					"target_tag": "enemy",
+					"pierce_count": pierce,
+				}
 			}
-		}
-	})
+		})
 
 # === 事件处理 ===
 
@@ -394,12 +413,16 @@ func _on_card_picked(card_id: String) -> void:
 	var result: Dictionary = _card_manager.select_card(card_id)
 	var card_data: Dictionary = _card_manager.get_card_data(card_id)
 
+	# 应用卡片效果
+	_apply_card_effects(card_data)
+
 	if result.get("set_completed", "") != "":
 		var set_id: String = result["set_completed"]
 		var set_data: Dictionary = _card_manager.get_set_data(set_id)
-		EngineAPI.show_message("SET COMPLETE: %s!" % set_data.get("name", set_id))
+		_apply_set_bonus(set_data)
+		EngineAPI.show_message(tr("SET_COMPLETE").format([set_data.get("name", set_id)]))
 	else:
-		EngineAPI.show_message("Lv.%d: %s" % [_hero_level, card_data.get("name", card_id)])
+		EngineAPI.show_message(tr("LEVEL_UP").format([_hero_level]) + ": " + card_data.get("name", card_id))
 
 	# 关闭选卡UI，恢复游戏
 	if _card_select_ui:
@@ -408,6 +431,77 @@ func _on_card_picked(card_id: String) -> void:
 	get_tree().paused = false
 
 	emit("card_selected", {"card_id": card_id, "level": _hero_level})
+
+func _apply_card_effects(card: Dictionary) -> void:
+	if hero == null or not is_instance_valid(hero):
+		return
+	var effects: Array = card.get("effects", [])
+	for effect in effects:
+		if not effect is Dictionary:
+			continue
+		var etype: String = effect.get("type", "")
+		match etype:
+			"stat_mod":
+				var stat: String = effect.get("stat", "")
+				var mod_type: String = effect.get("mod_type", "flat")
+				var value: float = effect.get("value", 0.0)
+				EngineAPI.add_stat_modifier(hero, stat, {
+					"type": mod_type, "value": value, "source": card.get("id", "")
+				})
+			"pierce":
+				# 标记英雄拥有穿透能力
+				var current: int = int(EngineAPI.get_variable("hero_pierce_count", 0))
+				EngineAPI.set_variable("hero_pierce_count", current + effect.get("pierce_count", 1))
+				EngineAPI.set_variable("hero_pierce_chance",
+					float(EngineAPI.get_variable("hero_pierce_chance", 0.0)) + effect.get("pierce_chance", 0.3))
+			"split":
+				EngineAPI.set_variable("hero_split_chance",
+					float(EngineAPI.get_variable("hero_split_chance", 0.0)) + effect.get("split_chance", 0.2))
+				EngineAPI.set_variable("hero_split_count", effect.get("split_count", 1))
+			"extra_projectiles":
+				var current: int = int(EngineAPI.get_variable("hero_extra_projectiles", 0))
+				EngineAPI.set_variable("hero_extra_projectiles", current + effect.get("count", 1))
+			"ignite":
+				EngineAPI.set_variable("hero_ignite_chance",
+					float(EngineAPI.get_variable("hero_ignite_chance", 0.0)) + effect.get("ignite_chance", 0.25))
+			"slow_on_hit":
+				EngineAPI.set_variable("hero_slow_chance",
+					float(EngineAPI.get_variable("hero_slow_chance", 0.0)) + effect.get("slow_chance", 1.0))
+				EngineAPI.set_variable("hero_slow_pct", effect.get("slow_pct", 0.2))
+			"life_steal":
+				EngineAPI.set_variable("hero_life_steal",
+					float(EngineAPI.get_variable("hero_life_steal", 0.0)) + effect.get("value", 0.05))
+	print("[Cards] Applied effects from: %s" % card.get("name", ""))
+
+func _apply_set_bonus(set_data: Dictionary) -> void:
+	if hero == null or not is_instance_valid(hero):
+		return
+	var bonus: Dictionary = set_data.get("set_bonus", {})
+	var btype: String = bonus.get("type", "")
+	match btype:
+		"pierce":
+			EngineAPI.set_variable("hero_pierce_count", bonus.get("pierce_count", 3))
+			EngineAPI.set_variable("hero_pierce_chance", bonus.get("pierce_chance", 1.0))
+		"split":
+			EngineAPI.set_variable("hero_split_chance", bonus.get("split_chance", 0.4))
+			EngineAPI.set_variable("hero_split_count", bonus.get("split_count", 2))
+			EngineAPI.set_variable("hero_split_damage_ratio", bonus.get("split_damage_ratio", 0.8))
+		"stat_mod":
+			var stats: Dictionary = bonus.get("stats", {})
+			for stat_name in stats:
+				EngineAPI.add_stat_modifier(hero, stat_name, {
+					"type": "percent", "value": stats[stat_name], "source": set_data.get("id", "")
+				})
+		"multi_shot":
+			EngineAPI.set_variable("hero_extra_projectiles", bonus.get("extra_projectiles", 2))
+			EngineAPI.set_variable("hero_spread_angle", bonus.get("spread_angle", 15))
+		"burn_spread":
+			EngineAPI.set_variable("hero_ignite_chance", bonus.get("ignite_chance", 0.5))
+			EngineAPI.set_variable("hero_burn_spread", true)
+		"freeze_shatter":
+			EngineAPI.set_variable("hero_slow_pct", bonus.get("slow_pct", 0.4))
+			EngineAPI.set_variable("hero_freeze_shatter", true)
+	print("[Cards] Set bonus applied: %s" % set_data.get("name", ""))
 
 # === HUD ===
 
