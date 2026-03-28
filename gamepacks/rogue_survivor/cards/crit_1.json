@@ -1,11 +1,18 @@
 {
   "id": "crit_1",
-  "name_key": "CARD_CRIT1_NAME",
-  "desc_key": "CARD_CRIT1_DESC",
+  "name_key": "CARD_CRIT_1_NAME",
+  "desc_key": "CARD_CRIT_1_DESC",
   "set_id": "crit_master",
   "rarity": "uncommon",
-  "class_affinity": ["ranger"],
+  "class_affinity": [
+    "ranger"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "crit_chance", "mod_type": "flat", "value": 0.1 }
+    {
+      "type": "stat_mod",
+      "stat": "crit_chance",
+      "mod_type": "flat",
+      "value": 0.1
+    }
   ]
 }

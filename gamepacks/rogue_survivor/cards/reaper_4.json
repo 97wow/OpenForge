@@ -1,11 +1,18 @@
 {
   "id": "reaper_4",
-  "name_key": "CARD_REAPER4_NAME",
-  "desc_key": "CARD_REAPER4_DESC",
+  "name_key": "CARD_REAPER_4_NAME",
+  "desc_key": "CARD_REAPER_4_DESC",
   "set_id": "reaper",
   "rarity": "legendary",
-  "class_affinity": ["warrior"],
+  "class_affinity": [
+    "warrior"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "kill_streak_crit", "mod_type": "flat", "value": 1 }
+    {
+      "type": "stat_mod",
+      "stat": "kill_streak_crit",
+      "mod_type": "flat",
+      "value": 1
+    }
   ]
 }

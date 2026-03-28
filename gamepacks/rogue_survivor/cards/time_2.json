@@ -1,11 +1,18 @@
 {
   "id": "time_2",
-  "name_key": "CARD_TIME2_NAME",
-  "desc_key": "CARD_TIME2_DESC",
+  "name_key": "CARD_TIME_2_NAME",
+  "desc_key": "CARD_TIME_2_DESC",
   "set_id": "time_lord",
   "rarity": "legendary",
-  "class_affinity": ["all"],
+  "class_affinity": [
+    "all"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "time_rewind", "mod_type": "flat", "value": 1 }
+    {
+      "type": "stat_mod",
+      "stat": "time_rewind",
+      "mod_type": "flat",
+      "value": 1
+    }
   ]
 }

@@ -1,11 +1,18 @@
 {
   "id": "summon_2",
-  "name_key": "CARD_SUMMON2_NAME",
-  "desc_key": "CARD_SUMMON2_DESC",
+  "name_key": "CARD_SUMMON_2_NAME",
+  "desc_key": "CARD_SUMMON_2_DESC",
   "set_id": "summoner",
   "rarity": "uncommon",
-  "class_affinity": ["mage"],
+  "class_affinity": [
+    "mage"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "spirit_damage_bonus", "mod_type": "flat", "value": 0.5 }
+    {
+      "type": "stat_mod",
+      "stat": "spirit_damage_bonus",
+      "mod_type": "flat",
+      "value": 0.5
+    }
   ]
 }

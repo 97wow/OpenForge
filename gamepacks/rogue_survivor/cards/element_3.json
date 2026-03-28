@@ -1,11 +1,18 @@
 {
   "id": "element_3",
-  "name_key": "CARD_ELEMENT3_NAME",
-  "desc_key": "CARD_ELEMENT3_DESC",
+  "name_key": "CARD_ELEMENT_3_NAME",
+  "desc_key": "CARD_ELEMENT_3_DESC",
   "set_id": "elementalist",
   "rarity": "uncommon",
-  "class_affinity": ["all"],
+  "class_affinity": [
+    "all"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "lightning_chance", "mod_type": "flat", "value": 0.15 }
+    {
+      "type": "stat_mod",
+      "stat": "lightning_chance",
+      "mod_type": "flat",
+      "value": 0.15
+    }
   ]
 }

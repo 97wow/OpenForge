@@ -1,11 +1,18 @@
 {
   "id": "guard_2",
-  "name_key": "CARD_GUARD2_NAME",
-  "desc_key": "CARD_GUARD2_DESC",
+  "name_key": "CARD_GUARD_2_NAME",
+  "desc_key": "CARD_GUARD_2_DESC",
   "set_id": "guardian",
   "rarity": "uncommon",
-  "class_affinity": ["warrior"],
+  "class_affinity": [
+    "warrior"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "reflect_damage", "mod_type": "flat", "value": 0.2 }
+    {
+      "type": "stat_mod",
+      "stat": "reflect_damage",
+      "mod_type": "flat",
+      "value": 0.2
+    }
   ]
 }
