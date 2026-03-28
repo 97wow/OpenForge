@@ -49,7 +49,13 @@ func _on_entity_damaged(data: Dictionary) -> void:
 	var entity = data.get("entity")
 	if entity == null or not is_instance_valid(entity):
 		return
+	# 投射物不显示受击特效
+	if entity is GameEntity and (entity as GameEntity).has_tag("projectile"):
+		return
 	var amount: float = data.get("amount", 0)
+	# 微量伤害不显示特效（DoT tick）
+	if amount < 3:
+		return
 	var damage_type: int = data.get("damage_type", 0)
 	var pos: Vector2 = (entity as Node2D).global_position
 
@@ -76,6 +82,9 @@ func _on_entity_damaged(data: Dictionary) -> void:
 func _on_entity_destroyed(data: Dictionary) -> void:
 	var entity = data.get("entity")
 	if entity == null or not is_instance_valid(entity):
+		return
+	# 投射物销毁不播放死亡特效
+	if entity is GameEntity and (entity as GameEntity).has_tag("projectile"):
 		return
 	spawn_vfx("death", (entity as Node2D).global_position)
 	_play_sfx("death")

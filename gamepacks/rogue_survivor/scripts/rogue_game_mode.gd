@@ -1187,11 +1187,17 @@ func _update_hud() -> void:
 
 # === 战斗日志 ===
 
+var _log_throttle: float = 0.0
+const LOG_MIN_INTERVAL := 0.1  # 最小日志间隔，防刷屏
+
 func _add_log(text: String, color: Color = Color(0.7, 0.7, 0.8)) -> void:
 	if _combat_log == null:
 		return
+	# 限制子节点数量（立即移除而非 queue_free）
 	while _combat_log.get_child_count() >= MAX_LOG_LINES:
-		_combat_log.get_child(0).queue_free()
+		var old: Node = _combat_log.get_child(0)
+		_combat_log.remove_child(old)
+		old.queue_free()
 	var label := Label.new()
 	label.text = text
 	label.add_theme_font_size_override("font_size", 10)
@@ -1199,6 +1205,11 @@ func _add_log(text: String, color: Color = Color(0.7, 0.7, 0.8)) -> void:
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_combat_log.add_child(label)
+
+func _is_projectile(entity: Variant) -> bool:
+	if entity is GameEntity:
+		return (entity as GameEntity).has_tag("projectile")
+	return false
 
 func _get_entity_name(entity: Variant) -> String:
 	if entity == null or not is_instance_valid(entity):
@@ -1208,9 +1219,17 @@ func _get_entity_name(entity: Variant) -> String:
 	return "?"
 
 func _on_log_damaged(data: Dictionary) -> void:
-	var target_name: String = _get_entity_name(data.get("entity"))
-	var source_name: String = _get_entity_name(data.get("source"))
+	# 过滤：投射物伤害不记录，DoT 不逐 tick 记录（只记首次）
+	var target = data.get("entity")
+	var source = data.get("source")
+	if _is_projectile(target):
+		return
+	# 只记录显著伤害（>= 5）
 	var amount: float = data.get("amount", 0)
+	if amount < 5:
+		return
+	var target_name: String = _get_entity_name(target)
+	var source_name: String = _get_entity_name(source)
 	var dt: int = data.get("damage_type", 0)
 	var school_names := ["Physical", "Frost", "Fire", "Nature", "Shadow", "Holy"]
 	var school_colors := [Color.WHITE, Color(0.4, 0.8, 1), Color(1, 0.5, 0.2), Color(0.3, 0.9, 0.3), Color(0.6, 0.3, 0.9), Color(1, 0.9, 0.4)]
@@ -1219,23 +1238,31 @@ func _on_log_damaged(data: Dictionary) -> void:
 	_add_log("%s -> %s: %d %s" % [source_name, target_name, int(amount), sn], sc)
 
 func _on_log_destroyed(data: Dictionary) -> void:
-	var name_str: String = _get_entity_name(data.get("entity"))
+	var entity = data.get("entity")
+	# 过滤投射物
+	if _is_projectile(entity):
+		return
+	var name_str: String = _get_entity_name(entity)
 	_add_log("[KILLED] %s" % name_str, Color(1, 0.3, 0.2))
 
 func _on_log_spell(data: Dictionary) -> void:
-	var caster_name: String = _get_entity_name(data.get("caster"))
+	# 只记录玩家主动施法，不记录 proc 触发的子 spell
+	var caster = data.get("caster")
+	if caster == null or not is_instance_valid(caster):
+		return
+	if not (caster is GameEntity and (caster as GameEntity).has_tag("player")):
+		return
 	var spell_id: String = data.get("spell_id", "")
-	_add_log("[SPELL] %s cast %s" % [caster_name, spell_id], Color(0.5, 0.7, 1))
+	_add_log("[SPELL] %s" % spell_id, Color(0.5, 0.7, 1))
 
-func _on_log_aura(data: Dictionary) -> void:
-	var target_name: String = _get_entity_name(data.get("target"))
-	var aura_type: String = data.get("aura_type", "")
-	_add_log("[AURA] %s <- %s" % [target_name, aura_type], Color(0.7, 0.5, 1))
+func _on_log_aura(_data: Dictionary) -> void:
+	# aura 太频繁，不记录
+	pass
 
 func _on_log_proc(data: Dictionary) -> void:
-	var action: String = data.get("action", "")
 	var spell: String = data.get("trigger_spell", "")
-	_add_log("[PROC] %s -> %s" % [action, spell], Color(1, 0.8, 0.3))
+	if spell != "":
+		_add_log("[PROC] -> %s" % spell, Color(1, 0.8, 0.3))
 
 func _on_log_wave(data: Dictionary) -> void:
 	var wave_idx: int = data.get("wave_index", 0)
