@@ -1,0 +1,14 @@
+{
+  "id": "chain_lightning_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PROC_TRIGGER_SPELL",
+      "trigger_spell": "chain_lightning_spell",
+      "duration": 0,
+      "proc": { "flags": ["on_hit"], "chance": 15 },
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -1,98 +1,307 @@
 [
   {
-    "id": "piercer", "size": 2,
-    "cards": ["piercer_1", "piercer_2"],
-    "set_bonus": { "type": "pierce", "pierce_count": 3, "pierce_chance": 1.0 },
-    "class_affinity": ["ranger"], "rarity": "common"
+    "id": "piercer",
+    "size": 2,
+    "cards": [
+      "piercer_1",
+      "piercer_2"
+    ],
+    "set_bonus": {
+      "type": "pierce",
+      "pierce_count": 3,
+      "pierce_chance": 1.0
+    },
+    "class_affinity": [
+      "ranger"
+    ],
+    "rarity": "common",
+    "bonus_spell": "piercer_set_bonus"
   },
   {
-    "id": "splitter", "size": 2,
-    "cards": ["splitter_1", "splitter_2"],
-    "set_bonus": { "type": "split", "split_count": 2, "split_chance": 0.4, "split_damage_ratio": 0.8 },
-    "class_affinity": ["ranger"], "rarity": "common"
+    "id": "splitter",
+    "size": 2,
+    "cards": [
+      "splitter_1",
+      "splitter_2"
+    ],
+    "set_bonus": {
+      "type": "split",
+      "split_count": 2,
+      "split_chance": 0.4,
+      "split_damage_ratio": 0.8
+    },
+    "class_affinity": [
+      "ranger"
+    ],
+    "rarity": "common"
   },
   {
-    "id": "swift_wind", "size": 2,
-    "cards": ["swift_1", "swift_2"],
-    "set_bonus": { "type": "stat_mod", "stats": {"attack_speed_pct": 0.3, "crit_chance": 0.2} },
-    "class_affinity": ["ranger"], "rarity": "common"
+    "id": "swift_wind",
+    "size": 2,
+    "cards": [
+      "swift_1",
+      "swift_2"
+    ],
+    "set_bonus": {
+      "type": "stat_mod",
+      "stats": {
+        "attack_speed_pct": 0.3,
+        "crit_chance": 0.2
+      }
+    },
+    "class_affinity": [
+      "ranger"
+    ],
+    "rarity": "common"
   },
   {
-    "id": "flame", "size": 2,
-    "cards": ["flame_1", "flame_2"],
-    "set_bonus": { "type": "burn_spread", "ignite_chance": 0.5 },
-    "class_affinity": ["mage"], "rarity": "common"
+    "id": "flame",
+    "size": 2,
+    "cards": [
+      "flame_1",
+      "flame_2"
+    ],
+    "set_bonus": {
+      "type": "burn_spread",
+      "ignite_chance": 0.5
+    },
+    "class_affinity": [
+      "mage"
+    ],
+    "rarity": "common",
+    "bonus_spell": "flame_ignite_passive"
   },
   {
-    "id": "frost", "size": 2,
-    "cards": ["frost_1", "frost_2"],
-    "set_bonus": { "type": "freeze_shatter", "slow_pct": 0.4 },
-    "class_affinity": ["mage"], "rarity": "common"
+    "id": "frost",
+    "size": 2,
+    "cards": [
+      "frost_1",
+      "frost_2"
+    ],
+    "set_bonus": {
+      "type": "freeze_shatter",
+      "slow_pct": 0.4
+    },
+    "class_affinity": [
+      "mage"
+    ],
+    "rarity": "common",
+    "bonus_spell": "frost_slow_passive"
   },
   {
-    "id": "vampire", "size": 2,
-    "cards": ["vampire_1", "vampire_2"],
-    "set_bonus": { "type": "stat_mod", "stats": {"life_steal": 0.12, "kill_heal_pct": 0.05} },
-    "class_affinity": ["warrior"], "rarity": "common"
+    "id": "vampire",
+    "size": 2,
+    "cards": [
+      "vampire_1",
+      "vampire_2"
+    ],
+    "set_bonus": {
+      "type": "stat_mod",
+      "stats": {
+        "life_steal": 0.12,
+        "kill_heal_pct": 0.05
+      }
+    },
+    "class_affinity": [
+      "warrior"
+    ],
+    "rarity": "common"
   },
   {
-    "id": "poison", "size": 2,
-    "cards": ["poison_1", "poison_2"],
-    "set_bonus": { "type": "stat_mod", "stats": {"poison_dps": 8, "poison_slow": 0.15} },
-    "class_affinity": ["all"], "rarity": "common"
+    "id": "poison",
+    "size": 2,
+    "cards": [
+      "poison_1",
+      "poison_2"
+    ],
+    "set_bonus": {
+      "type": "stat_mod",
+      "stats": {
+        "poison_dps": 8,
+        "poison_slow": 0.15
+      }
+    },
+    "class_affinity": [
+      "all"
+    ],
+    "rarity": "common"
   },
   {
-    "id": "barrage", "size": 2,
-    "cards": ["barrage_1", "barrage_2"],
-    "set_bonus": { "type": "multi_shot", "extra_projectiles": 2, "spread_angle": 15 },
-    "class_affinity": ["warrior"], "rarity": "common"
+    "id": "barrage",
+    "size": 2,
+    "cards": [
+      "barrage_1",
+      "barrage_2"
+    ],
+    "set_bonus": {
+      "type": "multi_shot",
+      "extra_projectiles": 2,
+      "spread_angle": 15
+    },
+    "class_affinity": [
+      "warrior"
+    ],
+    "rarity": "common"
   },
   {
-    "id": "lightning_chain", "size": 3,
-    "cards": ["lightning_1", "lightning_2", "lightning_3"],
-    "set_bonus": { "type": "chain_lightning", "chain_chance": 0.3, "chain_count": 3, "chain_stun": 1.0 },
-    "class_affinity": ["mage"], "rarity": "uncommon"
+    "id": "lightning_chain",
+    "size": 3,
+    "cards": [
+      "lightning_1",
+      "lightning_2",
+      "lightning_3"
+    ],
+    "set_bonus": {
+      "type": "chain_lightning",
+      "chain_chance": 0.3,
+      "chain_count": 3,
+      "chain_stun": 1.0
+    },
+    "class_affinity": [
+      "mage"
+    ],
+    "rarity": "uncommon",
+    "bonus_spell": "chain_lightning_passive"
   },
   {
-    "id": "crit_master", "size": 3,
-    "cards": ["crit_1", "crit_2", "crit_3"],
-    "set_bonus": { "type": "stat_mod", "stats": {"crit_chance": 0.25, "crit_damage_bonus": 1.0, "crit_armor_reduce": 5} },
-    "class_affinity": ["ranger"], "rarity": "uncommon"
+    "id": "crit_master",
+    "size": 3,
+    "cards": [
+      "crit_1",
+      "crit_2",
+      "crit_3"
+    ],
+    "set_bonus": {
+      "type": "stat_mod",
+      "stats": {
+        "crit_chance": 0.25,
+        "crit_damage_bonus": 1.0,
+        "crit_armor_reduce": 5
+      }
+    },
+    "class_affinity": [
+      "ranger"
+    ],
+    "rarity": "uncommon"
   },
   {
-    "id": "summoner", "size": 3,
-    "cards": ["summon_1", "summon_2", "summon_3"],
-    "set_bonus": { "type": "summon", "spirit_count": 2, "spirit_inherit_pct": 0.5, "spirit_explode": true },
-    "class_affinity": ["mage"], "rarity": "uncommon"
+    "id": "summoner",
+    "size": 3,
+    "cards": [
+      "summon_1",
+      "summon_2",
+      "summon_3"
+    ],
+    "set_bonus": {
+      "type": "summon",
+      "spirit_count": 2,
+      "spirit_inherit_pct": 0.5,
+      "spirit_explode": true
+    },
+    "class_affinity": [
+      "mage"
+    ],
+    "rarity": "uncommon"
   },
   {
-    "id": "elementalist", "size": 3,
-    "cards": ["element_1", "element_2", "element_3"],
-    "set_bonus": { "type": "random_element", "element_chance": 0.35 },
-    "class_affinity": ["all"], "rarity": "uncommon"
+    "id": "elementalist",
+    "size": 3,
+    "cards": [
+      "element_1",
+      "element_2",
+      "element_3"
+    ],
+    "set_bonus": {
+      "type": "random_element",
+      "element_chance": 0.35
+    },
+    "class_affinity": [
+      "all"
+    ],
+    "rarity": "uncommon"
   },
   {
-    "id": "guardian", "size": 3,
-    "cards": ["guard_1", "guard_2", "guard_3"],
-    "set_bonus": { "type": "stat_mod", "stats": {"shield_interval": 20, "reflect_damage": 0.25, "hp_regen": 5} },
-    "class_affinity": ["warrior"], "rarity": "uncommon"
+    "id": "guardian",
+    "size": 3,
+    "cards": [
+      "guard_1",
+      "guard_2",
+      "guard_3"
+    ],
+    "set_bonus": {
+      "type": "stat_mod",
+      "stats": {
+        "shield_interval": 20,
+        "reflect_damage": 0.25,
+        "hp_regen": 5
+      }
+    },
+    "class_affinity": [
+      "warrior"
+    ],
+    "rarity": "uncommon",
+    "bonus_spell": "guardian_regen"
   },
   {
-    "id": "reaper", "size": 4,
-    "cards": ["reaper_1", "reaper_2", "reaper_3", "reaper_4"],
-    "set_bonus": { "type": "reaper", "execute_threshold": 0.15, "kill_heal_pct": 0.1, "permanent_damage_per_kill": 0.02 },
-    "class_affinity": ["warrior"], "rarity": "legendary"
+    "id": "reaper",
+    "size": 4,
+    "cards": [
+      "reaper_1",
+      "reaper_2",
+      "reaper_3",
+      "reaper_4"
+    ],
+    "set_bonus": {
+      "type": "reaper",
+      "execute_threshold": 0.15,
+      "kill_heal_pct": 0.1,
+      "permanent_damage_per_kill": 0.02
+    },
+    "class_affinity": [
+      "warrior"
+    ],
+    "rarity": "legendary",
+    "bonus_spell": "reaper_on_kill_passive"
   },
   {
-    "id": "storm_bringer", "size": 4,
-    "cards": ["storm_1", "storm_2", "storm_3", "storm_4"],
-    "set_bonus": { "type": "storm", "shockwave_every_n": 3, "shockwave_radius": 150, "shockwave_stun": 2.0, "shockwave_pull": true },
-    "class_affinity": ["mage"], "rarity": "legendary"
+    "id": "storm_bringer",
+    "size": 4,
+    "cards": [
+      "storm_1",
+      "storm_2",
+      "storm_3",
+      "storm_4"
+    ],
+    "set_bonus": {
+      "type": "storm",
+      "shockwave_every_n": 3,
+      "shockwave_radius": 150,
+      "shockwave_stun": 2.0,
+      "shockwave_pull": true
+    },
+    "class_affinity": [
+      "mage"
+    ],
+    "rarity": "legendary"
   },
   {
-    "id": "time_lord", "size": 4,
-    "cards": ["time_1", "time_2", "time_3", "time_4"],
-    "set_bonus": { "type": "time_lord", "time_stop_duration": 3.0, "time_stop_cooldown": 60.0, "death_rewind": true },
-    "class_affinity": ["all"], "rarity": "legendary"
+    "id": "time_lord",
+    "size": 4,
+    "cards": [
+      "time_1",
+      "time_2",
+      "time_3",
+      "time_4"
+    ],
+    "set_bonus": {
+      "type": "time_lord",
+      "time_stop_duration": 3.0,
+      "time_stop_cooldown": 60.0,
+      "death_rewind": true
+    },
+    "class_affinity": [
+      "all"
+    ],
+    "rarity": "legendary"
   }
 ]

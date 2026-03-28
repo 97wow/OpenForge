@@ -1,0 +1,24 @@
+{
+  "id": "piercer_set_bonus",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_STAT",
+      "base_points": 1.0,
+      "misc_value": "pierce_chance",
+      "mod_type": "flat",
+      "duration": 0,
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_STAT",
+      "base_points": 3,
+      "misc_value": "pierce_count",
+      "mod_type": "flat",
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

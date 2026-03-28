@@ -4,8 +4,16 @@
   "desc_key": "CARD_PIERCER_1_DESC",
   "set_id": "piercer",
   "rarity": "common",
-  "class_affinity": ["ranger"],
+  "class_affinity": [
+    "ranger"
+  ],
   "effects": [
-    { "type": "pierce_chance", "stat": "pierce_chance", "mod_type": "flat", "value": 0.3 }
-  ]
+    {
+      "type": "pierce_chance",
+      "stat": "pierce_chance",
+      "mod_type": "flat",
+      "value": 0.3
+    }
+  ],
+  "spell_id": "piercer_passive"
 }

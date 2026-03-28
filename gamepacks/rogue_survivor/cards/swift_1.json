@@ -4,8 +4,16 @@
   "desc_key": "CARD_SWIFT_1_DESC",
   "set_id": "swift_wind",
   "rarity": "common",
-  "class_affinity": ["ranger"],
+  "class_affinity": [
+    "ranger"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "attack_speed_pct", "mod_type": "percent", "value": 0.15 }
-  ]
+    {
+      "type": "stat_mod",
+      "stat": "attack_speed_pct",
+      "mod_type": "percent",
+      "value": 0.15
+    }
+  ],
+  "spell_id": "swift_1_passive"
 }

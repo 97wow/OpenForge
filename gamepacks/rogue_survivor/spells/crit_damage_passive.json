@@ -1,0 +1,15 @@
+{
+  "id": "crit_damage_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_STAT",
+      "base_points": 0.5,
+      "misc_value": "crit_damage_bonus",
+      "mod_type": "flat",
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

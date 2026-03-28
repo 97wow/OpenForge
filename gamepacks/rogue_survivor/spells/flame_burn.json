@@ -1,0 +1,14 @@
+{
+  "id": "flame_burn",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PERIODIC_DAMAGE",
+      "base_points": 5,
+      "period": 0.5,
+      "duration": 3.0,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    }
+  ]
+}

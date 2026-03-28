@@ -1,0 +1,15 @@
+{
+  "id": "barrage_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_STAT",
+      "base_points": 1,
+      "misc_value": "extra_projectiles",
+      "mod_type": "flat",
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

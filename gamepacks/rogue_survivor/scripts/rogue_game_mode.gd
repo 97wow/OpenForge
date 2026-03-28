@@ -771,95 +771,56 @@ func _on_card_picked(card_id: String) -> void:
 	emit("card_selected", {"card_id": card_id, "level": _hero_level})
 
 func _apply_card_effects(card: Dictionary) -> void:
-	## 统一处理：所有效果都写入 hero_xxx 变量 + 直接修改组件
+	## 通过 SpellSystem 施放卡片对应的 spell
 	if hero == null or not is_instance_valid(hero):
 		return
-	var effects: Array = card.get("effects", [])
-	for effect in effects:
-		if not effect is Dictionary:
-			continue
-		var stat: String = effect.get("stat", "")
-		var value: float = effect.get("value", 0.0)
-
-		# 所有效果统一存入 hero_ 前缀变量（累加）
-		var var_key := "hero_" + stat
-		var current: float = float(EngineAPI.get_variable(var_key, 0.0))
-		EngineAPI.set_variable(var_key, current + value)
-
-		# 特殊效果：直接修改组件属性
-		match stat:
-			"attack_speed_pct":
-				# 减少射击冷却时间
+	var spell_id: String = card.get("spell_id", "")
+	if spell_id != "":
+		EngineAPI.cast_spell(spell_id, hero, hero)
+		print("[Cards] Cast spell: %s (from card %s)" % [spell_id, card.get("id", "")])
+	else:
+		# 兼容旧格式：直接读 effects 数组存入变量
+		var effects: Array = card.get("effects", [])
+		for effect in effects:
+			if not effect is Dictionary:
+				continue
+			var stat: String = effect.get("stat", "")
+			var value: float = effect.get("value", 0.0)
+			var var_key := "hero_" + stat
+			var current: float = float(EngineAPI.get_variable(var_key, 0.0))
+			EngineAPI.set_variable(var_key, current + value)
+			# 攻速特殊处理
+			if stat == "attack_speed_pct":
 				var input_comp: Node = EngineAPI.get_component(hero, "player_input")
 				if input_comp:
 					input_comp.shoot_cooldown *= (1.0 / (1.0 + value))
-			"extra_projectiles":
-				pass  # 射击时读取变量
-			"spread_angle":
-				pass  # 射击时读取变量
-
-	var card_name: String = card.get("name_key", card.get("id", ""))
-	print("[Cards] Applied: %s | Variables: pierce=%s split=%s ignite=%s slow=%s lifesteal=%s crit=%s proj=%s" % [
-		card_name,
-		EngineAPI.get_variable("hero_pierce_chance", 0),
-		EngineAPI.get_variable("hero_split_chance", 0),
-		EngineAPI.get_variable("hero_ignite_chance", 0),
-		EngineAPI.get_variable("hero_slow_chance", 0),
-		EngineAPI.get_variable("hero_life_steal", 0),
-		EngineAPI.get_variable("hero_crit_chance", 0),
-		EngineAPI.get_variable("hero_extra_projectiles", 0),
-	])
+		print("[Cards] Applied legacy effects from: %s" % card.get("id", ""))
 
 func _apply_set_bonus(set_data: Dictionary) -> void:
+	## 通过 SpellSystem 施放套装 bonus spell
 	if hero == null or not is_instance_valid(hero):
 		return
-	var bonus: Dictionary = set_data.get("set_bonus", {})
-	var btype: String = bonus.get("type", "")
-	match btype:
-		"pierce":
-			EngineAPI.set_variable("hero_pierce_count", bonus.get("pierce_count", 3))
-			EngineAPI.set_variable("hero_pierce_chance", bonus.get("pierce_chance", 1.0))
-		"split":
-			EngineAPI.set_variable("hero_split_chance", bonus.get("split_chance", 0.4))
-			EngineAPI.set_variable("hero_split_count", bonus.get("split_count", 2))
-			EngineAPI.set_variable("hero_split_damage_ratio", bonus.get("split_damage_ratio", 0.8))
-		"stat_mod":
+	var bonus_spell: String = set_data.get("bonus_spell", "")
+	if bonus_spell != "":
+		EngineAPI.cast_spell(bonus_spell, hero, hero)
+		print("[Cards] Set bonus spell: %s (set %s)" % [bonus_spell, set_data.get("id", "")])
+	else:
+		# 兼容旧格式：直接读 set_bonus 存入变量
+		var bonus: Dictionary = set_data.get("set_bonus", {})
+		var btype: String = bonus.get("type", "")
+		if btype == "stat_mod":
 			var stats: Dictionary = bonus.get("stats", {})
 			for stat_name in stats:
 				EngineAPI.add_stat_modifier(hero, stat_name, {
 					"type": "percent", "value": stats[stat_name], "source": set_data.get("id", "")
 				})
-		"multi_shot":
-			EngineAPI.set_variable("hero_extra_projectiles", bonus.get("extra_projectiles", 2))
-			EngineAPI.set_variable("hero_spread_angle", bonus.get("spread_angle", 15))
-		"burn_spread":
-			EngineAPI.set_variable("hero_ignite_chance", bonus.get("ignite_chance", 0.5))
-			EngineAPI.set_variable("hero_burn_spread", true)
-		"freeze_shatter":
-			EngineAPI.set_variable("hero_slow_pct", bonus.get("slow_pct", 0.4))
-			EngineAPI.set_variable("hero_freeze_shatter", true)
-		"chain_lightning":
-			EngineAPI.set_variable("hero_chain_chance", bonus.get("chain_chance", 0.3))
-			EngineAPI.set_variable("hero_chain_count", bonus.get("chain_count", 3))
-			EngineAPI.set_variable("hero_chain_stun", bonus.get("chain_stun", 1.0))
-		"reaper":
-			EngineAPI.set_variable("hero_execute_threshold", bonus.get("execute_threshold", 0.15))
-			EngineAPI.set_variable("hero_kill_heal_pct", bonus.get("kill_heal_pct", 0.1))
-			EngineAPI.set_variable("hero_permanent_damage_per_kill", bonus.get("permanent_damage_per_kill", 0.02))
-		"storm":
-			EngineAPI.set_variable("hero_shockwave_every_n", bonus.get("shockwave_every_n", 3))
-			EngineAPI.set_variable("hero_shockwave_radius", bonus.get("shockwave_radius", 150))
-			EngineAPI.set_variable("hero_shockwave_stun", bonus.get("shockwave_stun", 2.0))
-		"time_lord":
-			EngineAPI.set_variable("hero_time_stop_duration", bonus.get("time_stop_duration", 3.0))
-			EngineAPI.set_variable("hero_time_stop_cooldown", bonus.get("time_stop_cooldown", 60.0))
-			EngineAPI.set_variable("hero_death_rewind", bonus.get("death_rewind", true))
-		"summon":
-			EngineAPI.set_variable("hero_spirit_count", bonus.get("spirit_count", 2))
-			EngineAPI.set_variable("hero_spirit_inherit_pct", bonus.get("spirit_inherit_pct", 0.5))
-		"random_element":
-			EngineAPI.set_variable("hero_element_chance", bonus.get("element_chance", 0.35))
-	print("[Cards] Set bonus applied: %s (%s)" % [set_data.get("id", ""), btype])
+		else:
+			# 通用：把 bonus 的所有数值键存入 hero_ 变量
+			for key in bonus:
+				if key == "type":
+					continue
+				EngineAPI.set_variable("hero_" + key, bonus[key])
+		print("[Cards] Set bonus (legacy): %s (%s)" % [set_data.get("id", ""), btype])
 
 # === HUD ===
 

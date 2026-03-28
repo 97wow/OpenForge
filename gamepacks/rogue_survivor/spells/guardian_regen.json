@@ -1,0 +1,14 @@
+{
+  "id": "guardian_regen",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PERIODIC_HEAL",
+      "base_points": 3,
+      "period": 1.0,
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

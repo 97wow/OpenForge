@@ -1,0 +1,14 @@
+{
+  "id": "frost_slow_passive",
+  "school": "frost",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PROC_TRIGGER_SPELL",
+      "trigger_spell": "frost_slow_spell",
+      "duration": 0,
+      "proc": { "flags": ["on_hit"], "chance": 100 },
+      "target": { "category": "SELF" }
+    }
+  ]
+}

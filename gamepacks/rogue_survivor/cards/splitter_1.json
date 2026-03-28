@@ -4,8 +4,16 @@
   "desc_key": "CARD_SPLITTER_1_DESC",
   "set_id": "splitter",
   "rarity": "common",
-  "class_affinity": ["ranger"],
+  "class_affinity": [
+    "ranger"
+  ],
   "effects": [
-    { "type": "split_chance", "stat": "split_chance", "mod_type": "flat", "value": 0.2 }
-  ]
+    {
+      "type": "split_chance",
+      "stat": "split_chance",
+      "mod_type": "flat",
+      "value": 0.2
+    }
+  ],
+  "spell_id": "splitter_passive"
 }

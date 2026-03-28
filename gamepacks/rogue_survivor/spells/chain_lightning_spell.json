@@ -1,0 +1,11 @@
+{
+  "id": "chain_lightning_spell",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SCHOOL_DAMAGE",
+      "base_points": 15,
+      "target": { "category": "CHAIN", "check": "ENEMY", "chain_targets": 3, "chain_range": 180 }
+    }
+  ]
+}

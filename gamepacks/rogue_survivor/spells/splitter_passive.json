@@ -1,0 +1,15 @@
+{
+  "id": "splitter_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_STAT",
+      "base_points": 0.2,
+      "misc_value": "split_chance",
+      "mod_type": "flat",
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

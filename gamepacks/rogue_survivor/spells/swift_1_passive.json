@@ -1,0 +1,15 @@
+{
+  "id": "swift_1_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_STAT",
+      "base_points": 0.15,
+      "misc_value": "attack_speed_pct",
+      "mod_type": "flat",
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

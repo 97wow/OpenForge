@@ -1,0 +1,13 @@
+{
+  "id": "frost_slow_spell",
+  "school": "frost",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_SPEED_SLOW",
+      "base_points": 0.2,
+      "duration": 2.0,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    }
+  ]
+}

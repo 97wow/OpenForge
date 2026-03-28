@@ -1,0 +1,14 @@
+{
+  "id": "flame_ignite_passive",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PROC_TRIGGER_SPELL",
+      "trigger_spell": "flame_burn",
+      "duration": 0,
+      "proc": { "flags": ["on_hit"], "chance": 25 },
+      "target": { "category": "SELF" }
+    }
+  ]
+}

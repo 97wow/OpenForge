@@ -19,6 +19,7 @@
   ],
   "entity_dir": "entities",
   "buff_dir": "buffs",
+  "spell_dir": "spells",
   "rules_dir": "rules",
   "maps_dir": "maps"
 }

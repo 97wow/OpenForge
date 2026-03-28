@@ -1,0 +1,16 @@
+{
+  "id": "poison_dot",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PERIODIC_DAMAGE",
+      "base_points": 4,
+      "period": 0.5,
+      "duration": 3.0,
+      "stack_mode": "stack",
+      "max_stacks": 3,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    }
+  ]
+}

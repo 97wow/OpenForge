@@ -1,0 +1,13 @@
+{
+  "id": "time_haste_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_SPEED",
+      "base_points": 0.3,
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

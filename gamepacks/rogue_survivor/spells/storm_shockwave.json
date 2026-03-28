@@ -1,0 +1,11 @@
+{
+  "id": "storm_shockwave",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SCHOOL_DAMAGE",
+      "base_points": 20,
+      "target": { "category": "AREA", "check": "ENEMY", "radius": 150, "reference": "CASTER" }
+    }
+  ]
+}

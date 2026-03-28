@@ -1,0 +1,11 @@
+{
+  "id": "reaper_kill_heal",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "HEAL",
+      "base_points": 15,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

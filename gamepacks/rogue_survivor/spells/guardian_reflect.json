@@ -1,0 +1,13 @@
+{
+  "id": "guardian_reflect",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "DAMAGE_SHIELD",
+      "base_points": 0.2,
+      "duration": 0,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

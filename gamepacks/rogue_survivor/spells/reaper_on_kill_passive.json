@@ -1,0 +1,14 @@
+{
+  "id": "reaper_on_kill_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PROC_TRIGGER_SPELL",
+      "trigger_spell": "reaper_kill_heal",
+      "duration": 0,
+      "proc": { "flags": ["on_kill"], "chance": 100 },
+      "target": { "category": "SELF" }
+    }
+  ]
+}

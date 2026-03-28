@@ -1,0 +1,11 @@
+{
+  "id": "reaper_execute",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SCHOOL_DAMAGE",
+      "base_points": 9999,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    }
+  ]
+}

@@ -4,10 +4,28 @@
   "desc_key": "CARD_FROST_1_DESC",
   "set_id": "frost",
   "rarity": "common",
-  "class_affinity": ["mage"],
+  "class_affinity": [
+    "mage"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "slow_chance", "mod_type": "flat", "value": 1.0 },
-    { "type": "stat_mod", "stat": "slow_pct", "mod_type": "flat", "value": 0.2 },
-    { "type": "stat_mod", "stat": "slow_duration", "mod_type": "flat", "value": 2.0 }
-  ]
+    {
+      "type": "stat_mod",
+      "stat": "slow_chance",
+      "mod_type": "flat",
+      "value": 1.0
+    },
+    {
+      "type": "stat_mod",
+      "stat": "slow_pct",
+      "mod_type": "flat",
+      "value": 0.2
+    },
+    {
+      "type": "stat_mod",
+      "stat": "slow_duration",
+      "mod_type": "flat",
+      "value": 2.0
+    }
+  ],
+  "spell_id": "frost_slow_passive"
 }
