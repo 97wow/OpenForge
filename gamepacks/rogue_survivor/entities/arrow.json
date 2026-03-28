@@ -3,9 +3,9 @@
   "name": "Arrow",
   "tags": ["projectile", "friendly_projectile"],
   "components": {
-    "visual": { "color": "#ffee58", "size": 8 },
+    "visual": { "color": "#ffee58", "size": 8, "show_hp_bar": false },
     "projectile": {
-      "speed": 650,
+      "speed": 975,
       "damage": 12,
       "max_range": 800,
       "pierce_count": 0,

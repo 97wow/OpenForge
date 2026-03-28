@@ -28,12 +28,20 @@ func _on_attached(entity: Node2D) -> void:
 	_entity = entity
 	if _visual_node:
 		entity.add_child(_visual_node)
+	# 延迟创建血条（等所有组件挂载完再检查是否有 health）
 	if _show_hp_bar:
-		_create_hp_bar()
+		entity.ready.connect(_try_create_hp_bar, CONNECT_ONE_SHOT)
 
 func _on_detached() -> void:
 	if _visual_node and is_instance_valid(_visual_node):
 		_visual_node.queue_free()
+
+func _try_create_hp_bar() -> void:
+	if _entity == null:
+		return
+	var health: Node = _entity.get_component("health") if _entity.has_method("get_component") else null
+	if health != null:
+		_create_hp_bar()
 
 func _process(_delta: float) -> void:
 	if not _show_hp_bar or _entity == null or _hp_bar_fill == null:

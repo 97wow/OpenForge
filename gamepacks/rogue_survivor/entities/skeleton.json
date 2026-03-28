@@ -5,7 +5,7 @@
   "components": {
     "visual": { "color": "#ff8a65", "size": 18 },
     "health": { "max_hp": 80, "armor": 3 },
-    "movement": { "speed": 55 },
+    "movement": { "speed": 41 },
     "ai_move_to": { "target_tag": "fountain", "attack_range": 30 },
     "combat": {
       "damage": 12, "attack_speed": 0.8, "range": 30,
