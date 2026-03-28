@@ -13,7 +13,7 @@ config_version=5
 config/name="OpenForge"
 config/description="Generic data-driven game creation platform with UGC support"
 config/version="0.1.0"
-run/main_scene="res://src/main.tscn"
+run/main_scene="res://src/scenes/welcome/welcome_screen.tscn"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 EventBus="*res://src/core/event_bus.gd"
 EngineAPI="*res://src/core/engine_api.gd"
 DataRegistry="*res://src/core/data_registry.gd"
+SceneManager="*res://src/scenes/shared/scene_manager.gd"
 
 [display]
 
