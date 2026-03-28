@@ -35,14 +35,14 @@ func _show_error(msg: String) -> void:
 	var label := Label.new()
 	label.text = "Error: %s" % msg
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.anchors_preset = Control.PRESET_CENTER
+	label.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	label.add_theme_color_override("font_color", Color(1, 0.3, 0.3))
 	label.add_theme_font_size_override("font_size", 20)
 	ui_layer.add_child(label)
 
 	var back_btn := Button.new()
 	back_btn.text = "Back to Menu"
-	back_btn.anchors_preset = Control.PRESET_CENTER
+	back_btn.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	back_btn.offset_top = 40
 	back_btn.offset_bottom = 75
 	back_btn.offset_left = -80

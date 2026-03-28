@@ -283,18 +283,18 @@ func _show_card_selection() -> void:
 
 	_card_select_ui = Control.new()
 	_card_select_ui.process_mode = Node.PROCESS_MODE_ALWAYS  # 暂停时也能交互
-	_card_select_ui.anchors_preset = Control.PRESET_FULL_RECT
+	_card_select_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	ui_layer.add_child(_card_select_ui)
 
 	# 半透明背景
 	var overlay := ColorRect.new()
 	overlay.color = Color(0, 0, 0, 0.7)
-	overlay.anchors_preset = Control.PRESET_FULL_RECT
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_card_select_ui.add_child(overlay)
 
 	# 居中容器
 	var center_vbox := VBoxContainer.new()
-	center_vbox.anchors_preset = Control.PRESET_FULL_RECT
+	center_vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	center_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	center_vbox.add_theme_constant_override("separation", 15)
 	_card_select_ui.add_child(center_vbox)
@@ -429,7 +429,7 @@ func _create_hud() -> void:
 
 	# 顶栏
 	var panel := PanelContainer.new()
-	panel.anchors_preset = Control.PRESET_TOP_WIDE
+	panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
 	panel.offset_bottom = 40
 	ui_layer.add_child(panel)
 
@@ -449,7 +449,7 @@ func _create_hud() -> void:
 	# 退出按钮
 	var back_btn := Button.new()
 	back_btn.text = "Quit"
-	back_btn.anchors_preset = Control.PRESET_BOTTOM_RIGHT
+	back_btn.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
 	back_btn.offset_left = -80
 	back_btn.offset_top = -40
 	back_btn.pressed.connect(func() -> void: SceneManager.goto_scene("lobby"))

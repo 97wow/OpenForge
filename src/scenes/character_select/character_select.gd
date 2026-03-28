@@ -34,12 +34,12 @@ func _build_ui() -> void:
 	# 背景
 	var bg := ColorRect.new()
 	bg.color = Color(0.06, 0.06, 0.1)
-	bg.anchors_preset = Control.PRESET_FULL_RECT
+	bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(bg)
 
 	# 用 VBox 包裹所有内容实现整体居中
 	var outer := VBoxContainer.new()
-	outer.anchors_preset = Control.PRESET_FULL_RECT
+	outer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	outer.alignment = BoxContainer.ALIGNMENT_CENTER
 	outer.add_theme_constant_override("separation", 20)
 	add_child(outer)
@@ -64,7 +64,7 @@ func _build_ui() -> void:
 	# 返回按钮
 	var back_btn := Button.new()
 	back_btn.text = "< Back"
-	back_btn.anchors_preset = Control.PRESET_BOTTOM_LEFT
+	back_btn.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
 	back_btn.offset_left = 20
 	back_btn.offset_top = -50
 	back_btn.offset_right = 120
