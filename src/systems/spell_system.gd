@@ -308,7 +308,7 @@ func _resolve_targets(caster: Node2D, explicit_target: Node2D, effect: Dictionar
 			if explicit_target and is_instance_valid(explicit_target):
 				result.append(explicit_target)
 				var chain_range: float = target_data.get("chain_range", 150.0)
-				var decay: float = target_data.get("chain_amplitude", 1.0)
+				var _decay: float = target_data.get("chain_amplitude", 1.0)
 				var current: Node2D = explicit_target
 				var hit: Array[Node2D] = [explicit_target]
 				for _i in range(chain_targets):

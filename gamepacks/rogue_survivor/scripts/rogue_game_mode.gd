@@ -669,7 +669,7 @@ func _on_replace_card(replace_id: String) -> void:
 	get_tree().paused = false
 	emit("card_selected", {"card_id": _pending_card_id, "level": _hero_level})
 
-func _create_card_button(card: Dictionary, is_full: bool = false) -> PanelContainer:
+func _create_card_button(card: Dictionary, _is_full: bool = false) -> PanelContainer:
 	var panel := PanelContainer.new()
 	panel.custom_minimum_size = Vector2(250, 280)
 

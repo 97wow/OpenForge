@@ -191,26 +191,6 @@
     "bonus_spell": "crit_set_bonus"
   },
   {
-    "id": "summoner",
-    "size": 3,
-    "cards": [
-      "summon_1",
-      "summon_2",
-      "summon_3"
-    ],
-    "set_bonus": {
-      "type": "summon",
-      "spirit_count": 2,
-      "spirit_inherit_pct": 0.5,
-      "spirit_explode": true
-    },
-    "class_affinity": [
-      "mage"
-    ],
-    "rarity": "uncommon",
-    "bonus_spell": "summon_set_bonus"
-  },
-  {
     "id": "elementalist",
     "size": 3,
     "cards": [

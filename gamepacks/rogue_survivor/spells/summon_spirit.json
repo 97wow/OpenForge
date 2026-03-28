@@ -1,1 +1,0 @@
-{"id":"summon_spirit","school":"nature","effects":[{"type":"SUMMON","entity_id":"spirit","offset":{"x":50,"y":0},"target":{"category":"SELF"}}]}
