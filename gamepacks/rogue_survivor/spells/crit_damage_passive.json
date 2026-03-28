@@ -3,13 +3,13 @@
   "school": "physical",
   "effects": [
     {
-      "type": "APPLY_AURA",
-      "aura": "MOD_STAT",
+      "type": "SET_VARIABLE",
+      "key": "hero_crit_damage_bonus",
       "base_points": 0.5,
-      "misc_value": "crit_damage_bonus",
-      "mod_type": "flat",
-      "duration": 0,
-      "target": { "category": "SELF" }
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
     }
   ]
 }

@@ -1,0 +1,18 @@
+{
+  "id": "heavy_bolt",
+  "name": "Heavy Bolt",
+  "tags": ["projectile", "friendly_projectile"],
+  "components": {
+    "visual": { "color": "#ffffff", "size": 12, "show_hp_bar": false },
+    "projectile": {
+      "speed": 700,
+      "damage": 35,
+      "max_range": 450,
+      "pierce_count": 0,
+      "target_tag": "enemy",
+      "hit_radius": 16,
+      "damage_type": "physical"
+    }
+  },
+  "meta": {}
+}

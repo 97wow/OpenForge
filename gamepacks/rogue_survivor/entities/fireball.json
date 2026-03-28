@@ -1,0 +1,18 @@
+{
+  "id": "fireball",
+  "name": "Fireball",
+  "tags": ["projectile", "friendly_projectile"],
+  "components": {
+    "visual": { "color": "#ff7043", "size": 10, "show_hp_bar": false },
+    "projectile": {
+      "speed": 800,
+      "damage": 25,
+      "max_range": 600,
+      "pierce_count": 0,
+      "target_tag": "enemy",
+      "hit_radius": 18,
+      "damage_type": "fire"
+    }
+  },
+  "meta": {}
+}

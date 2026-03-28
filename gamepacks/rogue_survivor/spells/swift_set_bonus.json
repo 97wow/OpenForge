@@ -1,1 +1,24 @@
-{"id":"swift_set_bonus","school":"physical","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.3,"misc_value":"attack_speed_pct","mod_type":"flat","duration":0,"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.2,"misc_value":"crit_chance","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "swift_set_bonus",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_attack_speed_pct",
+      "base_points": 0.3,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_crit_chance",
+      "base_points": 0.2,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}

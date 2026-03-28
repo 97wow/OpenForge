@@ -1,1 +1,15 @@
-{"id":"barrage_2_passive","school":"physical","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":12,"misc_value":"spread_angle","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "barrage_2_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_spread_angle",
+      "base_points": 12,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}

@@ -3,13 +3,13 @@
   "school": "physical",
   "effects": [
     {
-      "type": "APPLY_AURA",
-      "aura": "MOD_STAT",
+      "type": "SET_VARIABLE",
+      "key": "hero_split_chance",
       "base_points": 0.2,
-      "misc_value": "split_chance",
-      "mod_type": "flat",
-      "duration": 0,
-      "target": { "category": "SELF" }
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
     }
   ]
 }

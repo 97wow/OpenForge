@@ -843,6 +843,7 @@ var _aspd_label: Label = null
 var _range_label: Label = null
 # 卡片栏
 var _card_slots: Array[PanelContainer] = []
+var _set_buff_container: HBoxContainer = null
 
 func _create_hud() -> void:
 	var ui_layer: CanvasLayer = get_tree().current_scene.get_node_or_null("UI")
@@ -946,8 +947,24 @@ func _create_hud() -> void:
 		slot_label.name = "SlotLabel"
 		slot.add_child(slot_label)
 
+		# Tooltip
+		slot.tooltip_text = ""
+		slot.mouse_filter = Control.MOUSE_FILTER_PASS
+
 		card_bar.add_child(slot)
 		_card_slots.append(slot)
+
+	# === 套装 Buff 显示区域（左下角）===
+	_set_buff_container = HBoxContainer.new()
+	_set_buff_container.anchor_left = 0.0
+	_set_buff_container.anchor_top = 1.0
+	_set_buff_container.anchor_bottom = 1.0
+	_set_buff_container.offset_left = 10
+	_set_buff_container.offset_top = -60
+	_set_buff_container.offset_right = 400
+	_set_buff_container.offset_bottom = -5
+	_set_buff_container.add_theme_constant_override("separation", 6)
+	ui_layer.add_child(_set_buff_container)
 
 	# === 退出按钮 ===
 	var back_btn := Button.new()
@@ -1030,7 +1047,7 @@ func _update_hud() -> void:
 			var cls_key: String = str(EngineAPI.get_variable("hero_class", "warrior")).to_upper()
 			class_title.text = tr(cls_key)
 
-	# --- 卡片栏 ---
+	# --- 卡片栏 + Tooltip ---
 	if _card_manager:
 		var held: Array[String] = _card_manager.get_held_cards()
 		for slot_idx in range(6):
@@ -1038,7 +1055,59 @@ func _update_hud() -> void:
 			if slot_idx < held.size():
 				var card_data: Dictionary = _card_manager.get_card_data(held[slot_idx])
 				var name_key: String = card_data.get("name_key", held[slot_idx])
+				var desc_key: String = card_data.get("desc_key", "")
+				var set_id: String = card_data.get("set_id", "")
 				slot_label.text = tr(name_key)
 				slot_label.add_theme_color_override("font_color", Color(0.9, 0.85, 0.6))
+				# Tooltip: 名称 + 描述 + 套装归属
+				var tip := tr(name_key)
+				if desc_key != "":
+					tip += "\n" + tr(desc_key)
+				if set_id != "":
+					tip += "\n[" + tr("SET_" + set_id.to_upper()) + "]"
+				_card_slots[slot_idx].tooltip_text = tip
 			else:
 				slot_label.text = ""
+				_card_slots[slot_idx].tooltip_text = ""
+
+		# --- 套装 Buff 显示 ---
+		if _set_buff_container:
+			var completed: Array[String] = _card_manager.get_completed_sets()
+			# 只在数量变化时重建
+			if _set_buff_container.get_child_count() != completed.size():
+				for child in _set_buff_container.get_children():
+					child.queue_free()
+				for set_id in completed:
+					var set_data: Dictionary = _card_manager.get_set_data(set_id)
+					var buff_panel := PanelContainer.new()
+					buff_panel.custom_minimum_size = Vector2(50, 50)
+					var buff_style := StyleBoxFlat.new()
+					buff_style.bg_color = Color(0.2, 0.15, 0.3, 0.8)
+					buff_style.corner_radius_top_left = 4
+					buff_style.corner_radius_top_right = 4
+					buff_style.corner_radius_bottom_left = 4
+					buff_style.corner_radius_bottom_right = 4
+					buff_style.border_color = Color(0.6, 0.4, 0.8, 0.6)
+					buff_style.border_width_top = 2
+					buff_style.border_width_bottom = 2
+					buff_style.border_width_left = 2
+					buff_style.border_width_right = 2
+					buff_panel.add_theme_stylebox_override("panel", buff_style)
+					buff_panel.mouse_filter = Control.MOUSE_FILTER_PASS
+
+					var buff_label := Label.new()
+					var set_tr_key := "SET_" + set_id.to_upper()
+					buff_label.text = tr(set_tr_key)
+					buff_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+					buff_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+					buff_label.add_theme_font_size_override("font_size", 9)
+					buff_label.add_theme_color_override("font_color", Color(0.8, 0.7, 1.0))
+					buff_panel.add_child(buff_label)
+
+					# Buff tooltip: 套装名 + 效果类型
+					var bonus: Dictionary = set_data.get("set_bonus", {})
+					var tip := tr(set_tr_key) + " (" + tr("SET_COMPLETE").format([""]).strip_edges() + ")"
+					tip += "\n" + str(bonus.get("type", ""))
+					buff_panel.tooltip_text = tip
+
+					_set_buff_container.add_child(buff_panel)

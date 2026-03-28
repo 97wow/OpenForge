@@ -3,13 +3,13 @@
   "school": "physical",
   "effects": [
     {
-      "type": "APPLY_AURA",
-      "aura": "MOD_STAT",
+      "type": "SET_VARIABLE",
+      "key": "hero_life_steal",
       "base_points": 0.05,
-      "misc_value": "life_steal",
-      "mod_type": "flat",
-      "duration": 0,
-      "target": { "category": "SELF" }
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
     }
   ]
 }

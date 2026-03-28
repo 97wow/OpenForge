@@ -9,19 +9,19 @@ const CLASSES := [
 		"id": "warrior", "name_key": "WARRIOR", "icon_key": "STR",
 		"color": Color(0.9, 0.22, 0.21),
 		"desc_key": "WARRIOR_DESC",
-		"stats": "HP: 200 | DMG: 20 | SPD: 0.5s | Range: 280",
+		"stats": "HP: 250 | DMG: 35 | SPD: 2.4s | Range: 250\nPhysical Attack",
 	},
 	{
 		"id": "ranger", "name_key": "RANGER", "icon_key": "AGI",
 		"color": Color(0.26, 0.63, 0.28),
 		"desc_key": "RANGER_DESC",
-		"stats": "HP: 120 | DMG: 7 | SPD: 0.2s | Range: 400",
+		"stats": "HP: 150 | DMG: 12 | SPD: 1.6s | Range: 420\nPhysical Attack",
 	},
 	{
 		"id": "mage", "name_key": "MAGE", "icon_key": "INT",
 		"color": Color(0.49, 0.34, 0.76),
 		"desc_key": "MAGE_DESC",
-		"stats": "HP: 100 | DMG: 25 | SPD: 0.6s | Range: 320",
+		"stats": "HP: 120 | DMG: 25 | SPD: 2.2s | Range: 350\nFire Damage (Fireball)",
 	},
 ]
 

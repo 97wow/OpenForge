@@ -1,1 +1,15 @@
-{"id":"vampire_2_passive","school":"shadow","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":2.0,"misc_value":"low_hp_lifesteal_mult","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "vampire_2_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_low_hp_lifesteal_mult",
+      "base_points": 2.0,
+      "mode": "set",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}

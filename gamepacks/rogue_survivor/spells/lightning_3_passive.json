@@ -1,1 +1,15 @@
-{"id":"lightning_3_passive","school":"shadow","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":50,"misc_value":"chain_range","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "lightning_3_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_chain_range",
+      "base_points": 50,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}

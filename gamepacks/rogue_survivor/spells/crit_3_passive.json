@@ -1,1 +1,15 @@
-{"id":"crit_3_passive","school":"physical","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":3,"misc_value":"crit_armor_reduce","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "crit_3_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_crit_armor_reduce",
+      "base_points": 3,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}

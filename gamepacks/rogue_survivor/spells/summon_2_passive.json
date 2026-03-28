@@ -1,1 +1,15 @@
-{"id":"summon_2_passive","school":"nature","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.5,"misc_value":"spirit_damage_bonus","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "summon_2_passive",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_spirit_damage_bonus",
+      "base_points": 0.5,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}

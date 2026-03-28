@@ -7,8 +7,16 @@
       "aura": "PROC_TRIGGER_SPELL",
       "trigger_spell": "poison_dot",
       "duration": 0,
-      "proc": { "flags": ["on_hit"], "chance": 30 },
-      "target": { "category": "SELF" }
+      "proc": {
+        "flags": [
+          "on_hit"
+        ],
+        "chance": 30,
+        "cooldown": 0.8
+      },
+      "target": {
+        "category": "SELF"
+      }
     }
   ]
 }

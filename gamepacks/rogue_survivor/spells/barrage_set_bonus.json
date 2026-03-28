@@ -1,1 +1,24 @@
-{"id":"barrage_set_bonus","school":"physical","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":2,"misc_value":"extra_projectiles","mod_type":"flat","duration":0,"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":15,"misc_value":"spread_angle","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "barrage_set_bonus",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_extra_projectiles",
+      "base_points": 2,
+      "mode": "set",
+      "target": {
+        "category": "SELF"
+      }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_spread_angle",
+      "base_points": 15,
+      "mode": "set",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}

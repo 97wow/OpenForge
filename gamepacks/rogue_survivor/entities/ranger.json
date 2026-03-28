@@ -4,20 +4,20 @@
   "tags": ["hero", "player", "friendly"],
   "components": {
     "visual": { "color": "#43a047", "size": 26 },
-    "health": { "max_hp": 120, "armor": 2 },
-    "movement": { "speed": 230 },
+    "health": { "max_hp": 150, "armor": 3 },
+    "movement": { "speed": 220 },
     "player_input": {
-      "shoot_cooldown": 0.2,
+      "shoot_cooldown": 1.6,
       "projectile_id": "arrow",
       "projectile_speed": 1100,
-      "projectile_damage": 7,
-      "attack_range": 400,
+      "projectile_damage": 12,
+      "attack_range": 420,
       "target_tag": "enemy"
     },
     "collision": { "shape": "circle", "radius": 10 },
     "alert": {
-      "alert_range": 550,
-      "attack_range": 400,
+      "alert_range": 570,
+      "attack_range": 420,
       "target_tag": "enemy",
       "max_auto_approaches": 2
     }
@@ -25,7 +25,7 @@
   "meta": {
     "class": "ranger",
     "class_name": "Ranger",
-    "description": "Extremely fast attacks. Long range. Fragile.",
+    "desc_key": "RANGER_DESC",
     "color": "#43a047",
     "base_str": 3, "base_agi": 8, "base_int": 3, "base_sta": 4, "base_def": 2,
     "level_str": 1, "level_agi": 3, "level_int": 1, "level_sta": 1, "level_def": 1

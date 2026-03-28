@@ -3,13 +3,13 @@
   "school": "physical",
   "effects": [
     {
-      "type": "APPLY_AURA",
-      "aura": "MOD_STAT",
+      "type": "SET_VARIABLE",
+      "key": "hero_extra_projectiles",
       "base_points": 1,
-      "misc_value": "extra_projectiles",
-      "mod_type": "flat",
-      "duration": 0,
-      "target": { "category": "SELF" }
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
     }
   ]
 }

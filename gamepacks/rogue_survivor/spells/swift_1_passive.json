@@ -3,13 +3,13 @@
   "school": "physical",
   "effects": [
     {
-      "type": "APPLY_AURA",
-      "aura": "MOD_STAT",
+      "type": "SET_VARIABLE",
+      "key": "hero_attack_speed_pct",
       "base_points": 0.15,
-      "misc_value": "attack_speed_pct",
-      "mod_type": "flat",
-      "duration": 0,
-      "target": { "category": "SELF" }
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
     }
   ]
 }

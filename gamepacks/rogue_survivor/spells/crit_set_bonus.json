@@ -1,1 +1,33 @@
-{"id":"crit_set_bonus","school":"physical","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.25,"misc_value":"crit_chance","mod_type":"flat","duration":0,"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":1.0,"misc_value":"crit_damage_bonus","mod_type":"flat","duration":0,"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":5,"misc_value":"crit_armor_reduce","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}
+{
+  "id": "crit_set_bonus",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_crit_chance",
+      "base_points": 0.25,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_crit_damage_bonus",
+      "base_points": 1.0,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_crit_armor_reduce",
+      "base_points": 5,
+      "mode": "add",
+      "target": {
+        "category": "SELF"
+      }
+    }
+  ]
+}
