@@ -24,6 +24,9 @@ EngineAPI="*res://src/core/engine_api.gd"
 DataRegistry="*res://src/core/data_registry.gd"
 SceneManager="*res://src/scenes/shared/scene_manager.gd"
 DebugOverlay="*res://src/core/debug_overlay.gd"
+MCPScreenshot="*res://addons/godot_mcp/mcp_screenshot_service.gd"
+MCPInputService="*res://addons/godot_mcp/mcp_input_service.gd"
+MCPGameInspector="*res://addons/godot_mcp/mcp_game_inspector_service.gd"
 
 [display]
 
@@ -32,6 +35,10 @@ window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_mcp/plugin.cfg")
 
 [input]
 

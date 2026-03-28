@@ -1,18 +1,43 @@
 {
   "id": "skeleton",
   "name": "Skeleton Warrior",
-  "tags": ["enemy", "mobile", "ground", "armored"],
+  "tags": [
+    "enemy",
+    "mobile",
+    "ground",
+    "armored"
+  ],
   "components": {
-    "visual": { "color": "#ff8a65", "size": 18 },
-    "health": { "max_hp": 80, "armor": 3 },
-    "movement": { "speed": 41 },
-    "ai_move_to": { "target_tag": "fountain", "attack_range": 30 },
+    "visual": {
+      "color": "#ff8a65",
+      "size": 18
+    },
+    "health": {
+      "max_hp": 80,
+      "armor": 3
+    },
+    "movement": {
+      "speed": 31
+    },
+    "ai_move_to": {
+      "target_tag": "fountain",
+      "attack_range": 30
+    },
     "combat": {
-      "damage": 12, "attack_speed": 0.8, "range": 30,
-      "attack_type": "single", "target_filter_tag": "fountain",
+      "damage": 12,
+      "attack_speed": 0.8,
+      "range": 30,
+      "attack_type": "single",
+      "target_filter_tag": "fountain",
       "targeting": "closest"
     },
-    "collision": { "shape": "circle", "radius": 8 }
+    "collision": {
+      "shape": "circle",
+      "radius": 8
+    }
   },
-  "meta": { "xp_reward": 10, "gold_reward": 5 }
+  "meta": {
+    "xp_reward": 10,
+    "gold_reward": 5
+  }
 }

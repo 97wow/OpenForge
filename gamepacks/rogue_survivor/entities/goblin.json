@@ -1,18 +1,42 @@
 {
   "id": "goblin",
   "name": "Goblin",
-  "tags": ["enemy", "mobile", "ground"],
+  "tags": [
+    "enemy",
+    "mobile",
+    "ground"
+  ],
   "components": {
-    "visual": { "color": "#e53935", "size": 16 },
-    "health": { "max_hp": 40, "armor": 0 },
-    "movement": { "speed": 60 },
-    "ai_move_to": { "target_tag": "fountain", "attack_range": 30 },
+    "visual": {
+      "color": "#e53935",
+      "size": 16
+    },
+    "health": {
+      "max_hp": 40,
+      "armor": 0
+    },
+    "movement": {
+      "speed": 45
+    },
+    "ai_move_to": {
+      "target_tag": "fountain",
+      "attack_range": 30
+    },
     "combat": {
-      "damage": 8, "attack_speed": 1.0, "range": 30,
-      "attack_type": "single", "target_filter_tag": "fountain",
+      "damage": 8,
+      "attack_speed": 1.0,
+      "range": 30,
+      "attack_type": "single",
+      "target_filter_tag": "fountain",
       "targeting": "closest"
     },
-    "collision": { "shape": "circle", "radius": 7 }
+    "collision": {
+      "shape": "circle",
+      "radius": 7
+    }
   },
-  "meta": { "xp_reward": 5, "gold_reward": 3 }
+  "meta": {
+    "xp_reward": 5,
+    "gold_reward": 3
+  }
 }

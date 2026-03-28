@@ -191,12 +191,12 @@ func register_aura_handler(aura_type: String, apply_fn: Callable, remove_fn: Cal
 # === 内置 Aura Handlers ===
 
 func _register_builtin_auras() -> void:
-	register_aura_handler("PERIODIC_DAMAGE", Callable(), Callable(), _tick_periodic_damage)
-	register_aura_handler("PERIODIC_HEAL", Callable(), Callable(), _tick_periodic_heal)
+	register_aura_handler("PERIODIC_DAMAGE", _apply_periodic_damage_vfx, _remove_aura_vfx, _tick_periodic_damage)
+	register_aura_handler("PERIODIC_HEAL", _apply_periodic_heal_vfx, _remove_aura_vfx, _tick_periodic_heal)
 	register_aura_handler("PERIODIC_TRIGGER_SPELL", Callable(), Callable(), _tick_periodic_trigger)
 	register_aura_handler("MOD_STAT", _apply_mod_stat, _remove_mod_stat, Callable())
 	register_aura_handler("MOD_SPEED", _apply_mod_speed, _remove_mod_speed, Callable())
-	register_aura_handler("MOD_SPEED_SLOW", _apply_mod_speed_slow, _remove_mod_speed_slow, Callable())
+	register_aura_handler("MOD_SPEED_SLOW", _apply_slow_vfx, _remove_slow_vfx, Callable())
 	register_aura_handler("SCHOOL_ABSORB", _apply_absorb, _remove_absorb, Callable())
 	register_aura_handler("PROC_TRIGGER_SPELL", _apply_proc, _remove_proc, Callable())
 	register_aura_handler("DAMAGE_SHIELD", _apply_damage_shield, _remove_damage_shield, Callable())
@@ -341,3 +341,135 @@ func clear_auras_on(target: Node2D) -> void:
 		for aura in _active_auras[eid]:
 			_remove_aura_instance(aura)
 		_active_auras.erase(eid)
+
+# === Aura 持续视觉特效 ===
+
+func _create_aura_particles(target: Node2D, config: Dictionary) -> CPUParticles2D:
+	## 创建附着在目标身上的持续粒子
+	if not is_instance_valid(target):
+		return null
+	var particles := CPUParticles2D.new()
+	particles.emitting = true
+	particles.one_shot = false
+	particles.amount = config.get("amount", 4)
+	particles.lifetime = config.get("lifetime", 0.8)
+	particles.speed_scale = 1.0
+	particles.direction = config.get("direction", Vector2(0, -1))
+	particles.spread = config.get("spread", 45.0)
+	particles.initial_velocity_min = config.get("speed_min", 10)
+	particles.initial_velocity_max = config.get("speed_max", 25)
+	particles.gravity = config.get("gravity", Vector2.ZERO)
+	particles.scale_amount_min = config.get("size_min", 1.5)
+	particles.scale_amount_max = config.get("size_max", 2.5)
+	var color_start: Color = config.get("color", Color.WHITE)
+	var color_end: Color = config.get("color_end", Color(1, 1, 1, 0))
+	var gradient := Gradient.new()
+	gradient.set_color(0, color_start)
+	gradient.set_color(1, color_end)
+	particles.color_ramp = gradient
+	particles.name = config.get("node_name", "AuraVFX")
+	target.add_child(particles)
+	return particles
+
+func _apply_periodic_damage_vfx(aura: Dictionary) -> void:
+	var target = aura.get("target")
+	if target == null or not is_instance_valid(target):
+		return
+	var school: String = aura.get("spell", {}).get("school", "physical")
+	var config: Dictionary = {}
+	match school:
+		"fire":
+			config = {
+				"amount": 5, "lifetime": 0.6,
+				"direction": Vector2(0, -1), "spread": 30.0,
+				"speed_min": 15, "speed_max": 30,
+				"gravity": Vector2(0, -20),
+				"size_min": 1.5, "size_max": 2.5,
+				"color": Color(1, 0.5, 0.1, 0.8),
+				"color_end": Color(1, 0.2, 0, 0),
+				"node_name": "BurnVFX",
+			}
+		"nature", "poison":
+			config = {
+				"amount": 3, "lifetime": 0.8,
+				"direction": Vector2(0, -1), "spread": 60.0,
+				"speed_min": 8, "speed_max": 15,
+				"gravity": Vector2(0, -10),
+				"size_min": 1.5, "size_max": 2.0,
+				"color": Color(0.3, 0.9, 0.2, 0.7),
+				"color_end": Color(0.1, 0.6, 0.1, 0),
+				"node_name": "PoisonVFX",
+			}
+		"frost", "ice":
+			config = {
+				"amount": 4, "lifetime": 1.0,
+				"direction": Vector2(0, 0), "spread": 180.0,
+				"speed_min": 5, "speed_max": 12,
+				"gravity": Vector2(0, 5),
+				"size_min": 1.0, "size_max": 2.0,
+				"color": Color(0.5, 0.8, 1, 0.7),
+				"color_end": Color(0.7, 0.9, 1, 0),
+				"node_name": "FrostVFX",
+			}
+		"shadow":
+			config = {
+				"amount": 4, "lifetime": 0.7,
+				"direction": Vector2(0, 0), "spread": 180.0,
+				"speed_min": 10, "speed_max": 20,
+				"gravity": Vector2.ZERO,
+				"size_min": 1.5, "size_max": 2.5,
+				"color": Color(0.5, 0.2, 0.8, 0.7),
+				"color_end": Color(0.3, 0.1, 0.5, 0),
+				"node_name": "ShadowVFX",
+			}
+		_:
+			return  # 物理伤害不加持续特效
+	var p := _create_aura_particles(target, config)
+	if p:
+		aura["_vfx_node"] = p
+
+func _apply_periodic_heal_vfx(aura: Dictionary) -> void:
+	var target = aura.get("target")
+	if target == null or not is_instance_valid(target):
+		return
+	var p := _create_aura_particles(target, {
+		"amount": 3, "lifetime": 1.0,
+		"direction": Vector2(0, -1), "spread": 20.0,
+		"speed_min": 10, "speed_max": 20,
+		"gravity": Vector2(0, -15),
+		"size_min": 1.5, "size_max": 2.0,
+		"color": Color(0.3, 1, 0.4, 0.6),
+		"color_end": Color(0.5, 1, 0.6, 0),
+		"node_name": "HealVFX",
+	})
+	if p:
+		aura["_vfx_node"] = p
+
+func _apply_slow_vfx(aura: Dictionary) -> void:
+	## 减速 = 速度修改 + 冰霜粒子
+	_apply_mod_speed_slow(aura)
+	var target = aura.get("target")
+	if target == null or not is_instance_valid(target):
+		return
+	var p := _create_aura_particles(target, {
+		"amount": 3, "lifetime": 1.2,
+		"direction": Vector2(0, 0), "spread": 180.0,
+		"speed_min": 3, "speed_max": 8,
+		"gravity": Vector2(0, 8),
+		"size_min": 1.0, "size_max": 1.8,
+		"color": Color(0.6, 0.85, 1, 0.6),
+		"color_end": Color(0.8, 0.95, 1, 0),
+		"node_name": "SlowVFX",
+	})
+	if p:
+		aura["_vfx_node"] = p
+
+func _remove_slow_vfx(aura: Dictionary) -> void:
+	_remove_mod_speed_slow(aura)
+	_remove_aura_vfx(aura)
+
+func _remove_aura_vfx(aura: Dictionary) -> void:
+	var vfx = aura.get("_vfx_node")
+	if vfx != null and vfx is Node and is_instance_valid(vfx):
+		(vfx as Node).queue_free()
+	aura.erase("_vfx_node")

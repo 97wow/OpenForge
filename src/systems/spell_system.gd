@@ -375,6 +375,14 @@ func _effect_school_damage(caster: Node2D, target: Node2D, effect: Dictionary, s
 	var health: Node = EngineAPI.get_component(target, "health")
 	if health and health.has_method("take_damage"):
 		health.take_damage(total, caster, health.parse_damage_type(school))
+	# 链式目标之间画闪电线
+	var target_data: Dictionary = effect.get("target", {})
+	if target_data.get("category", "") == "CHAIN" and is_instance_valid(caster):
+		var vfx: Node = EngineAPI.get_system("vfx")
+		if vfx:
+			vfx.call("spawn_vfx", "lightning", caster.global_position, {
+				"target_pos": target.global_position
+			})
 
 # --- HEAL ---
 func _effect_heal(caster: Node2D, target: Node2D, effect: Dictionary, spell: Dictionary) -> void:

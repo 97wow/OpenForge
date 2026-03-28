@@ -532,6 +532,7 @@ func _check_level_up() -> void:
 			var vfx: Node = EngineAPI.get_system("vfx")
 			if vfx:
 				vfx.call("spawn_vfx", "level_up", hero.global_position)
+				vfx.call("play_sfx", "level_up", -5.0)
 		_show_card_selection()
 
 # === 卡片3选1 ===

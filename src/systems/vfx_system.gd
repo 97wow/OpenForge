@@ -5,10 +5,13 @@ class_name VFXSystem
 extends Node2D
 
 var _vfx_handlers: Dictionary = {}
+var _audio_cache: Dictionary = {}  # path -> AudioStream
+var _audio_enabled: bool = true
 
 func _ready() -> void:
 	EngineAPI.register_system("vfx", self)
 	_register_builtin_vfx()
+	_preload_audio()
 	# 监听战斗事件自动播放特效
 	EventBus.connect_event("entity_damaged", _on_entity_damaged)
 	EventBus.connect_event("entity_destroyed", _on_entity_destroyed)
@@ -61,12 +64,21 @@ func _on_entity_damaged(data: Dictionary) -> void:
 
 	var size_mult := clampf(amount / 20.0, 0.5, 2.5)
 	spawn_vfx(vfx_name, pos, {"size": size_mult})
+	# 音效
+	var sfx_name := "hit_physical"
+	match damage_type:
+		1: sfx_name = "hit_frost"
+		2: sfx_name = "hit_fire"
+		3: sfx_name = "hit_nature"
+		4: sfx_name = "hit_shadow"
+	_play_sfx(sfx_name)
 
 func _on_entity_destroyed(data: Dictionary) -> void:
 	var entity = data.get("entity")
 	if entity == null or not is_instance_valid(entity):
 		return
 	spawn_vfx("death", (entity as Node2D).global_position)
+	_play_sfx("death")
 
 func _on_entity_healed(data: Dictionary) -> void:
 	var entity = data.get("entity")
@@ -81,6 +93,7 @@ func _on_spell_cast(data: Dictionary) -> void:
 	# 施法闪光
 	var pos: Vector2 = (caster as Node2D).global_position
 	_spawn_flash(pos, Color(1, 1, 1, 0.3), 15.0)
+	_play_sfx("shoot")
 
 func _on_aura_applied(data: Dictionary) -> void:
 	var target = data.get("target")
@@ -330,3 +343,29 @@ func _spawn_lightning_bolt(from_pos: Vector2, to_pos: Vector2, color: Color) -> 
 	var tween := bolt.create_tween()
 	tween.tween_property(bolt, "modulate:a", 0.0, 0.25)
 	tween.tween_callback(bolt.queue_free)
+
+# === 音频系统 ===
+
+func _preload_audio() -> void:
+	var audio_dir := "res://assets/audio/"
+	var files := ["hit_physical", "hit_fire", "hit_frost", "hit_nature", "hit_shadow", "shoot", "death", "level_up"]
+	for fname in files:
+		var path := audio_dir + fname + ".wav"
+		if ResourceLoader.exists(path):
+			_audio_cache[fname] = load(path)
+
+func _play_sfx(sfx_name: String, volume_db: float = -10.0) -> void:
+	if not _audio_enabled:
+		return
+	if not _audio_cache.has(sfx_name):
+		return
+	var player := AudioStreamPlayer.new()
+	player.stream = _audio_cache[sfx_name]
+	player.volume_db = volume_db
+	add_child(player)
+	player.play()
+	player.finished.connect(player.queue_free)
+
+func play_sfx(sfx_name: String, volume_db: float = -10.0) -> void:
+	## 公共 API，GamePack 可调用
+	_play_sfx(sfx_name, volume_db)
