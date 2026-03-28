@@ -1,0 +1,7 @@
+{
+  "id": "poison",
+  "name": "Poison",
+  "stack_mode": "stack",
+  "max_stacks": 3,
+  "stat_modifiers": []
+}

@@ -1,0 +1,8 @@
+{
+  "id": "slow",
+  "name": "Slow",
+  "stack_mode": "refresh",
+  "stat_modifiers": [
+    { "stat": "move_speed", "type": "percent", "value": -0.2 }
+  ]
+}

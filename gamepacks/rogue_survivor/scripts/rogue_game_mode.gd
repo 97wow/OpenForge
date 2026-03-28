@@ -46,8 +46,12 @@ var _wave_table: Array = [
 	[["skeleton", 10], ["shadow", 5]],
 ]
 
+var _burn_timer: Dictionary = {}  # entity_id -> timer
+var _poison_timer: Dictionary = {}  # entity_id -> timer
+
 func _pack_ready() -> void:
 	listen("player_shoot", _on_player_shoot)
+	listen("projectile_hit", _on_projectile_hit)
 	listen("entity_destroyed", _on_entity_destroyed)
 	listen("resource_changed", _on_resource_changed)
 
@@ -71,6 +75,7 @@ func _pack_ready() -> void:
 func _pack_process(delta: float) -> void:
 	_game_timer += delta
 	_wave_timer += delta
+	_process_dot_effects(delta)
 
 	if _wave_timer >= WAVE_INTERVAL and _current_wave < TOTAL_WAVES:
 		_spawn_wave()
@@ -208,7 +213,12 @@ func _on_player_shoot(data: Dictionary) -> void:
 	var shooter: Node2D = data.get("shooter", null)
 
 	# 读取卡片能力
-	var pierce: int = int(EngineAPI.get_variable("hero_pierce_count", 0))
+	var pierce_chance: float = float(EngineAPI.get_variable("hero_pierce_chance", 0.0))
+	var pierce: int = 0
+	if pierce_chance > 0 and randf() < pierce_chance:
+		pierce = int(EngineAPI.get_variable("hero_pierce_count", 1))
+		if pierce < 1:
+			pierce = 1
 	var extra_proj: int = int(EngineAPI.get_variable("hero_extra_projectiles", 0))
 	var spread_angle: float = float(EngineAPI.get_variable("hero_spread_angle", 10))
 
@@ -237,6 +247,138 @@ func _on_player_shoot(data: Dictionary) -> void:
 				}
 			}
 		})
+
+# === 命中效果处理 ===
+
+func _on_projectile_hit(data: Dictionary) -> void:
+	var target: Node2D = data.get("target")
+	var source: Node2D = data.get("source")
+	var base_damage: float = data.get("damage", 0)
+	if target == null or source != hero:
+		return
+	if not is_instance_valid(target):
+		return
+
+	# --- 暴击 ---
+	var crit_chance: float = float(EngineAPI.get_variable("hero_crit_chance", 0.0))
+	if crit_chance > 0 and randf() < crit_chance:
+		var crit_mult := 1.5 + float(EngineAPI.get_variable("hero_crit_damage_bonus", 0.0))
+		var bonus_dmg := base_damage * (crit_mult - 1.0)
+		var health: Node = EngineAPI.get_component(target, "health")
+		if health and health.has_method("take_damage"):
+			health.take_damage(bonus_dmg, source)
+
+	# --- 吸血 ---
+	var life_steal: float = float(EngineAPI.get_variable("hero_life_steal", 0.0))
+	if life_steal > 0:
+		var hero_health: Node = EngineAPI.get_component(hero, "health")
+		if hero_health and hero_health.has_method("heal"):
+			# 低血量双倍（Blood Frenzy 效果）
+			var low_hp_mult: float = float(EngineAPI.get_variable("hero_low_hp_lifesteal_mult", 1.0))
+			if hero_health.get_hp_ratio() < 0.5 and low_hp_mult > 1.0:
+				life_steal *= low_hp_mult
+			var heal_amount := base_damage * life_steal
+			hero_health.heal(heal_amount, hero)
+
+	# --- 燃烧 ---
+	var ignite_chance: float = float(EngineAPI.get_variable("hero_ignite_chance", 0.0))
+	if ignite_chance > 0 and randf() < ignite_chance:
+		EngineAPI.apply_buff(target, "burn", 3.0)
+		var eid: int = target.runtime_id if target is GameEntity else target.get_instance_id()
+		_burn_timer[eid] = {"target": target, "remaining": 3.0, "dps": 5.0}
+
+	# --- 减速 ---
+	var slow_chance: float = float(EngineAPI.get_variable("hero_slow_chance", 0.0))
+	if slow_chance > 0 and randf() < slow_chance:
+		var slow_pct: float = float(EngineAPI.get_variable("hero_slow_pct", 0.2))
+		# 直接减速 movement 组件
+		var movement: Node = EngineAPI.get_component(target, "movement")
+		if movement and movement.has_method("add_speed_modifier"):
+			var mod_id := "slow_%d" % (randi() % 99999)
+			movement.add_speed_modifier(mod_id, 1.0 - slow_pct)
+			# 2秒后移除
+			get_tree().create_timer(2.0).timeout.connect(func() -> void:
+				if is_instance_valid(target) and movement:
+					movement.remove_speed_modifier(mod_id)
+			)
+
+	# --- 中毒 ---
+	var poison_chance: float = float(EngineAPI.get_variable("hero_poison_chance", 0.0))
+	if poison_chance > 0 and randf() < poison_chance:
+		EngineAPI.apply_buff(target, "poison", 3.0)
+		var eid: int = target.runtime_id if target is GameEntity else target.get_instance_id()
+		var max_stacks: int = int(EngineAPI.get_variable("hero_poison_max_stacks", 1))
+		if _poison_timer.has(eid):
+			var pt: Dictionary = _poison_timer[eid]
+			pt["stacks"] = mini(pt["stacks"] + 1, max_stacks)
+			pt["remaining"] = 3.0
+		else:
+			_poison_timer[eid] = {"target": target, "remaining": 3.0, "dps": 4.0, "stacks": 1}
+
+	# --- 分裂 ---
+	var split_chance: float = float(EngineAPI.get_variable("hero_split_chance", 0.0))
+	if split_chance > 0 and randf() < split_chance:
+		var split_count: int = int(EngineAPI.get_variable("hero_split_count", 1))
+		var split_ratio: float = float(EngineAPI.get_variable("hero_split_damage_ratio", 0.6))
+		var split_dmg := base_damage * split_ratio
+		# 找附近其他敌人
+		var nearby: Array = EngineAPI.find_entities_in_area(target.global_position, 150, "enemy")
+		var split_done := 0
+		for e in nearby:
+			if e == target or not is_instance_valid(e):
+				continue
+			var dir := target.global_position.direction_to(e.global_position)
+			spawn("arrow", target.global_position, {
+				"components": {
+					"projectile": {
+						"direction": dir,
+						"speed": 800,
+						"damage": split_dmg,
+						"source": hero,
+						"target_tag": "enemy",
+						"max_range": 200,
+					}
+				}
+			})
+			split_done += 1
+			if split_done >= split_count:
+				break
+
+func _process_dot_effects(delta: float) -> void:
+	# 燃烧 DoT
+	var burn_remove: Array = []
+	for eid in _burn_timer:
+		var bt: Dictionary = _burn_timer[eid]
+		var target: Node2D = bt["target"]
+		if not is_instance_valid(target):
+			burn_remove.append(eid)
+			continue
+		bt["remaining"] -= delta
+		var health: Node = EngineAPI.get_component(target, "health")
+		if health and health.has_method("take_damage"):
+			health.take_damage(bt["dps"] * delta, hero)
+		if bt["remaining"] <= 0:
+			burn_remove.append(eid)
+	for eid in burn_remove:
+		_burn_timer.erase(eid)
+
+	# 中毒 DoT
+	var poison_remove: Array = []
+	for eid in _poison_timer:
+		var pt: Dictionary = _poison_timer[eid]
+		var target: Node2D = pt["target"]
+		if not is_instance_valid(target):
+			poison_remove.append(eid)
+			continue
+		pt["remaining"] -= delta
+		var health: Node = EngineAPI.get_component(target, "health")
+		if health and health.has_method("take_damage"):
+			var total_dps: float = pt["dps"] * pt["stacks"]
+			health.take_damage(total_dps * delta, hero)
+		if pt["remaining"] <= 0:
+			poison_remove.append(eid)
+	for eid in poison_remove:
+		_poison_timer.erase(eid)
 
 # === 事件处理 ===
 
@@ -437,45 +579,44 @@ func _on_card_picked(card_id: String) -> void:
 	emit("card_selected", {"card_id": card_id, "level": _hero_level})
 
 func _apply_card_effects(card: Dictionary) -> void:
+	## 统一处理：所有效果都写入 hero_xxx 变量 + 直接修改组件
 	if hero == null or not is_instance_valid(hero):
 		return
 	var effects: Array = card.get("effects", [])
 	for effect in effects:
 		if not effect is Dictionary:
 			continue
-		var etype: String = effect.get("type", "")
-		match etype:
-			"stat_mod":
-				var stat: String = effect.get("stat", "")
-				var mod_type: String = effect.get("mod_type", "flat")
-				var value: float = effect.get("value", 0.0)
-				EngineAPI.add_stat_modifier(hero, stat, {
-					"type": mod_type, "value": value, "source": card.get("id", "")
-				})
-			"pierce":
-				# 标记英雄拥有穿透能力
-				var current: int = int(EngineAPI.get_variable("hero_pierce_count", 0))
-				EngineAPI.set_variable("hero_pierce_count", current + effect.get("pierce_count", 1))
-				EngineAPI.set_variable("hero_pierce_chance",
-					float(EngineAPI.get_variable("hero_pierce_chance", 0.0)) + effect.get("pierce_chance", 0.3))
-			"split":
-				EngineAPI.set_variable("hero_split_chance",
-					float(EngineAPI.get_variable("hero_split_chance", 0.0)) + effect.get("split_chance", 0.2))
-				EngineAPI.set_variable("hero_split_count", effect.get("split_count", 1))
+		var stat: String = effect.get("stat", "")
+		var value: float = effect.get("value", 0.0)
+
+		# 所有效果统一存入 hero_ 前缀变量（累加）
+		var var_key := "hero_" + stat
+		var current: float = float(EngineAPI.get_variable(var_key, 0.0))
+		EngineAPI.set_variable(var_key, current + value)
+
+		# 特殊效果：直接修改组件属性
+		match stat:
+			"attack_speed_pct":
+				# 减少射击冷却时间
+				var input_comp: Node = EngineAPI.get_component(hero, "player_input")
+				if input_comp:
+					input_comp.shoot_cooldown *= (1.0 / (1.0 + value))
 			"extra_projectiles":
-				var current: int = int(EngineAPI.get_variable("hero_extra_projectiles", 0))
-				EngineAPI.set_variable("hero_extra_projectiles", current + effect.get("count", 1))
-			"ignite":
-				EngineAPI.set_variable("hero_ignite_chance",
-					float(EngineAPI.get_variable("hero_ignite_chance", 0.0)) + effect.get("ignite_chance", 0.25))
-			"slow_on_hit":
-				EngineAPI.set_variable("hero_slow_chance",
-					float(EngineAPI.get_variable("hero_slow_chance", 0.0)) + effect.get("slow_chance", 1.0))
-				EngineAPI.set_variable("hero_slow_pct", effect.get("slow_pct", 0.2))
-			"life_steal":
-				EngineAPI.set_variable("hero_life_steal",
-					float(EngineAPI.get_variable("hero_life_steal", 0.0)) + effect.get("value", 0.05))
-	print("[Cards] Applied effects from: %s" % card.get("name", ""))
+				pass  # 射击时读取变量
+			"spread_angle":
+				pass  # 射击时读取变量
+
+	var card_name: String = card.get("name_key", card.get("id", ""))
+	print("[Cards] Applied: %s | Variables: pierce=%s split=%s ignite=%s slow=%s lifesteal=%s crit=%s proj=%s" % [
+		card_name,
+		EngineAPI.get_variable("hero_pierce_chance", 0),
+		EngineAPI.get_variable("hero_split_chance", 0),
+		EngineAPI.get_variable("hero_ignite_chance", 0),
+		EngineAPI.get_variable("hero_slow_chance", 0),
+		EngineAPI.get_variable("hero_life_steal", 0),
+		EngineAPI.get_variable("hero_crit_chance", 0),
+		EngineAPI.get_variable("hero_extra_projectiles", 0),
+	])
 
 func _apply_set_bonus(set_data: Dictionary) -> void:
 	if hero == null or not is_instance_valid(hero):
