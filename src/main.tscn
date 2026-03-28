@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://main_scene"]
+[gd_scene load_steps=15 format=3 uid="uid://main_scene"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1"]
 [ext_resource type="Script" path="res://src/systems/grid_system.gd" id="2"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://src/systems/aura_manager.gd" id="11"]
 [ext_resource type="Script" path="res://src/systems/proc_manager.gd" id="12"]
 [ext_resource type="Script" path="res://src/systems/vfx_system.gd" id="13"]
+[ext_resource type="Script" path="res://src/systems/item_system.gd" id="14"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1")
@@ -54,6 +55,9 @@ script = ExtResource("12")
 
 [node name="VFXSystem" type="Node2D" parent="Systems"]
 script = ExtResource("13")
+
+[node name="ItemSystem" type="Node" parent="Systems"]
+script = ExtResource("14")
 
 [node name="GamePackLoader" type="Node" parent="Systems"]
 script = ExtResource("9")

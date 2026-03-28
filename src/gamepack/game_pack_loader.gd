@@ -96,6 +96,18 @@ func load_pack(pack_id: String) -> GamePack:
 		if spell_count > 0:
 			print("[GamePackLoader] Loaded %d spell definitions" % spell_count)
 
+	# 2.7 加载物品和掉落表
+	var item_system: Node = EngineAPI.get_system("item")
+	if item_system:
+		var item_dir: String = pack_json.get("item_dir", "items")
+		var item_count: int = item_system.call("load_items_from_directory", pack_path.path_join(item_dir))
+		if item_count > 0:
+			print("[GamePackLoader] Loaded %d item definitions" % item_count)
+		var loot_dir: String = pack_json.get("loot_dir", "loot_tables")
+		var loot_count: int = item_system.call("load_loot_tables", pack_path.path_join(loot_dir))
+		if loot_count > 0:
+			print("[GamePackLoader] Loaded %d loot tables" % loot_count)
+
 	# 3. 定义资源
 	var resources: Dictionary = pack_json.get("resources", {})
 	for res_name in resources:

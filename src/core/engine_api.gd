@@ -109,6 +109,26 @@ func define_resource(res_name: String, initial: float = 0.0, max_val: float = IN
 	if res_system:
 		res_system.call("define_resource", res_name, initial, max_val)
 
+# === Item API ===
+
+func roll_loot(loot_table_id: String, luck_bonus: float = 0.0) -> Array:
+	var item_sys := get_system("item") as Node
+	if item_sys == null:
+		return []
+	return item_sys.call("roll_loot", loot_table_id, luck_bonus)
+
+func equip_item(entity: Node2D, slot: String, item: Dictionary) -> Dictionary:
+	var item_sys := get_system("item") as Node
+	if item_sys == null:
+		return {}
+	return item_sys.call("equip_item", entity, slot, item)
+
+func get_equipped(entity: Node2D) -> Dictionary:
+	var item_sys := get_system("item") as Node
+	if item_sys == null:
+		return {}
+	return item_sys.call("get_equipped", entity)
+
 # === Spell API ===
 
 func cast_spell(spell_id: String, caster: Node2D, target: Node2D = null, overrides: Dictionary = {}) -> bool:
@@ -272,6 +292,9 @@ func reset_all_state() -> void:
 	var spell_sys := get_system("spell")
 	if spell_sys and spell_sys.has_method("_reset"):
 		spell_sys.call("_reset")
+	var item_sys := get_system("item")
+	if item_sys and item_sys.has_method("_reset"):
+		item_sys.call("_reset")
 	EventBus.clear_all_custom_events()
 	DataRegistry.clear_all()
 	print("[EngineAPI] All state reset")
