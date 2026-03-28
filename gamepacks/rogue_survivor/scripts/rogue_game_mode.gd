@@ -292,38 +292,34 @@ func _show_card_selection() -> void:
 	overlay.anchors_preset = Control.PRESET_FULL_RECT
 	_card_select_ui.add_child(overlay)
 
+	# 居中容器
+	var center_vbox := VBoxContainer.new()
+	center_vbox.anchors_preset = Control.PRESET_FULL_RECT
+	center_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	center_vbox.add_theme_constant_override("separation", 15)
+	_card_select_ui.add_child(center_vbox)
+
 	# 标题
 	var title := Label.new()
 	title.text = "LEVEL UP! Lv.%d - Choose a Card" % _hero_level
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.anchors_preset = Control.PRESET_TOP_WIDE
-	title.offset_top = 150
-	title.offset_bottom = 200
 	title.add_theme_font_size_override("font_size", 28)
 	title.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
-	_card_select_ui.add_child(title)
+	center_vbox.add_child(title)
 
 	# 卡片数量提示
 	var slot_hint := Label.new()
 	slot_hint.text = "Cards: %d / %d" % [_card_manager.get_card_count(), RogueCardManager.MAX_CARDS]
 	slot_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	slot_hint.anchors_preset = Control.PRESET_TOP_WIDE
-	slot_hint.offset_top = 200
-	slot_hint.offset_bottom = 225
 	slot_hint.add_theme_font_size_override("font_size", 14)
 	slot_hint.add_theme_color_override("font_color", Color(0.6, 0.6, 0.7))
-	_card_select_ui.add_child(slot_hint)
+	center_vbox.add_child(slot_hint)
 
 	# 3张卡片
 	var hbox := HBoxContainer.new()
-	hbox.anchors_preset = Control.PRESET_CENTER
-	hbox.offset_left = -420
-	hbox.offset_top = -120
-	hbox.offset_right = 420
-	hbox.offset_bottom = 160
 	hbox.add_theme_constant_override("separation", 20)
 	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	_card_select_ui.add_child(hbox)
+	center_vbox.add_child(hbox)
 
 	for card in choices:
 		var card_btn := _create_card_button(card)

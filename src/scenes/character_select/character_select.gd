@@ -37,26 +37,25 @@ func _build_ui() -> void:
 	bg.anchors_preset = Control.PRESET_FULL_RECT
 	add_child(bg)
 
+	# 用 VBox 包裹所有内容实现整体居中
+	var outer := VBoxContainer.new()
+	outer.anchors_preset = Control.PRESET_FULL_RECT
+	outer.alignment = BoxContainer.ALIGNMENT_CENTER
+	outer.add_theme_constant_override("separation", 20)
+	add_child(outer)
+
 	# 标题
 	var title := Label.new()
 	title.text = "Choose Your Hero"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.anchors_preset = Control.PRESET_TOP_WIDE
-	title.offset_top = 60
-	title.offset_bottom = 110
 	title.add_theme_font_size_override("font_size", 36)
-	add_child(title)
+	outer.add_child(title)
 
 	# 3 个角色卡片
 	var hbox := HBoxContainer.new()
-	hbox.anchors_preset = Control.PRESET_CENTER
-	hbox.offset_left = -480
-	hbox.offset_top = -180
-	hbox.offset_right = 480
-	hbox.offset_bottom = 220
 	hbox.add_theme_constant_override("separation", 30)
 	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	add_child(hbox)
+	outer.add_child(hbox)
 
 	for cls in CLASSES:
 		var card := _create_class_card(cls)
