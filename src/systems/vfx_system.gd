@@ -350,7 +350,7 @@ func _preload_audio() -> void:
 	var audio_dir := "res://assets/audio/"
 	var files := ["hit_physical", "hit_fire", "hit_frost", "hit_nature", "hit_shadow", "shoot", "death", "level_up"]
 	for fname in files:
-		var path := audio_dir + fname + ".wav"
+		var path: String = audio_dir + fname + ".wav"
 		if ResourceLoader.exists(path):
 			_audio_cache[fname] = load(path)
 

@@ -45,6 +45,7 @@ RARE,Rare,史诗,レア,희귀
 LEGENDARY,Legendary,传说,レジェンダリー,전설
 VERSION,v{0} Alpha,v{0} 测试版,v{0} アルファ,v{0} 알파
 SKIP,Skip,跳过,スキップ,건너뛰기
+SET_BONUS,Set Bonus,套装效果,セットボーナス,세트 보너스
 DMG_PHYSICAL,Physical,物理,物理,물리
 DMG_FROST,Frost,冰霜,フロスト,냉기
 DMG_FIRE,Fire,火焰,炎,화염

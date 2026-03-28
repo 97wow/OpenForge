@@ -691,11 +691,38 @@ func _create_card_button(card: Dictionary, _is_full: bool = false) -> PanelConta
 	name_label.add_theme_font_size_override("font_size", 20)
 	vbox.add_child(name_label)
 
-	# 套装归属（翻译）
+	# 套装归属 + 收集进度 + 套装效果
 	var set_id: String = card.get("set_id", "")
 	var set_tr_key := "SET_%s" % set_id.to_upper()
 	var set_label := Label.new()
-	set_label.text = "[%s]" % tr(set_tr_key)
+	if set_id != "" and _card_manager:
+		var set_data: Dictionary = _card_manager.get_set_data(set_id)
+		var set_cards: Array = set_data.get("cards", [])
+		var held: Array[String] = _card_manager.get_held_cards()
+		var owned := 0
+		for sc in set_cards:
+			if str(sc) in held:
+				owned += 1
+		var total: int = set_cards.size()
+		set_label.text = "[%s] (%d/%d)" % [tr(set_tr_key), owned, total]
+
+		# 套装效果描述
+		if set_data.has("set_bonus"):
+			var bonus: Dictionary = set_data["set_bonus"]
+			var bonus_type: String = bonus.get("type", "")
+			if bonus_type != "":
+				var bonus_desc := Label.new()
+				bonus_desc.text = tr("SET_BONUS") + ": " + bonus_type
+				bonus_desc.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				bonus_desc.add_theme_font_size_override("font_size", 10)
+				# 集齐则金色，未集齐灰色
+				if owned + 1 >= total:  # +1 因为当前卡还没加入
+					bonus_desc.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+				else:
+					bonus_desc.add_theme_color_override("font_color", Color(0.45, 0.45, 0.5))
+				vbox.add_child(bonus_desc)
+	else:
+		set_label.text = ""
 	set_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	set_label.add_theme_font_size_override("font_size", 12)
 	set_label.add_theme_color_override("font_color", Color(0.5, 0.7, 1))
