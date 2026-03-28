@@ -185,7 +185,7 @@ func _on_entity_destroyed(data: Dictionary) -> void:
 		_enemies_alive -= 1
 		_check_wave_complete()
 
-func _on_path_completed(data: Dictionary) -> void:
+func _on_path_completed(_data: Dictionary) -> void:
 	# path_completed 触发后，combat_rules.json 会扣除生命
 	# 实体会被 destroy_entity 销毁，触发 entity_destroyed
 	pass

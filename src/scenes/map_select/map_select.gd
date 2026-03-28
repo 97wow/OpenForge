@@ -11,11 +11,19 @@ func _ready() -> void:
 func _populate_maps() -> void:
 	# 当前只有一张地图，后续可从服务器/本地扫描
 	_add_map_card(
+		"demo_plains",
+		"Demo Plains - Tower Defense",
+		"Classic tower defense on open plains.\nDefend against 6 waves of enemies.",
+		"Difficulty: Easy",
+		"tower_defense"
+	)
+	_add_map_card(
 		"dark_forest",
-		"Dark Forest",
+		"Dark Forest - Rogue Survivor",
 		"A corrupted forest teeming with dark creatures.\nDefend the Life Fountain for 10 minutes.",
-		"Difficulty: Normal",
-		"rogue_survivor"
+		"Difficulty: Normal | Coming Soon",
+		"rogue_survivor",
+		true
 	)
 	_add_map_card(
 		"coming_soon",
