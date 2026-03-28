@@ -17,8 +17,12 @@ var _approach_count: int = 0
 var _current_target: Node2D = null
 var _is_approaching: bool = false
 var _is_returning: bool = false
-var _home_position: Vector2 = Vector2.ZERO  # 首次警戒触发时的位置
+var _home_position: Vector2 = Vector2.ZERO
 var _has_home: bool = false
+var _delay_timer: float = 0.0   # 延迟计时
+var _delay_target: float = 0.0  # 延迟目标时间
+var _is_waiting: bool = false    # 是否在等待延迟
+var _wait_action: String = ""    # "approach" or "return"
 
 func setup(data: Dictionary) -> void:
 	alert_range = data.get("alert_range", 500.0)
@@ -41,10 +45,11 @@ func reset_approach_count() -> void:
 	_approach_count = 0
 	_is_approaching = false
 	_is_returning = false
+	_is_waiting = false
 	_current_target = null
 	_has_home = false
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if _entity == null or not alert_enabled:
 		return
 	if EngineAPI.get_game_state() != "playing":
@@ -54,6 +59,17 @@ func _process(_delta: float) -> void:
 	if _movement == null:
 		return
 
+	# 延迟等待中
+	if _is_waiting:
+		_delay_timer += delta
+		if _delay_timer >= _delay_target:
+			_is_waiting = false
+			if _wait_action == "approach":
+				_is_approaching = true
+			elif _wait_action == "return":
+				_is_returning = true
+		return
+
 	# 返回原位中
 	if _is_returning:
 		var dist_home := _entity.global_position.distance_to(_home_position)
@@ -61,28 +77,25 @@ func _process(_delta: float) -> void:
 			_is_returning = false
 		return
 
-	# 靠近中 → 检查是否到达攻击范围或目标消失
+	# 靠近中
 	if _is_approaching:
 		if _current_target == null or not is_instance_valid(_current_target):
-			# 目标消失，返回原位
 			_is_approaching = false
-			_start_return()
+			_start_return_delayed()
 			return
 		var dist := _entity.global_position.distance_to(_current_target.global_position)
 		if dist <= attack_range:
 			_is_approaching = false
 			_current_target = null
-			# 不立即返回，等没有攻击目标时再返回
 		return
 
-	# 当前没有在靠近/返回，检查是否需要返回原位
+	# 检查是否需要返回原位
 	if _has_home and not _is_approaching:
-		# 检查攻击范围内是否还有敌人
 		var enemies_in_range: Array = EngineAPI.find_entities_in_area(
 			_entity.global_position, attack_range, target_tag
 		)
 		if enemies_in_range.is_empty():
-			_start_return()
+			_start_return_delayed()
 			return
 
 	# 检查是否有敌人进入警戒范围
@@ -95,22 +108,28 @@ func _process(_delta: float) -> void:
 
 	var dist := _entity.global_position.distance_to(nearest.global_position)
 	if dist <= alert_range and dist > attack_range:
-		# 记录首次触发位置
 		if not _has_home:
 			_home_position = _entity.global_position
 			_has_home = true
 		_current_target = nearest
-		_is_approaching = true
 		_approach_count += 1
+		# 延迟 0.5~1 秒后开始移动
+		_start_delay("approach")
 		EventBus.emit_event("alert_triggered", {
 			"entity": _entity,
 			"target": nearest,
 			"approach_count": _approach_count,
 		})
 
-func _start_return() -> void:
+func _start_delay(action: String) -> void:
+	_is_waiting = true
+	_wait_action = action
+	_delay_timer = 0.0
+	_delay_target = randf_range(0.5, 1.0)
+
+func _start_return_delayed() -> void:
 	if _has_home:
-		_is_returning = true
+		_start_delay("return")
 
 func get_approach_direction() -> Vector2:
 	if _is_returning and _has_home:
