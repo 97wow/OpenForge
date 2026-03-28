@@ -18,7 +18,7 @@ func _ready() -> void:
 	_canvas.name = "DebugOverlay"
 	add_child(_canvas)
 
-	# 右上角容器
+	# 右上角容器（不拦截鼠标）
 	_container = VBoxContainer.new()
 	_container.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
 	_container.offset_left = -450
@@ -26,6 +26,7 @@ func _ready() -> void:
 	_container.offset_right = -10
 	_container.offset_bottom = 500
 	_container.add_theme_constant_override("separation", 4)
+	_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_canvas.add_child(_container)
 
 ## 显示错误（红色，GamePack 级别的运行时错误）
@@ -54,6 +55,7 @@ func _add_message(text: String, color: Color) -> void:
 		oldest.queue_free()
 
 	var panel := PanelContainer.new()
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var stylebox := StyleBoxFlat.new()
 	stylebox.bg_color = Color(0, 0, 0, 0.75)
 	stylebox.corner_radius_top_left = 4
@@ -71,6 +73,7 @@ func _add_message(text: String, color: Color) -> void:
 	label.add_theme_font_size_override("font_size", 12)
 	label.add_theme_color_override("font_color", color)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_child(label)
 
 	_container.add_child(panel)
