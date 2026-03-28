@@ -88,6 +88,14 @@ func load_pack(pack_id: String) -> GamePack:
 	if buff_count > 0:
 		print("[GamePackLoader] Loaded %d buff definitions" % buff_count)
 
+	# 2.5 加载 Spell 定义
+	var spell_dir: String = pack_json.get("spell_dir", "spells")
+	var spell_system: Node = EngineAPI.get_system("spell")
+	if spell_system:
+		var spell_count: int = spell_system.call("load_spells_from_directory", pack_path.path_join(spell_dir))
+		if spell_count > 0:
+			print("[GamePackLoader] Loaded %d spell definitions" % spell_count)
+
 	# 3. 定义资源
 	var resources: Dictionary = pack_json.get("resources", {})
 	for res_name in resources:

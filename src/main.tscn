@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://main_scene"]
+[gd_scene load_steps=13 format=3 uid="uid://main_scene"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1"]
 [ext_resource type="Script" path="res://src/systems/grid_system.gd" id="2"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://src/systems/trigger_system.gd" id="7"]
 [ext_resource type="Script" path="res://src/systems/buff_system.gd" id="8"]
 [ext_resource type="Script" path="res://src/gamepack/game_pack_loader.gd" id="9"]
+[ext_resource type="Script" path="res://src/systems/spell_system.gd" id="10"]
+[ext_resource type="Script" path="res://src/systems/aura_manager.gd" id="11"]
+[ext_resource type="Script" path="res://src/systems/proc_manager.gd" id="12"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1")
@@ -38,6 +41,15 @@ script = ExtResource("7")
 
 [node name="BuffSystem" type="Node" parent="Systems"]
 script = ExtResource("8")
+
+[node name="SpellSystem" type="Node" parent="Systems"]
+script = ExtResource("10")
+
+[node name="AuraManager" type="Node" parent="Systems"]
+script = ExtResource("11")
+
+[node name="ProcManager" type="Node" parent="Systems"]
+script = ExtResource("12")
 
 [node name="GamePackLoader" type="Node" parent="Systems"]
 script = ExtResource("9")

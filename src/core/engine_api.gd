@@ -109,6 +109,33 @@ func define_resource(res_name: String, initial: float = 0.0, max_val: float = IN
 	if res_system:
 		res_system.call("define_resource", res_name, initial, max_val)
 
+# === Spell API ===
+
+func cast_spell(spell_id: String, caster: Node2D, target: Node2D = null, overrides: Dictionary = {}) -> bool:
+	var spell_system := get_system("spell") as Node
+	if spell_system == null:
+		return false
+	return spell_system.call("cast", spell_id, caster, target, overrides)
+
+func register_spell(spell_id: String, spell_data: Dictionary) -> void:
+	var spell_system := get_system("spell") as Node
+	if spell_system:
+		spell_system.call("register_spell", spell_id, spell_data)
+
+# === Aura API ===
+
+func apply_spell_aura(caster: Node2D, target: Node2D, aura_type: String, base_points: float, duration: float, spell_id: String = "") -> void:
+	var aura_mgr := get_system("aura") as Node
+	if aura_mgr:
+		aura_mgr.call("apply_aura", caster, target, {
+			"aura": aura_type, "base_points": base_points
+		}, {"id": spell_id, "school": "physical"}, duration)
+
+func remove_spell_aura(target: Node2D, aura_id: String) -> void:
+	var aura_mgr := get_system("aura") as Node
+	if aura_mgr:
+		aura_mgr.call("remove_aura", target, aura_id)
+
 # === 属性 API ===
 
 func get_stat(entity: Node2D, stat_name: String) -> float:
