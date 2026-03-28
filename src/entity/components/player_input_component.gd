@@ -1,9 +1,10 @@
 ## PlayerInputComponent - 玩家输入控制
-## WASD 移动 + 自动攻击范围内最近敌人
+## WASD 移动 + 自动攻击 + 警戒系统集成
 extends Node
 
 var _entity: Node2D = null
 var _movement: Node = null
+var _alert: Node = null
 var shoot_cooldown: float = 0.3
 var projectile_id: String = "arrow"
 var projectile_speed: float = 600.0
@@ -26,12 +27,17 @@ func _on_attached(entity: Node2D) -> void:
 func _process(delta: float) -> void:
 	if _entity == null or EngineAPI.get_game_state() != "playing":
 		return
+	_ensure_refs()
 	_handle_movement()
 	_handle_auto_attack(delta)
 
-func _handle_movement() -> void:
+func _ensure_refs() -> void:
 	if _movement == null and _entity.has_method("get_component"):
 		_movement = _entity.get_component("movement")
+	if _alert == null and _entity.has_method("get_component"):
+		_alert = _entity.get_component("alert")
+
+func _handle_movement() -> void:
 	if _movement == null:
 		return
 
@@ -46,16 +52,26 @@ func _handle_movement() -> void:
 		dir.x += 1
 
 	if dir != Vector2.ZERO:
+		# 手动移动：重置警戒计数
+		if _alert and _alert.has_method("reset_approach_count"):
+			_alert.reset_approach_count()
 		dir = dir.normalized()
 		_movement.velocity = dir * _movement.current_speed
 	else:
-		_movement.velocity = Vector2.ZERO
+		# 没有手动输入，检查警戒自动靠近
+		if _alert and _alert.has_method("is_approaching") and _alert.is_approaching():
+			var alert_dir: Vector2 = _alert.get_approach_direction()
+			if alert_dir != Vector2.ZERO:
+				_movement.velocity = alert_dir * _movement.current_speed
+			else:
+				_movement.velocity = Vector2.ZERO
+		else:
+			_movement.velocity = Vector2.ZERO
 
 func _handle_auto_attack(delta: float) -> void:
 	_shoot_timer += delta
 	if _shoot_timer < shoot_cooldown:
 		return
-	# 找最近敌人
 	var target := _find_nearest_enemy()
 	if target == null:
 		return

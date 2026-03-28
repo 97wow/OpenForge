@@ -14,7 +14,13 @@
       "attack_range": 350,
       "target_tag": "enemy"
     },
-    "collision": { "shape": "circle", "radius": 10 }
+    "collision": { "shape": "circle", "radius": 10 },
+    "alert": {
+      "alert_range": 500,
+      "attack_range": 350,
+      "target_tag": "enemy",
+      "max_auto_approaches": 2
+    }
   },
   "meta": {
     "base_str": 5,

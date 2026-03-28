@@ -1,11 +1,20 @@
 ## Rogue Survivor - 肉鸽生存射击主脚本
-## 10分钟守护生命之泉，击杀怪物升级抽卡
+## 对抗式布局：玩家泉(右下) vs 敌人泉(左上)
+## 胜利：摧毁敌方泉 或 存活10分钟
 extends GamePackScript
 
-const ARENA_SIZE := Vector2(1600, 900)
-const ARENA_CENTER := Vector2(800, 450)
-const FOUNTAIN_POS := ARENA_CENTER
-const SPAWN_MARGIN := 100.0
+const ARENA_SIZE := Vector2(1920, 1080)
+# 对抗布局坐标
+const PLAYER_FOUNTAIN_POS := Vector2(1550, 850)  # 右下
+const ENEMY_FOUNTAIN_POS := Vector2(370, 230)     # 左上
+const HERO_START_POS := Vector2(1400, 750)
+# 怪物固定刷新点（敌方泉附近3个位置）
+const SPAWN_POINTS: Array[Vector2] = [
+	Vector2(200, 100),
+	Vector2(500, 100),
+	Vector2(200, 350),
+]
+
 const GAME_DURATION := 600.0
 const WAVE_INTERVAL := 20.0
 const TOTAL_WAVES := 30
@@ -13,7 +22,8 @@ const XP_PER_LEVEL_BASE := 30
 const XP_PER_LEVEL_GROWTH := 15
 
 var hero: Node2D = null
-var fountain: Node2D = null
+var player_fountain: Node2D = null
+var enemy_fountain: Node2D = null
 var _game_timer: float = 0.0
 var _wave_timer: float = 0.0
 var _current_wave: int = 0
@@ -37,15 +47,14 @@ func _pack_ready() -> void:
 	listen("player_shoot", _on_player_shoot)
 	listen("entity_destroyed", _on_entity_destroyed)
 	listen("resource_changed", _on_resource_changed)
-	listen("game_defeat", _on_game_defeat)
 
 	_draw_arena()
 	_create_hud()
-	_spawn_fountain()
+	_spawn_fountains()
 	_spawn_hero()
 
 	EngineAPI.set_game_state("playing")
-	_wave_timer = WAVE_INTERVAL - 3.0  # 3秒后第一波
+	_wave_timer = WAVE_INTERVAL - 3.0
 
 func _pack_process(delta: float) -> void:
 	_game_timer += delta
@@ -55,14 +64,12 @@ func _pack_process(delta: float) -> void:
 		_spawn_wave()
 		_wave_timer = 0.0
 
-	if _game_timer >= GAME_DURATION:
-		EngineAPI.set_game_state("victory")
-		emit("game_victory", {})
-		EngineAPI.show_message("Victory! You survived 10 minutes!")
+	# 时间到 = 胜利
+	if _game_timer >= GAME_DURATION and EngineAPI.get_game_state() == "playing":
+		_victory("Survived 10 minutes!")
 
 	_update_hud()
 
-	# 摄像机跟随英雄
 	if hero and is_instance_valid(hero):
 		var camera := get_viewport().get_camera_2d()
 		if camera:
@@ -71,23 +78,20 @@ func _pack_process(delta: float) -> void:
 # === 初始化 ===
 
 func _draw_arena() -> void:
-	# 找到场景根节点（Main）
 	var main_node: Node2D = get_tree().current_scene as Node2D
-
 	var arena := Node2D.new()
 	arena.name = "Arena"
-	arena.z_index = -10  # 确保在所有实体下面
+	arena.z_index = -10
 	main_node.add_child(arena)
-	main_node.move_child(arena, 0)  # 移到最前面
+	main_node.move_child(arena, 0)
 
-	# 地板 - 深色
+	# 地板
 	var floor_rect := ColorRect.new()
 	floor_rect.color = Color(0.08, 0.08, 0.12)
-	floor_rect.position = Vector2.ZERO
 	floor_rect.size = ARENA_SIZE
 	arena.add_child(floor_rect)
 
-	# 网格线（微弱，增加空间感）
+	# 网格线
 	for x_idx in range(0, int(ARENA_SIZE.x), 64):
 		var line := Line2D.new()
 		line.points = [Vector2(x_idx, 0), Vector2(x_idx, ARENA_SIZE.y)]
@@ -101,22 +105,47 @@ func _draw_arena() -> void:
 		line.width = 1
 		arena.add_child(line)
 
-	# 边界线 - 亮色
+	# 边界
 	var border := Line2D.new()
 	border.points = PackedVector2Array([
 		Vector2.ZERO, Vector2(ARENA_SIZE.x, 0),
-		ARENA_SIZE, Vector2(0, ARENA_SIZE.y),
-		Vector2.ZERO
+		ARENA_SIZE, Vector2(0, ARENA_SIZE.y), Vector2.ZERO
 	])
 	border.default_color = Color(0.4, 0.5, 0.7)
 	border.width = 3
 	arena.add_child(border)
 
-func _spawn_fountain() -> void:
-	fountain = spawn("life_fountain", FOUNTAIN_POS)
+	# 中线（分隔两方阵营）
+	var midline := Line2D.new()
+	midline.points = [Vector2(0, 0), ARENA_SIZE]
+	midline.default_color = Color(0.3, 0.3, 0.4, 0.3)
+	midline.width = 2
+	arena.add_child(midline)
+
+	# 刷新点标记
+	for sp in SPAWN_POINTS:
+		var marker := _create_spawn_marker(sp)
+		arena.add_child(marker)
+
+func _create_spawn_marker(pos: Vector2) -> Node2D:
+	var node := Node2D.new()
+	node.position = pos
+	var circle := Node2D.new()
+	circle.draw.connect(func() -> void:
+		circle.draw_arc(Vector2.ZERO, 20, 0, TAU, 16, Color(1, 0.3, 0.3, 0.25), 1.5)
+	)
+	circle.queue_redraw()
+	node.add_child(circle)
+	return node
+
+func _spawn_fountains() -> void:
+	# 玩家泉（右下）
+	player_fountain = spawn("life_fountain", PLAYER_FOUNTAIN_POS)
+	# 敌人泉（左上）- 高攻击力
+	enemy_fountain = spawn("enemy_fountain", ENEMY_FOUNTAIN_POS)
 
 func _spawn_hero() -> void:
-	hero = spawn("hero", FOUNTAIN_POS + Vector2(0, 100))
+	hero = spawn("hero", HERO_START_POS)
 
 # === 波次 ===
 
@@ -131,8 +160,10 @@ func _spawn_wave() -> void:
 			var enemy_id: String = group[0]
 			var count: int = group[1]
 			for i in range(count):
-				var pos := _random_spawn_position()
-				spawn(enemy_id, pos)
+				# 从固定刷新点随机选一个
+				var sp: Vector2 = SPAWN_POINTS[randi() % SPAWN_POINTS.size()]
+				var offset := Vector2(randf_range(-30, 30), randf_range(-30, 30))
+				spawn(enemy_id, sp + offset)
 				spawned += 1
 
 	emit("wave_started", {"wave_index": _current_wave, "enemy_count": spawned})
@@ -149,14 +180,6 @@ func _get_wave_def(wave: int) -> Array:
 	if shadow_count > 0:
 		result.append(["shadow", mini(shadow_count, 8)])
 	return result
-
-func _random_spawn_position() -> Vector2:
-	var side := randi() % 4
-	match side:
-		0: return Vector2(randf_range(0, ARENA_SIZE.x), -SPAWN_MARGIN)
-		1: return Vector2(randf_range(0, ARENA_SIZE.x), ARENA_SIZE.y + SPAWN_MARGIN)
-		2: return Vector2(-SPAWN_MARGIN, randf_range(0, ARENA_SIZE.y))
-		_: return Vector2(ARENA_SIZE.x + SPAWN_MARGIN, randf_range(0, ARENA_SIZE.y))
 
 # === 射击 ===
 
@@ -186,17 +209,32 @@ func _on_entity_destroyed(data: Dictionary) -> void:
 	var entity: Node2D = data.get("entity")
 	if entity == null:
 		return
+
 	if entity == hero:
-		EngineAPI.set_game_state("defeat")
-		emit("game_defeat", {"reason": "hero_died"})
+		_defeat("Hero has fallen!")
+	elif entity == player_fountain:
+		_defeat("Life Fountain destroyed!")
+	elif entity == enemy_fountain:
+		_victory("Dark Fountain destroyed!")
 
 func _on_resource_changed(data: Dictionary) -> void:
 	var res: String = data.get("resource", "")
 	if res == "xp":
 		_check_level_up()
 
-func _on_game_defeat(_data: Dictionary) -> void:
-	EngineAPI.show_message("Game Over!")
+func _victory(reason: String) -> void:
+	if EngineAPI.get_game_state() != "playing":
+		return
+	EngineAPI.set_game_state("victory")
+	EngineAPI.show_message("VICTORY! %s" % reason)
+	emit("game_victory", {"reason": reason})
+
+func _defeat(reason: String) -> void:
+	if EngineAPI.get_game_state() != "playing":
+		return
+	EngineAPI.set_game_state("defeat")
+	EngineAPI.show_message("DEFEAT! %s" % reason)
+	emit("game_defeat", {"reason": reason})
 
 func _check_level_up() -> void:
 	var current_xp: float = EngineAPI.get_resource("xp")
@@ -217,33 +255,36 @@ var _wave_label: Label = null
 var _timer_label: Label = null
 var _xp_label: Label = null
 var _level_label: Label = null
-var _fountain_hp_label: Label = null
+var _pfountain_label: Label = null
+var _efountain_label: Label = null
 
 func _create_hud() -> void:
 	var ui_layer: CanvasLayer = get_tree().current_scene.get_node_or_null("UI")
 	if ui_layer == null:
 		return
-
 	for child in ui_layer.get_children():
 		child.queue_free()
 
+	# 顶栏
 	var panel := PanelContainer.new()
 	panel.anchors_preset = Control.PRESET_TOP_WIDE
 	panel.offset_bottom = 40
 	ui_layer.add_child(panel)
 
 	var hbox := HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", 30)
+	hbox.add_theme_constant_override("separation", 20)
 	panel.add_child(hbox)
 
 	_hp_label = _hud_label(hbox, "HP: 150/150")
-	_fountain_hp_label = _hud_label(hbox, "Fountain: 500/500")
+	_pfountain_label = _hud_label(hbox, "Our Fountain: 500")
+	_efountain_label = _hud_label(hbox, "Enemy Fountain: 800")
 	_gold_label = _hud_label(hbox, "Gold: 0")
 	_level_label = _hud_label(hbox, "Lv.1")
 	_xp_label = _hud_label(hbox, "XP: 0/%d" % _xp_to_next)
 	_wave_label = _hud_label(hbox, "Wave: 0/%d" % TOTAL_WAVES)
-	_timer_label = _hud_label(hbox, "Time: 0:00 / 10:00")
+	_timer_label = _hud_label(hbox, "0:00/10:00")
 
+	# 退出按钮
 	var back_btn := Button.new()
 	back_btn.text = "Quit"
 	back_btn.anchors_preset = Control.PRESET_BOTTOM_RIGHT
@@ -255,7 +296,7 @@ func _create_hud() -> void:
 func _hud_label(parent: Node, text: String) -> Label:
 	var label := Label.new()
 	label.text = text
-	label.add_theme_font_size_override("font_size", 15)
+	label.add_theme_font_size_override("font_size", 14)
 	parent.add_child(label)
 	return label
 
@@ -268,12 +309,19 @@ func _update_hud() -> void:
 		if health:
 			_hp_label.text = "HP: %d/%d" % [health.current_hp, health.max_hp]
 
-	if fountain and is_instance_valid(fountain):
-		var fh: Node = EngineAPI.get_component(fountain, "health")
+	if player_fountain and is_instance_valid(player_fountain):
+		var fh: Node = EngineAPI.get_component(player_fountain, "health")
 		if fh:
-			_fountain_hp_label.text = "Fountain: %d/%d" % [fh.current_hp, fh.max_hp]
+			_pfountain_label.text = "Our Fountain: %d" % int(fh.current_hp)
 	else:
-		_fountain_hp_label.text = "Fountain: DESTROYED"
+		_pfountain_label.text = "Our Fountain: DEAD"
+
+	if enemy_fountain and is_instance_valid(enemy_fountain):
+		var eh: Node = EngineAPI.get_component(enemy_fountain, "health")
+		if eh:
+			_efountain_label.text = "Enemy Fountain: %d" % int(eh.current_hp)
+	else:
+		_efountain_label.text = "Enemy Fountain: DEAD"
 
 	_gold_label.text = "Gold: %d" % int(EngineAPI.get_resource("gold"))
 	_level_label.text = "Lv.%d" % _hero_level
@@ -284,4 +332,4 @@ func _update_hud() -> void:
 	var mins: int = int(_game_timer) / 60
 	@warning_ignore("integer_division")
 	var secs: int = int(_game_timer) % 60
-	_timer_label.text = "Time: %d:%02d / 10:00" % [mins, secs]
+	_timer_label.text = "%d:%02d/10:00" % [mins, secs]
