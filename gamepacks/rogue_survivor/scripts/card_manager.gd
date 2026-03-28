@@ -50,6 +50,8 @@ func draw_three() -> Array[Dictionary]:
 		var card: Dictionary = _all_cards[card_id]
 		if card_id in _held_cards:
 			continue  # 已持有不重复抽
+		if not _is_card_unlocked(card_id):
+			continue  # 前置卡未持有，不进入池
 		var weight := 1
 		var affinity: Array = card.get("class_affinity", ["all"])
 		if _hero_class in affinity or "all" in affinity:
@@ -99,6 +101,26 @@ func select_card(card_id: String) -> Dictionary:
 		return {"added": true, "set_completed": completed_set}
 
 	return {"added": true, "set_completed": ""}
+
+func _is_card_unlocked(card_id: String) -> bool:
+	## 检查前置条件：同套装中排在前面的卡必须已持有或套装已完成
+	var card: Dictionary = _all_cards.get(card_id, {})
+	var set_id: String = card.get("set_id", "")
+	if set_id == "":
+		return true  # 无套装归属，直接可抽
+	if set_id in _completed_sets:
+		return false  # 套装已完成，不再出现
+	# 找到该套装的卡片顺序
+	var set_def := _get_set_def(set_id)
+	if set_def.is_empty():
+		return true
+	var set_cards: Array = set_def.get("cards", [])
+	var card_index := set_cards.find(card_id)
+	if card_index <= 0:
+		return true  # 第一张卡或找不到，直接可抽
+	# 前一张卡必须已持有
+	var prev_card_id: String = set_cards[card_index - 1]
+	return prev_card_id in _held_cards
 
 func _check_set_completion(card_id: String) -> String:
 	for set_def in _all_sets:
