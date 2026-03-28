@@ -9,7 +9,7 @@
       "duration": 0,
       "proc": {
         "flags": [
-          "on_hit"
+          "deal_ranged"
         ],
         "chance": 30,
         "cooldown": 0.8

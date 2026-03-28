@@ -45,6 +45,7 @@ RARE,Rare,史诗,レア,희귀
 LEGENDARY,Legendary,传说,レジェンダリー,전설
 VERSION,v{0} Alpha,v{0} 测试版,v{0} アルファ,v{0} 알파
 SKIP,Skip,跳过,スキップ,건너뛰기
+REFRESH,Refresh,刷新,リフレッシュ,새로고침
 SET_BONUS,Set Bonus,套装效果,セットボーナス,세트 보너스
 SET_EFFECT_pierce,100% pierce through 3 enemies,100%穿透3个敌人,100%で3体貫通,100% 3체 관통
 SET_EFFECT_split,"40% split to 2 targets, 80% damage",40%分裂2个目标·80%伤害,40%で2体に分裂・80%ダメージ,40% 2체 분열·80% 피해

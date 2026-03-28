@@ -31,7 +31,8 @@ var _hero_level: int = 1
 var _xp_to_next: int = XP_PER_LEVEL_BASE
 
 var _card_manager: RogueCardManager = null
-var _card_select_ui: Control = null  # 3选1 弹窗
+var _card_select_ui: Control = null
+var _card_refreshes: int = 3  # 剩余刷新次数
 
 var _wave_table: Array = [
 	[["goblin", 5]],
@@ -625,21 +626,47 @@ func _show_card_selection() -> void:
 			held_btn.name = "HeldCard_%s" % held_id
 			held_hbox.add_child(held_btn)
 
-	# 跳过按钮
+	# 底部操作栏
+	var action_hbox := HBoxContainer.new()
+	action_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	action_hbox.add_theme_constant_override("separation", 20)
+	center_vbox.add_child(action_hbox)
+
+	# 刷新按钮
+	if _card_refreshes > 0:
+		var refresh_btn := Button.new()
+		refresh_btn.text = tr("REFRESH") + " (%d)" % _card_refreshes
+		refresh_btn.custom_minimum_size = Vector2(140, 35)
+		refresh_btn.pressed.connect(_on_card_refresh)
+		action_hbox.add_child(refresh_btn)
+
+	# 跳过按钮（跳过获得+1刷新）
 	var skip_btn := Button.new()
-	skip_btn.text = tr("SKIP")
-	skip_btn.custom_minimum_size = Vector2(120, 35)
+	skip_btn.text = tr("SKIP") + " (+1 " + tr("REFRESH") + ")"
+	skip_btn.custom_minimum_size = Vector2(180, 35)
 	skip_btn.pressed.connect(_on_card_skipped)
-	center_vbox.add_child(skip_btn)
+	action_hbox.add_child(skip_btn)
 
 var _pending_card_id: String = ""  # 卡满时暂存要添加的卡
 
 func _on_card_skipped() -> void:
+	## 跳过本次选卡，获得+1刷新
 	_pending_card_id = ""
+	_card_refreshes += 1
 	if _card_select_ui:
 		_card_select_ui.queue_free()
 		_card_select_ui = null
 	get_tree().paused = false
+
+func _on_card_refresh() -> void:
+	## 消耗1次刷新，重新抽3张
+	if _card_refreshes <= 0:
+		return
+	_card_refreshes -= 1
+	if _card_select_ui:
+		_card_select_ui.queue_free()
+		_card_select_ui = null
+	_show_card_selection()
 
 func _connect_replace_buttons(node: Node) -> void:
 	if node.name.begins_with("HeldCard_"):
@@ -675,12 +702,24 @@ func _on_replace_card(replace_id: String) -> void:
 	get_tree().paused = false
 	emit("card_selected", {"card_id": _pending_card_id, "level": _hero_level})
 
-func _create_card_button(card: Dictionary, _is_full: bool = false) -> PanelContainer:
-	var panel := PanelContainer.new()
+func _create_card_button(card: Dictionary, _is_full: bool = false) -> Button:
+	## 整个卡片是一个 Button，点击直接选择
+	var panel := Button.new()
 	panel.custom_minimum_size = Vector2(250, 280)
+	panel.focus_mode = Control.FOCUS_ALL
+	# Hover 视觉
+	var card_id: String = card.get("id", "")
+	panel.pressed.connect(_on_card_picked.bind(card_id))
+	panel.mouse_entered.connect(func() -> void:
+		panel.modulate = Color(1.2, 1.2, 1.3)
+	)
+	panel.mouse_exited.connect(func() -> void:
+		panel.modulate = Color.WHITE
+	)
 
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 8)
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_child(vbox)
 
 	# 卡名（翻译）
@@ -758,19 +797,6 @@ func _create_card_button(card: Dictionary, _is_full: bool = false) -> PanelConta
 	desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	desc_label.custom_minimum_size = Vector2(220, 0)
 	vbox.add_child(desc_label)
-
-	# 间距
-	var spacer := Control.new()
-	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	vbox.add_child(spacer)
-
-	# 选择按钮
-	var btn := Button.new()
-	btn.text = tr("PICK")
-	btn.custom_minimum_size = Vector2(0, 40)
-	var card_id: String = card.get("id", "")
-	btn.pressed.connect(_on_card_picked.bind(card_id))
-	vbox.add_child(btn)
 
 	return panel
 

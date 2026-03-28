@@ -7,9 +7,11 @@
       "base_points": 15,
       "target": {
         "category": "CHAIN",
+        "reference": "TARGET",
         "check": "ENEMY",
-        "chain_targets": 3,
-        "chain_range": 180
+        "chain_targets": 4,
+        "chain_range": 180,
+        "max_targets": 5
       }
     }
   ]
