@@ -3,7 +3,7 @@
   "name": "Arrow",
   "tags": ["projectile", "friendly_projectile"],
   "components": {
-    "visual": { "color": "#fff176", "size": 6 },
+    "visual": { "color": "#ffee58", "size": 8 },
     "projectile": {
       "speed": 650,
       "damage": 12,

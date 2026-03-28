@@ -3,7 +3,7 @@
   "name": "Skeleton Warrior",
   "tags": ["enemy", "mobile", "ground", "armored"],
   "components": {
-    "visual": { "color": "#bdbdbd", "size": 16 },
+    "visual": { "color": "#ff8a65", "size": 18 },
     "health": { "max_hp": 80, "armor": 3 },
     "movement": { "speed": 55 },
     "ai_move_to": { "target_tag": "fountain", "attack_range": 30 },

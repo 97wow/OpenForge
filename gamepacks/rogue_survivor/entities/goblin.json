@@ -3,7 +3,7 @@
   "name": "Goblin",
   "tags": ["enemy", "mobile", "ground"],
   "components": {
-    "visual": { "color": "#66bb6a", "size": 14 },
+    "visual": { "color": "#e53935", "size": 16 },
     "health": { "max_hp": 40, "armor": 0 },
     "movement": { "speed": 80 },
     "ai_move_to": { "target_tag": "fountain", "attack_range": 30 },

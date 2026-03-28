@@ -3,7 +3,7 @@
   "name": "Life Fountain",
   "tags": ["fountain", "friendly", "structure"],
   "components": {
-    "visual": { "color": "#7e57c2", "size": 40 },
+    "visual": { "color": "#ce93d8", "size": 48 },
     "health": { "max_hp": 500, "armor": 5 },
     "collision": { "shape": "circle", "radius": 25 }
   },

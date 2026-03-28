@@ -3,7 +3,7 @@
   "name": "Shadow Assassin",
   "tags": ["enemy", "mobile", "ground", "fast"],
   "components": {
-    "visual": { "color": "#37474f", "size": 12 },
+    "visual": { "color": "#ab47bc", "size": 14 },
     "health": { "max_hp": 30, "armor": 0 },
     "movement": { "speed": 140 },
     "ai_move_to": { "target_tag": "fountain", "attack_range": 25 },

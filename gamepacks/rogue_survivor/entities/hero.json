@@ -3,7 +3,7 @@
   "name": "Hero",
   "tags": ["hero", "player", "friendly"],
   "components": {
-    "visual": { "color": "#4fc3f7", "size": 20 },
+    "visual": { "color": "#42a5f5", "size": 28 },
     "health": { "max_hp": 150, "armor": 2 },
     "movement": { "speed": 200 },
     "player_input": {
