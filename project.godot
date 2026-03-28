@@ -77,7 +77,7 @@ move_right={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/translations.csv")
+locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.zh_CN.translation", "res://translations/translations.ja.translation", "res://translations/translations.ko.translation")
 locale/fallback_locale="en"
 
 [rendering]
