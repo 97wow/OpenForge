@@ -184,7 +184,7 @@ func _execute_proc(proc: Dictionary, event_data: Dictionary) -> void:
 		"reflect":
 			# 伤害反弹
 			var amount: float = event_data.get("amount", 0.0)
-			var reflect_amount := amount * proc["reflect_pct"]
+			var reflect_amount: float = amount * float(proc["reflect_pct"])
 			var source = event_data.get("source")
 			if source != null and is_instance_valid(source) and reflect_amount > 0:
 				var health: Node = EngineAPI.get_component(source, "health")
