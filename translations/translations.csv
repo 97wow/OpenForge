@@ -92,3 +92,65 @@ CARD_BARRAGE_1_NAME,Double Shot,双重射击,二連射,이중 사격
 CARD_BARRAGE_1_DESC,Fire an extra projectile,额外发射1枚投射物,追加弾を1発発射,추가 투사체 1발 발사
 CARD_BARRAGE_2_NAME,Scatter Shot,扫射,散弾,산탄
 CARD_BARRAGE_2_DESC,Attacks spread in a fan pattern,攻击呈扇形扩散,攻撃が扇状に拡散,공격이 부채꼴로 확산
+SET_LIGHTNING_CHAIN,Lightning Chain,闪电链,チェインライトニング,연쇄 번개
+SET_CRIT_MASTER,Crit Master,暴击大师,クリティカルマスター,치명타 달인
+SET_SUMMONER,Summoner,召唤师,サモナー,소환사
+SET_ELEMENTALIST,Elementalist,元素使,エレメンタリスト,원소술사
+SET_GUARDIAN,Guardian,守护者,ガーディアン,수호자
+SET_REAPER,Reaper,死神,リーパー,사신
+SET_STORM_BRINGER,Storm Bringer,风暴使者,ストームブリンガー,폭풍 사자
+SET_TIME_LORD,Time Lord,时间领主,タイムロード,시간의 군주
+CARD_LIGHTNING_1_NAME,Electric Arc,电弧,電弧,전기 아크
+CARD_LIGHTNING_1_DESC,15% chance to chain lightning to nearby enemy,15%概率对附近敌人释放闪电链,15%の確率で周囲の敵に連鎖雷撃,15% 확률로 인근 적에게 연쇄 번개
+CARD_LIGHTNING_2_NAME,Conductor,导电,伝導,전도체
+CARD_LIGHTNING_2_DESC,Chained enemies are stunned 0.5s,被闪电链击中的敌人眩晕0.5秒,連鎖された敵は0.5秒気絶,연쇄된 적 0.5초 기절
+CARD_LIGHTNING_3_NAME,Thunderstorm,雷暴,雷嵐,뇌폭
+CARD_LIGHTNING_3_DESC,Chain lightning range increased,闪电链范围增加,チェインライトニングの範囲拡大,연쇄 번개 범위 증가
+CARD_CRIT_1_NAME,Precision Strike,精准打击,精密打撃,정밀 타격
+CARD_CRIT_1_DESC,+10% critical hit chance,暴击率+10%,クリティカル率+10%,치명타 확률 +10%
+CARD_CRIT_2_NAME,Critical Damage,暴击伤害,クリティカルダメージ,치명타 피해
+CARD_CRIT_2_DESC,Critical damage +50%,暴击伤害+50%,クリティカルダメージ+50%,치명타 피해 +50%
+CARD_CRIT_3_NAME,Lethal Strike,致命一击,致命の一撃,치명적 일격
+CARD_CRIT_3_DESC,Crits reduce target armor by 3 for 5s,暴击降低目标3点护甲持续5秒,クリティカルで5秒間防御-3,치명타 시 5초간 방어 -3
+CARD_SUMMON_1_NAME,Summon Spirit,召唤精灵,精霊召喚,정령 소환
+CARD_SUMMON_1_DESC,Summon a spirit that fights for you,召唤一个为你战斗的精灵,あなたのために戦う精霊を召喚,당신을 위해 싸우는 정령 소환
+CARD_SUMMON_2_NAME,Spirit Power,精灵强化,精霊強化,정령 강화
+CARD_SUMMON_2_DESC,Spirits gain +50% damage,精灵伤害+50%,精霊のダメージ+50%,정령 피해 +50%
+CARD_SUMMON_3_NAME,Spirit Burst,精灵爆发,精霊爆発,정령 폭발
+CARD_SUMMON_3_DESC,Spirits explode on death dealing AoE,精灵死亡时爆炸造成范围伤害,精霊死亡時に範囲ダメージ,정령 사망 시 범위 피해
+CARD_ELEMENT_1_NAME,Fire Bolt,火焰弹,ファイアボルト,화염탄
+CARD_ELEMENT_1_DESC,15% chance to deal bonus fire damage,15%概率造成额外火焰伤害,15%の確率で追加炎ダメージ,15% 확률로 추가 화염 피해
+CARD_ELEMENT_2_NAME,Ice Shard,冰锥,アイスシャード,빙결 파편
+CARD_ELEMENT_2_DESC,15% chance to freeze and slow enemies,15%概率冰冻减速敌人,15%の確率で敵を凍結減速,15% 확률로 적 동결 감속
+CARD_ELEMENT_3_NAME,Thunder Ball,雷球,サンダーボール,번개 구체
+CARD_ELEMENT_3_DESC,15% chance to deal chain lightning,15%概率释放闪电链,15%の確率で連鎖雷撃,15% 확률로 연쇄 번개
+CARD_GUARD_1_NAME,Shield,护盾,シールド,보호막
+CARD_GUARD_1_DESC,Gain a shield every 30 seconds,每30秒获得一个护盾,30秒毎にシールドを獲得,30초마다 보호막 획득
+CARD_GUARD_2_NAME,Reflect,反弹,リフレクト,반사
+CARD_GUARD_2_DESC,Reflect 20% damage back to attacker,将20%伤害反弹给攻击者,ダメージの20%を攻撃者に反射,피해의 20%를 공격자에게 반사
+CARD_GUARD_3_NAME,Regeneration,再生,リジェネ,재생
+CARD_GUARD_3_DESC,+3 HP regeneration per second,每秒回复3点生命值,毎秒HP3回復,초당 HP 3 회복
+CARD_REAPER_1_NAME,Death Mark,死亡印记,デスマーク,죽음의 표식
+CARD_REAPER_1_DESC,Enemies below 20% HP take +30% damage,20%以下血量的敌人受到30%额外伤害,HP20%以下の敵はダメージ+30%,체력 20% 이하 적에게 피해 +30%
+CARD_REAPER_2_NAME,Soul Harvest,灵魂收割,ソウルハーベスト,영혼 수확
+CARD_REAPER_2_DESC,Kills grant temporary +5% damage,击杀获得临时5%伤害加成,キル時一時的にダメージ+5%,처치 시 일시적 피해 +5%
+CARD_REAPER_3_NAME,Dance of Death,死亡之舞,デスダンス,죽음의 춤
+CARD_REAPER_3_DESC,+2% permanent damage per kill,每次击杀永久增加2%伤害,キル毎に永久ダメージ+2%,처치 시 영구 피해 +2%
+CARD_REAPER_4_NAME,Unstoppable,不可阻挡,アンストッパブル,멈출 수 없는
+CARD_REAPER_4_DESC,3 kills in 5s guarantees next crit,5秒内3次击杀保证下次暴击,5秒以内に3キルで次のクリティカル確定,5초 내 3처치 시 다음 치명타 확정
+CARD_STORM_1_NAME,Shockwave,冲击波,衝撃波,충격파
+CARD_STORM_1_DESC,Every 5th attack creates a shockwave,每5次攻击产生一次冲击波,5回攻撃毎に衝撃波,매 5회 공격 시 충격파
+CARD_STORM_2_NAME,Tornado,龙卷风,竜巻,토네이도
+CARD_STORM_2_DESC,Shockwave pulls enemies toward center,冲击波将敌人拉向中心,衝撃波で敵を中心に引き寄せ,충격파가 적을 중심으로 끌어당김
+CARD_STORM_3_NAME,Thunder Storm,雷电风暴,サンダーストーム,천둥 폭풍
+CARD_STORM_3_DESC,Shockwave stuns enemies for 1s,冲击波使敌人眩晕1秒,衝撃波で1秒間気絶,충격파로 적 1초 기절
+CARD_STORM_4_NAME,Apocalypse Storm,末日风暴,アポカリプスストーム,종말의 폭풍
+CARD_STORM_4_DESC,Shockwave radius doubled with elemental damage,冲击波范围翻倍并附带元素伤害,衝撃波の範囲2倍+属性ダメージ,충격파 범위 2배 + 속성 피해
+CARD_TIME_1_NAME,Time Slow,时间减速,タイムスロー,시간 감속
+CARD_TIME_1_DESC,Enemies near you are slowed 15%,附近敌人减速15%,周囲の敵を15%減速,주변 적 15% 감속
+CARD_TIME_2_NAME,Time Rewind,时间回溯,タイムリワインド,시간 되감기
+CARD_TIME_2_DESC,Survive lethal damage once,致命伤害时存活一次,致死ダメージを1回耐える,치명적 피해 1회 생존
+CARD_TIME_3_NAME,Haste,加速,ヘイスト,가속
+CARD_TIME_3_DESC,+30% movement and attack speed,移速和攻速+30%,移動速度と攻撃速度+30%,이동 및 공격 속도 +30%
+CARD_TIME_4_NAME,Time Stop,时间停止,タイムストップ,시간 정지
+CARD_TIME_4_DESC,Stop time for 3s (60s cooldown),停止时间3秒(冷却60秒),3秒間時間停止(CD60秒),시간 3초 정지 (쿨타임 60초)

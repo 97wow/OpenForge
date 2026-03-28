@@ -1,0 +1,11 @@
+{
+  "id": "summon_1",
+  "name_key": "CARD_SUMMON1_NAME",
+  "desc_key": "CARD_SUMMON1_DESC",
+  "set_id": "summoner",
+  "rarity": "uncommon",
+  "class_affinity": ["mage"],
+  "effects": [
+    { "type": "stat_mod", "stat": "summon_spirit", "mod_type": "flat", "value": 1 }
+  ]
+}

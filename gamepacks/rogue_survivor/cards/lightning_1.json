@@ -1,0 +1,11 @@
+{
+  "id": "lightning_1",
+  "name_key": "CARD_LIGHTNING1_NAME",
+  "desc_key": "CARD_LIGHTNING1_DESC",
+  "set_id": "lightning_chain",
+  "rarity": "uncommon",
+  "class_affinity": ["mage"],
+  "effects": [
+    { "type": "stat_mod", "stat": "chain_chance", "mod_type": "flat", "value": 0.15 }
+  ]
+}

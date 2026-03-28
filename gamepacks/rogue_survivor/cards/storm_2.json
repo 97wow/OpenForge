@@ -1,0 +1,11 @@
+{
+  "id": "storm_2",
+  "name_key": "CARD_STORM2_NAME",
+  "desc_key": "CARD_STORM2_DESC",
+  "set_id": "storm_bringer",
+  "rarity": "legendary",
+  "class_affinity": ["mage"],
+  "effects": [
+    { "type": "stat_mod", "stat": "shockwave_pull", "mod_type": "flat", "value": 1 }
+  ]
+}

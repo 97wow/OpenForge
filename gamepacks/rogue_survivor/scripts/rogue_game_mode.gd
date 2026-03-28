@@ -287,19 +287,18 @@ func _on_projectile_hit(data: Dictionary) -> void:
 		var eid: int = target.runtime_id if target is GameEntity else target.get_instance_id()
 		_burn_timer[eid] = {"target": target, "remaining": 3.0, "dps": 5.0}
 
-	# --- 减速 ---
+	# --- 减速（同一目标只取最强减速，不叠加）---
 	var slow_chance: float = float(EngineAPI.get_variable("hero_slow_chance", 0.0))
 	if slow_chance > 0 and randf() < slow_chance:
 		var slow_pct: float = float(EngineAPI.get_variable("hero_slow_pct", 0.2))
-		# 直接减速 movement 组件
 		var movement: Node = EngineAPI.get_component(target, "movement")
 		if movement and movement.has_method("add_speed_modifier"):
-			var mod_id := "slow_%d" % (randi() % 99999)
-			movement.add_speed_modifier(mod_id, 1.0 - slow_pct)
-			# 2秒后移除
+			# 固定 ID：覆盖式刷新，不叠加
+			movement.remove_speed_modifier("hero_slow")
+			movement.add_speed_modifier("hero_slow", 1.0 - slow_pct)
 			get_tree().create_timer(2.0).timeout.connect(func() -> void:
 				if is_instance_valid(target) and movement:
-					movement.remove_speed_modifier(mod_id)
+					movement.remove_speed_modifier("hero_slow")
 			)
 
 	# --- 中毒 ---
@@ -344,7 +343,65 @@ func _on_projectile_hit(data: Dictionary) -> void:
 			if split_done >= split_count:
 				break
 
-const DOT_TICK_INTERVAL := 0.5  # DoT 每 0.5 秒跳一次伤害
+	# --- 链式闪电 ---
+	var chain_chance: float = float(EngineAPI.get_variable("hero_chain_chance", 0.0))
+	if chain_chance > 0 and randf() < chain_chance:
+		var chain_count: int = int(EngineAPI.get_variable("hero_chain_count", 2))
+		var chain_stun: float = float(EngineAPI.get_variable("hero_chain_stun", 0.5))
+		var chain_dmg := base_damage * 0.6
+		var chain_targets: Array = EngineAPI.find_entities_in_area(target.global_position, 180, "enemy")
+		var chained := 0
+		for ct in chain_targets:
+			if ct == target or not is_instance_valid(ct):
+				continue
+			var ct_health: Node = EngineAPI.get_component(ct, "health")
+			if ct_health and ct_health.has_method("take_damage"):
+				ct_health.take_damage(chain_dmg, hero)
+			# 眩晕 = 减速100%
+			var ct_movement: Node = EngineAPI.get_component(ct, "movement")
+			if ct_movement and ct_movement.has_method("add_speed_modifier"):
+				ct_movement.remove_speed_modifier("chain_stun")
+				ct_movement.add_speed_modifier("chain_stun", 0.0)
+				get_tree().create_timer(chain_stun).timeout.connect(func() -> void:
+					if is_instance_valid(ct) and ct_movement:
+						ct_movement.remove_speed_modifier("chain_stun")
+				)
+			chained += 1
+			if chained >= chain_count:
+				break
+
+	# --- 冲击波（每N次攻击）---
+	var shockwave_n: int = int(EngineAPI.get_variable("hero_shockwave_every_n", 0))
+	if shockwave_n > 0:
+		var hit_count: int = int(EngineAPI.get_variable("_hit_counter", 0)) + 1
+		EngineAPI.set_variable("_hit_counter", hit_count)
+		if hit_count % shockwave_n == 0:
+			var sw_radius: float = float(EngineAPI.get_variable("hero_shockwave_radius", 120))
+			var sw_stun: float = float(EngineAPI.get_variable("hero_shockwave_stun", 1.0))
+			var sw_targets: Array = EngineAPI.find_entities_in_area(target.global_position, sw_radius, "enemy")
+			for sw_t in sw_targets:
+				if not is_instance_valid(sw_t):
+					continue
+				var sw_health: Node = EngineAPI.get_component(sw_t, "health")
+				if sw_health and sw_health.has_method("take_damage"):
+					sw_health.take_damage(base_damage * 0.8, hero)
+				var sw_mov: Node = EngineAPI.get_component(sw_t, "movement")
+				if sw_mov and sw_mov.has_method("add_speed_modifier"):
+					sw_mov.remove_speed_modifier("shockwave_stun")
+					sw_mov.add_speed_modifier("shockwave_stun", 0.0)
+					get_tree().create_timer(sw_stun).timeout.connect(func() -> void:
+						if is_instance_valid(sw_t) and sw_mov:
+							sw_mov.remove_speed_modifier("shockwave_stun")
+					)
+
+	# --- 处决（死神套装：低血量直接击杀）---
+	var exec_threshold: float = float(EngineAPI.get_variable("hero_execute_threshold", 0.0))
+	if exec_threshold > 0 and is_instance_valid(target):
+		var exec_health: Node = EngineAPI.get_component(target, "health")
+		if exec_health and exec_health.get_hp_ratio() <= exec_threshold:
+			exec_health.take_damage(exec_health.current_hp + 1, hero)
+
+const DOT_TICK_INTERVAL := 0.5
 
 func _process_dot_effects(delta: float) -> void:
 	# 燃烧 DoT（每 0.5s tick）
@@ -397,11 +454,34 @@ func _on_entity_destroyed(data: Dictionary) -> void:
 		return
 
 	if entity == hero:
-		_defeat("Hero has fallen!")
+		# 时间领主：死亡回溯
+		if bool(EngineAPI.get_variable("hero_death_rewind", false)):
+			EngineAPI.set_variable("hero_death_rewind", false)  # 一次性
+			var hero_health: Node = EngineAPI.get_component(hero, "health")
+			if hero_health:
+				hero_health.current_hp = hero_health.max_hp
+				EngineAPI.show_message("TIME REWIND! Death prevented!")
+				return
+		_defeat(tr("HERO_FALLEN"))
 	elif entity == player_fountain:
-		_defeat("Life Fountain destroyed!")
+		_defeat(tr("FOUNTAIN_DESTROYED"))
 	elif entity == enemy_fountain:
-		_victory("Dark Fountain destroyed!")
+		_victory(tr("DARK_FOUNTAIN_DESTROYED"))
+
+	# 击杀效果（仅英雄击杀敌人时）
+	if entity is GameEntity and (entity as GameEntity).has_tag("enemy"):
+		# 击杀回血
+		var kill_heal: float = float(EngineAPI.get_variable("hero_kill_heal_pct", 0.0))
+		if kill_heal > 0 and hero and is_instance_valid(hero):
+			var hh: Node = EngineAPI.get_component(hero, "health")
+			if hh and hh.has_method("heal"):
+				hh.heal(hh.max_hp * kill_heal, hero)
+		# 永久伤害加成
+		var perm_dmg: float = float(EngineAPI.get_variable("hero_permanent_damage_per_kill", 0.0))
+		if perm_dmg > 0 and hero and is_instance_valid(hero):
+			var input_comp: Node = EngineAPI.get_component(hero, "player_input")
+			if input_comp:
+				input_comp.projectile_damage += input_comp.projectile_damage * perm_dmg
 
 func _on_resource_changed(data: Dictionary) -> void:
 	var res: String = data.get("resource", "")
@@ -655,7 +735,28 @@ func _apply_set_bonus(set_data: Dictionary) -> void:
 		"freeze_shatter":
 			EngineAPI.set_variable("hero_slow_pct", bonus.get("slow_pct", 0.4))
 			EngineAPI.set_variable("hero_freeze_shatter", true)
-	print("[Cards] Set bonus applied: %s" % set_data.get("name", ""))
+		"chain_lightning":
+			EngineAPI.set_variable("hero_chain_chance", bonus.get("chain_chance", 0.3))
+			EngineAPI.set_variable("hero_chain_count", bonus.get("chain_count", 3))
+			EngineAPI.set_variable("hero_chain_stun", bonus.get("chain_stun", 1.0))
+		"reaper":
+			EngineAPI.set_variable("hero_execute_threshold", bonus.get("execute_threshold", 0.15))
+			EngineAPI.set_variable("hero_kill_heal_pct", bonus.get("kill_heal_pct", 0.1))
+			EngineAPI.set_variable("hero_permanent_damage_per_kill", bonus.get("permanent_damage_per_kill", 0.02))
+		"storm":
+			EngineAPI.set_variable("hero_shockwave_every_n", bonus.get("shockwave_every_n", 3))
+			EngineAPI.set_variable("hero_shockwave_radius", bonus.get("shockwave_radius", 150))
+			EngineAPI.set_variable("hero_shockwave_stun", bonus.get("shockwave_stun", 2.0))
+		"time_lord":
+			EngineAPI.set_variable("hero_time_stop_duration", bonus.get("time_stop_duration", 3.0))
+			EngineAPI.set_variable("hero_time_stop_cooldown", bonus.get("time_stop_cooldown", 60.0))
+			EngineAPI.set_variable("hero_death_rewind", bonus.get("death_rewind", true))
+		"summon":
+			EngineAPI.set_variable("hero_spirit_count", bonus.get("spirit_count", 2))
+			EngineAPI.set_variable("hero_spirit_inherit_pct", bonus.get("spirit_inherit_pct", 0.5))
+		"random_element":
+			EngineAPI.set_variable("hero_element_chance", bonus.get("element_chance", 0.35))
+	print("[Cards] Set bonus applied: %s (%s)" % [set_data.get("id", ""), btype])
 
 # === HUD ===
 

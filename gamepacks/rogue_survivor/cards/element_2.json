@@ -1,0 +1,11 @@
+{
+  "id": "element_2",
+  "name_key": "CARD_ELEMENT2_NAME",
+  "desc_key": "CARD_ELEMENT2_DESC",
+  "set_id": "elementalist",
+  "rarity": "uncommon",
+  "class_affinity": ["all"],
+  "effects": [
+    { "type": "stat_mod", "stat": "ice_chance", "mod_type": "flat", "value": 0.15 }
+  ]
+}

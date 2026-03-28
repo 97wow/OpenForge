@@ -1,0 +1,11 @@
+{
+  "id": "time_4",
+  "name_key": "CARD_TIME4_NAME",
+  "desc_key": "CARD_TIME4_DESC",
+  "set_id": "time_lord",
+  "rarity": "legendary",
+  "class_affinity": ["all"],
+  "effects": [
+    { "type": "stat_mod", "stat": "time_stop", "mod_type": "flat", "value": 1 }
+  ]
+}
