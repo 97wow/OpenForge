@@ -344,37 +344,46 @@ func _on_projectile_hit(data: Dictionary) -> void:
 			if split_done >= split_count:
 				break
 
+const DOT_TICK_INTERVAL := 0.5  # DoT 每 0.5 秒跳一次伤害
+
 func _process_dot_effects(delta: float) -> void:
-	# 燃烧 DoT
+	# 燃烧 DoT（每 0.5s tick）
 	var burn_remove: Array = []
 	for eid in _burn_timer:
 		var bt: Dictionary = _burn_timer[eid]
-		var target = bt.get("target")  # Variant: 避免强类型赋值已释放实例
+		var target = bt.get("target")
 		if target == null or not is_instance_valid(target):
 			burn_remove.append(eid)
 			continue
 		bt["remaining"] -= delta
-		var health: Node = EngineAPI.get_component(target, "health")
-		if health and health.has_method("take_damage"):
-			health.take_damage(bt["dps"] * delta, hero)
+		bt["tick_timer"] = bt.get("tick_timer", 0.0) + delta
+		if bt["tick_timer"] >= DOT_TICK_INTERVAL:
+			bt["tick_timer"] -= DOT_TICK_INTERVAL
+			var tick_dmg: float = bt["dps"] * DOT_TICK_INTERVAL
+			var health: Node = EngineAPI.get_component(target, "health")
+			if health and health.has_method("take_damage"):
+				health.take_damage(tick_dmg, hero)
 		if bt["remaining"] <= 0:
 			burn_remove.append(eid)
 	for eid in burn_remove:
 		_burn_timer.erase(eid)
 
-	# 中毒 DoT
+	# 中毒 DoT（每 0.5s tick）
 	var poison_remove: Array = []
 	for eid in _poison_timer:
 		var pt: Dictionary = _poison_timer[eid]
-		var target = pt.get("target")  # Variant
+		var target = pt.get("target")
 		if target == null or not is_instance_valid(target):
 			poison_remove.append(eid)
 			continue
 		pt["remaining"] -= delta
-		var health: Node = EngineAPI.get_component(target, "health")
-		if health and health.has_method("take_damage"):
-			var total_dps: float = pt["dps"] * pt["stacks"]
-			health.take_damage(total_dps * delta, hero)
+		pt["tick_timer"] = pt.get("tick_timer", 0.0) + delta
+		if pt["tick_timer"] >= DOT_TICK_INTERVAL:
+			pt["tick_timer"] -= DOT_TICK_INTERVAL
+			var tick_dmg: float = pt["dps"] * pt["stacks"] * DOT_TICK_INTERVAL
+			var health: Node = EngineAPI.get_component(target, "health")
+			if health and health.has_method("take_damage"):
+				health.take_damage(tick_dmg, hero)
 		if pt["remaining"] <= 0:
 			poison_remove.append(eid)
 	for eid in poison_remove:
@@ -658,6 +667,17 @@ var _xp_label: Label = null
 var _level_label: Label = null
 var _pfountain_label: Label = null
 var _efountain_label: Label = null
+# 属性面板
+var _str_label: Label = null
+var _agi_label: Label = null
+var _int_label: Label = null
+var _sta_label: Label = null
+var _def_label: Label = null
+var _atk_label: Label = null
+var _aspd_label: Label = null
+var _range_label: Label = null
+# 卡片栏
+var _card_slots: Array[PanelContainer] = []
 
 func _create_hud() -> void:
 	var ui_layer: CanvasLayer = get_tree().current_scene.get_node_or_null("UI")
@@ -666,26 +686,105 @@ func _create_hud() -> void:
 	for child in ui_layer.get_children():
 		child.queue_free()
 
-	# 顶栏
-	var panel := PanelContainer.new()
-	panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
-	panel.offset_bottom = 40
-	ui_layer.add_child(panel)
+	# === 顶栏 ===
+	var top_panel := PanelContainer.new()
+	top_panel.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	top_panel.offset_bottom = 36
+	ui_layer.add_child(top_panel)
 
-	var hbox := HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", 20)
-	panel.add_child(hbox)
+	var top_hbox := HBoxContainer.new()
+	top_hbox.add_theme_constant_override("separation", 18)
+	top_panel.add_child(top_hbox)
 
-	_hp_label = _hud_label(hbox, "HP: 150/150")
-	_pfountain_label = _hud_label(hbox, "Our Fountain: 500")
-	_efountain_label = _hud_label(hbox, "Enemy Fountain: 800")
-	_gold_label = _hud_label(hbox, "Gold: 0")
-	_level_label = _hud_label(hbox, "Lv.1")
-	_xp_label = _hud_label(hbox, "XP: 0/%d" % _xp_to_next)
-	_wave_label = _hud_label(hbox, "Wave: 0/%d" % TOTAL_WAVES)
-	_timer_label = _hud_label(hbox, "0:00/10:00")
+	_hp_label = _hud_label(top_hbox, "HP: --", 13)
+	_pfountain_label = _hud_label(top_hbox, tr("OUR_FOUNTAIN") + ": --", 13)
+	_efountain_label = _hud_label(top_hbox, tr("ENEMY_FOUNTAIN") + ": --", 13)
+	_gold_label = _hud_label(top_hbox, tr("GOLD") + ": 0", 13)
+	_level_label = _hud_label(top_hbox, "Lv.1", 13)
+	_xp_label = _hud_label(top_hbox, "XP: 0/%d" % _xp_to_next, 13)
+	_wave_label = _hud_label(top_hbox, tr("WAVE") + ": 0/%d" % TOTAL_WAVES, 13)
+	_timer_label = _hud_label(top_hbox, "0:00/10:00", 13)
 
-	# 退出按钮
+	# === 右侧属性面板 ===
+	var stat_panel := PanelContainer.new()
+	stat_panel.anchor_left = 1.0
+	stat_panel.anchor_right = 1.0
+	stat_panel.anchor_top = 0.0
+	stat_panel.anchor_bottom = 0.0
+	stat_panel.offset_left = -155
+	stat_panel.offset_top = 45
+	stat_panel.offset_right = -5
+	stat_panel.offset_bottom = 260
+	ui_layer.add_child(stat_panel)
+
+	var stat_vbox := VBoxContainer.new()
+	stat_vbox.add_theme_constant_override("separation", 3)
+	stat_panel.add_child(stat_vbox)
+
+	var stat_title := Label.new()
+	stat_title.text = tr("WARRIOR")  # 会被 _update_hud 覆盖为实际职业
+	stat_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	stat_title.add_theme_font_size_override("font_size", 14)
+	stat_title.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+	stat_title.name = "ClassTitle"
+	stat_vbox.add_child(stat_title)
+
+	_str_label = _hud_label(stat_vbox, tr("STR") + ": 0", 12, Color(1, 0.4, 0.35))
+	_agi_label = _hud_label(stat_vbox, tr("AGI") + ": 0", 12, Color(0.4, 1, 0.4))
+	_int_label = _hud_label(stat_vbox, tr("INT") + ": 0", 12, Color(0.5, 0.6, 1))
+	_sta_label = _hud_label(stat_vbox, tr("STA") + ": 0", 12, Color(1, 0.8, 0.3))
+	_def_label = _hud_label(stat_vbox, tr("DEF") + ": 0", 12, Color(0.6, 0.6, 0.7))
+
+	var sep := HSeparator.new()
+	stat_vbox.add_child(sep)
+
+	_atk_label = _hud_label(stat_vbox, "DMG: --", 12)
+	_aspd_label = _hud_label(stat_vbox, "SPD: --", 12)
+	_range_label = _hud_label(stat_vbox, "RNG: --", 12)
+
+	# === 底部卡片栏 ===
+	var card_bar := HBoxContainer.new()
+	card_bar.anchor_left = 0.5
+	card_bar.anchor_right = 0.5
+	card_bar.anchor_top = 1.0
+	card_bar.anchor_bottom = 1.0
+	card_bar.offset_left = -240
+	card_bar.offset_top = -65
+	card_bar.offset_right = 240
+	card_bar.offset_bottom = -5
+	card_bar.add_theme_constant_override("separation", 6)
+	card_bar.alignment = BoxContainer.ALIGNMENT_CENTER
+	ui_layer.add_child(card_bar)
+
+	_card_slots.clear()
+	for i in range(6):
+		var slot := PanelContainer.new()
+		slot.custom_minimum_size = Vector2(72, 55)
+		var slot_style := StyleBoxFlat.new()
+		slot_style.bg_color = Color(0.15, 0.15, 0.2, 0.7)
+		slot_style.corner_radius_top_left = 4
+		slot_style.corner_radius_top_right = 4
+		slot_style.corner_radius_bottom_left = 4
+		slot_style.corner_radius_bottom_right = 4
+		slot_style.border_color = Color(0.3, 0.3, 0.4, 0.5)
+		slot_style.border_width_top = 1
+		slot_style.border_width_bottom = 1
+		slot_style.border_width_left = 1
+		slot_style.border_width_right = 1
+		slot.add_theme_stylebox_override("panel", slot_style)
+
+		var slot_label := Label.new()
+		slot_label.text = ""
+		slot_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		slot_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		slot_label.add_theme_font_size_override("font_size", 10)
+		slot_label.name = "SlotLabel"
+		slot.add_child(slot_label)
+
+		card_bar.add_child(slot)
+		_card_slots.append(slot)
+
+	# === 退出按钮 ===
 	var back_btn := Button.new()
 	back_btn.text = tr("QUIT")
 	back_btn.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
@@ -694,10 +793,12 @@ func _create_hud() -> void:
 	back_btn.pressed.connect(func() -> void: SceneManager.goto_scene("lobby"))
 	ui_layer.add_child(back_btn)
 
-func _hud_label(parent: Node, text: String) -> Label:
+func _hud_label(parent: Node, text: String, size: int = 13, color: Color = Color.WHITE) -> Label:
 	var label := Label.new()
 	label.text = text
-	label.add_theme_font_size_override("font_size", 14)
+	label.add_theme_font_size_override("font_size", size)
+	if color != Color.WHITE:
+		label.add_theme_color_override("font_color", color)
 	parent.add_child(label)
 	return label
 
@@ -705,6 +806,7 @@ func _update_hud() -> void:
 	if _hp_label == null:
 		return
 
+	# --- 顶栏 ---
 	if hero and is_instance_valid(hero):
 		var health: Node = EngineAPI.get_component(hero, "health")
 		if health:
@@ -713,24 +815,65 @@ func _update_hud() -> void:
 	if player_fountain and is_instance_valid(player_fountain):
 		var fh: Node = EngineAPI.get_component(player_fountain, "health")
 		if fh:
-			_pfountain_label.text = "Our Fountain: %d" % int(fh.current_hp)
+			_pfountain_label.text = tr("OUR_FOUNTAIN") + ": %d" % int(fh.current_hp)
 	else:
-		_pfountain_label.text = "Our Fountain: DEAD"
+		_pfountain_label.text = tr("OUR_FOUNTAIN") + ": DEAD"
 
 	if enemy_fountain and is_instance_valid(enemy_fountain):
 		var eh: Node = EngineAPI.get_component(enemy_fountain, "health")
 		if eh:
-			_efountain_label.text = "Enemy Fountain: %d" % int(eh.current_hp)
+			_efountain_label.text = tr("ENEMY_FOUNTAIN") + ": %d" % int(eh.current_hp)
 	else:
-		_efountain_label.text = "Enemy Fountain: DEAD"
+		_efountain_label.text = tr("ENEMY_FOUNTAIN") + ": DEAD"
 
-	_gold_label.text = "Gold: %d" % int(EngineAPI.get_resource("gold"))
+	_gold_label.text = tr("GOLD") + ": %d" % int(EngineAPI.get_resource("gold"))
 	_level_label.text = "Lv.%d" % _hero_level
 	_xp_label.text = "XP: %d/%d" % [int(EngineAPI.get_resource("xp")), _xp_to_next]
-	_wave_label.text = "Wave: %d/%d" % [_current_wave, TOTAL_WAVES]
+	_wave_label.text = tr("WAVE") + ": %d/%d" % [_current_wave, TOTAL_WAVES]
 
 	@warning_ignore("integer_division")
 	var mins: int = int(_game_timer) / 60
 	@warning_ignore("integer_division")
 	var secs: int = int(_game_timer) % 60
 	_timer_label.text = "%d:%02d/10:00" % [mins, secs]
+
+	# --- 属性面板 ---
+	if hero and is_instance_valid(hero) and hero is GameEntity:
+		var entity := hero as GameEntity
+		var m: Dictionary = entity.meta
+		var lvl := _hero_level - 1
+		var s: int = m.get("base_str", 5) + lvl * m.get("level_str", 1)
+		var a: int = m.get("base_agi", 5) + lvl * m.get("level_agi", 1)
+		var i: int = m.get("base_int", 5) + lvl * m.get("level_int", 1)
+		var st: int = m.get("base_sta", 5) + lvl * m.get("level_sta", 1)
+		var d: int = m.get("base_def", 3) + lvl * m.get("level_def", 1)
+		_str_label.text = tr("STR") + ": %d" % s
+		_agi_label.text = tr("AGI") + ": %d" % a
+		_int_label.text = tr("INT") + ": %d" % i
+		_sta_label.text = tr("STA") + ": %d" % st
+		_def_label.text = tr("DEF") + ": %d" % d
+
+		var input_comp: Node = EngineAPI.get_component(hero, "player_input")
+		if input_comp:
+			_atk_label.text = "DMG: %d" % int(input_comp.projectile_damage)
+			_aspd_label.text = "SPD: %.2fs" % input_comp.shoot_cooldown
+			_range_label.text = "RNG: %d" % int(input_comp.attack_range)
+
+		# 职业标题
+		var class_title := _str_label.get_parent().get_node_or_null("ClassTitle")
+		if class_title:
+			var cls_key: String = str(EngineAPI.get_variable("hero_class", "warrior")).to_upper()
+			class_title.text = tr(cls_key)
+
+	# --- 卡片栏 ---
+	if _card_manager:
+		var held: Array[String] = _card_manager.get_held_cards()
+		for slot_idx in range(6):
+			var slot_label: Label = _card_slots[slot_idx].get_node("SlotLabel")
+			if slot_idx < held.size():
+				var card_data: Dictionary = _card_manager.get_card_data(held[slot_idx])
+				var name_key: String = card_data.get("name_key", held[slot_idx])
+				slot_label.text = tr(name_key)
+				slot_label.add_theme_color_override("font_color", Color(0.9, 0.85, 0.6))
+			else:
+				slot_label.text = ""
