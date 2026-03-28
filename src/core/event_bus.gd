@@ -71,8 +71,9 @@ func emit_event(event_name: String, data: Dictionary = {}) -> void:
 		return
 	var listeners := _listeners[event_name].duplicate() as Array
 	for callback: Callable in listeners:
-		if callback.is_valid():
-			callback.call(data)
+		if not callback.is_valid():
+			continue
+		callback.call(data)
 
 # === 查询 ===
 

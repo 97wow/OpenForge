@@ -64,6 +64,10 @@ func _attach_component(entity: GameEntity, comp_name: String, comp_data: Diction
 func destroy(entity: GameEntity) -> void:
 	if entity == null or not is_instance_valid(entity):
 		return
+	# 防止重复销毁
+	if not _entities.has(entity.runtime_id):
+		return
+	_entities.erase(entity.runtime_id)
 	EventBus.emit_event("entity_destroyed", {"entity": entity})
 
 	# 从 StatSystem 注销
@@ -71,7 +75,6 @@ func destroy(entity: GameEntity) -> void:
 	if stat_system:
 		stat_system.call("unregister_entity", entity)
 
-	_entities.erase(entity.runtime_id)
 	entity.queue_free()
 
 # === 查询 ===

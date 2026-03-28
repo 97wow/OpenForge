@@ -2,7 +2,6 @@
 ## 3 职业选择后进入战斗
 extends Control
 
-var _selected_class: String = ""
 var _scene_data: Dictionary = {}
 
 const CLASSES := [

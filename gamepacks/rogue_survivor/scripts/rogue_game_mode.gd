@@ -349,8 +349,8 @@ func _process_dot_effects(delta: float) -> void:
 	var burn_remove: Array = []
 	for eid in _burn_timer:
 		var bt: Dictionary = _burn_timer[eid]
-		var target: Node2D = bt["target"]
-		if not is_instance_valid(target):
+		var target = bt.get("target")  # Variant: 避免强类型赋值已释放实例
+		if target == null or not is_instance_valid(target):
 			burn_remove.append(eid)
 			continue
 		bt["remaining"] -= delta
@@ -366,8 +366,8 @@ func _process_dot_effects(delta: float) -> void:
 	var poison_remove: Array = []
 	for eid in _poison_timer:
 		var pt: Dictionary = _poison_timer[eid]
-		var target: Node2D = pt["target"]
-		if not is_instance_valid(target):
+		var target = pt.get("target")  # Variant
+		if target == null or not is_instance_valid(target):
 			poison_remove.append(eid)
 			continue
 		pt["remaining"] -= delta

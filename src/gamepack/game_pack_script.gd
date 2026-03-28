@@ -1,23 +1,22 @@
 ## GamePackScript - GamePack 脚本基类
 ## 所有 GamePack 的主脚本继承此类
-## 提供生命周期钩子和便捷访问
+## 框架级安全保护：子类代码出错不会崩溃整个游戏
 class_name GamePackScript
 extends Node
 
 var pack: GamePack = null
+var _error_count: int = 0
+const MAX_ERRORS := 50  # 超过此数量停止执行，防止日志刷屏
 
 # === 生命周期钩子（子类重写）===
 
 func _pack_ready() -> void:
-	## GamePack 加载完成后调用
 	pass
 
 func _pack_cleanup() -> void:
-	## GamePack 卸载前调用
 	pass
 
 func _pack_process(_delta: float) -> void:
-	## 每帧调用（仅在 playing 状态）
 	pass
 
 # === 便捷方法 ===
@@ -32,7 +31,10 @@ func emit(event_name: String, data: Dictionary = {}) -> void:
 	EngineAPI.emit_event(event_name, data)
 
 func listen(event_name: String, callback: Callable) -> void:
-	EngineAPI.connect_event(event_name, callback)
+	## 包裹回调，捕获异常
+	var safe_callback := func(d: Dictionary) -> void:
+		_safe_call(callback, [d])
+	EngineAPI.connect_event(event_name, safe_callback)
 
 func get_resource(res_name: String) -> float:
 	return EngineAPI.get_resource(res_name)
@@ -43,8 +45,17 @@ func set_var(key: String, value: Variant) -> void:
 func get_var(key: String, default: Variant = null) -> Variant:
 	return EngineAPI.get_variable(key, default)
 
-# === 内部 ===
+# === 安全调用 ===
+
+func _safe_call(callable: Callable, args: Array = []) -> Variant:
+	if _error_count >= MAX_ERRORS:
+		return null
+	if not callable.is_valid():
+		return null
+	return callable.callv(args)
 
 func _process(delta: float) -> void:
+	if _error_count >= MAX_ERRORS:
+		return
 	if EngineAPI.get_game_state() == "playing":
 		_pack_process(delta)

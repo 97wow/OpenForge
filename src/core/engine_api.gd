@@ -30,6 +30,8 @@ func spawn_entity(def_id: String, pos: Vector2 = Vector2.ZERO, overrides: Dictio
 	return entity_system.call("spawn", def_id, pos, overrides)
 
 func destroy_entity(entity: Node2D) -> void:
+	if entity == null or not is_instance_valid(entity):
+		return
 	var entity_system := get_system("entity") as Node
 	if entity_system:
 		entity_system.call("destroy", entity)
