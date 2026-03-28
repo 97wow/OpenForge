@@ -1,0 +1,17 @@
+{
+  "id": "arrow",
+  "name": "Arrow",
+  "tags": ["projectile", "friendly_projectile"],
+  "components": {
+    "visual": { "color": "#fff176", "size": 6 },
+    "projectile": {
+      "speed": 650,
+      "damage": 12,
+      "max_range": 800,
+      "pierce_count": 0,
+      "target_tag": "enemy",
+      "hit_radius": 14
+    }
+  },
+  "meta": {}
+}

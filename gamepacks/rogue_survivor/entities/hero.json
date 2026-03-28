@@ -1,0 +1,24 @@
+{
+  "id": "hero",
+  "name": "Hero",
+  "tags": ["hero", "player", "friendly"],
+  "components": {
+    "visual": { "color": "#4fc3f7", "size": 20 },
+    "health": { "max_hp": 150, "armor": 2 },
+    "movement": { "speed": 200 },
+    "player_input": {
+      "shoot_cooldown": 0.35,
+      "projectile_id": "arrow",
+      "projectile_speed": 650,
+      "projectile_damage": 12
+    },
+    "collision": { "shape": "circle", "radius": 10 }
+  },
+  "meta": {
+    "base_str": 5,
+    "base_agi": 5,
+    "base_int": 5,
+    "base_sta": 5,
+    "base_def": 3
+  }
+}

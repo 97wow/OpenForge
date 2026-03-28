@@ -20,6 +20,9 @@ func _register_builtin_components() -> void:
 	register_component("path_follow", base + "path_follow_component.gd")
 	register_component("visual", base + "visual_component.gd")
 	register_component("collision", base + "collision_component.gd")
+	register_component("player_input", base + "player_input_component.gd")
+	register_component("projectile", base + "projectile_component.gd")
+	register_component("ai_move_to", base + "ai_move_to_component.gd")
 
 # === 注册 ===
 

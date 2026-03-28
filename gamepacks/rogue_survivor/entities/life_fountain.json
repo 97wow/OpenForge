@@ -1,0 +1,11 @@
+{
+  "id": "life_fountain",
+  "name": "Life Fountain",
+  "tags": ["fountain", "friendly", "structure"],
+  "components": {
+    "visual": { "color": "#7e57c2", "size": 40 },
+    "health": { "max_hp": 500, "armor": 5 },
+    "collision": { "shape": "circle", "radius": 25 }
+  },
+  "meta": {}
+}

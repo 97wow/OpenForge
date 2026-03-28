@@ -21,9 +21,8 @@ func _populate_maps() -> void:
 		"dark_forest",
 		"Dark Forest - Rogue Survivor",
 		"A corrupted forest teeming with dark creatures.\nDefend the Life Fountain for 10 minutes.",
-		"Difficulty: Normal | Coming Soon",
-		"rogue_survivor",
-		true
+		"Difficulty: Normal",
+		"rogue_survivor"
 	)
 	_add_map_card(
 		"coming_soon",

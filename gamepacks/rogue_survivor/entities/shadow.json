@@ -1,0 +1,18 @@
+{
+  "id": "shadow",
+  "name": "Shadow Assassin",
+  "tags": ["enemy", "mobile", "ground", "fast"],
+  "components": {
+    "visual": { "color": "#37474f", "size": 12 },
+    "health": { "max_hp": 30, "armor": 0 },
+    "movement": { "speed": 140 },
+    "ai_move_to": { "target_tag": "fountain", "attack_range": 25 },
+    "combat": {
+      "damage": 15, "attack_speed": 1.5, "range": 25,
+      "attack_type": "single", "target_filter_tag": "fountain",
+      "targeting": "closest"
+    },
+    "collision": { "shape": "circle", "radius": 6 }
+  },
+  "meta": { "xp_reward": 12, "gold_reward": 6 }
+}
