@@ -373,7 +373,7 @@ func _on_projectile_hit(data: Dictionary) -> void:
 				continue
 			var ct_health: Node = EngineAPI.get_component(ct, "health")
 			if ct_health and ct_health.has_method("take_damage"):
-				ct_health.take_damage(chain_dmg, hero)
+				ct_health.take_damage(chain_dmg, hero, 4)  # DamageType.SHADOW
 			# 眩晕 = 减速100%
 			var ct_movement: Node = EngineAPI.get_component(ct, "movement")
 			if ct_movement and ct_movement.has_method("add_speed_modifier"):
@@ -401,7 +401,7 @@ func _on_projectile_hit(data: Dictionary) -> void:
 					continue
 				var sw_health: Node = EngineAPI.get_component(sw_t, "health")
 				if sw_health and sw_health.has_method("take_damage"):
-					sw_health.take_damage(base_damage * 0.8, hero)
+					sw_health.take_damage(base_damage * 0.8, hero, 5)  # DamageType.HOLY
 				var sw_mov: Node = EngineAPI.get_component(sw_t, "movement")
 				if sw_mov and sw_mov.has_method("add_speed_modifier"):
 					sw_mov.remove_speed_modifier("shockwave_stun")
@@ -436,7 +436,7 @@ func _process_dot_effects(delta: float) -> void:
 			var tick_dmg: float = bt["dps"] * DOT_TICK_INTERVAL
 			var health: Node = EngineAPI.get_component(target, "health")
 			if health and health.has_method("take_damage"):
-				health.take_damage(tick_dmg, hero)
+				health.take_damage(tick_dmg, hero, 2)  # DamageType.FIRE
 		if bt["remaining"] <= 0:
 			burn_remove.append(eid)
 	for eid in burn_remove:
@@ -457,7 +457,7 @@ func _process_dot_effects(delta: float) -> void:
 			var tick_dmg: float = pt["dps"] * pt["stacks"] * DOT_TICK_INTERVAL
 			var health: Node = EngineAPI.get_component(target, "health")
 			if health and health.has_method("take_damage"):
-				health.take_damage(tick_dmg, hero)
+				health.take_damage(tick_dmg, hero, 3)  # DamageType.NATURE
 		if pt["remaining"] <= 0:
 			poison_remove.append(eid)
 	for eid in poison_remove:

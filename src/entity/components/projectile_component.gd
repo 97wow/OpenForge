@@ -10,8 +10,9 @@ var damage: float = 10.0
 var max_range: float = 800.0
 var pierce_count: int = 0  # 0 = 不穿透
 var target_tag: String = "enemy"
-var source: Node2D = null  # 射击者
+var source: Node2D = null
 var hit_radius: float = 12.0
+var damage_type: String = "physical"
 
 var _distance_traveled: float = 0.0
 var _pierced: int = 0
@@ -26,6 +27,7 @@ func setup(data: Dictionary) -> void:
 	target_tag = data.get("target_tag", "enemy")
 	source = data.get("source", null)
 	hit_radius = data.get("hit_radius", 12.0)
+	damage_type = data.get("damage_type", "physical")
 
 func _on_attached(entity: Node2D) -> void:
 	_entity = entity
@@ -57,15 +59,17 @@ func _check_hits() -> void:
 			continue
 		_hit_entities.append(target)
 
-		# 造成伤害
+		# 造成伤害（含伤害类型）
 		var health: Node = EngineAPI.get_component(target, "health")
 		if health and health.has_method("take_damage"):
-			health.call("take_damage", damage, source)
+			var dt: int = health.parse_damage_type(damage_type) if health.has_method("parse_damage_type") else 0
+			health.call("take_damage", damage, source, dt)
 
 		EventBus.emit_event("projectile_hit", {
 			"projectile": _entity,
 			"target": target,
 			"damage": damage,
+			"damage_type": damage_type,
 			"source": source,
 		})
 

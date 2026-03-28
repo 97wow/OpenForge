@@ -8,7 +8,8 @@ var attack_range: float = 150.0
 var attack_type: String = "single"  # single, aoe, chain
 var target_filter_tag: String = ""  # 攻击哪些 tag 的实体
 var targeting_strategy: String = "closest"  # closest, farthest, weakest, strongest
-var gold_reward: int = 0  # 被击杀时的奖励（通用）
+var gold_reward: int = 0
+var damage_type: String = "physical"  # physical/frost/fire/nature/shadow/holy
 
 var aoe_radius: float = 64.0
 var chain_count: int = 3
@@ -27,6 +28,7 @@ func setup(data: Dictionary) -> void:
 	target_filter_tag = data.get("target_filter_tag", "")
 	targeting_strategy = data.get("targeting", "closest")
 	gold_reward = data.get("gold_reward", 0)
+	damage_type = data.get("damage_type", "physical")
 	aoe_radius = data.get("aoe_radius", 64.0)
 	chain_count = data.get("chain_count", 3)
 	chain_range = data.get("chain_range", 100.0)
@@ -83,7 +85,8 @@ func _find_target() -> Node2D:
 func _deal_damage(target: Node2D, amount: float) -> void:
 	var health: Node = target.get_component("health") if target.has_method("get_component") else null
 	if health and health.has_method("take_damage"):
-		health.call("take_damage", amount, _entity)
+		var dt: int = health.parse_damage_type(damage_type) if health.has_method("parse_damage_type") else 0
+		health.call("take_damage", amount, _entity, dt)
 	# 应用命中效果
 	for effect in on_hit_effects:
 		if effect is Dictionary:
