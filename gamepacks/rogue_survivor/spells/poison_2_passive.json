@@ -1,0 +1,1 @@
+{"id":"poison_2_passive","school":"nature","effects":[{"type":"SET_VARIABLE","key":"hero_poison_max_stacks","base_points":3,"mode":"max","target":{"category":"SELF"}}]}

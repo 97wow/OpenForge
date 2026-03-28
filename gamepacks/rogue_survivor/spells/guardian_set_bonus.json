@@ -1,0 +1,1 @@
+{"id":"guardian_set_bonus","school":"holy","effects":[{"type":"APPLY_AURA","aura":"SCHOOL_ABSORB","base_points":50,"duration":0,"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"DAMAGE_SHIELD","base_points":0.25,"duration":0,"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"PERIODIC_HEAL","base_points":5,"period":1.0,"duration":0,"target":{"category":"SELF"}}]}

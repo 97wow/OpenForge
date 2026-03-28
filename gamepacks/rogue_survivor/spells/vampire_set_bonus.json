@@ -1,0 +1,1 @@
+{"id":"vampire_set_bonus","school":"shadow","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.12,"misc_value":"life_steal","mod_type":"flat","duration":0,"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"PROC_TRIGGER_SPELL","trigger_spell":"reaper_kill_heal","duration":0,"proc":{"flags":["on_kill"],"chance":100},"target":{"category":"SELF"}}]}

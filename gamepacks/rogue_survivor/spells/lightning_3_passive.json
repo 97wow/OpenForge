@@ -1,0 +1,1 @@
+{"id":"lightning_3_passive","school":"shadow","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":50,"misc_value":"chain_range","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}

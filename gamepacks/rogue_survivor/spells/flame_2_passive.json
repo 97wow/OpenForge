@@ -1,0 +1,1 @@
+{"id":"flame_2_passive","school":"fire","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.5,"misc_value":"burn_damage_amp","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}

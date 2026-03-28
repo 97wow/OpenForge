@@ -33,7 +33,8 @@
     "class_affinity": [
       "ranger"
     ],
-    "rarity": "common"
+    "rarity": "common",
+    "bonus_spell": "splitter_set_bonus"
   },
   {
     "id": "swift_wind",
@@ -52,7 +53,8 @@
     "class_affinity": [
       "ranger"
     ],
-    "rarity": "common"
+    "rarity": "common",
+    "bonus_spell": "swift_set_bonus"
   },
   {
     "id": "flame",
@@ -69,7 +71,7 @@
       "mage"
     ],
     "rarity": "common",
-    "bonus_spell": "flame_ignite_passive"
+    "bonus_spell": "flame_set_bonus"
   },
   {
     "id": "frost",
@@ -86,7 +88,7 @@
       "mage"
     ],
     "rarity": "common",
-    "bonus_spell": "frost_slow_passive"
+    "bonus_spell": "frost_set_bonus"
   },
   {
     "id": "vampire",
@@ -105,7 +107,8 @@
     "class_affinity": [
       "warrior"
     ],
-    "rarity": "common"
+    "rarity": "common",
+    "bonus_spell": "vampire_set_bonus"
   },
   {
     "id": "poison",
@@ -124,7 +127,8 @@
     "class_affinity": [
       "all"
     ],
-    "rarity": "common"
+    "rarity": "common",
+    "bonus_spell": "poison_set_bonus"
   },
   {
     "id": "barrage",
@@ -141,7 +145,8 @@
     "class_affinity": [
       "warrior"
     ],
-    "rarity": "common"
+    "rarity": "common",
+    "bonus_spell": "barrage_set_bonus"
   },
   {
     "id": "lightning_chain",
@@ -161,7 +166,7 @@
       "mage"
     ],
     "rarity": "uncommon",
-    "bonus_spell": "chain_lightning_passive"
+    "bonus_spell": "lightning_set_bonus"
   },
   {
     "id": "crit_master",
@@ -182,7 +187,8 @@
     "class_affinity": [
       "ranger"
     ],
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "bonus_spell": "crit_set_bonus"
   },
   {
     "id": "summoner",
@@ -201,7 +207,8 @@
     "class_affinity": [
       "mage"
     ],
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "bonus_spell": "summon_set_bonus"
   },
   {
     "id": "elementalist",
@@ -218,7 +225,8 @@
     "class_affinity": [
       "all"
     ],
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "bonus_spell": "elementalist_set_bonus"
   },
   {
     "id": "guardian",
@@ -240,7 +248,7 @@
       "warrior"
     ],
     "rarity": "uncommon",
-    "bonus_spell": "guardian_regen"
+    "bonus_spell": "guardian_set_bonus"
   },
   {
     "id": "reaper",
@@ -261,7 +269,7 @@
       "warrior"
     ],
     "rarity": "legendary",
-    "bonus_spell": "reaper_on_kill_passive"
+    "bonus_spell": "reaper_set_bonus"
   },
   {
     "id": "storm_bringer",
@@ -282,7 +290,8 @@
     "class_affinity": [
       "mage"
     ],
-    "rarity": "legendary"
+    "rarity": "legendary",
+    "bonus_spell": "storm_set_bonus"
   },
   {
     "id": "time_lord",
@@ -302,6 +311,7 @@
     "class_affinity": [
       "all"
     ],
-    "rarity": "legendary"
+    "rarity": "legendary",
+    "bonus_spell": "time_lord_set_bonus"
   }
 ]

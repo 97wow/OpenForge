@@ -4,8 +4,16 @@
   "desc_key": "CARD_FROST_2_DESC",
   "set_id": "frost",
   "rarity": "uncommon",
-  "class_affinity": ["mage"],
+  "class_affinity": [
+    "mage"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "slow_damage_amp", "mod_type": "flat", "value": 0.15 }
-  ]
+    {
+      "type": "stat_mod",
+      "stat": "slow_damage_amp",
+      "mod_type": "flat",
+      "value": 0.15
+    }
+  ],
+  "spell_id": "frost_2_passive"
 }

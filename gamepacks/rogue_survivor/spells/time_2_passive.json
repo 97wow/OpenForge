@@ -1,0 +1,1 @@
+{"id":"time_2_passive","school":"holy","effects":[{"type":"SET_VARIABLE","key":"hero_death_rewind","base_points":1,"mode":"set","target":{"category":"SELF"}}]}

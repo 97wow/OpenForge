@@ -1,0 +1,1 @@
+{"id":"summon_passive","school":"nature","effects":[{"type":"APPLY_AURA","aura":"PERIODIC_TRIGGER_SPELL","trigger_spell":"summon_spirit","period":15,"duration":0,"target":{"category":"SELF"}}]}

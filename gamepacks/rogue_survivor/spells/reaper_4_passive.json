@@ -1,0 +1,1 @@
+{"id":"reaper_4_passive","school":"shadow","effects":[{"type":"SET_VARIABLE","key":"hero_kill_streak_crit","base_points":1,"mode":"set","target":{"category":"SELF"}}]}

@@ -1,0 +1,1 @@
+{"id":"poison_set_bonus","school":"nature","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":8,"misc_value":"poison_dps","mod_type":"flat","duration":0,"target":{"category":"SELF"}},{"type":"SET_VARIABLE","key":"hero_poison_slow","base_points":0.15,"mode":"set","target":{"category":"SELF"}}]}

@@ -1,0 +1,1 @@
+{"id":"summon_3_passive","school":"nature","effects":[{"type":"SET_VARIABLE","key":"hero_spirit_explode","base_points":1,"mode":"set","target":{"category":"SELF"}}]}

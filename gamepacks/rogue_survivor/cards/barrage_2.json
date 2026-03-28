@@ -4,8 +4,16 @@
   "desc_key": "CARD_BARRAGE_2_DESC",
   "set_id": "barrage",
   "rarity": "uncommon",
-  "class_affinity": ["warrior"],
+  "class_affinity": [
+    "warrior"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "spread_angle", "mod_type": "flat", "value": 12.0 }
-  ]
+    {
+      "type": "stat_mod",
+      "stat": "spread_angle",
+      "mod_type": "flat",
+      "value": 12.0
+    }
+  ],
+  "spell_id": "barrage_2_passive"
 }

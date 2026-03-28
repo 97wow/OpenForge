@@ -4,8 +4,16 @@
   "desc_key": "CARD_VAMPIRE_2_DESC",
   "set_id": "vampire",
   "rarity": "uncommon",
-  "class_affinity": ["warrior"],
+  "class_affinity": [
+    "warrior"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "low_hp_lifesteal_mult", "mod_type": "flat", "value": 2.0 }
-  ]
+    {
+      "type": "stat_mod",
+      "stat": "low_hp_lifesteal_mult",
+      "mod_type": "flat",
+      "value": 2.0
+    }
+  ],
+  "spell_id": "vampire_2_passive"
 }

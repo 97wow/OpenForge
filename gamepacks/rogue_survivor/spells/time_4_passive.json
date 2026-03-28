@@ -1,0 +1,1 @@
+{"id":"time_4_passive","school":"holy","effects":[{"type":"SET_VARIABLE","key":"hero_time_stop","base_points":1,"mode":"set","target":{"category":"SELF"}}]}

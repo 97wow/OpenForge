@@ -1,0 +1,1 @@
+{"id":"guard_shield_passive","school":"holy","effects":[{"type":"APPLY_AURA","aura":"SCHOOL_ABSORB","base_points":30,"duration":0,"period":30,"target":{"category":"SELF"}}]}

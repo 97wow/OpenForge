@@ -1,0 +1,1 @@
+{"id":"splitter_2_passive","school":"physical","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.6,"misc_value":"split_damage_ratio","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}

@@ -1,0 +1,1 @@
+{"id":"reaper_2_passive","school":"shadow","effects":[{"type":"APPLY_AURA","aura":"MOD_STAT","base_points":0.05,"misc_value":"kill_damage_bonus","mod_type":"flat","duration":0,"target":{"category":"SELF"}}]}

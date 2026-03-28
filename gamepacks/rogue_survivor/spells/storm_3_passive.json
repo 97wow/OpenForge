@@ -1,0 +1,1 @@
+{"id":"storm_3_passive","school":"holy","effects":[{"type":"SET_VARIABLE","key":"hero_shockwave_stun","base_points":1,"mode":"set","target":{"category":"SELF"}}]}

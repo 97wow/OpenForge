@@ -4,8 +4,16 @@
   "desc_key": "CARD_FLAME_2_DESC",
   "set_id": "flame",
   "rarity": "uncommon",
-  "class_affinity": ["mage"],
+  "class_affinity": [
+    "mage"
+  ],
   "effects": [
-    { "type": "stat_mod", "stat": "burn_damage_amp", "mod_type": "flat", "value": 0.5 }
-  ]
+    {
+      "type": "stat_mod",
+      "stat": "burn_damage_amp",
+      "mod_type": "flat",
+      "value": 0.5
+    }
+  ],
+  "spell_id": "flame_2_passive"
 }
