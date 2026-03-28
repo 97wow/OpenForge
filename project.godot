@@ -80,7 +80,3 @@ move_right={
 
 locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.zh_CN.translation", "res://translations/translations.ja.translation", "res://translations/translations.ko.translation")
 locale/fallback_locale="en"
-
-[rendering]
-
-renderer/rendering_method="forward_plus"

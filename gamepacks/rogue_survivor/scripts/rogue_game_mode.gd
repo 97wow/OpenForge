@@ -343,7 +343,7 @@ func _on_projectile_hit(data: Dictionary) -> void:
 		for e in nearby:
 			if e == target or not is_instance_valid(e):
 				continue
-			var dir := target.global_position.direction_to(e.global_position)
+			var dir: Vector2 = (target as Node2D).global_position.direction_to(e.global_position)
 			spawn("arrow", target.global_position, {
 				"components": {
 					"projectile": {
