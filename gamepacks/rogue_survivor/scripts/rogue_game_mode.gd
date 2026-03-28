@@ -251,12 +251,15 @@ func _on_player_shoot(data: Dictionary) -> void:
 # === 命中效果处理 ===
 
 func _on_projectile_hit(data: Dictionary) -> void:
-	var target: Node2D = data.get("target")
-	var source: Node2D = data.get("source")
+	var target = data.get("target")  # Variant: 避免强类型赋值已释放实例
+	var source = data.get("source")
 	var base_damage: float = data.get("damage", 0)
-	if target == null or source != hero:
+	if target == null or source == null:
 		return
-	if not is_instance_valid(target):
+	if not is_instance_valid(target) or not is_instance_valid(source):
+		return
+	# 仅处理玩家的投射物命中
+	if not (source is Node2D and source.has_method("has_tag") and source.has_tag("player")):
 		return
 
 	# --- 暴击 ---
@@ -267,6 +270,20 @@ func _on_projectile_hit(data: Dictionary) -> void:
 		var health: Node = EngineAPI.get_component(target, "health")
 		if health and health.has_method("take_damage"):
 			health.take_damage(bonus_dmg, source)
+		# 暴击黄色大字提示
+		if is_instance_valid(target) and target is Node2D:
+			var crit_label := Label.new()
+			crit_label.text = "CRIT! %d" % int(base_damage * crit_mult)
+			crit_label.add_theme_font_size_override("font_size", 22)
+			crit_label.add_theme_color_override("font_color", Color(1, 0.9, 0.2))
+			crit_label.position = Vector2(randf_range(-15, 15), -35)
+			crit_label.z_index = 51
+			(target as Node2D).add_child(crit_label)
+			var tw := crit_label.create_tween()
+			tw.set_parallel(true)
+			tw.tween_property(crit_label, "position:y", crit_label.position.y - 50, 1.0)
+			tw.tween_property(crit_label, "modulate:a", 0.0, 1.0)
+			tw.chain().tween_callback(crit_label.queue_free)
 
 	# --- 吸血 ---
 	var life_steal: float = float(EngineAPI.get_variable("hero_life_steal", 0.0))
@@ -571,11 +588,88 @@ func _show_card_selection() -> void:
 	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	center_vbox.add_child(hbox)
 
+	var is_full := _card_manager.is_full()
 	for card in choices:
-		var card_btn := _create_card_button(card)
+		var card_btn := _create_card_button(card, is_full)
 		hbox.add_child(card_btn)
 
-func _create_card_button(card: Dictionary) -> PanelContainer:
+	# 卡满时：显示当前持有卡片 + 替换提示
+	if is_full:
+		var replace_hint := Label.new()
+		replace_hint.text = tr("CARDS_FULL_HINT")
+		replace_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		replace_hint.add_theme_font_size_override("font_size", 13)
+		replace_hint.add_theme_color_override("font_color", Color(1, 0.6, 0.3))
+		center_vbox.add_child(replace_hint)
+
+		# 显示当前持有的卡片供替换
+		var held_hbox := HBoxContainer.new()
+		held_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		held_hbox.add_theme_constant_override("separation", 8)
+		center_vbox.add_child(held_hbox)
+
+		var held_cards: Array[String] = _card_manager.get_held_cards()
+		for held_id in held_cards:
+			var held_data: Dictionary = _card_manager.get_card_data(held_id)
+			var held_btn := Button.new()
+			var held_name_key: String = held_data.get("name_key", held_id)
+			held_btn.text = "X " + tr(held_name_key)
+			held_btn.add_theme_font_size_override("font_size", 11)
+			held_btn.custom_minimum_size = Vector2(100, 30)
+			held_btn.name = "HeldCard_%s" % held_id
+			held_hbox.add_child(held_btn)
+
+	# 跳过按钮
+	var skip_btn := Button.new()
+	skip_btn.text = tr("SKIP")
+	skip_btn.custom_minimum_size = Vector2(120, 35)
+	skip_btn.pressed.connect(_on_card_skipped)
+	center_vbox.add_child(skip_btn)
+
+var _pending_card_id: String = ""  # 卡满时暂存要添加的卡
+
+func _on_card_skipped() -> void:
+	_pending_card_id = ""
+	if _card_select_ui:
+		_card_select_ui.queue_free()
+		_card_select_ui = null
+	get_tree().paused = false
+
+func _connect_replace_buttons(node: Node) -> void:
+	if node.name.begins_with("HeldCard_"):
+		var held_id: String = node.name.substr(9)  # "HeldCard_xxx" → "xxx"
+		if not node.is_connected("pressed", _on_replace_card):
+			node.pressed.connect(_on_replace_card.bind(held_id))
+	for child in node.get_children():
+		_connect_replace_buttons(child)
+
+func _on_replace_card(replace_id: String) -> void:
+	if _pending_card_id == "" or _card_manager == null:
+		return
+	# 移除旧卡
+	_card_manager.remove_card(replace_id)
+	# 添加新卡
+	var result: Dictionary = _card_manager.select_card(_pending_card_id)
+	var card_data: Dictionary = _card_manager.get_card_data(_pending_card_id)
+	_apply_card_effects(card_data)
+
+	if result.get("set_completed", "") != "":
+		var set_id: String = result["set_completed"]
+		var set_data: Dictionary = _card_manager.get_set_data(set_id)
+		_apply_set_bonus(set_data)
+		EngineAPI.show_message(tr("SET_COMPLETE").format([set_data.get("name", set_id)]))
+	else:
+		var name_key: String = card_data.get("name_key", _pending_card_id)
+		EngineAPI.show_message(tr("LEVEL_UP").format([_hero_level]) + ": " + tr(name_key))
+
+	_pending_card_id = ""
+	if _card_select_ui:
+		_card_select_ui.queue_free()
+		_card_select_ui = null
+	get_tree().paused = false
+	emit("card_selected", {"card_id": _pending_card_id, "level": _hero_level})
+
+func _create_card_button(card: Dictionary, is_full: bool = false) -> PanelContainer:
 	var panel := PanelContainer.new()
 	panel.custom_minimum_size = Vector2(250, 280)
 
@@ -645,6 +739,15 @@ func _create_card_button(card: Dictionary) -> PanelContainer:
 func _on_card_picked(card_id: String) -> void:
 	if _card_manager == null:
 		return
+	# 卡满时：先选中新卡，然后需要点击已持有的卡来替换
+	if _card_manager.is_full():
+		_pending_card_id = card_id
+		# 连接持有卡的替换按钮
+		if _card_select_ui:
+			for node in _card_select_ui.get_children():
+				_connect_replace_buttons(node)
+		return
+
 	var result: Dictionary = _card_manager.select_card(card_id)
 	var card_data: Dictionary = _card_manager.get_card_data(card_id)
 

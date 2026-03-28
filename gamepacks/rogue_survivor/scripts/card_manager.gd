@@ -102,6 +102,9 @@ func select_card(card_id: String) -> Dictionary:
 
 	return {"added": true, "set_completed": ""}
 
+func remove_card(card_id: String) -> void:
+	_held_cards.erase(card_id)
+
 func _is_card_unlocked(card_id: String) -> bool:
 	## 检查前置条件：同套装中排在前面的卡必须已持有或套装已完成
 	var card: Dictionary = _all_cards.get(card_id, {})
