@@ -145,10 +145,12 @@ func _resolve_path(path: String, data: Variant) -> Variant:
 	for part in parts:
 		if current is Dictionary and current.has(part):
 			current = current[part]
-		elif current is Object and current.has_method("get_" + part):
-			current = current.call("get_" + part)
-		elif current is Object and part == "meta" and current.has_method("get_meta_value"):
-			continue  # 下一层会处理
+		elif current is Object and part == "meta" and current.get(part) is Dictionary:
+			# 访问 GameEntity.meta 属性（Dictionary 类型）
+			current = current.get(part)
+		elif current is Object and part in current:
+			# 访问对象的属性（如 current_hp, damage 等）
+			current = current.get(part)
 		elif current is Node2D and current.has_method("get_component"):
 			var comp = current.call("get_component", part)
 			if comp != null:

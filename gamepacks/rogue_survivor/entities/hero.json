@@ -10,7 +10,9 @@
       "shoot_cooldown": 0.35,
       "projectile_id": "arrow",
       "projectile_speed": 650,
-      "projectile_damage": 12
+      "projectile_damage": 12,
+      "attack_range": 350,
+      "target_tag": "enemy"
     },
     "collision": { "shape": "circle", "radius": 10 }
   },
