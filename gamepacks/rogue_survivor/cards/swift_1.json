@@ -1,0 +1,11 @@
+{
+  "id": "swift_1",
+  "name": "Rapid Fire",
+  "description": "+15% attack speed.",
+  "set_id": "swift_wind",
+  "rarity": "common",
+  "class_affinity": ["ranger"],
+  "effects": [
+    { "type": "stat_mod", "stat": "attack_speed_pct", "mod_type": "percent", "value": 0.15 }
+  ]
+}

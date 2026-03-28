@@ -1,0 +1,33 @@
+{
+  "id": "warrior",
+  "name": "Warrior",
+  "tags": ["hero", "player", "friendly"],
+  "components": {
+    "visual": { "color": "#e53935", "size": 28 },
+    "health": { "max_hp": 200, "armor": 5 },
+    "movement": { "speed": 180 },
+    "player_input": {
+      "shoot_cooldown": 0.5,
+      "projectile_id": "arrow",
+      "projectile_speed": 975,
+      "projectile_damage": 20,
+      "attack_range": 280,
+      "target_tag": "enemy"
+    },
+    "collision": { "shape": "circle", "radius": 12 },
+    "alert": {
+      "alert_range": 430,
+      "attack_range": 280,
+      "target_tag": "enemy",
+      "max_auto_approaches": 2
+    }
+  },
+  "meta": {
+    "class": "warrior",
+    "class_name": "Warrior",
+    "description": "High damage, slow attack speed. Tanky.",
+    "color": "#e53935",
+    "base_str": 8, "base_agi": 3, "base_int": 2, "base_sta": 7, "base_def": 5,
+    "level_str": 3, "level_agi": 1, "level_int": 1, "level_sta": 2, "level_def": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "piercer_1",
+  "name": "Sharp Arrow",
+  "description": "30% chance arrows pierce through the first enemy hit.",
+  "set_id": "piercer",
+  "rarity": "common",
+  "class_affinity": ["ranger"],
+  "effects": [
+    { "type": "pierce_chance", "stat": "pierce_chance", "mod_type": "flat", "value": 0.3 }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "frost_2",
+  "name": "Deep Freeze",
+  "description": "Slowed enemies take 15% more damage from all sources.",
+  "set_id": "frost",
+  "rarity": "uncommon",
+  "class_affinity": ["mage"],
+  "effects": [
+    { "type": "stat_mod", "stat": "slow_damage_amp", "mod_type": "flat", "value": 0.15 }
+  ]
+}

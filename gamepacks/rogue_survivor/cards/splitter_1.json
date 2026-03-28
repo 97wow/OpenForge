@@ -1,0 +1,11 @@
+{
+  "id": "splitter_1",
+  "name": "Split Arrow",
+  "description": "20% chance to split and hit 1 nearby enemy.",
+  "set_id": "splitter",
+  "rarity": "common",
+  "class_affinity": ["ranger"],
+  "effects": [
+    { "type": "split_chance", "stat": "split_chance", "mod_type": "flat", "value": 0.2 }
+  ]
+}

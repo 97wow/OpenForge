@@ -1,0 +1,11 @@
+{
+  "id": "flame_2",
+  "name": "Combustion",
+  "description": "Burning enemies take 50% more fire damage.",
+  "set_id": "flame",
+  "rarity": "uncommon",
+  "class_affinity": ["mage"],
+  "effects": [
+    { "type": "stat_mod", "stat": "burn_damage_amp", "mod_type": "flat", "value": 0.5 }
+  ]
+}

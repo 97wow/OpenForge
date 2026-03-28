@@ -1,0 +1,11 @@
+{
+  "id": "vampire_1",
+  "name": "Blood Thirst",
+  "description": "5% life steal on attacks.",
+  "set_id": "vampire",
+  "rarity": "common",
+  "class_affinity": ["warrior"],
+  "effects": [
+    { "type": "stat_mod", "stat": "life_steal", "mod_type": "flat", "value": 0.05 }
+  ]
+}

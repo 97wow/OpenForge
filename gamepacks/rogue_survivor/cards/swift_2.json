@@ -1,0 +1,11 @@
+{
+  "id": "swift_2",
+  "name": "Wind's Breath",
+  "description": "When attack speed is high, gain +10% crit chance.",
+  "set_id": "swift_wind",
+  "rarity": "uncommon",
+  "class_affinity": ["ranger"],
+  "effects": [
+    { "type": "stat_mod", "stat": "crit_chance", "mod_type": "flat", "value": 0.1 }
+  ]
+}

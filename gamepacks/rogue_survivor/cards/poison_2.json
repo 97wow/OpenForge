@@ -1,0 +1,11 @@
+{
+  "id": "poison_2",
+  "name": "Deadly Venom",
+  "description": "Poison damage stacks up to 3 times.",
+  "set_id": "poison",
+  "rarity": "uncommon",
+  "class_affinity": ["all"],
+  "effects": [
+    { "type": "stat_mod", "stat": "poison_max_stacks", "mod_type": "flat", "value": 3.0 }
+  ]
+}

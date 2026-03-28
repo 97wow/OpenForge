@@ -1,0 +1,11 @@
+{
+  "id": "piercer_2",
+  "name": "Penetrating Force",
+  "description": "Pierced targets take 80% of the original damage.",
+  "set_id": "piercer",
+  "rarity": "uncommon",
+  "class_affinity": ["ranger"],
+  "effects": [
+    { "type": "stat_mod", "stat": "pierce_damage_ratio", "mod_type": "flat", "value": 0.8 }
+  ]
+}

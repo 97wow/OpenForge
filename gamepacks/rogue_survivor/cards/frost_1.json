@@ -1,0 +1,13 @@
+{
+  "id": "frost_1",
+  "name": "Frostbite",
+  "description": "Attacks slow enemies by 20% for 2 seconds.",
+  "set_id": "frost",
+  "rarity": "common",
+  "class_affinity": ["mage"],
+  "effects": [
+    { "type": "stat_mod", "stat": "slow_chance", "mod_type": "flat", "value": 1.0 },
+    { "type": "stat_mod", "stat": "slow_pct", "mod_type": "flat", "value": 0.2 },
+    { "type": "stat_mod", "stat": "slow_duration", "mod_type": "flat", "value": 2.0 }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "mage",
+  "name": "Mage",
+  "tags": ["hero", "player", "friendly"],
+  "components": {
+    "visual": { "color": "#7e57c2", "size": 26 },
+    "health": { "max_hp": 100, "armor": 1 },
+    "movement": { "speed": 190 },
+    "player_input": {
+      "shoot_cooldown": 0.6,
+      "projectile_id": "arrow",
+      "projectile_speed": 900,
+      "projectile_damage": 25,
+      "attack_range": 320,
+      "target_tag": "enemy"
+    },
+    "collision": { "shape": "circle", "radius": 10 },
+    "alert": {
+      "alert_range": 470,
+      "attack_range": 320,
+      "target_tag": "enemy",
+      "max_auto_approaches": 2
+    }
+  },
+  "meta": {
+    "class": "mage",
+    "class_name": "Mage",
+    "description": "High burst damage. Slow attack. Very fragile.",
+    "color": "#7e57c2",
+    "base_str": 2, "base_agi": 3, "base_int": 8, "base_sta": 3, "base_def": 2,
+    "level_str": 1, "level_agi": 1, "level_int": 3, "level_sta": 1, "level_def": 1
+  }
+}

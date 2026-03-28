@@ -13,6 +13,7 @@ var _scenes: Dictionary = {
 	"welcome": "res://src/scenes/welcome/welcome_screen.tscn",
 	"lobby": "res://src/scenes/lobby/main_menu.tscn",
 	"map_select": "res://src/scenes/map_select/map_select.tscn",
+	"character_select": "res://src/scenes/character_select/character_select.tscn",
 	"battle": "res://src/main.tscn",
 }
 

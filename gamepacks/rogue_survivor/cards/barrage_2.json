@@ -1,0 +1,11 @@
+{
+  "id": "barrage_2",
+  "name": "Scatter Shot",
+  "description": "Attacks spread in a fan pattern with a 12-degree angle.",
+  "set_id": "barrage",
+  "rarity": "uncommon",
+  "class_affinity": ["warrior"],
+  "effects": [
+    { "type": "stat_mod", "stat": "spread_angle", "mod_type": "flat", "value": 12.0 }
+  ]
+}

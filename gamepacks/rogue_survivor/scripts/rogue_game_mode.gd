@@ -30,6 +30,9 @@ var _current_wave: int = 0
 var _hero_level: int = 1
 var _xp_to_next: int = XP_PER_LEVEL_BASE
 
+var _card_manager: RogueCardManager = null
+var _card_select_ui: Control = null  # 3选1 弹窗
+
 var _wave_table: Array = [
 	[["goblin", 5]],
 	[["goblin", 7]],
@@ -52,6 +55,15 @@ func _pack_ready() -> void:
 	_create_hud()
 	_spawn_fountains()
 	_spawn_hero()
+
+	# 初始化卡片系统
+	var hero_class: String = str(SceneManager.pending_data.get("hero_class", "warrior"))
+	_card_manager = RogueCardManager.new()
+	_card_manager.init(
+		pack.pack_path.path_join("cards"),
+		pack.pack_path.path_join("card_sets.json"),
+		hero_class
+	)
 
 	EngineAPI.set_game_state("playing")
 	_wave_timer = WAVE_INTERVAL - 3.0
@@ -145,7 +157,11 @@ func _spawn_fountains() -> void:
 	enemy_fountain = spawn("enemy_fountain", ENEMY_FOUNTAIN_POS)
 
 func _spawn_hero() -> void:
-	hero = spawn("hero", HERO_START_POS)
+	# 读取角色选择（warrior/ranger/mage），默认 warrior
+	var hero_class: String = str(SceneManager.pending_data.get("hero_class", "warrior"))
+	hero = spawn(hero_class, HERO_START_POS)
+	if hero:
+		set_var("hero_class", hero_class)
 
 # === 波次 ===
 
@@ -238,14 +254,164 @@ func _defeat(reason: String) -> void:
 
 func _check_level_up() -> void:
 	var current_xp: float = EngineAPI.get_resource("xp")
-	while current_xp >= _xp_to_next:
+	if current_xp >= _xp_to_next:
 		EngineAPI.subtract_resource("xp", _xp_to_next)
 		_hero_level += 1
 		EngineAPI.set_resource("hero_level", _hero_level)
 		_xp_to_next = XP_PER_LEVEL_BASE + (_hero_level - 1) * XP_PER_LEVEL_GROWTH
 		emit("hero_level_up", {"level": _hero_level})
-		EngineAPI.show_message("Level Up! Lv.%d" % _hero_level)
-		current_xp = EngineAPI.get_resource("xp")
+		_show_card_selection()
+
+# === 卡片3选1 ===
+
+func _show_card_selection() -> void:
+	if _card_manager == null:
+		return
+	var choices: Array[Dictionary] = _card_manager.draw_three()
+	if choices.is_empty():
+		EngineAPI.show_message("Level Up! Lv.%d (No cards available)" % _hero_level)
+		return
+
+	# 暂停游戏
+	get_tree().paused = true
+
+	# 创建选卡UI
+	var ui_layer: CanvasLayer = get_tree().current_scene.get_node_or_null("UI")
+	if ui_layer == null:
+		get_tree().paused = false
+		return
+
+	_card_select_ui = Control.new()
+	_card_select_ui.process_mode = Node.PROCESS_MODE_ALWAYS  # 暂停时也能交互
+	_card_select_ui.anchors_preset = Control.PRESET_FULL_RECT
+	ui_layer.add_child(_card_select_ui)
+
+	# 半透明背景
+	var overlay := ColorRect.new()
+	overlay.color = Color(0, 0, 0, 0.7)
+	overlay.anchors_preset = Control.PRESET_FULL_RECT
+	_card_select_ui.add_child(overlay)
+
+	# 标题
+	var title := Label.new()
+	title.text = "LEVEL UP! Lv.%d - Choose a Card" % _hero_level
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.anchors_preset = Control.PRESET_TOP_WIDE
+	title.offset_top = 150
+	title.offset_bottom = 200
+	title.add_theme_font_size_override("font_size", 28)
+	title.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
+	_card_select_ui.add_child(title)
+
+	# 卡片数量提示
+	var slot_hint := Label.new()
+	slot_hint.text = "Cards: %d / %d" % [_card_manager.get_card_count(), RogueCardManager.MAX_CARDS]
+	slot_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	slot_hint.anchors_preset = Control.PRESET_TOP_WIDE
+	slot_hint.offset_top = 200
+	slot_hint.offset_bottom = 225
+	slot_hint.add_theme_font_size_override("font_size", 14)
+	slot_hint.add_theme_color_override("font_color", Color(0.6, 0.6, 0.7))
+	_card_select_ui.add_child(slot_hint)
+
+	# 3张卡片
+	var hbox := HBoxContainer.new()
+	hbox.anchors_preset = Control.PRESET_CENTER
+	hbox.offset_left = -420
+	hbox.offset_top = -120
+	hbox.offset_right = 420
+	hbox.offset_bottom = 160
+	hbox.add_theme_constant_override("separation", 20)
+	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	_card_select_ui.add_child(hbox)
+
+	for card in choices:
+		var card_btn := _create_card_button(card)
+		hbox.add_child(card_btn)
+
+func _create_card_button(card: Dictionary) -> PanelContainer:
+	var panel := PanelContainer.new()
+	panel.custom_minimum_size = Vector2(250, 280)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 8)
+	panel.add_child(vbox)
+
+	# 卡名
+	var name_label := Label.new()
+	name_label.text = card.get("name", "???")
+	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name_label.add_theme_font_size_override("font_size", 20)
+	vbox.add_child(name_label)
+
+	# 套装归属
+	var set_label := Label.new()
+	set_label.text = "[%s]" % card.get("set_id", "")
+	set_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	set_label.add_theme_font_size_override("font_size", 12)
+	set_label.add_theme_color_override("font_color", Color(0.5, 0.7, 1))
+	vbox.add_child(set_label)
+
+	# 稀有度
+	var rarity: String = card.get("rarity", "common")
+	var rarity_color := Color.WHITE
+	match rarity:
+		"common": rarity_color = Color(0.7, 0.7, 0.7)
+		"uncommon": rarity_color = Color(0.3, 0.7, 1)
+		"rare": rarity_color = Color(0.7, 0.3, 1)
+		"legendary": rarity_color = Color(1, 0.8, 0.2)
+	var rarity_label := Label.new()
+	rarity_label.text = rarity.to_upper()
+	rarity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	rarity_label.add_theme_font_size_override("font_size", 11)
+	rarity_label.add_theme_color_override("font_color", rarity_color)
+	vbox.add_child(rarity_label)
+
+	# 描述
+	var desc_label := Label.new()
+	desc_label.text = card.get("description", "")
+	desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	desc_label.add_theme_font_size_override("font_size", 13)
+	desc_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.7))
+	desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	desc_label.custom_minimum_size = Vector2(220, 0)
+	vbox.add_child(desc_label)
+
+	# 间距
+	var spacer := Control.new()
+	spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	vbox.add_child(spacer)
+
+	# 选择按钮
+	var btn := Button.new()
+	btn.text = "Pick"
+	btn.custom_minimum_size = Vector2(0, 40)
+	var card_id: String = card.get("id", "")
+	btn.pressed.connect(_on_card_picked.bind(card_id))
+	vbox.add_child(btn)
+
+	return panel
+
+func _on_card_picked(card_id: String) -> void:
+	if _card_manager == null:
+		return
+	var result: Dictionary = _card_manager.select_card(card_id)
+	var card_data: Dictionary = _card_manager.get_card_data(card_id)
+
+	if result.get("set_completed", "") != "":
+		var set_id: String = result["set_completed"]
+		var set_data: Dictionary = _card_manager.get_set_data(set_id)
+		EngineAPI.show_message("SET COMPLETE: %s!" % set_data.get("name", set_id))
+	else:
+		EngineAPI.show_message("Lv.%d: %s" % [_hero_level, card_data.get("name", card_id)])
+
+	# 关闭选卡UI，恢复游戏
+	if _card_select_ui:
+		_card_select_ui.queue_free()
+		_card_select_ui = null
+	get_tree().paused = false
+
+	emit("card_selected", {"card_id": card_id, "level": _hero_level})
 
 # === HUD ===
 

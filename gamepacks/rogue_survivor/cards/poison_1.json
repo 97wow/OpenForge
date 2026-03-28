@@ -1,0 +1,12 @@
+{
+  "id": "poison_1",
+  "name": "Toxic Coating",
+  "description": "30% chance to poison enemies for 3 seconds.",
+  "set_id": "poison",
+  "rarity": "common",
+  "class_affinity": ["all"],
+  "effects": [
+    { "type": "stat_mod", "stat": "poison_chance", "mod_type": "flat", "value": 0.3 },
+    { "type": "stat_mod", "stat": "poison_duration", "mod_type": "flat", "value": 3.0 }
+  ]
+}

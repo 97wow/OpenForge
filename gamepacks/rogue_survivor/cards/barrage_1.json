@@ -1,0 +1,11 @@
+{
+  "id": "barrage_1",
+  "name": "Double Shot",
+  "description": "Fire an extra projectile with each attack.",
+  "set_id": "barrage",
+  "rarity": "rare",
+  "class_affinity": ["warrior"],
+  "effects": [
+    { "type": "stat_mod", "stat": "extra_projectiles", "mod_type": "flat", "value": 1.0 }
+  ]
+}

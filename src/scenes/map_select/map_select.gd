@@ -85,7 +85,7 @@ func _add_map_card(map_id: String, title: String, desc: String,
 	map_list.add_child(card)
 
 func _on_map_selected(pack_id: String, map_id: String) -> void:
-	SceneManager.goto_scene("battle", {"pack_id": pack_id, "map_id": map_id})
+	SceneManager.goto_scene("character_select", {"pack_id": pack_id, "map_id": map_id})
 
 func _on_back() -> void:
 	SceneManager.goto_scene("lobby")

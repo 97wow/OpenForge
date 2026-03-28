@@ -1,0 +1,58 @@
+[
+  {
+    "id": "piercer", "name": "Piercer", "size": 2,
+    "cards": ["piercer_1", "piercer_2"],
+    "set_bonus": { "type": "pierce", "pierce_count": 3, "pierce_chance": 1.0 },
+    "class_affinity": ["ranger"],
+    "rarity": "common"
+  },
+  {
+    "id": "splitter", "name": "Splitter", "size": 2,
+    "cards": ["splitter_1", "splitter_2"],
+    "set_bonus": { "type": "split", "split_count": 2, "split_chance": 0.4, "split_damage_ratio": 0.8 },
+    "class_affinity": ["ranger"],
+    "rarity": "common"
+  },
+  {
+    "id": "swift_wind", "name": "Swift Wind", "size": 2,
+    "cards": ["swift_1", "swift_2"],
+    "set_bonus": { "type": "stat_mod", "stats": {"attack_speed_pct": 0.3, "crit_chance": 0.2} },
+    "class_affinity": ["ranger"],
+    "rarity": "common"
+  },
+  {
+    "id": "flame", "name": "Flame", "size": 2,
+    "cards": ["flame_1", "flame_2"],
+    "set_bonus": { "type": "burn_spread", "ignite_chance": 0.5 },
+    "class_affinity": ["mage"],
+    "rarity": "common"
+  },
+  {
+    "id": "frost", "name": "Frost", "size": 2,
+    "cards": ["frost_1", "frost_2"],
+    "set_bonus": { "type": "freeze_shatter", "slow_pct": 0.4 },
+    "class_affinity": ["mage"],
+    "rarity": "common"
+  },
+  {
+    "id": "vampire", "name": "Vampire", "size": 2,
+    "cards": ["vampire_1", "vampire_2"],
+    "set_bonus": { "type": "stat_mod", "stats": {"life_steal": 0.12, "kill_heal_pct": 0.05} },
+    "class_affinity": ["warrior"],
+    "rarity": "common"
+  },
+  {
+    "id": "poison", "name": "Poison Sting", "size": 2,
+    "cards": ["poison_1", "poison_2"],
+    "set_bonus": { "type": "stat_mod", "stats": {"poison_dps": 8, "poison_slow": 0.15} },
+    "class_affinity": ["all"],
+    "rarity": "common"
+  },
+  {
+    "id": "barrage", "name": "Barrage", "size": 2,
+    "cards": ["barrage_1", "barrage_2"],
+    "set_bonus": { "type": "multi_shot", "extra_projectiles": 2, "spread_angle": 15 },
+    "class_affinity": ["warrior"],
+    "rarity": "common"
+  }
+]

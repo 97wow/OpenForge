@@ -1,0 +1,12 @@
+{
+  "id": "flame_1",
+  "name": "Ignite",
+  "description": "25% chance to burn enemies for 3 seconds.",
+  "set_id": "flame",
+  "rarity": "common",
+  "class_affinity": ["mage"],
+  "effects": [
+    { "type": "ignite_chance", "stat": "ignite_chance", "mod_type": "flat", "value": 0.25 },
+    { "type": "stat_mod", "stat": "burn_duration", "mod_type": "flat", "value": 3.0 }
+  ]
+}
