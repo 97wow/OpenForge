@@ -71,11 +71,8 @@ func _pack_process(delta: float) -> void:
 # === 初始化 ===
 
 func _draw_arena() -> void:
-	# 关键：arena 必须在 EntitySystem 之前渲染
-	# 找到 Main 节点（场景根），在最前面插入 arena
-	var main_node: Node2D = get_parent().get_parent() as Node2D
-	if main_node == null:
-		main_node = get_parent() as Node2D
+	# 找到场景根节点（Main）
+	var main_node: Node2D = get_tree().current_scene as Node2D
 
 	var arena := Node2D.new()
 	arena.name = "Arena"
@@ -223,7 +220,7 @@ var _level_label: Label = null
 var _fountain_hp_label: Label = null
 
 func _create_hud() -> void:
-	var ui_layer: CanvasLayer = get_parent().get_parent().get_node_or_null("UI")
+	var ui_layer: CanvasLayer = get_tree().current_scene.get_node_or_null("UI")
 	if ui_layer == null:
 		return
 
@@ -283,6 +280,8 @@ func _update_hud() -> void:
 	_xp_label.text = "XP: %d/%d" % [int(EngineAPI.get_resource("xp")), _xp_to_next]
 	_wave_label.text = "Wave: %d/%d" % [_current_wave, TOTAL_WAVES]
 
-	var mins := int(_game_timer) / 60
-	var secs := int(_game_timer) % 60
+	@warning_ignore("integer_division")
+	var mins: int = int(_game_timer) / 60
+	@warning_ignore("integer_division")
+	var secs: int = int(_game_timer) % 60
 	_timer_label.text = "Time: %d:%02d / 10:00" % [mins, secs]
