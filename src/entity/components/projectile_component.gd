@@ -29,10 +29,33 @@ func setup(data: Dictionary) -> void:
 	hit_radius = data.get("hit_radius", 12.0)
 	damage_type = data.get("damage_type", "physical")
 
+var _trail: Line2D = null
+var _trail_points: PackedVector2Array = []
+const TRAIL_LENGTH := 8
+
 func _on_attached(entity: Node2D) -> void:
 	_entity = entity
-	# 旋转投射物朝向飞行方向
 	_entity.rotation = direction.angle()
+	# 创建拖尾
+	_trail = Line2D.new()
+	_trail.width = 2.0
+	_trail.z_index = -1
+	# 根据伤害类型设置拖尾颜色
+	var trail_color := Color(1, 1, 0.7, 0.5)
+	match damage_type:
+		"fire": trail_color = Color(1, 0.5, 0.15, 0.5)
+		"frost", "ice": trail_color = Color(0.4, 0.8, 1, 0.5)
+		"nature", "poison": trail_color = Color(0.3, 0.9, 0.3, 0.5)
+		"shadow": trail_color = Color(0.6, 0.3, 0.9, 0.5)
+		"holy": trail_color = Color(1, 0.9, 0.4, 0.5)
+	_trail.default_color = trail_color
+	var gradient := Gradient.new()
+	gradient.set_color(0, Color(trail_color.r, trail_color.g, trail_color.b, 0))
+	gradient.set_color(1, trail_color)
+	_trail.gradient = gradient
+	# 拖尾不跟随实体旋转，挂到父节点的父节点
+	entity.add_child(_trail)
+	_trail.top_level = true
 
 func _process(delta: float) -> void:
 	if _entity == null or EngineAPI.get_game_state() != "playing":
@@ -41,6 +64,13 @@ func _process(delta: float) -> void:
 	var move := direction * speed * delta
 	_entity.position += move
 	_distance_traveled += move.length()
+
+	# 更新拖尾
+	if _trail and is_instance_valid(_trail):
+		_trail_points.append(_entity.global_position)
+		if _trail_points.size() > TRAIL_LENGTH:
+			_trail_points = _trail_points.slice(_trail_points.size() - TRAIL_LENGTH)
+		_trail.points = _trail_points
 
 	# 超出射程销毁
 	if _distance_traveled >= max_range:

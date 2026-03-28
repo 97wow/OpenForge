@@ -83,17 +83,35 @@ func _create_hp_bar() -> void:
 	_entity.add_child(_hp_bar_fill)
 
 func _create_placeholder(color_hex: String, size: float) -> Node2D:
-	var sprite := Sprite2D.new()
-	var image := Image.create(int(size), int(size), false, Image.FORMAT_RGBA8)
 	var color := Color.WHITE
 	if color_hex != "":
 		color = Color.from_string(color_hex, Color.WHITE)
 	else:
 		color = Color.from_hsv(randf(), 0.7, 0.9)
-	image.fill(color)
-	var texture := ImageTexture.create_from_image(image)
-	sprite.texture = texture
-	return sprite
+
+	var node := Node2D.new()
+	var draw_color := color
+	var draw_size := size
+	node.draw.connect(func() -> void:
+		# 外发光
+		var glow_color := Color(draw_color.r, draw_color.g, draw_color.b, 0.15)
+		node.draw_circle(Vector2.ZERO, draw_size * 0.8, glow_color)
+		# 主体（圆形）
+		node.draw_circle(Vector2.ZERO, draw_size * 0.45, draw_color)
+		# 高光
+		var highlight := Color(
+			minf(draw_color.r + 0.3, 1),
+			minf(draw_color.g + 0.3, 1),
+			minf(draw_color.b + 0.3, 1),
+			0.5
+		)
+		node.draw_circle(Vector2(-draw_size * 0.1, -draw_size * 0.1), draw_size * 0.15, highlight)
+		# 轮廓
+		var outline := Color(draw_color.r * 0.6, draw_color.g * 0.6, draw_color.b * 0.6)
+		node.draw_arc(Vector2.ZERO, draw_size * 0.45, 0, TAU, 24, outline, 1.5)
+	)
+	node.queue_redraw()
+	return node
 
 func get_visual_node() -> Node2D:
 	return _visual_node

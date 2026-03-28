@@ -527,6 +527,11 @@ func _check_level_up() -> void:
 		EngineAPI.set_resource("hero_level", _hero_level)
 		_xp_to_next = XP_PER_LEVEL_BASE + (_hero_level - 1) * XP_PER_LEVEL_GROWTH
 		emit("hero_level_up", {"level": _hero_level})
+		# 升级特效
+		if hero and is_instance_valid(hero):
+			var vfx: Node = EngineAPI.get_system("vfx")
+			if vfx:
+				vfx.call("spawn_vfx", "level_up", hero.global_position)
 		_show_card_selection()
 
 # === 卡片3选1 ===
