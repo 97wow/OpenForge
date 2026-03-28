@@ -18,7 +18,7 @@ func _pack_ready() -> void:
 
 func _load_map(map_id: String) -> void:
 	var maps_dir: String = pack.pack_path.path_join("maps").path_join(map_id)
-	var map_config := DataRegistry.load_file("maps", maps_dir.path_join("map_config.json"))
+	var map_config: Dictionary = DataRegistry.load_file("maps", maps_dir.path_join("map_config.json"))
 	if map_config.is_empty():
 		push_error("[TD] Failed to load map: %s" % map_id)
 		return
@@ -118,7 +118,7 @@ func build_tower(tower_id: String, grid_pos: Vector2i) -> Node2D:
 	var tile := EngineAPI.get_tile_state(grid_pos)
 	if tile != "buildable":
 		return null
-	var def := DataRegistry.get_def("entities", tower_id)
+	var def: Dictionary = DataRegistry.get_def("entities", tower_id)
 	if def.is_empty():
 		return null
 	var cost: int = def.get("meta", {}).get("cost", 0)

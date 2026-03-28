@@ -78,7 +78,7 @@ func get_neighbors(pos: Vector2i, include_diagonal: bool = false) -> Array[Vecto
 			Vector2i(-1, -1), Vector2i(1, -1), Vector2i(-1, 1), Vector2i(1, 1)
 		])
 	for offset in offsets:
-		var neighbor := pos + offset
+		var neighbor: Vector2i = pos + offset
 		if _grid.has(neighbor):
 			result.append(neighbor)
 	return result

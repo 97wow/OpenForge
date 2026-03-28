@@ -22,8 +22,6 @@ func scan_packs() -> Array[Dictionary]:
 
 func _scan_directory(base_path: String) -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
-	if not DirAccess.dir_exists(base_path):
-		return result
 	var dir := DirAccess.open(base_path)
 	if dir == null:
 		return result
@@ -79,12 +77,12 @@ func load_pack(pack_id: String) -> GamePack:
 
 	# 1. 加载实体定义
 	var entity_dir: String = pack_json.get("entity_dir", "entities")
-	var entity_count := DataRegistry.load_directory("entities", pack_path.path_join(entity_dir))
+	var entity_count: int = DataRegistry.load_directory("entities", pack_path.path_join(entity_dir))
 	print("[GamePackLoader] Loaded %d entity definitions" % entity_count)
 
 	# 2. 加载 Buff 定义
 	var buff_dir: String = pack_json.get("buff_dir", "buffs")
-	var buff_count := DataRegistry.load_directory("buffs", pack_path.path_join(buff_dir))
+	var buff_count: int = DataRegistry.load_directory("buffs", pack_path.path_join(buff_dir))
 	if buff_count > 0:
 		print("[GamePackLoader] Loaded %d buff definitions" % buff_count)
 
@@ -132,8 +130,6 @@ func load_pack(pack_id: String) -> GamePack:
 	return pack
 
 func _load_rules(rules_path: String) -> void:
-	if not DirAccess.dir_exists(rules_path):
-		return
 	var dir := DirAccess.open(rules_path)
 	if dir == null:
 		return
@@ -145,7 +141,7 @@ func _load_rules(rules_path: String) -> void:
 	var total := 0
 	while file_name != "":
 		if file_name.ends_with(".json"):
-			var triggers := DataRegistry.load_array_file("_rules", rules_path.path_join(file_name))
+			var triggers: Array = DataRegistry.load_array_file("_rules", rules_path.path_join(file_name))
 			trigger_system.call("load_triggers", triggers)
 			total += triggers.size()
 		file_name = dir.get_next()
@@ -186,9 +182,9 @@ func get_current_pack() -> GamePack:
 
 func _find_pack_path(pack_id: String) -> String:
 	for base in ["res://gamepacks", "user://gamepacks"]:
-		var path := base.path_join(pack_id)
-		if DirAccess.dir_exists(path):
-			var pack_json := path.path_join("pack.json")
+		var path: String = base.path_join(pack_id)
+		if DirAccess.open(path) != null:
+			var pack_json: String = path.path_join("pack.json")
 			if FileAccess.file_exists(pack_json):
 				return path
 	return ""

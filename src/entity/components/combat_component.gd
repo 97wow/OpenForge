@@ -81,7 +81,7 @@ func _find_target() -> Node2D:
 			return _get_closest(candidates)
 
 func _deal_damage(target: Node2D, amount: float) -> void:
-	var health := target.get_component("health") if target.has_method("get_component") else null
+	var health: Node = target.get_component("health") if target.has_method("get_component") else null
 	if health and health.has_method("take_damage"):
 		health.call("take_damage", amount, _entity)
 	# 应用命中效果

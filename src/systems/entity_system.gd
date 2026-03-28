@@ -18,7 +18,7 @@ func _ready() -> void:
 # === 创建 ===
 
 func spawn(def_id: String, pos: Vector2 = Vector2.ZERO, overrides: Dictionary = {}) -> GameEntity:
-	var def := DataRegistry.get_def("entities", def_id)
+	var def: Dictionary = DataRegistry.get_def("entities", def_id)
 	if def.is_empty():
 		push_error("[EntitySystem] Entity def '%s' not found" % def_id)
 		return null

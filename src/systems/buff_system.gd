@@ -18,8 +18,8 @@ func apply_buff(target: Node2D, buff_id: String, duration: float, data: Dictiona
 	var eid: int = entity.runtime_id
 
 	# 查找 buff 定义
-	var buff_def := DataRegistry.get_def("buffs", buff_id)
-	var merged := buff_def.duplicate()
+	var buff_def: Dictionary = DataRegistry.get_def("buffs", buff_id)
+	var merged: Dictionary = buff_def.duplicate()
 	merged.merge(data, true)
 	merged["remaining"] = duration
 	merged["duration"] = duration
