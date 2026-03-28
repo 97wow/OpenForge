@@ -7,6 +7,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	EventBus.emit_event("engine_ready")
 
+	# 重置所有框架状态（确保新局干净）
+	EngineAPI.reset_all_state()
+
 	# 从 SceneManager 读取数据
 	var pack_id: String = _get_pack_id()
 	print("[Main] Loading pack: %s" % pack_id)

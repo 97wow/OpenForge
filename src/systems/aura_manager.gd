@@ -327,6 +327,9 @@ func _remove_damage_shield(aura: Dictionary) -> void:
 
 # === 查询 ===
 
+func _reset() -> void:
+	_active_auras.clear()
+
 func get_auras_on(target: Node2D) -> Array:
 	if not is_instance_valid(target):
 		return []

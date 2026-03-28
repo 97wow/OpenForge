@@ -252,6 +252,30 @@ func has_variable(key: String) -> bool:
 func clear_variables() -> void:
 	_variables.clear()
 
+func reset_all_state() -> void:
+	## 重置所有框架状态（新局开始前调用）
+	_game_state = "idle"
+	_variables.clear()
+	# 清理所有子系统状态
+	var aura_mgr := get_system("aura")
+	if aura_mgr and aura_mgr.has_method("_reset"):
+		aura_mgr.call("_reset")
+	var proc_mgr := get_system("proc")
+	if proc_mgr and proc_mgr.has_method("_reset"):
+		proc_mgr.call("_reset")
+	var stat_sys := get_system("stat")
+	if stat_sys and stat_sys.has_method("_reset"):
+		stat_sys.call("_reset")
+	var res_sys := get_system("resource")
+	if res_sys and res_sys.has_method("clear_all"):
+		res_sys.call("clear_all")
+	var spell_sys := get_system("spell")
+	if spell_sys and spell_sys.has_method("_reset"):
+		spell_sys.call("_reset")
+	EventBus.clear_all_custom_events()
+	DataRegistry.clear_all()
+	print("[EngineAPI] All state reset")
+
 # === UI 工具 ===
 
 func show_message(text: String, _duration: float = 3.0) -> void:

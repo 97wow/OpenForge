@@ -48,6 +48,9 @@ extends Node
 var _effect_handlers: Dictionary = {}
 var _spells: Dictionary = {}
 
+func _reset() -> void:
+	_spells.clear()
+
 func _ready() -> void:
 	EngineAPI.register_system("spell", self)
 	_register_builtin_effects()

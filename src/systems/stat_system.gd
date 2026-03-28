@@ -9,6 +9,11 @@ var _base_stats: Dictionary = {}
 var _modifiers: Dictionary = {}
 var _next_modifier_id: int = 1
 
+func _reset() -> void:
+	_base_stats.clear()
+	_modifiers.clear()
+	_next_modifier_id = 1
+
 func _ready() -> void:
 	EngineAPI.register_system("stat", self)
 

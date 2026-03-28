@@ -877,6 +877,9 @@ var _range_label: Label = null
 # 卡片栏
 var _card_slots: Array[PanelContainer] = []
 var _set_buff_container: HBoxContainer = null
+# 战斗日志
+var _combat_log: VBoxContainer = null
+const MAX_LOG_LINES := 12
 
 func _create_hud() -> void:
 	var ui_layer: CanvasLayer = get_tree().current_scene.get_node_or_null("UI")
@@ -998,6 +1001,43 @@ func _create_hud() -> void:
 	_set_buff_container.offset_bottom = -5
 	_set_buff_container.add_theme_constant_override("separation", 6)
 	ui_layer.add_child(_set_buff_container)
+
+	# === 战斗日志（左侧）===
+	var log_panel := PanelContainer.new()
+	log_panel.anchor_left = 0.0
+	log_panel.anchor_top = 0.0
+	log_panel.offset_left = 5
+	log_panel.offset_top = 45
+	log_panel.offset_right = 280
+	log_panel.offset_bottom = 280
+	var log_style := StyleBoxFlat.new()
+	log_style.bg_color = Color(0, 0, 0, 0.4)
+	log_style.corner_radius_top_left = 4
+	log_style.corner_radius_top_right = 4
+	log_style.corner_radius_bottom_left = 4
+	log_style.corner_radius_bottom_right = 4
+	log_panel.add_theme_stylebox_override("panel", log_style)
+	log_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_layer.add_child(log_panel)
+
+	var log_scroll := ScrollContainer.new()
+	log_scroll.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	log_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	log_scroll.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	log_panel.add_child(log_scroll)
+
+	_combat_log = VBoxContainer.new()
+	_combat_log.add_theme_constant_override("separation", 2)
+	_combat_log.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	log_scroll.add_child(_combat_log)
+
+	# 监听战斗事件写日志
+	EventBus.connect_event("entity_damaged", _on_log_damaged)
+	EventBus.connect_event("entity_destroyed", _on_log_destroyed)
+	EventBus.connect_event("spell_cast", _on_log_spell)
+	EventBus.connect_event("aura_applied", _on_log_aura)
+	EventBus.connect_event("proc_triggered", _on_log_proc)
+	EventBus.connect_event("wave_started", _on_log_wave)
 
 	# === 退出按钮 ===
 	var back_btn := Button.new()
@@ -1144,3 +1184,60 @@ func _update_hud() -> void:
 					buff_panel.tooltip_text = tip
 
 					_set_buff_container.add_child(buff_panel)
+
+# === 战斗日志 ===
+
+func _add_log(text: String, color: Color = Color(0.7, 0.7, 0.8)) -> void:
+	if _combat_log == null:
+		return
+	while _combat_log.get_child_count() >= MAX_LOG_LINES:
+		_combat_log.get_child(0).queue_free()
+	var label := Label.new()
+	label.text = text
+	label.add_theme_font_size_override("font_size", 10)
+	label.add_theme_color_override("font_color", color)
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_combat_log.add_child(label)
+
+func _get_entity_name(entity: Variant) -> String:
+	if entity == null or not is_instance_valid(entity):
+		return "?"
+	if entity is GameEntity:
+		return (entity as GameEntity).def_id
+	return "?"
+
+func _on_log_damaged(data: Dictionary) -> void:
+	var target_name: String = _get_entity_name(data.get("entity"))
+	var source_name: String = _get_entity_name(data.get("source"))
+	var amount: float = data.get("amount", 0)
+	var dt: int = data.get("damage_type", 0)
+	var school_names := ["Physical", "Frost", "Fire", "Nature", "Shadow", "Holy"]
+	var school_colors := [Color.WHITE, Color(0.4, 0.8, 1), Color(1, 0.5, 0.2), Color(0.3, 0.9, 0.3), Color(0.6, 0.3, 0.9), Color(1, 0.9, 0.4)]
+	var sn: String = school_names[dt] if dt < school_names.size() else "?"
+	var sc: Color = school_colors[dt] if dt < school_colors.size() else Color.WHITE
+	_add_log("%s -> %s: %d %s" % [source_name, target_name, int(amount), sn], sc)
+
+func _on_log_destroyed(data: Dictionary) -> void:
+	var name_str: String = _get_entity_name(data.get("entity"))
+	_add_log("[KILLED] %s" % name_str, Color(1, 0.3, 0.2))
+
+func _on_log_spell(data: Dictionary) -> void:
+	var caster_name: String = _get_entity_name(data.get("caster"))
+	var spell_id: String = data.get("spell_id", "")
+	_add_log("[SPELL] %s cast %s" % [caster_name, spell_id], Color(0.5, 0.7, 1))
+
+func _on_log_aura(data: Dictionary) -> void:
+	var target_name: String = _get_entity_name(data.get("target"))
+	var aura_type: String = data.get("aura_type", "")
+	_add_log("[AURA] %s <- %s" % [target_name, aura_type], Color(0.7, 0.5, 1))
+
+func _on_log_proc(data: Dictionary) -> void:
+	var action: String = data.get("action", "")
+	var spell: String = data.get("trigger_spell", "")
+	_add_log("[PROC] %s -> %s" % [action, spell], Color(1, 0.8, 0.3))
+
+func _on_log_wave(data: Dictionary) -> void:
+	var wave_idx: int = data.get("wave_index", 0)
+	var count: int = data.get("enemy_count", 0)
+	_add_log("=== WAVE %d (%d enemies) ===" % [wave_idx, count], Color(1, 1, 0.5))

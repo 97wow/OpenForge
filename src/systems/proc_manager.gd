@@ -27,6 +27,10 @@ const PROC_FLAG := {
 var _procs: Dictionary = {}
 var _next_id: int = 1
 
+func _reset() -> void:
+	_procs.clear()
+	_next_id = 1
+
 func _ready() -> void:
 	EngineAPI.register_system("proc", self)
 	# 监听战斗事件
