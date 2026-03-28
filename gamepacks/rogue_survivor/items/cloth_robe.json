@@ -1,0 +1,11 @@
+{
+  "id": "cloth_robe",
+  "name_key": "ITEM_CLOTH_ROBE",
+  "type": "armor",
+  "rarity": "common",
+  "base_stats": {"max_hp": 10, "magic_resist": 2},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

@@ -1,0 +1,11 @@
+{
+  "id": "emerald_pendant",
+  "name_key": "ITEM_EMERALD_PENDANT",
+  "type": "accessory",
+  "rarity": "uncommon",
+  "base_stats": {"max_hp": 25, "life_steal": 0.04},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

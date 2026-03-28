@@ -1,0 +1,11 @@
+{
+  "id": "ring_of_elements",
+  "name_key": "ITEM_RING_OF_ELEMENTS",
+  "type": "accessory",
+  "rarity": "rare",
+  "base_stats": {"damage": 8},
+  "affixes": [{"stat": "crit_chance", "value": 0.1}, {"stat": "life_steal", "value": 0.05}],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

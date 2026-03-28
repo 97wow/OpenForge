@@ -1,0 +1,11 @@
+{
+  "id": "frost_bow",
+  "name_key": "ITEM_FROST_BOW",
+  "type": "weapon",
+  "rarity": "uncommon",
+  "base_stats": {"damage": 8, "attack_speed_pct": 0.1},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": "frost_slow_passive"
+}

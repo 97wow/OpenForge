@@ -70,6 +70,21 @@ func _pack_ready() -> void:
 		hero_class
 	)
 
+	# 注册词条池
+	var item_sys: Node = EngineAPI.get_system("item")
+	if item_sys:
+		item_sys.call("load_affix_pool", "affix_default", [
+			{"stat": "damage", "min": 2, "max": 10, "integer": true},
+			{"stat": "max_hp", "min": 5, "max": 30, "integer": true},
+			{"stat": "armor", "min": 1, "max": 5, "integer": true},
+			{"stat": "attack_speed_pct", "min": 0.03, "max": 0.12},
+			{"stat": "crit_chance", "min": 0.02, "max": 0.08},
+			{"stat": "life_steal", "min": 0.01, "max": 0.05},
+			{"stat": "move_speed", "min": 5, "max": 20, "integer": true},
+			{"stat": "pierce_chance", "min": 0.1, "max": 0.3},
+			{"stat": "split_chance", "min": 0.05, "max": 0.15},
+		])
+
 	EngineAPI.set_game_state("playing")
 	_wave_timer = WAVE_INTERVAL - 3.0
 
@@ -500,6 +515,49 @@ func _on_entity_destroyed(data: Dictionary) -> void:
 			var input_comp: Node = EngineAPI.get_component(hero, "player_input")
 			if input_comp:
 				input_comp.projectile_damage += input_comp.projectile_damage * perm_dmg
+		# 掉落处理
+		var loot_table: String = (entity as GameEntity).get_meta_value("loot_table", "")
+		if loot_table != "":
+			var drops: Array = EngineAPI.roll_loot(loot_table)
+			for drop in drops:
+				if drop is Dictionary:
+					if drop.get("type") == "currency":
+						EngineAPI.add_resource(drop.get("currency", "gold"), drop.get("amount", 0))
+					elif drop.get("type") == "item":
+						_on_item_dropped(drop, (entity as Node2D).global_position)
+
+func _on_item_dropped(item: Dictionary, _pos: Vector2) -> void:
+	## 自动装备或加入背包
+	if hero == null or not is_instance_valid(hero):
+		return
+	var item_sys: Node = EngineAPI.get_system("item")
+	if item_sys == null:
+		return
+	var def: Dictionary = item.get("def", {})
+	var item_type: String = def.get("type", "")
+	var item_name: String = item_sys.call("get_item_display_name", item)
+	var rarity: String = def.get("rarity", "common")
+
+	# 找空槽自动装备
+	var target_slot := ""
+	match item_type:
+		"weapon": target_slot = "weapon"
+		"armor": target_slot = "armor"
+		"accessory":
+			for acc_slot in ["accessory_1", "accessory_2", "accessory_3", "accessory_4"]:
+				var existing: Dictionary = item_sys.call("get_equipped_in_slot", hero, acc_slot)
+				if existing.is_empty():
+					target_slot = acc_slot
+					break
+			if target_slot == "":
+				# 所有饰品栏满，替换最低稀有度的
+				target_slot = "accessory_1"
+
+	if target_slot != "":
+		var old: Dictionary = item_sys.call("equip_item", hero, target_slot, item)
+		# 显示掉落提示
+		var color: Color = item_sys.call("get_rarity_color", rarity)
+		_add_log("[DROP] %s (%s)" % [item_name, tr(rarity.to_upper())], color)
 
 func _on_resource_changed(data: Dictionary) -> void:
 	var res: String = data.get("resource", "")
@@ -908,6 +966,7 @@ var _range_label: Label = null
 # 卡片栏
 var _card_slots: Array[PanelContainer] = []
 var _set_buff_container: HBoxContainer = null
+var _equip_slots_ui: HBoxContainer = null
 # 战斗日志
 var _combat_log: VBoxContainer = null
 const MAX_LOG_LINES := 12
@@ -1032,6 +1091,72 @@ func _create_hud() -> void:
 	_set_buff_container.offset_bottom = -5
 	_set_buff_container.add_theme_constant_override("separation", 6)
 	ui_layer.add_child(_set_buff_container)
+
+	# === 装备栏（右侧中间）===
+	var equip_panel := PanelContainer.new()
+	equip_panel.anchor_left = 1.0
+	equip_panel.anchor_right = 1.0
+	equip_panel.anchor_top = 0.5
+	equip_panel.offset_left = -160
+	equip_panel.offset_top = -10
+	equip_panel.offset_right = -5
+	equip_panel.offset_bottom = 185
+	var equip_style := StyleBoxFlat.new()
+	equip_style.bg_color = Color(0.08, 0.08, 0.15, 0.7)
+	equip_style.corner_radius_top_left = 4
+	equip_style.corner_radius_top_right = 4
+	equip_style.corner_radius_bottom_left = 4
+	equip_style.corner_radius_bottom_right = 4
+	equip_panel.add_theme_stylebox_override("panel", equip_style)
+	equip_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_layer.add_child(equip_panel)
+
+	_equip_slots_ui = HBoxContainer.new()
+	_equip_slots_ui.add_theme_constant_override("separation", 4)
+	_equip_slots_ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	equip_panel.add_child(_equip_slots_ui)
+
+	# 创建 6 个装备槽
+	var slot_names := ["WPN", "ARM", "AC1", "AC2", "AC3", "AC4"]
+	for i in range(6):
+		var slot_panel := PanelContainer.new()
+		slot_panel.custom_minimum_size = Vector2(48, 58)
+		var ss := StyleBoxFlat.new()
+		ss.bg_color = Color(0.12, 0.12, 0.18, 0.8)
+		ss.corner_radius_top_left = 3
+		ss.corner_radius_top_right = 3
+		ss.corner_radius_bottom_left = 3
+		ss.corner_radius_bottom_right = 3
+		ss.border_color = Color(0.25, 0.25, 0.35)
+		ss.border_width_top = 1
+		ss.border_width_bottom = 1
+		ss.border_width_left = 1
+		ss.border_width_right = 1
+		slot_panel.add_theme_stylebox_override("panel", ss)
+		slot_panel.mouse_filter = Control.MOUSE_FILTER_PASS
+
+		var vb := VBoxContainer.new()
+		vb.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		slot_panel.add_child(vb)
+
+		var slot_type := Label.new()
+		slot_type.text = slot_names[i]
+		slot_type.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		slot_type.add_theme_font_size_override("font_size", 8)
+		slot_type.add_theme_color_override("font_color", Color(0.4, 0.4, 0.5))
+		slot_type.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vb.add_child(slot_type)
+
+		var item_label := Label.new()
+		item_label.text = ""
+		item_label.name = "ItemName"
+		item_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		item_label.add_theme_font_size_override("font_size", 8)
+		item_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vb.add_child(item_label)
+
+		slot_panel.tooltip_text = ""
+		_equip_slots_ui.add_child(slot_panel)
 
 	# === 战斗日志（左侧）===
 	var log_panel := PanelContainer.new()
@@ -1219,6 +1344,28 @@ func _update_hud() -> void:
 					buff_panel.tooltip_text = tip
 
 					_set_buff_container.add_child(buff_panel)
+
+	# --- 装备栏 ---
+	if _equip_slots_ui and hero and is_instance_valid(hero):
+		var item_sys: Node = EngineAPI.get_system("item")
+		if item_sys:
+			var equipped: Dictionary = item_sys.call("get_equipped", hero)
+			var slot_keys := ["weapon", "armor", "accessory_1", "accessory_2", "accessory_3", "accessory_4"]
+			for i in range(mini(6, _equip_slots_ui.get_child_count())):
+				var slot_ui: PanelContainer = _equip_slots_ui.get_child(i)
+				var item_label: Label = slot_ui.get_node_or_null("ItemName")
+				if item_label == null:
+					continue
+				var slot_key: String = slot_keys[i]
+				if equipped.has(slot_key):
+					var item: Dictionary = equipped[slot_key]
+					var rarity: String = item.get("def", {}).get("rarity", "common")
+					item_label.text = item_sys.call("get_item_display_name", item)
+					item_label.add_theme_color_override("font_color", item_sys.call("get_rarity_color", rarity))
+					slot_ui.tooltip_text = item_sys.call("get_item_tooltip", item)
+				else:
+					item_label.text = ""
+					slot_ui.tooltip_text = ""
 
 # === 战斗日志 ===
 

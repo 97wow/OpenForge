@@ -1,0 +1,11 @@
+{
+  "id": "lucky_charm",
+  "name_key": "ITEM_LUCKY_CHARM",
+  "type": "accessory",
+  "rarity": "common",
+  "base_stats": {"crit_chance": 0.03},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

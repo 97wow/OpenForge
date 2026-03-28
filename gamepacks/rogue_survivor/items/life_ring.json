@@ -1,0 +1,11 @@
+{
+  "id": "life_ring",
+  "name_key": "ITEM_LIFE_RING",
+  "type": "accessory",
+  "rarity": "common",
+  "base_stats": {"max_hp": 15, "life_steal": 0.02},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

@@ -37,6 +37,7 @@
   },
   "meta": {
     "xp_reward": 5,
-    "gold_reward": 3
+    "gold_reward": 3,
+    "loot_table": "goblin_loot"
   }
 }

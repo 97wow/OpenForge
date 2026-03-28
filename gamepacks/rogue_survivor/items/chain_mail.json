@@ -1,0 +1,11 @@
+{
+  "id": "chain_mail",
+  "name_key": "ITEM_CHAIN_MAIL",
+  "type": "armor",
+  "rarity": "common",
+  "base_stats": {"max_hp": 30, "armor": 3},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

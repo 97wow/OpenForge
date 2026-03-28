@@ -38,6 +38,7 @@
   },
   "meta": {
     "xp_reward": 10,
-    "gold_reward": 5
+    "gold_reward": 5,
+    "loot_table": "skeleton_loot"
   }
 }

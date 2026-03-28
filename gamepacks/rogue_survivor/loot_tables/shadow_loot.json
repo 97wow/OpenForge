@@ -1,0 +1,9 @@
+{
+  "id": "shadow_loot",
+  "entries": [
+    {"item_id": "gold_coin", "chance": 1.0, "min": 5, "max": 10},
+    {"item_id": "random_common", "chance": 0.2},
+    {"item_id": "random_uncommon", "chance": 0.08},
+    {"item_id": "random_rare", "chance": 0.02}
+  ]
+}

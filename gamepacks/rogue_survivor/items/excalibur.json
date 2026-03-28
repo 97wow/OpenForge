@@ -1,0 +1,11 @@
+{
+  "id": "excalibur",
+  "name_key": "ITEM_EXCALIBUR",
+  "type": "weapon",
+  "rarity": "legendary",
+  "base_stats": {"damage": 50, "crit_chance": 0.15, "attack_speed_pct": 0.15},
+  "affixes": [{"stat": "life_steal", "value": 0.08}],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

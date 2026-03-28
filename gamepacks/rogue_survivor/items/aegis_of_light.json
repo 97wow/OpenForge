@@ -1,0 +1,11 @@
+{
+  "id": "aegis_of_light",
+  "name_key": "ITEM_AEGIS_OF_LIGHT",
+  "type": "armor",
+  "rarity": "epic",
+  "base_stats": {"max_hp": 120, "armor": 12, "magic_resist": 5},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "guardian_regen",
+  "spell_on_hit": ""
+}

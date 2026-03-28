@@ -1,0 +1,11 @@
+{
+  "id": "rusty_sword",
+  "name_key": "ITEM_RUSTY_SWORD",
+  "type": "weapon",
+  "rarity": "common",
+  "base_stats": {"damage": 5},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

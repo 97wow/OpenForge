@@ -1,0 +1,11 @@
+{
+  "id": "shadow_cloak",
+  "name_key": "ITEM_SHADOW_CLOAK",
+  "type": "armor",
+  "rarity": "uncommon",
+  "base_stats": {"armor": 4, "max_hp": 40},
+  "affixes": [{"stat": "crit_chance", "value": 0.05}],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

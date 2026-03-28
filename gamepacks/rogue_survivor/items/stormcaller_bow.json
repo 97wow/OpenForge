@@ -1,0 +1,11 @@
+{
+  "id": "stormcaller_bow",
+  "name_key": "ITEM_STORMCALLER_BOW",
+  "type": "weapon",
+  "rarity": "rare",
+  "base_stats": {"damage": 14, "attack_speed_pct": 0.15},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": "chain_lightning_passive"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "apprentice_staff",
+  "name_key": "ITEM_APPRENTICE_STAFF",
+  "type": "weapon",
+  "rarity": "common",
+  "base_stats": {"damage": 4},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": "flame_burn"
+}

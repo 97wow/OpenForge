@@ -1,0 +1,11 @@
+{
+  "id": "flame_blade",
+  "name_key": "ITEM_FLAME_BLADE",
+  "type": "weapon",
+  "rarity": "uncommon",
+  "base_stats": {"damage": 12},
+  "affixes": [],
+  "set_id": "fire_lord",
+  "spell_on_equip": "",
+  "spell_on_hit": "flame_ignite_passive"
+}

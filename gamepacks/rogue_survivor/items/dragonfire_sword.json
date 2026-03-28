@@ -1,0 +1,11 @@
+{
+  "id": "dragonfire_sword",
+  "name_key": "ITEM_DRAGONFIRE_SWORD",
+  "type": "weapon",
+  "rarity": "rare",
+  "base_stats": {"damage": 20},
+  "affixes": [{"stat": "crit_chance", "value": 0.08}],
+  "set_id": "fire_lord",
+  "spell_on_equip": "",
+  "spell_on_hit": "flame_ignite_passive"
+}

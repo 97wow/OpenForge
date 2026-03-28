@@ -1,0 +1,7 @@
+{
+  "id": "goblin_loot",
+  "entries": [
+    {"item_id": "gold_coin", "chance": 1.0, "min": 2, "max": 5},
+    {"item_id": "random_common", "chance": 0.12}
+  ]
+}

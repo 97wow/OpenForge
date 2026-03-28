@@ -1,0 +1,11 @@
+{
+  "id": "speed_boots",
+  "name_key": "ITEM_SPEED_BOOTS",
+  "type": "accessory",
+  "rarity": "common",
+  "base_stats": {"move_speed": 15},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

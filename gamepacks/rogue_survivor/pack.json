@@ -17,6 +17,8 @@
     "hero_level_up", "card_offered", "card_selected",
     "fountain_damaged", "game_victory", "game_defeat"
   ],
+  "item_dir": "items",
+  "loot_dir": "loot_tables",
   "entity_dir": "entities",
   "buff_dir": "buffs",
   "spell_dir": "spells",

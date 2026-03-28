@@ -1,0 +1,11 @@
+{
+  "id": "wooden_bow",
+  "name_key": "ITEM_WOODEN_BOW",
+  "type": "weapon",
+  "rarity": "common",
+  "base_stats": {"damage": 3, "attack_speed_pct": 0.05},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

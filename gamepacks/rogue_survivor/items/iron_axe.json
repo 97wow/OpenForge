@@ -1,0 +1,11 @@
+{
+  "id": "iron_axe",
+  "name_key": "ITEM_IRON_AXE",
+  "type": "weapon",
+  "rarity": "common",
+  "base_stats": {"damage": 7},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

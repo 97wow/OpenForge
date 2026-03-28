@@ -1,0 +1,11 @@
+{
+  "id": "leather_vest",
+  "name_key": "ITEM_LEATHER_VEST",
+  "type": "armor",
+  "rarity": "common",
+  "base_stats": {"max_hp": 20, "armor": 1},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

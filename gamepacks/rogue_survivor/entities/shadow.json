@@ -38,6 +38,7 @@
   },
   "meta": {
     "xp_reward": 12,
-    "gold_reward": 6
+    "gold_reward": 6,
+    "loot_table": "shadow_loot"
   }
 }

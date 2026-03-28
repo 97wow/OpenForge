@@ -1,10 +1,20 @@
 {
   "id": "enemy_fountain",
   "name": "Dark Fountain",
-  "tags": ["enemy_fountain", "enemy", "structure"],
+  "tags": [
+    "enemy_fountain",
+    "enemy",
+    "structure"
+  ],
   "components": {
-    "visual": { "color": "#d32f2f", "size": 48 },
-    "health": { "max_hp": 800, "armor": 10 },
+    "visual": {
+      "color": "#d32f2f",
+      "size": 48
+    },
+    "health": {
+      "max_hp": 800,
+      "armor": 10
+    },
     "combat": {
       "damage": 30,
       "attack_speed": 1.0,
@@ -13,10 +23,14 @@
       "target_filter_tag": "player",
       "targeting": "closest"
     },
-    "collision": { "shape": "circle", "radius": 25 }
+    "collision": {
+      "shape": "circle",
+      "radius": 25
+    }
   },
   "meta": {
     "xp_reward": 200,
-    "gold_reward": 100
+    "gold_reward": 100,
+    "loot_table": "boss_loot"
   }
 }

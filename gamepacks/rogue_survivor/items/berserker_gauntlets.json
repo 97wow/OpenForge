@@ -1,0 +1,11 @@
+{
+  "id": "berserker_gauntlets",
+  "name_key": "ITEM_BERSERKER_GAUNTLETS",
+  "type": "accessory",
+  "rarity": "uncommon",
+  "base_stats": {"damage": 5, "attack_speed_pct": 0.08},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}

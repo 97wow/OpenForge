@@ -1,0 +1,9 @@
+{
+  "id": "boss_loot",
+  "entries": [
+    {"item_id": "gold_coin", "chance": 1.0, "min": 50, "max": 100},
+    {"item_id": "random_rare", "chance": 0.5},
+    {"item_id": "random_epic", "chance": 0.2},
+    {"item_id": "random_legendary", "chance": 0.05}
+  ]
+}

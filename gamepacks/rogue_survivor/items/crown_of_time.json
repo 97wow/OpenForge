@@ -1,0 +1,11 @@
+{
+  "id": "crown_of_time",
+  "name_key": "ITEM_CROWN_OF_TIME",
+  "type": "accessory",
+  "rarity": "epic",
+  "base_stats": {"attack_speed_pct": 0.2, "move_speed": 20},
+  "affixes": [],
+  "set_id": "",
+  "spell_on_equip": "time_haste_passive",
+  "spell_on_hit": ""
+}

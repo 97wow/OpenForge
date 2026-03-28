@@ -1,0 +1,11 @@
+{
+  "id": "heart_of_phoenix",
+  "name_key": "ITEM_HEART_OF_PHOENIX",
+  "type": "accessory",
+  "rarity": "legendary",
+  "base_stats": {"max_hp": 100, "damage": 15},
+  "affixes": [{"stat": "crit_chance", "value": 0.1}, {"stat": "life_steal", "value": 0.1}],
+  "set_id": "",
+  "spell_on_equip": "",
+  "spell_on_hit": ""
+}
