@@ -1,7 +1,7 @@
 {
   "id": "barrage_2",
-  "name": "Scatter Shot",
-  "description": "Attacks spread in a fan pattern with a 12-degree angle.",
+  "name_key": "CARD_BARRAGE_2_NAME",
+  "desc_key": "CARD_BARRAGE_2_DESC",
   "set_id": "barrage",
   "rarity": "uncommon",
   "class_affinity": ["warrior"],

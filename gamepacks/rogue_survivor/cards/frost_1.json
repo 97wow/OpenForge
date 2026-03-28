@@ -1,7 +1,7 @@
 {
   "id": "frost_1",
-  "name": "Frostbite",
-  "description": "Attacks slow enemies by 20% for 2 seconds.",
+  "name_key": "CARD_FROST_1_NAME",
+  "desc_key": "CARD_FROST_1_DESC",
   "set_id": "frost",
   "rarity": "common",
   "class_affinity": ["mage"],

@@ -1,7 +1,7 @@
 {
   "id": "poison_2",
-  "name": "Deadly Venom",
-  "description": "Poison damage stacks up to 3 times.",
+  "name_key": "CARD_POISON_2_NAME",
+  "desc_key": "CARD_POISON_2_DESC",
   "set_id": "poison",
   "rarity": "uncommon",
   "class_affinity": ["all"],

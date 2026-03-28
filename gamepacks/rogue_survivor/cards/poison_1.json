@@ -1,7 +1,7 @@
 {
   "id": "poison_1",
-  "name": "Toxic Coating",
-  "description": "30% chance to poison enemies for 3 seconds.",
+  "name_key": "CARD_POISON_1_NAME",
+  "desc_key": "CARD_POISON_1_DESC",
   "set_id": "poison",
   "rarity": "common",
   "class_affinity": ["all"],

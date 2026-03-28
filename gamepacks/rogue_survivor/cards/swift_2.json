@@ -1,7 +1,7 @@
 {
   "id": "swift_2",
-  "name": "Wind's Breath",
-  "description": "When attack speed is high, gain +10% crit chance.",
+  "name_key": "CARD_SWIFT_2_NAME",
+  "desc_key": "CARD_SWIFT_2_DESC",
   "set_id": "swift_wind",
   "rarity": "uncommon",
   "class_affinity": ["ranger"],

@@ -1,7 +1,7 @@
 {
   "id": "piercer_1",
-  "name": "Sharp Arrow",
-  "description": "30% chance arrows pierce through the first enemy hit.",
+  "name_key": "CARD_PIERCER_1_NAME",
+  "desc_key": "CARD_PIERCER_1_DESC",
   "set_id": "piercer",
   "rarity": "common",
   "class_affinity": ["ranger"],

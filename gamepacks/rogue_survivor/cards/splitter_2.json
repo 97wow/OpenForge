@@ -1,7 +1,7 @@
 {
   "id": "splitter_2",
-  "name": "Chain Reaction",
-  "description": "Split projectiles deal 60% of the original damage.",
+  "name_key": "CARD_SPLITTER_2_NAME",
+  "desc_key": "CARD_SPLITTER_2_DESC",
   "set_id": "splitter",
   "rarity": "uncommon",
   "class_affinity": ["ranger"],

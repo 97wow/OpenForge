@@ -1,7 +1,7 @@
 {
   "id": "splitter_1",
-  "name": "Split Arrow",
-  "description": "20% chance to split and hit 1 nearby enemy.",
+  "name_key": "CARD_SPLITTER_1_NAME",
+  "desc_key": "CARD_SPLITTER_1_DESC",
   "set_id": "splitter",
   "rarity": "common",
   "class_affinity": ["ranger"],

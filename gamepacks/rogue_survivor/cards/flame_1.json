@@ -1,7 +1,7 @@
 {
   "id": "flame_1",
-  "name": "Ignite",
-  "description": "25% chance to burn enemies for 3 seconds.",
+  "name_key": "CARD_FLAME_1_NAME",
+  "desc_key": "CARD_FLAME_1_DESC",
   "set_id": "flame",
   "rarity": "common",
   "class_affinity": ["mage"],

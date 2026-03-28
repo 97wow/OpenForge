@@ -52,3 +52,43 @@ LANG_EN,English,English,English,English
 LANG_ZH,中文,中文,中文,中文
 LANG_JA,日本語,日本語,日本語,日本語
 LANG_KO,한국어,한국어,한국어,한국어
+SET_PIERCER,Piercer,穿透者,貫通者,관통자
+SET_SPLITTER,Splitter,分裂者,分裂者,분열자
+SET_SWIFT_WIND,Swift Wind,疾风,疾風,질풍
+SET_FLAME,Flame,烈焰,炎,화염
+SET_FROST,Frost,寒冰,氷結,빙결
+SET_VAMPIRE,Vampire,吸血,吸血,흡혈
+SET_POISON,Poison Sting,毒刺,毒針,독침
+SET_BARRAGE,Barrage,弹幕,弾幕,탄막
+CARD_PIERCER_1_NAME,Sharp Arrow,锐利之矢,鋭い矢,날카로운 화살
+CARD_PIERCER_1_DESC,30% chance arrows pierce through the first enemy,30%概率箭矢穿透第一个敌人,30%の確率で矢が最初の敵を貫通,30% 확률로 첫 적 관통
+CARD_PIERCER_2_NAME,Penetrating Force,贯穿之力,貫通の力,관통의 힘
+CARD_PIERCER_2_DESC,Pierced targets take 80% damage,穿透目标受到80%伤害,貫通した敵に80%ダメージ,관통 대상에게 80% 피해
+CARD_SPLITTER_1_NAME,Split Arrow,分裂箭,分裂矢,분열 화살
+CARD_SPLITTER_1_DESC,20% chance to split and hit 1 nearby enemy,20%概率分裂攻击附近1个敌人,20%の確率で分裂し周囲の敵に命中,20% 확률로 분열하여 인근 적 1명 타격
+CARD_SPLITTER_2_NAME,Chain Reaction,连锁反应,連鎖反応,연쇄 반응
+CARD_SPLITTER_2_DESC,Split projectiles deal 60% damage,分裂弹体造成60%伤害,分裂した弾は60%ダメージ,분열 투사체가 60% 피해
+CARD_SWIFT_1_NAME,Rapid Fire,快速射击,連射,속사
+CARD_SWIFT_1_DESC,+15% attack speed,攻击速度+15%,攻撃速度+15%,공격 속도 +15%
+CARD_SWIFT_2_NAME,Wind's Breath,狂风之息,風の息吹,바람의 숨결
+CARD_SWIFT_2_DESC,+10% critical hit chance,暴击率+10%,クリティカル率+10%,치명타 확률 +10%
+CARD_FLAME_1_NAME,Ignite,点火,発火,점화
+CARD_FLAME_1_DESC,25% chance to burn enemies for 3s,25%概率点燃敌人持续3秒,25%の確率で3秒間燃焼,25% 확률로 적 3초 화상
+CARD_FLAME_2_NAME,Combustion,燃烧,燃焼,연소
+CARD_FLAME_2_DESC,Burning enemies take 50% more fire damage,燃烧中的敌人受到50%额外火焰伤害,燃焼中の敵は炎ダメージ50%増加,화상 중인 적에게 화염 피해 50% 증가
+CARD_FROST_1_NAME,Frostbite,冰冻触碰,凍傷,동상
+CARD_FROST_1_DESC,Attacks slow enemies by 20% for 2s,攻击使敌人减速20%持续2秒,攻撃時2秒間20%減速,공격 시 적 20% 감속 2초
+CARD_FROST_2_NAME,Deep Freeze,深寒,深淵の冷気,혹한
+CARD_FROST_2_DESC,Slowed enemies take 15% more damage,被减速的敌人受到15%额外伤害,減速中の敵はダメージ15%増加,감속 중인 적에게 피해 15% 증가
+CARD_VAMPIRE_1_NAME,Blood Thirst,鲜血渴望,渇血,피의 갈증
+CARD_VAMPIRE_1_DESC,5% life steal on attacks,攻击时5%生命偷取,攻撃時5%ライフスティール,공격 시 5% 생명력 흡수
+CARD_VAMPIRE_2_NAME,Blood Frenzy,血之狂欢,血の狂乱,피의 광란
+CARD_VAMPIRE_2_DESC,Life steal doubled when HP below 50%,生命值低于50%时吸血效果翻倍,HP50%以下でライフスティール2倍,체력 50% 이하 시 흡혈 2배
+CARD_POISON_1_NAME,Toxic Coating,毒素涂层,毒塗り,독소 도포
+CARD_POISON_1_DESC,30% chance to poison enemies for 3s,30%概率使敌人中毒3秒,30%の確率で3秒間毒状態,30% 확률로 적 3초 중독
+CARD_POISON_2_NAME,Deadly Venom,剧毒,猛毒,맹독
+CARD_POISON_2_DESC,Poison damage stacks up to 3 times,毒伤最多叠加3层,毒ダメージ最大3回重複,독 피해 최대 3중첩
+CARD_BARRAGE_1_NAME,Double Shot,双重射击,二連射,이중 사격
+CARD_BARRAGE_1_DESC,Fire an extra projectile,额外发射1枚投射物,追加弾を1発発射,추가 투사체 1발 발사
+CARD_BARRAGE_2_NAME,Scatter Shot,扫射,散弾,산탄
+CARD_BARRAGE_2_DESC,Attacks spread in a fan pattern,攻击呈扇形扩散,攻撃が扇状に拡散,공격이 부채꼴로 확산

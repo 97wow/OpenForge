@@ -1,7 +1,7 @@
 {
   "id": "piercer_2",
-  "name": "Penetrating Force",
-  "description": "Pierced targets take 80% of the original damage.",
+  "name_key": "CARD_PIERCER_2_NAME",
+  "desc_key": "CARD_PIERCER_2_DESC",
   "set_id": "piercer",
   "rarity": "uncommon",
   "class_affinity": ["ranger"],

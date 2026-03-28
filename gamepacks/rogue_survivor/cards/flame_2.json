@@ -1,7 +1,7 @@
 {
   "id": "flame_2",
-  "name": "Combustion",
-  "description": "Burning enemies take 50% more fire damage.",
+  "name_key": "CARD_FLAME_2_NAME",
+  "desc_key": "CARD_FLAME_2_DESC",
   "set_id": "flame",
   "rarity": "uncommon",
   "class_affinity": ["mage"],

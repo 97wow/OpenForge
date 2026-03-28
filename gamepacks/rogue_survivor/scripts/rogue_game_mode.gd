@@ -320,7 +320,7 @@ func _show_card_selection() -> void:
 
 	# 标题
 	var title := Label.new()
-	title.text = "LEVEL UP! Lv.%d - Choose a Card" % _hero_level
+	title.text = tr("LEVEL_UP").format([_hero_level]) + " - " + tr("CHOOSE_CARD")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 28)
 	title.add_theme_color_override("font_color", Color(1, 0.85, 0.3))
@@ -328,7 +328,7 @@ func _show_card_selection() -> void:
 
 	# 卡片数量提示
 	var slot_hint := Label.new()
-	slot_hint.text = "Cards: %d / %d" % [_card_manager.get_card_count(), RogueCardManager.MAX_CARDS]
+	slot_hint.text = tr("CARDS_COUNT").format([_card_manager.get_card_count(), RogueCardManager.MAX_CARDS])
 	slot_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	slot_hint.add_theme_font_size_override("font_size", 14)
 	slot_hint.add_theme_color_override("font_color", Color(0.6, 0.6, 0.7))
@@ -352,22 +352,25 @@ func _create_card_button(card: Dictionary) -> PanelContainer:
 	vbox.add_theme_constant_override("separation", 8)
 	panel.add_child(vbox)
 
-	# 卡名
+	# 卡名（翻译）
 	var name_label := Label.new()
-	name_label.text = card.get("name", "???")
+	var name_key: String = card.get("name_key", card.get("name", "???"))
+	name_label.text = tr(name_key) if name_key.begins_with("CARD_") else name_key
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.add_theme_font_size_override("font_size", 20)
 	vbox.add_child(name_label)
 
-	# 套装归属
+	# 套装归属（翻译）
+	var set_id: String = card.get("set_id", "")
+	var set_tr_key := "SET_%s" % set_id.to_upper()
 	var set_label := Label.new()
-	set_label.text = "[%s]" % card.get("set_id", "")
+	set_label.text = "[%s]" % tr(set_tr_key)
 	set_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	set_label.add_theme_font_size_override("font_size", 12)
 	set_label.add_theme_color_override("font_color", Color(0.5, 0.7, 1))
 	vbox.add_child(set_label)
 
-	# 稀有度
+	# 稀有度（翻译）
 	var rarity: String = card.get("rarity", "common")
 	var rarity_color := Color.WHITE
 	match rarity:
@@ -376,15 +379,16 @@ func _create_card_button(card: Dictionary) -> PanelContainer:
 		"rare": rarity_color = Color(0.7, 0.3, 1)
 		"legendary": rarity_color = Color(1, 0.8, 0.2)
 	var rarity_label := Label.new()
-	rarity_label.text = rarity.to_upper()
+	rarity_label.text = tr(rarity.to_upper())
 	rarity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	rarity_label.add_theme_font_size_override("font_size", 11)
 	rarity_label.add_theme_color_override("font_color", rarity_color)
 	vbox.add_child(rarity_label)
 
-	# 描述
+	# 描述（翻译）
 	var desc_label := Label.new()
-	desc_label.text = card.get("description", "")
+	var desc_key: String = card.get("desc_key", card.get("description", ""))
+	desc_label.text = tr(desc_key) if desc_key.begins_with("CARD_") else desc_key
 	desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	desc_label.add_theme_font_size_override("font_size", 13)
 	desc_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.7))
@@ -399,7 +403,7 @@ func _create_card_button(card: Dictionary) -> PanelContainer:
 
 	# 选择按钮
 	var btn := Button.new()
-	btn.text = "Pick"
+	btn.text = tr("PICK")
 	btn.custom_minimum_size = Vector2(0, 40)
 	var card_id: String = card.get("id", "")
 	btn.pressed.connect(_on_card_picked.bind(card_id))
@@ -542,7 +546,7 @@ func _create_hud() -> void:
 
 	# 退出按钮
 	var back_btn := Button.new()
-	back_btn.text = "Quit"
+	back_btn.text = tr("QUIT")
 	back_btn.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
 	back_btn.offset_left = -80
 	back_btn.offset_top = -40

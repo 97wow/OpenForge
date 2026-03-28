@@ -1,7 +1,7 @@
 {
   "id": "barrage_1",
-  "name": "Double Shot",
-  "description": "Fire an extra projectile with each attack.",
+  "name_key": "CARD_BARRAGE_1_NAME",
+  "desc_key": "CARD_BARRAGE_1_DESC",
   "set_id": "barrage",
   "rarity": "rare",
   "class_affinity": ["warrior"],
