@@ -137,4 +137,4 @@ func _create_class_card(cls: Dictionary) -> PanelContainer:
 
 func _on_class_selected(class_id: String) -> void:
 	_scene_data["hero_class"] = class_id
-	SceneManager.goto_scene("battle", _scene_data)
+	SceneManager.goto_scene("difficulty_select", _scene_data)

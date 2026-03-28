@@ -31,6 +31,9 @@ var _hero_level: int = 1
 var _xp_to_next: int = XP_PER_LEVEL_BASE
 
 var _card_manager: RogueCardManager = null
+var _difficulty: Dictionary = {}  # 难度设置
+var _kills: int = 0
+var _total_gold_earned: int = 0
 var _card_select_ui: Control = null
 var _card_refreshes: int = 3  # 剩余刷新次数
 
@@ -55,6 +58,14 @@ func _pack_ready() -> void:
 	listen("projectile_hit", _on_projectile_hit)
 	listen("entity_destroyed", _on_entity_destroyed)
 	listen("resource_changed", _on_resource_changed)
+
+	# 读取难度
+	_difficulty = SceneManager.pending_data.get("difficulty", {
+		"level": 1, "hp_mult": 1.0, "dmg_mult": 1.0,
+		"count_mult": 1.0, "reward_mult": 1.0, "name": "N1"
+	})
+	set_var("difficulty_level", _difficulty.get("level", 1))
+	set_var("difficulty_name", _difficulty.get("name", "N1"))
 
 	_draw_arena()
 	_create_hud()
@@ -192,15 +203,28 @@ func _spawn_wave() -> void:
 
 	var wave_def: Array = _get_wave_def(_current_wave)
 	var spawned := 0
+	var hp_mult: float = _difficulty.get("hp_mult", 1.0)
+	var dmg_mult: float = _difficulty.get("dmg_mult", 1.0)
+	var count_mult: float = _difficulty.get("count_mult", 1.0)
 	for group in wave_def:
 		if group is Array and group.size() >= 2:
 			var enemy_id: String = group[0]
-			var count: int = group[1]
+			var base_count: int = group[1]
+			var count: int = int(ceil(base_count * count_mult))
 			for i in range(count):
-				# 从固定刷新点随机选一个
 				var sp: Vector2 = SPAWN_POINTS[randi() % SPAWN_POINTS.size()]
 				var offset := Vector2(randf_range(-30, 30), randf_range(-30, 30))
-				spawn(enemy_id, sp + offset)
+				var enemy: Node2D = spawn(enemy_id, sp + offset)
+				# 难度缩放：增加血量和伤害
+				if enemy and hp_mult > 1.0:
+					var health: Node = EngineAPI.get_component(enemy, "health")
+					if health:
+						health.max_hp *= hp_mult
+						health.current_hp = health.max_hp
+				if enemy and dmg_mult > 1.0:
+					var combat: Node = EngineAPI.get_component(enemy, "combat")
+					if combat:
+						combat.damage *= dmg_mult
 				spawned += 1
 
 	emit("wave_started", {"wave_index": _current_wave, "enemy_count": spawned})
@@ -501,8 +525,9 @@ func _on_entity_destroyed(data: Dictionary) -> void:
 	elif entity == enemy_fountain:
 		_victory(tr("DARK_FOUNTAIN_DESTROYED"))
 
-	# 击杀效果（仅英雄击杀敌人时）
+	# 击杀效果
 	if entity is GameEntity and (entity as GameEntity).has_tag("enemy"):
+		_kills += 1
 		# 击杀回血
 		var kill_heal: float = float(EngineAPI.get_variable("hero_kill_heal_pct", 0.0))
 		if kill_heal > 0 and hero and is_instance_valid(hero):
@@ -568,15 +593,112 @@ func _victory(reason: String) -> void:
 	if EngineAPI.get_game_state() != "playing":
 		return
 	EngineAPI.set_game_state("victory")
-	EngineAPI.show_message("VICTORY! %s" % reason)
 	emit("game_victory", {"reason": reason})
+	_show_game_over(true, reason)
 
 func _defeat(reason: String) -> void:
 	if EngineAPI.get_game_state() != "playing":
 		return
 	EngineAPI.set_game_state("defeat")
-	EngineAPI.show_message("DEFEAT! %s" % reason)
 	emit("game_defeat", {"reason": reason})
+	_show_game_over(false, reason)
+
+func _show_game_over(is_victory: bool, reason: String) -> void:
+	get_tree().paused = true
+	var ui_layer: CanvasLayer = get_tree().current_scene.get_node_or_null("UI")
+	if ui_layer == null:
+		return
+
+	var panel := Control.new()
+	panel.process_mode = Node.PROCESS_MODE_ALWAYS
+	panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	ui_layer.add_child(panel)
+
+	var overlay := ColorRect.new()
+	overlay.color = Color(0, 0, 0, 0.8)
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	panel.add_child(overlay)
+
+	var vbox := VBoxContainer.new()
+	vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.add_theme_constant_override("separation", 12)
+	panel.add_child(vbox)
+
+	# 标题
+	var title := Label.new()
+	title.text = tr("VICTORY") if is_victory else tr("DEFEAT")
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_font_size_override("font_size", 42)
+	title.add_theme_color_override("font_color", Color(1, 0.85, 0.2) if is_victory else Color(1, 0.3, 0.2))
+	vbox.add_child(title)
+
+	var reason_label := Label.new()
+	reason_label.text = reason
+	reason_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	reason_label.add_theme_font_size_override("font_size", 16)
+	reason_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.8))
+	vbox.add_child(reason_label)
+
+	# 统计
+	@warning_ignore("integer_division")
+	var mins: int = int(_game_timer) / 60
+	@warning_ignore("integer_division")
+	var secs: int = int(_game_timer) % 60
+	var diff_name: String = str(_difficulty.get("name", "N1"))
+	var reward_mult: float = _difficulty.get("reward_mult", 1.0)
+
+	var stats_text := "%s: %s\n%s: %d\n%s: %d\nLv.%d\n%s: %d:%02d\n%s: %s" % [
+		tr("DIFFICULTY"), diff_name,
+		tr("KILLS"), _kills,
+		tr("GOLD"), int(EngineAPI.get_resource("gold")),
+		_hero_level,
+		"Time", mins, secs,
+		tr("REWARD"), "×%.1f" % reward_mult
+	]
+	var stats_label := Label.new()
+	stats_label.text = stats_text
+	stats_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	stats_label.add_theme_font_size_override("font_size", 15)
+	stats_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.9))
+	vbox.add_child(stats_label)
+
+	# 奖励
+	if is_victory:
+		var star_dust: int = int(10 * reward_mult)
+		var reward_label := Label.new()
+		reward_label.text = "+" + str(star_dust) + " ⭐ Star Dust"
+		reward_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		reward_label.add_theme_font_size_override("font_size", 18)
+		reward_label.add_theme_color_override("font_color", Color(1, 0.9, 0.3))
+		vbox.add_child(reward_label)
+
+	# 按钮
+	var btn_hbox := HBoxContainer.new()
+	btn_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	btn_hbox.add_theme_constant_override("separation", 20)
+	vbox.add_child(btn_hbox)
+
+	var menu_btn := Button.new()
+	menu_btn.text = tr("BACK")
+	menu_btn.custom_minimum_size = Vector2(140, 40)
+	menu_btn.pressed.connect(func() -> void:
+		get_tree().paused = false
+		SceneManager.goto_scene("lobby")
+	)
+	btn_hbox.add_child(menu_btn)
+
+	var retry_btn := Button.new()
+	retry_btn.text = tr("RETRY")
+	retry_btn.custom_minimum_size = Vector2(140, 40)
+	retry_btn.pressed.connect(func() -> void:
+		get_tree().paused = false
+		SceneManager.goto_scene("character_select", {
+			"pack_id": SceneManager.pending_data.get("pack_id", "rogue_survivor"),
+			"map_id": SceneManager.pending_data.get("map_id", "")
+		})
+	)
+	btn_hbox.add_child(retry_btn)
 
 func _check_level_up() -> void:
 	var current_xp: float = EngineAPI.get_resource("xp")
