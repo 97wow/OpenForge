@@ -21,6 +21,7 @@ func spawn(def_id: String, pos: Vector2 = Vector2.ZERO, overrides: Dictionary = 
 	var def: Dictionary = DataRegistry.get_def("entities", def_id)
 	if def.is_empty():
 		push_error("[EntitySystem] Entity def '%s' not found" % def_id)
+		DebugOverlay.log_error("EntitySystem", "Entity def '%s' not found" % def_id)
 		return null
 
 	var entity: GameEntity = ENTITY_SCENE.instantiate()
@@ -54,6 +55,7 @@ func _attach_component(entity: GameEntity, comp_name: String, comp_data: Diction
 	var comp_registry := EngineAPI.get_system("component_registry")
 	if comp_registry == null:
 		push_error("[EntitySystem] ComponentRegistry not registered")
+		DebugOverlay.log_error("EntitySystem", "ComponentRegistry not registered")
 		return
 	var component: Node = comp_registry.call("create_component", comp_name, comp_data)
 	if component:

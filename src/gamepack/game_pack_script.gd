@@ -1,12 +1,11 @@
 ## GamePackScript - GamePack 脚本基类
-## 所有 GamePack 的主脚本继承此类
-## 框架级安全保护：子类代码出错不会崩溃整个游戏
+## 框架级安全保护：子类代码出错 → 游戏画面显示错误 → 不崩溃
 class_name GamePackScript
 extends Node
 
 var pack: GamePack = null
 var _error_count: int = 0
-const MAX_ERRORS := 50  # 超过此数量停止执行，防止日志刷屏
+const MAX_ERRORS := 50
 
 # === 生命周期钩子（子类重写）===
 
@@ -31,10 +30,7 @@ func emit(event_name: String, data: Dictionary = {}) -> void:
 	EngineAPI.emit_event(event_name, data)
 
 func listen(event_name: String, callback: Callable) -> void:
-	## 包裹回调，捕获异常
-	var safe_callback := func(d: Dictionary) -> void:
-		_safe_call(callback, [d])
-	EngineAPI.connect_event(event_name, safe_callback)
+	EngineAPI.connect_event(event_name, callback)
 
 func get_resource(res_name: String) -> float:
 	return EngineAPI.get_resource(res_name)
@@ -45,14 +41,23 @@ func set_var(key: String, value: Variant) -> void:
 func get_var(key: String, default: Variant = null) -> Variant:
 	return EngineAPI.get_variable(key, default)
 
-# === 安全调用 ===
+# === 安全辅助 ===
 
-func _safe_call(callable: Callable, args: Array = []) -> Variant:
+func _pack_error(message: String) -> void:
+	## GamePack 脚本中报告错误（显示在游戏画面上）
+	_error_count += 1
+	var source: String = pack.pack_id if pack else "unknown"
+	DebugOverlay.log_error(source, message)
 	if _error_count >= MAX_ERRORS:
-		return null
-	if not callable.is_valid():
-		return null
-	return callable.callv(args)
+		DebugOverlay.log_error(source, "Too many errors (%d), pack script paused" % _error_count)
+
+func _pack_warning(message: String) -> void:
+	var source: String = pack.pack_id if pack else "unknown"
+	DebugOverlay.log_warning(source, message)
+
+func _pack_info(message: String) -> void:
+	var source: String = pack.pack_id if pack else "unknown"
+	DebugOverlay.log_info(source, message)
 
 func _process(delta: float) -> void:
 	if _error_count >= MAX_ERRORS:

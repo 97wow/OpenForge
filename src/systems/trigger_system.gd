@@ -107,6 +107,7 @@ func _evaluate_single_condition(condition: Dictionary, event_data: Dictionary) -
 	if _condition_evaluators.has(type):
 		return _condition_evaluators[type].call(condition, event_data)
 	push_warning("[TriggerSystem] Unknown condition type: %s" % type)
+	DebugOverlay.log_warning("TriggerSystem", "Unknown condition type: %s" % type)
 	return false
 
 # === 动作执行 ===
@@ -123,6 +124,7 @@ func _execute_single_action(action: Dictionary, event_data: Dictionary) -> void:
 		_action_executors[type].call(action, event_data)
 	else:
 		push_warning("[TriggerSystem] Unknown action type: %s" % type)
+		DebugOverlay.log_warning("TriggerSystem", "Unknown action type: %s" % type)
 
 # === 扩展点 ===
 

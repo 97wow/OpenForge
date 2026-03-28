@@ -45,6 +45,7 @@ func has_component_type(type_name: String) -> bool:
 func create_component(type_name: String, data: Dictionary = {}) -> Node:
 	if not _registry.has(type_name):
 		push_warning("[ComponentRegistry] Unknown component type: %s" % type_name)
+		DebugOverlay.log_warning("ComponentRegistry", "Unknown component type: %s" % type_name)
 		return null
 
 	var info: Dictionary = _registry[type_name]

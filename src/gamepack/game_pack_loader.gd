@@ -59,11 +59,13 @@ func load_pack(pack_id: String) -> GamePack:
 	var pack_path := _find_pack_path(pack_id)
 	if pack_path == "":
 		push_error("[GamePackLoader] Pack '%s' not found" % pack_id)
+		DebugOverlay.log_error("GamePackLoader", "Pack '%s' not found" % pack_id)
 		return null
 
 	var pack_json := _load_pack_json(pack_path.path_join("pack.json"))
 	if pack_json.is_empty():
 		push_error("[GamePackLoader] Invalid pack.json for '%s'" % pack_id)
+		DebugOverlay.log_error("GamePackLoader", "Invalid pack.json for '%s'" % pack_id)
 		return null
 
 	print("[GamePackLoader] Loading pack: %s (%s)" % [

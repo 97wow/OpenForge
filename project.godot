@@ -23,6 +23,7 @@ EventBus="*res://src/core/event_bus.gd"
 EngineAPI="*res://src/core/engine_api.gd"
 DataRegistry="*res://src/core/data_registry.gd"
 SceneManager="*res://src/scenes/shared/scene_manager.gd"
+DebugOverlay="*res://src/core/debug_overlay.gd"
 
 [display]
 
