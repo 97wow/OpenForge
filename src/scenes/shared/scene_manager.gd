@@ -3,7 +3,6 @@
 ## 支持过渡动画
 extends Node
 
-var _current_scene: Node = null
 var _transition_rect: ColorRect = null
 var _is_transitioning: bool = false
 

@@ -11,14 +11,14 @@ var _systems: Dictionary = {}  # system_name -> Node
 
 # === 系统注册 ===
 
-func register_system(name: String, system: Node) -> void:
-	_systems[name] = system
+func register_system(sys_name: String, system: Node) -> void:
+	_systems[sys_name] = system
 
-func get_system(name: String) -> Node:
-	return _systems.get(name)
+func get_system(sys_name: String) -> Node:
+	return _systems.get(sys_name)
 
-func has_system(name: String) -> bool:
-	return _systems.has(name)
+func has_system(sys_name: String) -> bool:
+	return _systems.has(sys_name)
 
 # === 实体 API ===
 
@@ -74,38 +74,38 @@ func remove_component(entity: Node2D, component_name: String) -> void:
 
 # === 资源 API ===
 
-func set_resource(name: String, value: float) -> void:
+func set_resource(res_name: String, value: float) -> void:
 	var res_system := get_system("resource") as Node
 	if res_system:
-		res_system.call("set_value", name, value)
+		res_system.call("set_value", res_name, value)
 
-func get_resource(name: String) -> float:
+func get_resource(res_name: String) -> float:
 	var res_system := get_system("resource") as Node
 	if res_system == null:
 		return 0.0
-	return res_system.call("get_value", name)
+	return res_system.call("get_value", res_name)
 
-func add_resource(name: String, amount: float) -> void:
+func add_resource(res_name: String, amount: float) -> void:
 	var res_system := get_system("resource") as Node
 	if res_system:
-		res_system.call("add", name, amount)
+		res_system.call("add", res_name, amount)
 
-func subtract_resource(name: String, amount: float) -> bool:
+func subtract_resource(res_name: String, amount: float) -> bool:
 	var res_system := get_system("resource") as Node
 	if res_system == null:
 		return false
-	return res_system.call("subtract", name, amount)
+	return res_system.call("subtract", res_name, amount)
 
-func can_afford(name: String, amount: float) -> bool:
+func can_afford(res_name: String, amount: float) -> bool:
 	var res_system := get_system("resource") as Node
 	if res_system == null:
 		return false
-	return res_system.call("can_afford", name, amount)
+	return res_system.call("can_afford", res_name, amount)
 
-func define_resource(name: String, initial: float = 0.0, max_val: float = INF) -> void:
+func define_resource(res_name: String, initial: float = 0.0, max_val: float = INF) -> void:
 	var res_system := get_system("resource") as Node
 	if res_system:
-		res_system.call("define_resource", name, initial, max_val)
+		res_system.call("define_resource", res_name, initial, max_val)
 
 # === 属性 API ===
 
@@ -123,8 +123,8 @@ func add_stat_modifier(entity: Node2D, stat_name: String, modifier: Dictionary) 
 
 func remove_stat_modifier(modifier_id: String) -> void:
 	var stat_system := get_system("stat") as Node
-	if get_system("stat"):
-		get_system("stat").call("remove_modifier", modifier_id)
+	if stat_system:
+		stat_system.call("remove_modifier", modifier_id)
 
 # === 事件 API（委托 EventBus）===
 
@@ -225,7 +225,7 @@ func clear_variables() -> void:
 
 # === UI 工具 ===
 
-func show_message(text: String, duration: float = 3.0) -> void:
+func show_message(text: String, _duration: float = 3.0) -> void:
 	# TODO: 由 UI 系统实现
 	print("[Message] %s" % text)
 

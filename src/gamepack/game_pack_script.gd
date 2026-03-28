@@ -34,8 +34,8 @@ func emit(event_name: String, data: Dictionary = {}) -> void:
 func listen(event_name: String, callback: Callable) -> void:
 	EngineAPI.connect_event(event_name, callback)
 
-func get_resource(name: String) -> float:
-	return EngineAPI.get_resource(name)
+func get_resource(res_name: String) -> float:
+	return EngineAPI.get_resource(res_name)
 
 func set_var(key: String, value: Variant) -> void:
 	EngineAPI.set_variable(key, value)

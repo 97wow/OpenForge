@@ -260,19 +260,19 @@ func _act_destroy_entity(action: Dictionary, event_data: Dictionary) -> void:
 		EngineAPI.destroy_entity(entity)
 
 func _act_add_resource(action: Dictionary, event_data: Dictionary) -> void:
-	var name: String = action.get("resource", "")
+	var res_name: String = action.get("resource", "")
 	var amount = resolve_value(action.get("amount", 0), event_data)
-	EngineAPI.add_resource(name, float(amount))
+	EngineAPI.add_resource(res_name, float(amount))
 
 func _act_subtract_resource(action: Dictionary, event_data: Dictionary) -> void:
-	var name: String = action.get("resource", "")
+	var res_name: String = action.get("resource", "")
 	var amount = resolve_value(action.get("amount", 0), event_data)
-	EngineAPI.subtract_resource(name, float(amount))
+	EngineAPI.subtract_resource(res_name, float(amount))
 
 func _act_set_resource(action: Dictionary, event_data: Dictionary) -> void:
-	var name: String = action.get("resource", "")
+	var res_name: String = action.get("resource", "")
 	var value = resolve_value(action.get("value", 0), event_data)
-	EngineAPI.set_resource(name, float(value))
+	EngineAPI.set_resource(res_name, float(value))
 
 func _act_set_variable(action: Dictionary, event_data: Dictionary) -> void:
 	var key: String = action.get("key", "")

@@ -9,7 +9,7 @@ func _ready() -> void:
 	EventBus.emit_event("engine_ready")
 
 	# 加载 GamePack
-	var pack_id := _scene_data.get("pack_id", _get_pack_id())
+	var pack_id: String = str(_scene_data.get("pack_id", _get_pack_id()))
 	var loader := EngineAPI.get_system("pack_loader") as GamePackLoader
 	if loader:
 		var pack := loader.load_pack(pack_id)
@@ -26,4 +26,4 @@ func _get_pack_id() -> String:
 	for arg in OS.get_cmdline_args():
 		if arg.begins_with("--pack="):
 			return arg.substr(7)
-	return "rogue_survivor"
+	return "tower_defense"

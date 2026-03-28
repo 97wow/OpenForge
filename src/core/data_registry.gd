@@ -38,7 +38,7 @@ func load_file(ns: String, file_path: String) -> Dictionary:
 		_data[ns][id] = data
 	return data
 
-func load_array_file(ns: String, file_path: String) -> Array:
+func load_array_file(_ns: String, file_path: String) -> Array:
 	## 加载 JSON 数组文件（如 waves.json），返回数组
 	## 不存入 namespace（数组无 id），调用者自行处理
 	if not FileAccess.file_exists(file_path):
