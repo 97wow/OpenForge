@@ -46,6 +46,17 @@ LEGENDARY,Legendary,传说,レジェンダリー,전설
 VERSION,v{0} Alpha,v{0} 测试版,v{0} アルファ,v{0} 알파
 SKIP,Skip,跳过,スキップ,건너뛰기
 SET_BONUS,Set Bonus,套装效果,セットボーナス,세트 보너스
+SET_EFFECT_pierce,100% pierce through 3 enemies,100%穿透3个敌人,100%で3体貫通,100% 3체 관통
+SET_EFFECT_split,"40% split to 2 targets, 80% damage",40%分裂2个目标·80%伤害,40%で2体に分裂・80%ダメージ,40% 2체 분열·80% 피해
+SET_EFFECT_stat_mod,Attribute enhancement,属性强化,ステータス強化,능력치 강화
+SET_EFFECT_multi_shot,3 projectiles in fan spread,3发扇形射击,3発扇状射撃,3발 부채꼴 사격
+SET_EFFECT_burn_spread,"50% ignite, fire spreads",50%点燃·火焰传染,50%発火・延焼,50% 점화·화염 전이
+SET_EFFECT_freeze_shatter,"40% slow, ice shatter AoE",40%减速·冰碎范围伤害,40%減速・氷砕範囲ダメージ,40% 감속·빙결 범위 피해
+SET_EFFECT_chain_lightning,"30% chain 3 targets, 1s stun",30%闪电链3体·1秒眩晕,30%連鎖3体・1秒気絶,30% 연쇄 3체·1초 기절
+SET_EFFECT_random_element,35% random element on hit,35%命中随机附加元素,35%ランダム属性付与,35% 랜덤 속성 부여
+SET_EFFECT_reaper,"Execute <15% HP, +2% dmg/kill",处决15%以下·击杀永久+2%伤害,HP15%以下処刑・キル毎+2%,15% 이하 처형·처치당 +2%
+SET_EFFECT_storm,"Every 3 hits: AoE + 2s stun",每3击冲击波·2秒眩晕,3回毎に衝撃波・2秒気絶,매 3타 충격파·2초 기절
+SET_EFFECT_time_lord,"Time stop 3s, survive lethal once",时停3秒·致命伤存活一次,3秒時間停止・致死1回耐え,시정지 3초·치명타 1회 생존
 DMG_PHYSICAL,Physical,物理,物理,물리
 DMG_FROST,Frost,冰霜,フロスト,냉기
 DMG_FIRE,Fire,火焰,炎,화염

@@ -712,7 +712,12 @@ func _create_card_button(card: Dictionary, _is_full: bool = false) -> PanelConta
 			var bonus_type: String = bonus.get("type", "")
 			if bonus_type != "":
 				var bonus_desc := Label.new()
-				bonus_desc.text = tr("SET_BONUS") + ": " + bonus_type
+				var effect_key := "SET_EFFECT_" + bonus_type
+				var effect_text: String = tr(effect_key)
+				# 如果翻译键不存在（tr返回原key），用bonus_type
+				if effect_text == effect_key:
+					effect_text = bonus_type
+				bonus_desc.text = tr("SET_BONUS") + ": " + effect_text
 				bonus_desc.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				bonus_desc.add_theme_font_size_override("font_size", 10)
 				# 集齐则金色，未集齐灰色
@@ -1180,7 +1185,11 @@ func _update_hud() -> void:
 					# Buff tooltip: 套装名 + 效果类型
 					var bonus: Dictionary = set_data.get("set_bonus", {})
 					var tip := tr(set_tr_key) + " (" + tr("SET_COMPLETE").format([""]).strip_edges() + ")"
-					tip += "\n" + str(bonus.get("type", ""))
+					var eff_key := "SET_EFFECT_" + str(bonus.get("type", ""))
+					var eff_txt: String = tr(eff_key)
+					if eff_txt == eff_key:
+						eff_txt = str(bonus.get("type", ""))
+					tip += "\n" + eff_txt
 					buff_panel.tooltip_text = tip
 
 					_set_buff_container.add_child(buff_panel)
