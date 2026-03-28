@@ -1,0 +1,34 @@
+[
+  {
+    "id": "enemy_killed_reward",
+    "event": "entity_destroyed",
+    "conditions": [
+      { "type": "has_tag", "entity": "$event.entity", "tag": "enemy" }
+    ],
+    "actions": [
+      { "type": "add_resource", "resource": "gold", "amount": "$event.entity.meta.gold_reward" }
+    ]
+  },
+  {
+    "id": "enemy_reached_end",
+    "event": "path_completed",
+    "conditions": [
+      { "type": "has_tag", "entity": "$event.entity", "tag": "enemy" }
+    ],
+    "actions": [
+      { "type": "subtract_resource", "resource": "lives", "amount": "$event.entity.meta.lives_cost" },
+      { "type": "destroy_entity", "entity": "$event.entity" }
+    ]
+  },
+  {
+    "id": "lives_zero_defeat",
+    "event": "resource_changed",
+    "conditions": [
+      { "type": "compare_resource", "resource": "lives", "op": "<=", "value": 0 }
+    ],
+    "actions": [
+      { "type": "set_game_state", "state": "defeat" },
+      { "type": "show_message", "text": "防线被突破！游戏结束", "duration": 5.0 }
+    ]
+  }
+]

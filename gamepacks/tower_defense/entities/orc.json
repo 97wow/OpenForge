@@ -1,0 +1,16 @@
+{
+  "id": "orc",
+  "name": "兽人",
+  "tags": ["enemy", "mobile", "ground", "armored"],
+  "components": {
+    "visual": { "color": "#8d6e63", "size": 18 },
+    "health": { "max_hp": 200, "armor": 3 },
+    "movement": { "speed": 60 },
+    "path_follow": {},
+    "combat": { "gold_reward": 15 }
+  },
+  "meta": {
+    "gold_reward": 15,
+    "lives_cost": 1
+  }
+}

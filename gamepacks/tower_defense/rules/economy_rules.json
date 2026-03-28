@@ -1,0 +1,11 @@
+[
+  {
+    "id": "wave_complete_bonus",
+    "event": "wave_completed",
+    "conditions": [],
+    "actions": [
+      { "type": "add_resource", "resource": "gold", "amount": 25 },
+      { "type": "show_message", "text": "波次完成！奖励 25 金币" }
+    ]
+  }
+]

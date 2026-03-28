@@ -1,0 +1,16 @@
+{
+  "id": "troll",
+  "name": "巨魔",
+  "tags": ["enemy", "mobile", "ground", "boss"],
+  "components": {
+    "visual": { "color": "#e53935", "size": 24 },
+    "health": { "max_hp": 800, "armor": 8 },
+    "movement": { "speed": 40 },
+    "path_follow": {},
+    "combat": { "gold_reward": 50 }
+  },
+  "meta": {
+    "gold_reward": 50,
+    "lives_cost": 3
+  }
+}

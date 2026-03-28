@@ -1,0 +1,27 @@
+{
+  "id": "ice_tower",
+  "name": "冰塔",
+  "tags": ["tower", "building", "magic", "control"],
+  "components": {
+    "visual": { "color": "#80deea", "size": 30 },
+    "health": { "max_hp": 400 },
+    "combat": {
+      "damage": 8,
+      "attack_speed": 1.0,
+      "range": 160,
+      "attack_type": "single",
+      "target_filter_tag": "enemy",
+      "targeting": "closest",
+      "on_hit_effects": [
+        { "buff_id": "frost_slow", "duration": 2.0 }
+      ]
+    },
+    "collision": { "shape": "circle", "radius": 15 }
+  },
+  "meta": {
+    "cost": 100,
+    "tier": 1,
+    "sell_ratio": 0.7,
+    "upgrade_costs": [80, 160, 300]
+  }
+}

@@ -1,43 +1,112 @@
-## 全局事件总线 - 解耦系统间通信
-## 所有系统通过 EventBus 发送/监听事件，避免直接引用
+## EventBus - 动态事件总线
+## 所有事件在运行时注册，框架不硬编码任何游戏特定信号
+## GamePack 通过 register_event() 注册自定义事件
 extends Node
 
-# === 游戏流程 ===
-signal game_started
-signal game_paused
-signal game_resumed
-signal game_over(victory: bool)
-signal wave_started(wave_index: int)
-signal wave_completed(wave_index: int)
-signal all_waves_completed
+# 内部存储: event_name -> Array[Callable]
+var _listeners: Dictionary = {}
+# 事件元数据: event_name -> { description, param_names }
+var _event_meta: Dictionary = {}
+# 调试模式
+var debug_mode: bool = false
 
-# === 经济系统 ===
-signal gold_changed(current: int, delta: int)
-signal income_tick(amount: int)
+func _ready() -> void:
+	# 框架生命周期事件（唯一硬编码的事件，因为它们属于框架本身）
+	register_event("engine_ready", "框架初始化完成")
+	register_event("entity_spawned", "实体创建", ["entity"])
+	register_event("entity_destroyed", "实体销毁", ["entity"])
+	register_event("entity_damaged", "实体受伤", ["entity", "amount", "source"])
+	register_event("entity_healed", "实体治愈", ["entity", "amount", "source"])
+	register_event("resource_changed", "资源变更", ["resource", "old_value", "new_value", "delta"])
+	register_event("game_state_changed", "游戏状态变更", ["old_state", "new_state"])
+	register_event("variable_changed", "变量变更", ["key", "old_value", "new_value"])
+	register_event("gamepack_loaded", "GamePack加载完成", ["pack_id"])
+	register_event("gamepack_unloaded", "GamePack卸载", ["pack_id"])
+	register_event("trigger_fired", "触发器触发", ["trigger_id", "event_name"])
 
-# === 战斗系统 ===
-signal enemy_spawned(enemy: Node2D)
-signal enemy_reached_end(enemy: Node2D)
-signal enemy_killed(enemy: Node2D, killer: Node2D)
-signal tower_placed(tower: Node2D, grid_pos: Vector2i)
-signal tower_sold(tower: Node2D, refund: int)
-signal tower_upgraded(tower: Node2D, new_level: int)
-signal projectile_hit(projectile: Node2D, target: Node2D, damage: float)
+# === 事件注册 ===
 
-# === Buff/效果 ===
-signal buff_applied(target: Node2D, buff_id: String)
-signal buff_removed(target: Node2D, buff_id: String)
+func register_event(event_name: String, description: String = "", param_names: Array = []) -> void:
+	if not _listeners.has(event_name):
+		_listeners[event_name] = [] as Array[Callable]
+	_event_meta[event_name] = {
+		"description": description,
+		"param_names": param_names,
+	}
+	if debug_mode:
+		print("[EventBus] Registered: %s" % event_name)
 
-# === 玩家状态 ===
-signal lives_changed(current: int, delta: int)
-signal player_level_up(new_level: int)
+func unregister_event(event_name: String) -> void:
+	_listeners.erase(event_name)
+	_event_meta.erase(event_name)
 
-# === UI ===
-signal tile_selected(grid_pos: Vector2i)
-signal tile_deselected
-signal tower_selection_changed(tower: Node2D)
-signal build_menu_requested(grid_pos: Vector2i, available_towers: Array)
+func has_event(event_name: String) -> bool:
+	return _listeners.has(event_name)
 
-# === 地图/数据 ===
-signal map_loaded(map_id: String)
-signal map_pack_loaded(pack_id: String)
+# === 监听 ===
+
+func connect_event(event_name: String, callback: Callable) -> void:
+	if not _listeners.has(event_name):
+		register_event(event_name)
+	var listeners: Array = _listeners[event_name]
+	if callback not in listeners:
+		listeners.append(callback)
+
+func disconnect_event(event_name: String, callback: Callable) -> void:
+	if not _listeners.has(event_name):
+		return
+	var listeners: Array = _listeners[event_name]
+	var idx := listeners.find(callback)
+	if idx >= 0:
+		listeners.remove_at(idx)
+
+# === 触发 ===
+
+func emit_event(event_name: String, data: Dictionary = {}) -> void:
+	if debug_mode:
+		print("[EventBus] Emit: %s %s" % [event_name, data])
+	if not _listeners.has(event_name):
+		if debug_mode:
+			push_warning("[EventBus] No listeners for '%s'" % event_name)
+		return
+	var listeners := _listeners[event_name].duplicate() as Array
+	for callback: Callable in listeners:
+		if callback.is_valid():
+			callback.call(data)
+
+# === 查询 ===
+
+func get_registered_events() -> Array[String]:
+	var result: Array[String] = []
+	for key in _listeners:
+		result.append(key)
+	return result
+
+func get_event_meta(event_name: String) -> Dictionary:
+	return _event_meta.get(event_name, {})
+
+func get_listener_count(event_name: String) -> int:
+	if not _listeners.has(event_name):
+		return 0
+	return _listeners[event_name].size()
+
+# === 批量操作 ===
+
+func clear_listeners(event_name: String) -> void:
+	if _listeners.has(event_name):
+		_listeners[event_name].clear()
+
+func clear_all_custom_events() -> void:
+	var core_events := [
+		"engine_ready", "entity_spawned", "entity_destroyed",
+		"entity_damaged", "entity_healed", "resource_changed",
+		"game_state_changed", "variable_changed",
+		"gamepack_loaded", "gamepack_unloaded", "trigger_fired",
+	]
+	var to_remove: Array[String] = []
+	for event_name in _listeners:
+		if event_name not in core_events:
+			to_remove.append(event_name)
+	for event_name in to_remove:
+		_listeners.erase(event_name)
+		_event_meta.erase(event_name)

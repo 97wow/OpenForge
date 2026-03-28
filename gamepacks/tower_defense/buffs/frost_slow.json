@@ -1,0 +1,9 @@
+{
+  "id": "frost_slow",
+  "name": "冰霜减速",
+  "description": "降低目标移动速度 50%",
+  "stack_mode": "refresh",
+  "stat_modifiers": [
+    { "stat": "move_speed", "type": "percent", "value": -0.5 }
+  ]
+}

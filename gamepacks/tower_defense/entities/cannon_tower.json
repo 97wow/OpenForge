@@ -1,0 +1,26 @@
+{
+  "id": "cannon_tower",
+  "name": "炮塔",
+  "tags": ["tower", "building", "physical"],
+  "components": {
+    "visual": { "color": "#ff7043", "size": 36 },
+    "health": { "max_hp": 600 },
+    "combat": {
+      "damage": 40,
+      "attack_speed": 0.6,
+      "range": 150,
+      "attack_type": "aoe",
+      "aoe_radius": 64,
+      "target_filter_tag": "enemy",
+      "targeting": "cluster",
+      "on_hit_effects": []
+    },
+    "collision": { "shape": "circle", "radius": 18 }
+  },
+  "meta": {
+    "cost": 120,
+    "tier": 1,
+    "sell_ratio": 0.7,
+    "upgrade_costs": [100, 200, 400]
+  }
+}

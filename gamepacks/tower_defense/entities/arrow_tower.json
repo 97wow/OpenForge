@@ -1,0 +1,25 @@
+{
+  "id": "arrow_tower",
+  "name": "箭塔",
+  "tags": ["tower", "building", "physical"],
+  "components": {
+    "visual": { "color": "#4fc3f7", "size": 32 },
+    "health": { "max_hp": 500 },
+    "combat": {
+      "damage": 15,
+      "attack_speed": 1.5,
+      "range": 180,
+      "attack_type": "single",
+      "target_filter_tag": "enemy",
+      "targeting": "closest",
+      "on_hit_effects": []
+    },
+    "collision": { "shape": "circle", "radius": 16 }
+  },
+  "meta": {
+    "cost": 80,
+    "tier": 1,
+    "sell_ratio": 0.7,
+    "upgrade_costs": [60, 120, 250]
+  }
+}

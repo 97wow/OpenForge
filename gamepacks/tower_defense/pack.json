@@ -1,0 +1,27 @@
+{
+  "id": "tower_defense",
+  "name": "Tower Defense Classic",
+  "version": "0.1.0",
+  "description": "经典塔防游戏模式 - OpenForge 示例 GamePack",
+  "main_script": "scripts/td_game_mode.gd",
+  "systems": ["grid", "entity", "resource", "trigger", "stat", "buff"],
+  "resources": {
+    "gold": { "initial": 200, "min": 0 },
+    "lives": { "initial": 20, "min": 0 }
+  },
+  "events": [
+    "wave_started",
+    "wave_completed",
+    "all_waves_completed",
+    "tower_placed",
+    "tower_sold",
+    "enemy_reached_end",
+    "path_completed",
+    "buff_applied",
+    "buff_removed"
+  ],
+  "entity_dir": "entities",
+  "rules_dir": "rules",
+  "buff_dir": "buffs",
+  "maps_dir": "maps"
+}

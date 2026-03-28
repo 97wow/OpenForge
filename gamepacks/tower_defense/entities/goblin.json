@@ -1,0 +1,16 @@
+{
+  "id": "goblin",
+  "name": "哥布林",
+  "tags": ["enemy", "mobile", "ground"],
+  "components": {
+    "visual": { "color": "#66bb6a", "size": 14 },
+    "health": { "max_hp": 80, "armor": 0 },
+    "movement": { "speed": 100 },
+    "path_follow": {},
+    "combat": { "gold_reward": 8 }
+  },
+  "meta": {
+    "gold_reward": 8,
+    "lives_cost": 1
+  }
+}
