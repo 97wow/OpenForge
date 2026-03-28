@@ -7,21 +7,21 @@ var _scene_data: Dictionary = {}
 
 const CLASSES := [
 	{
-		"id": "warrior", "name": "Warrior", "icon": "STR",
+		"id": "warrior", "name_key": "WARRIOR", "icon_key": "STR",
 		"color": Color(0.9, 0.22, 0.21),
-		"desc": "High damage, slow attack.\nTanky with heavy armor.\n\n+3 STR / +2 STA / +1 DEF per level",
+		"desc_key": "WARRIOR_DESC",
 		"stats": "HP: 200 | DMG: 20 | SPD: 0.5s | Range: 280",
 	},
 	{
-		"id": "ranger", "name": "Ranger", "icon": "AGI",
+		"id": "ranger", "name_key": "RANGER", "icon_key": "AGI",
 		"color": Color(0.26, 0.63, 0.28),
-		"desc": "Extremely fast attacks.\nLong range, high mobility.\n\n+3 AGI / +1 STR / +1 STA per level",
+		"desc_key": "RANGER_DESC",
 		"stats": "HP: 120 | DMG: 7 | SPD: 0.2s | Range: 400",
 	},
 	{
-		"id": "mage", "name": "Mage", "icon": "INT",
+		"id": "mage", "name_key": "MAGE", "icon_key": "INT",
 		"color": Color(0.49, 0.34, 0.76),
-		"desc": "High burst damage.\nSlow attack, very fragile.\n\n+3 INT / +1 AGI / +1 STA per level",
+		"desc_key": "MAGE_DESC",
 		"stats": "HP: 100 | DMG: 25 | SPD: 0.6s | Range: 320",
 	},
 ]
@@ -92,14 +92,14 @@ func _create_class_card(cls: Dictionary) -> PanelContainer:
 
 	# 职业名
 	var name_label := Label.new()
-	name_label.text = cls["name"]
+	name_label.text = tr(cls["name_key"])
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	name_label.add_theme_font_size_override("font_size", 24)
 	vbox.add_child(name_label)
 
 	# 主属性标签
 	var attr_label := Label.new()
-	attr_label.text = "[ %s ]" % cls["icon"]
+	attr_label.text = "[ %s ]" % tr(cls["icon_key"])
 	attr_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	attr_label.add_theme_font_size_override("font_size", 14)
 	attr_label.add_theme_color_override("font_color", cls["color"])
@@ -115,7 +115,7 @@ func _create_class_card(cls: Dictionary) -> PanelContainer:
 
 	# 描述
 	var desc_label := Label.new()
-	desc_label.text = cls["desc"]
+	desc_label.text = tr(cls["desc_key"])
 	desc_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	desc_label.add_theme_font_size_override("font_size", 13)
 	desc_label.add_theme_color_override("font_color", Color(0.55, 0.55, 0.65))
@@ -129,7 +129,7 @@ func _create_class_card(cls: Dictionary) -> PanelContainer:
 
 	# 选择按钮
 	var btn := Button.new()
-	btn.text = "Select %s" % cls["name"]
+	btn.text = tr("SELECT_CLASS").format([tr(cls["name_key"])])
 	btn.custom_minimum_size = Vector2(0, 45)
 	btn.pressed.connect(_on_class_selected.bind(cls["id"]))
 	vbox.add_child(btn)

@@ -44,3 +44,11 @@ UNCOMMON,Uncommon,稀有,アンコモン,고급
 RARE,Rare,史诗,レア,희귀
 LEGENDARY,Legendary,传说,レジェンダリー,전설
 VERSION,v{0} Alpha,v{0} 测试版,v{0} アルファ,v{0} 알파
+WARRIOR_DESC,"High damage, slow attack.\nTanky with heavy armor.\n\n+3 STR / +2 STA / +1 DEF per level",高伤害低攻速\n厚甲重装\n\n每级 +3力量 / +2耐力 / +1护甲,高ダメージ・低攻撃速度\n重装甲\n\n毎Lv: +3力 / +2耐 / +1防,높은 피해 느린 공속\n중장갑\n\n레벨당 +3힘 / +2체 / +1방
+RANGER_DESC,"Extremely fast attacks.\nLong range, high mobility.\n\n+3 AGI / +1 STR / +1 STA per level",极速攻击\n远射程·高机动\n\n每级 +3敏捷 / +1力量 / +1耐力,超高速攻撃\n長射程・高機動\n\n毎Lv: +3敏 / +1力 / +1耐,초고속 공격\n장거리·고기동\n\n레벨당 +3민 / +1힘 / +1체
+MAGE_DESC,"High burst damage.\nSlow attack, very fragile.\n\n+3 INT / +1 AGI / +1 STA per level",高爆发伤害\n攻速慢·非常脆弱\n\n每级 +3智力 / +1敏捷 / +1耐力,高バースト\n低攻撃速度・脆い\n\n毎Lv: +3知 / +1敏 / +1耐,높은 폭딜\n느린 공속·매우 약함\n\n레벨당 +3지 / +1민 / +1체
+LANGUAGE,Language,语言,言語,언어
+LANG_EN,English,English,English,English
+LANG_ZH,中文,中文,中文,中文
+LANG_JA,日本語,日本語,日本語,日本語
+LANG_KO,한국어,한국어,한국어,한국어
