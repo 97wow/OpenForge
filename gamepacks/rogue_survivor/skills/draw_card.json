@@ -1,0 +1,10 @@
+{
+	"id": "draw_card",
+	"name_key": "DRAW_CARD",
+	"desc_key": "DRAW_CARD_DESC",
+	"icon": "",
+	"hotkey": "F",
+	"cooldown": 0,
+	"cost_resource": "wood",
+	"border_color": "#8066B3"
+}

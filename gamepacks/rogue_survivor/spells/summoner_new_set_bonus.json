@@ -1,0 +1,20 @@
+{
+  "id": "summoner_new_set_bonus",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_summon_on_kill_chance",
+      "base_points": 0.2,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_summon_damage_bonus",
+      "base_points": 0.3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

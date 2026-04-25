@@ -1,0 +1,19 @@
+{
+  "id": "test_stun_bolt",
+  "school": "nature",
+  "cooldown": 8.0,
+  "effects": [
+    {
+      "type": "SCHOOL_DAMAGE",
+      "base_points": 30,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    },
+    {
+      "type": "APPLY_AURA",
+      "aura": "CC_STUN",
+      "duration": 3.0,
+      "base_points": 0,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "healer_set_bonus",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_kill_heal_pct",
+      "base_points": 0.05,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_shield_interval",
+      "base_points": 15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

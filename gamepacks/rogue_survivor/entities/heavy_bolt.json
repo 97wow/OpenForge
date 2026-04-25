@@ -3,14 +3,16 @@
   "name": "Heavy Bolt",
   "tags": ["projectile", "friendly_projectile"],
   "components": {
-    "visual": { "color": "#ffffff", "size": 12, "show_hp_bar": false },
+    "visual": { "color": "#ffffff", "size": 12, "show_hp_bar": false, "shape_hint": "sphere" },
     "projectile": {
-      "speed": 700,
+      "speed": 10.0,
       "damage": 35,
-      "max_range": 450,
+      "max_range": 6.0,
       "pierce_count": 0,
       "target_tag": "enemy",
-      "hit_radius": 16,
+      "hit_radius": 0.48,
+      "splash_radius": 3.5,
+      "splash_damage_pct": 0.35,
       "damage_type": "physical"
     }
   },

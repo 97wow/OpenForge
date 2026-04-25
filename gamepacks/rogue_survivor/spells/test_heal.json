@@ -1,0 +1,14 @@
+{
+  "id": "test_heal",
+  "school": "holy",
+  "cast_time": 1.5,
+  "interruptible": true,
+  "cooldown": 4.0,
+  "effects": [
+    {
+      "type": "HEAL",
+      "base_points": 80,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -3,21 +3,21 @@
   "name": "Mage",
   "tags": ["hero", "player", "friendly"],
   "components": {
-    "visual": { "color": "#7e57c2", "size": 26 },
+    "visual": { "color": "#7e57c2", "size": 26, "shape_hint": "capsule", "scene": "res://assets/models/characters/Mage.glb", "model_scale": 1.1, "anim_attack": "Spellcast_Shoot", "anim_run": "Running_A", "anim_idle": "Idle", "anim_death": "Death_A", "anim_spell": "Spellcast_Shoot" },
     "health": { "max_hp": 120, "armor": 2 },
-    "movement": { "speed": 190 },
+    "movement": { "speed": 3.0 },
     "player_input": {
-      "shoot_cooldown": 2.2,
+      "shoot_cooldown": 1.2,
       "projectile_id": "fireball",
-      "projectile_speed": 800,
+      "projectile_speed": 14.0,
       "projectile_damage": 25,
-      "attack_range": 350,
+      "attack_range": 6.0,
       "target_tag": "enemy"
     },
-    "collision": { "shape": "circle", "radius": 10 },
+    "collision": { "shape": "circle", "radius": 0.35 },
     "alert": {
-      "alert_range": 500,
-      "attack_range": 350,
+      "alert_range": 9.0,
+      "attack_range": 6.0,
       "target_tag": "enemy",
       "max_auto_approaches": 2
     }

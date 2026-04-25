@@ -1,0 +1,34 @@
+{
+  "id": "dragon_force_set_bonus",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_dragon_breath_damage",
+      "base_points": 30,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_dragon_armor",
+      "base_points": 12,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_flight_speed_pct",
+      "base_points": 0.35,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_element_immune_duration",
+      "base_points": 5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

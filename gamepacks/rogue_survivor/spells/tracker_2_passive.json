@@ -1,0 +1,13 @@
+{
+  "id": "tracker_2_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_homing_projectile",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

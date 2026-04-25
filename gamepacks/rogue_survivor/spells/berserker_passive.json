@@ -1,0 +1,13 @@
+{
+  "id": "berserker_passive",
+  "name": "Berserker Rage",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_berserker_rage",
+      "base_points": 1,
+      "mode": "set",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

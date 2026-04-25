@@ -1,0 +1,59 @@
+{
+  "id": "shadow_lord",
+  "name": "Shadow Lord",
+  "tags": [
+    "enemy",
+    "mobile",
+    "ground",
+    "boss"
+  ],
+  "components": {
+    "visual": {
+      "color": "#7b1fa2",
+      "size": 38,
+      "shape_hint": "cylinder",
+      "scene": "res://assets/models/enemies/Skeleton_Mage.glb",
+      "model_scale": 2.0,
+      "anim_attack": "1H_Melee_Attack_Chop",
+      "anim_run": "Running_A",
+      "anim_idle": "Idle",
+      "anim_death": "Death_A",
+      "anim_spell": "Spellcast_Shoot"
+    },
+    "health": {
+      "max_hp": 1200,
+      "armor": 8,
+      "magic_resist": 5
+    },
+    "movement": {
+      "speed": 1.5
+    },
+    "ai_move_to": {
+      "target_tag": "fountain",
+      "attack_range": 3.0
+    },
+    "combat": {
+      "damage": 50,
+      "attack_speed": 0.7,
+      "range": 3.0,
+      "attack_type": "single",
+      "target_filter_tag": "fountain",
+      "targeting": "closest"
+    },
+    "collision": {
+      "shape": "circle",
+      "radius": 0.6
+    }
+  },
+  "meta": {
+    "xp_reward": 200,
+    "gold_reward": 80,
+    "loot_table": "boss_loot",
+    "boss": true,
+    "boss_name_key": "BOSS_SHADOW_LORD",
+    "boss_spells": [
+      "shadow_lord_summon",
+      "shadow_lord_nova"
+    ]
+  }
+}

@@ -4,12 +4,10 @@
   "effects": [
     {
       "type": "SET_VARIABLE",
-      "key": "hero_chain_stun_duration",
+      "key": "hero_chain_stun",
       "base_points": 0.5,
       "mode": "add",
-      "target": {
-        "category": "SELF"
-      }
+      "target": { "category": "SELF" }
     }
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "id": "training_dummy",
+  "tags": ["enemy", "structure", "training_dummy"],
+  "meta": {
+    "xp_reward": 0,
+    "gold_reward": 0
+  },
+  "components": {
+    "health": {
+      "max_hp": 99999,
+      "armor": 10,
+      "magic_resist": 5,
+      "show_damage_numbers": true
+    },
+    "visual": {
+      "shape": "circle",
+      "color": "#aa8844",
+      "size": 24,
+      "shape_hint": "cylinder"
+    },
+    "collision": {
+      "radius": 0.5
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "void_4_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_slow_field_radius",
+      "base_points": 100,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

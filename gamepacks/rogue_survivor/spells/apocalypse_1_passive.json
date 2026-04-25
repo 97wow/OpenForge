@@ -1,0 +1,13 @@
+{
+  "id": "apocalypse_1_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_damage_aura",
+      "base_points": 10,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

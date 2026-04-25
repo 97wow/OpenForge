@@ -1,0 +1,27 @@
+{
+  "id": "apocalypse_set_bonus",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_damage_aura",
+      "base_points": 15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_crit_explosion",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_screen_nuke_cooldown",
+      "base_points": 60,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

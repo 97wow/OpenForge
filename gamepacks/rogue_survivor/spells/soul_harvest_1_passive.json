@@ -1,0 +1,13 @@
+{
+  "id": "soul_harvest_1_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_permanent_damage_per_kill",
+      "base_points": 0.5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

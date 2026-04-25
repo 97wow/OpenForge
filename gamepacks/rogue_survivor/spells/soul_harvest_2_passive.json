@@ -1,0 +1,13 @@
+{
+  "id": "soul_harvest_2_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_kill_crit_bonus",
+      "base_points": 0.05,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

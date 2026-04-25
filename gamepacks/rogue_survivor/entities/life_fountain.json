@@ -3,17 +3,17 @@
   "name": "Life Fountain",
   "tags": ["fountain", "friendly", "structure"],
   "components": {
-    "visual": { "color": "#ce93d8", "size": 48 },
+    "visual": { "color": "#ce93d8", "size": 48, "shape_hint": "cylinder" },
     "health": { "max_hp": 500, "armor": 5 },
     "combat": {
       "damage": 5,
       "attack_speed": 0.8,
-      "range": 200,
+      "range": 4.0,
       "attack_type": "single",
       "target_filter_tag": "enemy",
       "targeting": "closest"
     },
-    "collision": { "shape": "circle", "radius": 25 }
+    "collision": { "shape": "circle", "radius": 0.6 }
   },
   "meta": {}
 }

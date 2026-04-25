@@ -1,0 +1,13 @@
+{
+  "id": "fate_1_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_random_effect_on_hit",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

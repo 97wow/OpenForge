@@ -1,0 +1,14 @@
+{
+  "id": "test_fireball",
+  "school": "fire",
+  "cast_time": 2.0,
+  "interruptible": true,
+  "cooldown": 3.0,
+  "effects": [
+    {
+      "type": "SCHOOL_DAMAGE",
+      "base_points": 120,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    }
+  ]
+}

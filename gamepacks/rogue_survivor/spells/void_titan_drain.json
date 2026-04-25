@@ -1,0 +1,15 @@
+{
+  "id": "void_titan_drain",
+  "name": "Void Drain",
+  "description": "Drains life from nearby enemies, healing the Titan",
+  "cooldown": 10.0,
+  "effects": [
+    {
+      "type": "AREA_DAMAGE",
+      "damage_type": "shadow",
+      "base_value": 25,
+      "radius": 7.5,
+      "target_category": "enemy_of_caster"
+    }
+  ]
+}

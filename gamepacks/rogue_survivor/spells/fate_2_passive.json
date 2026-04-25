@@ -1,0 +1,13 @@
+{
+  "id": "fate_2_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_random_buff_interval",
+      "base_points": 10,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

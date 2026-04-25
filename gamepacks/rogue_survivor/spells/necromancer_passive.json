@@ -1,0 +1,20 @@
+{
+  "id": "necromancer_passive",
+  "name": "Dark Pact",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_necro_raise_chance",
+      "base_points": 0.3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_life_steal",
+      "base_points": 0.08,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

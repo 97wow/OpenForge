@@ -1,0 +1,57 @@
+{
+  "id": "bone_dragon",
+  "name": "Bone Dragon",
+  "tags": [
+	"enemy",
+	"mobile",
+	"ground",
+    "boss"
+  ],
+  "components": {
+	"visual": {
+	  "color": "#ff6f00",
+	  "size": 42,
+	  "shape_hint": "cylinder",
+	  "scene": "res://assets/models/enemies/Skeleton_Warrior.glb",
+	  "model_scale": 2.5,
+	  "anim_attack": "1H_Melee_Attack_Chop",
+	  "anim_run": "Running_A",
+	  "anim_idle": "Idle",
+	  "anim_death": "Death_A",
+	  "anim_spell": "Spellcast_Shoot"
+	},
+	"health": {
+	  "max_hp": 800,
+	  "armor": 12
+	},
+	"movement": {
+	  "speed": 1.0
+	},
+	"ai_move_to": {
+	  "target_tag": "fountain",
+	  "attack_range": 3.0
+	},
+	"combat": {
+	  "damage": 40,
+	  "attack_speed": 0.5,
+	  "range": 3.0,
+	  "attack_type": "single",
+	  "target_filter_tag": "fountain",
+	  "targeting": "closest"
+	},
+	"collision": {
+	  "shape": "circle",
+	  "radius": 0.7
+	}
+  },
+  "meta": {
+	"xp_reward": 100,
+	"gold_reward": 50,
+	"loot_table": "boss_loot",
+	"boss": true,
+	"boss_name_key": "BOSS_BONE_DRAGON",
+	"boss_spells": [
+      "bone_dragon_breath"
+	]
+  }
+}

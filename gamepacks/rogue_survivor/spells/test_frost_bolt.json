@@ -1,0 +1,19 @@
+{
+  "id": "test_frost_bolt",
+  "school": "frost",
+  "cooldown": 1.5,
+  "effects": [
+    {
+      "type": "SCHOOL_DAMAGE",
+      "base_points": 50,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    },
+    {
+      "type": "APPLY_AURA",
+      "aura": "MOD_SPEED_SLOW",
+      "base_points": 0.4,
+      "duration": 3.0,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    }
+  ]
+}

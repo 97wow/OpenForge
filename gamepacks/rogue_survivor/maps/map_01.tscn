@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://rogue_map_01"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+size = Vector2(96, 54)
+
+[node name="Map" type="Node3D"]
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 27)
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="Spawn_01" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+
+[node name="Spawn_02" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 5)
+
+[node name="Spawn_03" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 17.5)
+
+[node name="Landmarks" type="Node3D" parent="."]
+
+[node name="PlayerBase" type="Marker3D" parent="Landmarks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.5, 0, 42.5)
+
+[node name="EnemyBase" type="Marker3D" parent="Landmarks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 0, 11.5)
+
+[node name="HeroStart" type="Marker3D" parent="Landmarks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 0, 37.5)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Lighting" type="Node3D" parent="."]

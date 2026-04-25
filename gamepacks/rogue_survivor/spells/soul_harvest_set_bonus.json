@@ -1,0 +1,27 @@
+{
+  "id": "soul_harvest_set_bonus",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_permanent_damage_per_kill",
+      "base_points": 0.8,
+      "mode": "set",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_kill_crit_bonus",
+      "base_points": 0.08,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_soul_shockwave_threshold",
+      "base_points": 80,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

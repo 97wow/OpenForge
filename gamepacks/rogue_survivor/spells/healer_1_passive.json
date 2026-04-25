@@ -1,0 +1,13 @@
+{
+  "id": "healer_1_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_kill_heal_pct",
+      "base_points": 0.03,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

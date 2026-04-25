@@ -1,0 +1,13 @@
+{
+  "id": "ice_fire_3_passive",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_fusion_explosion_damage",
+      "base_points": 35,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

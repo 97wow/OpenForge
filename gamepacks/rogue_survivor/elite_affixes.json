@@ -1,0 +1,70 @@
+{
+  "elite_config": {
+	"hp_multiplier": 3.0,
+	"damage_multiplier": 1.5,
+	"size_multiplier": 1.6,
+	"xp_multiplier": 5,
+	"gold_multiplier": 3,
+	"min_affixes": 1,
+	"max_affixes": 2,
+	"elite_waves": [5, 13, 17, 21, 25, 29],
+	"boss_waves": [10, 20, 30]
+  },
+  "affixes": {
+	"reflect": {
+	  "id": "reflect",
+	  "name_key": "AFFIX_REFLECT",
+	  "desc_key": "AFFIX_REFLECT_DESC",
+	  "reflect_pct": 0.15
+	},
+	"lightning_shield": {
+	  "id": "lightning_shield",
+	  "name_key": "AFFIX_LIGHTNING_SHIELD",
+	  "desc_key": "AFFIX_LIGHTNING_SHIELD_DESC",
+	  "tick_interval": 3.0,
+	  "damage": 12,
+	  "range": 1.0
+	},
+	"splitting": {
+	  "id": "splitting",
+	  "name_key": "AFFIX_SPLITTING",
+	  "desc_key": "AFFIX_SPLITTING_DESC",
+	  "split_count": 2,
+	  "hp_ratio": 0.5
+	},
+	"vampiric": {
+	  "id": "vampiric",
+	  "name_key": "AFFIX_VAMPIRIC",
+	  "desc_key": "AFFIX_VAMPIRIC_DESC",
+	  "heal_pct": 0.05
+	},
+	"frost_aura": {
+	  "id": "frost_aura",
+	  "name_key": "AFFIX_FROST_AURA",
+	  "desc_key": "AFFIX_FROST_AURA_DESC",
+	  "range": 0.8,
+	  "slow_pct": 0.15,
+	  "tick_interval": 1.0
+	},
+	"enrage": {
+	  "id": "enrage",
+	  "name_key": "AFFIX_ENRAGE",
+	  "desc_key": "AFFIX_ENRAGE_DESC",
+	  "hp_threshold": 0.5,
+	  "attack_speed_mult": 2.0
+	},
+	"shielded": {
+	  "id": "shielded",
+	  "name_key": "AFFIX_SHIELDED",
+	  "desc_key": "AFFIX_SHIELDED_DESC",
+	  "interval": 10.0,
+	  "shield_pct": 0.2
+	},
+	"thorns": {
+	  "id": "thorns",
+	  "name_key": "AFFIX_THORNS",
+	  "desc_key": "AFFIX_THORNS_DESC",
+	  "flat_damage": 10
+	}
+  }
+}

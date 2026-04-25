@@ -1,0 +1,13 @@
+{
+  "id": "void_2_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_blink_attack_speed",
+      "base_points": 0.5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "summoner_2_passive",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_summon_damage_bonus",
+      "base_points": 0.25,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

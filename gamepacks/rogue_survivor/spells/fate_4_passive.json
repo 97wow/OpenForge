@@ -1,0 +1,13 @@
+{
+  "id": "fate_4_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_random_kill_reward_multi",
+      "base_points": 2,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

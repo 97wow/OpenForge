@@ -1,0 +1,20 @@
+{
+  "id": "windrunner_passive",
+  "name": "Wind Walk",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_pierce_chance",
+      "base_points": 0.5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_pierce_count",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "void_walker_set_bonus",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_blink_interval",
+      "base_points": 4,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_blink_attack_speed",
+      "base_points": 0.6,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_shadow_clone",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_slow_field_radius",
+      "base_points": 120,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

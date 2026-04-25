@@ -1,0 +1,20 @@
+{
+  "id": "test_drain_life",
+  "school": "shadow",
+  "channel_time": 4.0,
+  "channel_period": 1.0,
+  "interruptible": true,
+  "cooldown": 6.0,
+  "effects": [
+    {
+      "type": "SCHOOL_DAMAGE",
+      "base_points": 25,
+      "target": { "category": "DEFAULT", "check": "ENEMY" }
+    },
+    {
+      "type": "HEAL",
+      "base_points": 15,
+      "target": { "category": "SELF" }
+    }
+  ]
+}

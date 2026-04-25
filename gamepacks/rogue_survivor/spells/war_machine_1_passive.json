@@ -1,0 +1,13 @@
+{
+  "id": "war_machine_1_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_knockback_force",
+      "base_points": 0.6,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

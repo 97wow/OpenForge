@@ -1,0 +1,13 @@
+{
+  "id": "alchemist_1_passive",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_random_element_chance",
+      "base_points": 0.2,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "genesis_1_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_all_damage_pct",
+      "base_points": 0.15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

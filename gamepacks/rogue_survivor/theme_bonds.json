@@ -1,0 +1,339 @@
+[
+  {
+	"id": "elemental_master",
+	"name_key": "BOND_ELEMENTAL_MASTER",
+	"desc_key": "BOND_ELEMENTAL_MASTER_DESC",
+	"required_sets": ["flame_set_bonus", "frost_set_bonus", "lightning_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_ignite_chance", "base_points": 0.1, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_slow_chance", "base_points": 0.1, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_chain_chance", "base_points": 0.05, "mode": "add"}
+	]
+  },
+  {
+	"id": "warrior_spirit",
+	"name_key": "BOND_WARRIOR_SPIRIT",
+	"desc_key": "BOND_WARRIOR_SPIRIT_DESC",
+	"required_sets": ["guardian_set_bonus", "war_machine_set_bonus", "blood_moon_set_bonus", "barrage_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_all_damage_pct", "base_points": 0.05, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_all_defense_pct", "base_points": 0.05, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_attack_speed_pct", "base_points": 0.05, "mode": "add"}
+	]
+  },
+  {
+	"id": "shadow_arts",
+	"name_key": "BOND_SHADOW_ARTS",
+	"desc_key": "BOND_SHADOW_ARTS_DESC",
+	"required_sets": ["shadow_blade_set_bonus", "poison_set_bonus", "vampire_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_shadow_damage_pct", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_life_steal", "base_points": 0.03, "mode": "add"}
+	]
+  },
+  {
+	"id": "divine_protection",
+	"name_key": "BOND_DIVINE_PROTECTION",
+	"desc_key": "BOND_DIVINE_PROTECTION_DESC",
+	"required_sets": ["guardian_set_bonus", "healer_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_shield_interval", "base_points": -3.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_hp_regen", "base_points": 3.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_reflect_damage", "base_points": 0.1, "mode": "add"}
+	]
+  },
+  {
+	"id": "berserker_fury",
+	"name_key": "BOND_BERSERKER_FURY",
+	"desc_key": "BOND_BERSERKER_FURY_DESC",
+	"required_sets": ["blood_moon_set_bonus", "reaper_set_bonus", "crit_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_low_hp_damage_bonus", "base_points": 0.2, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_crit_damage_bonus", "base_points": 0.3, "mode": "add"}
+	]
+  },
+  {
+	"id": "time_space",
+	"name_key": "BOND_TIME_SPACE",
+	"desc_key": "BOND_TIME_SPACE_DESC",
+	"required_sets": ["time_lord_set_bonus", "void_walker_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_attack_speed_pct", "base_points": 0.1, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_move_speed", "base_points": 30.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "dragon_slayer",
+	"name_key": "BOND_DRAGON_SLAYER",
+	"desc_key": "BOND_DRAGON_SLAYER_DESC",
+	"required_sets": ["dragon_force_set_bonus", "flame_set_bonus", "crit_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_boss_damage_pct", "base_points": 0.25, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_ignite_chance", "base_points": 0.1, "mode": "add"}
+	]
+  },
+  {
+	"id": "chaos_weaver",
+	"name_key": "BOND_CHAOS_WEAVER",
+	"desc_key": "BOND_CHAOS_WEAVER_DESC",
+	"required_sets": ["fate_wheel_set_bonus", "alchemist_set_bonus", "elementalist_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_random_effect_amp", "base_points": 0.3, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_element_damage_pct", "base_points": 0.15, "mode": "add"}
+	]
+  },
+  {
+	"id": "soul_reaver",
+	"name_key": "BOND_SOUL_REAVER",
+	"desc_key": "BOND_SOUL_REAVER_DESC",
+	"required_sets": ["soul_harvest_set_bonus", "reaper_set_bonus", "vampire_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_permanent_damage_per_kill", "base_points": 0.5, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_kill_heal_pct", "base_points": 0.03, "mode": "add"}
+	]
+  },
+  {
+	"id": "storm_caller",
+	"name_key": "BOND_STORM_CALLER",
+	"desc_key": "BOND_STORM_CALLER_DESC",
+	"required_sets": ["storm_set_bonus", "lightning_set_bonus", "swift_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_chain_chance", "base_points": 0.1, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_shockwave_radius", "base_points": 50.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_attack_speed_pct", "base_points": 0.08, "mode": "add"}
+	]
+  },
+  {
+	"id": "healer",
+	"name_key": "SET_HEALER",
+	"desc_key": "SET_HEALER_DESC",
+	"required_sets": ["healer_set_bonus"],
+	"min_count": 2,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_kill_heal_pct", "base_points": 0.05, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_shield_interval", "base_points": 15.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "tracker",
+	"name_key": "SET_TRACKER",
+	"desc_key": "SET_TRACKER_DESC",
+	"required_sets": ["tracker_set_bonus"],
+	"min_count": 2,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_projectile_homing", "base_points": 1.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_attack_range_pct", "base_points": 0.25, "mode": "add"}
+	]
+  },
+  {
+	"id": "summoner",
+	"name_key": "SET_SUMMONER",
+	"desc_key": "SET_SUMMONER_DESC",
+	"required_sets": ["summoner_new_set_bonus"],
+	"min_count": 2,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_summon_on_kill_chance", "base_points": 0.05, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_summon_duration", "base_points": 10.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "weakness_hunter",
+	"name_key": "SET_WEAKNESS_HUNTER",
+	"desc_key": "SET_WEAKNESS_HUNTER_DESC",
+	"required_sets": ["weakness_set_bonus"],
+	"min_count": 2,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_mark_damage_bonus", "base_points": 0.2, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_mark_duration", "base_points": 4.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "shadow_blade",
+	"name_key": "SET_SHADOW_BLADE",
+	"desc_key": "SET_SHADOW_BLADE_DESC",
+	"required_sets": ["shadow_blade_set_bonus"],
+	"min_count": 3,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_shadow_damage_pct", "base_points": 0.2, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_backstab_damage_pct", "base_points": 0.3, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_stealth_kill_mana", "base_points": 10.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "alchemist",
+	"name_key": "SET_ALCHEMIST",
+	"desc_key": "SET_ALCHEMIST_DESC",
+	"required_sets": ["alchemist_set_bonus"],
+	"min_count": 3,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_element_mix_chance", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_potion_drop_rate", "base_points": 0.1, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_element_damage_pct", "base_points": 0.15, "mode": "add"}
+	]
+  },
+  {
+	"id": "war_machine",
+	"name_key": "SET_WAR_MACHINE",
+	"desc_key": "SET_WAR_MACHINE_DESC",
+	"required_sets": ["war_machine_set_bonus"],
+	"min_count": 3,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_aoe_damage_pct", "base_points": 0.2, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_knockback_chance", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_armor_break_pct", "base_points": 0.15, "mode": "add"}
+	]
+  },
+  {
+	"id": "soul_harvest",
+	"name_key": "SET_SOUL_HARVEST",
+	"desc_key": "SET_SOUL_HARVEST_DESC",
+	"required_sets": ["soul_harvest_set_bonus"],
+	"min_count": 3,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_permanent_damage_per_kill", "base_points": 0.3, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_permanent_hp_per_kill", "base_points": 2.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_soul_stack_cap", "base_points": 999.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "ice_fire",
+	"name_key": "SET_ICE_FIRE",
+	"desc_key": "SET_ICE_FIRE_DESC",
+	"required_sets": ["ice_fire_set_bonus"],
+	"min_count": 3,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_fire_damage_pct", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_frost_damage_pct", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_fusion_burst_chance", "base_points": 0.1, "mode": "add"}
+	]
+  },
+  {
+	"id": "blood_moon",
+	"name_key": "SET_BLOOD_MOON",
+	"desc_key": "SET_BLOOD_MOON_DESC",
+	"required_sets": ["blood_moon_set_bonus"],
+	"min_count": 3,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_low_hp_damage_bonus", "base_points": 0.25, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_life_steal", "base_points": 0.08, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_frenzy_threshold", "base_points": 0.5, "mode": "add"}
+	]
+  },
+  {
+	"id": "fate_wheel",
+	"name_key": "SET_FATE_WHEEL",
+	"desc_key": "SET_FATE_WHEEL_DESC",
+	"required_sets": ["fate_wheel_set_bonus"],
+	"min_count": 4,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_random_proc_chance", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_random_effect_amp", "base_points": 0.25, "mode": "add"}
+	]
+  },
+  {
+	"id": "void_walker",
+	"name_key": "SET_VOID_WALKER",
+	"desc_key": "SET_VOID_WALKER_DESC",
+	"required_sets": ["void_walker_set_bonus"],
+	"min_count": 4,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_blink_cooldown", "base_points": -3.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_clone_chance", "base_points": 0.1, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_rift_damage_pct", "base_points": 0.3, "mode": "add"}
+	]
+  },
+  {
+	"id": "dragon_force",
+	"name_key": "SET_DRAGON_FORCE",
+	"desc_key": "SET_DRAGON_FORCE_DESC",
+	"required_sets": ["dragon_force_set_bonus"],
+	"min_count": 4,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_dragon_breath_chance", "base_points": 0.1, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_element_immunity", "base_points": 1.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_boss_damage_pct", "base_points": 0.2, "mode": "add"}
+	]
+  },
+  {
+	"id": "eternity",
+	"name_key": "SET_ETERNITY",
+	"desc_key": "SET_ETERNITY_DESC",
+	"required_sets": ["eternity_set_bonus"],
+	"min_count": 4,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_revive_count", "base_points": 1.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_invuln_on_hit_chance", "base_points": 0.05, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_all_stat_pct", "base_points": 0.15, "mode": "add"}
+	]
+  },
+  {
+	"id": "genesis",
+	"name_key": "SET_GENESIS",
+	"desc_key": "SET_GENESIS_DESC",
+	"required_sets": ["genesis_set_bonus"],
+	"min_count": 5,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_all_damage_pct", "base_points": 0.3, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_all_defense_pct", "base_points": 0.3, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_battlefield_control", "base_points": 1.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "apocalypse",
+	"name_key": "SET_APOCALYPSE",
+	"desc_key": "SET_APOCALYPSE_DESC",
+	"required_sets": ["apocalypse_set_bonus"],
+	"min_count": 5,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_screen_wipe_chance", "base_points": 0.02, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_all_damage_pct", "base_points": 0.4, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_execute_threshold", "base_points": 0.15, "mode": "add"}
+	]
+  },
+  {
+	"id": "survivor_creed",
+	"name_key": "BOND_SURVIVOR_CREED",
+	"desc_key": "BOND_SURVIVOR_CREED_DESC",
+	"required_sets": ["healer_set_bonus", "vampire_set_bonus", "blood_moon_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_life_steal", "base_points": 0.05, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_hp_regen", "base_points": 2.0, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_kill_heal_pct", "base_points": 0.04, "mode": "add"}
+	]
+  },
+  {
+	"id": "marksman_doctrine",
+	"name_key": "BOND_MARKSMAN_DOCTRINE",
+	"desc_key": "BOND_MARKSMAN_DOCTRINE_DESC",
+	"required_sets": ["tracker_set_bonus", "weakness_set_bonus", "barrage_set_bonus", "crit_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_mark_damage_bonus", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_attack_range_pct", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_crit_damage_bonus", "base_points": 0.2, "mode": "add"}
+	]
+  },
+  {
+	"id": "necromancer_pact",
+	"name_key": "BOND_NECROMANCER_PACT",
+	"desc_key": "BOND_NECROMANCER_PACT_DESC",
+	"required_sets": ["summoner_new_set_bonus", "soul_harvest_set_bonus", "reaper_set_bonus"],
+	"min_count": 1,
+	"bonus_effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_permanent_damage_per_kill", "base_points": 0.3, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_summon_on_kill_chance", "base_points": 0.04, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_summon_duration", "base_points": 5.0, "mode": "add"}
+	]
+  }
+]

@@ -13,7 +13,7 @@
     },
     {
       "type": "SET_VARIABLE",
-      "key": "hero_crit_chance",
+      "key": "hero_phys_crit",
       "base_points": 0.2,
       "mode": "add",
       "target": {

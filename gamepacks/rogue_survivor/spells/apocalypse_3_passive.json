@@ -1,0 +1,13 @@
+{
+  "id": "apocalypse_3_passive",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_fire_damage_pct",
+      "base_points": 0.2,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

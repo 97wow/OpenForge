@@ -1,0 +1,34 @@
+{
+  "id": "eternity_set_bonus",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_revive_on_death",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_invincible_interval",
+      "base_points": 25,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_all_stats_pct",
+      "base_points": 0.15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_time_rewind",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

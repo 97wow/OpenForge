@@ -1,0 +1,13 @@
+{
+  "id": "eternity_4_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_time_rewind",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

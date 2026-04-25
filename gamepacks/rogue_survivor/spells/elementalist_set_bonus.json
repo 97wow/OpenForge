@@ -1,1 +1,29 @@
-{"id":"elementalist_set_bonus","school":"holy","effects":[{"type":"APPLY_AURA","aura":"PROC_TRIGGER_SPELL","trigger_spell":"flame_burn","duration":0,"proc":{"flags":["on_hit"],"chance":12},"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"PROC_TRIGGER_SPELL","trigger_spell":"frost_slow_spell","duration":0,"proc":{"flags":["on_hit"],"chance":12},"target":{"category":"SELF"}},{"type":"APPLY_AURA","aura":"PROC_TRIGGER_SPELL","trigger_spell":"chain_lightning_spell","duration":0,"proc":{"flags":["on_hit"],"chance":12},"target":{"category":"SELF"}}]}
+{
+  "id": "elementalist_set_bonus",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "APPLY_AURA",
+      "aura": "PROC_TRIGGER_SPELL",
+      "trigger_spell": "flame_burn",
+      "duration": 0,
+      "proc": { "flags": ["deal_ranged"], "chance": 12, "cooldown": 1.0 },
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "APPLY_AURA",
+      "aura": "PROC_TRIGGER_SPELL",
+      "trigger_spell": "frost_slow_spell",
+      "duration": 0,
+      "proc": { "flags": ["deal_ranged"], "chance": 12, "cooldown": 1.0 },
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_chain_chance",
+      "base_points": 0.12,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

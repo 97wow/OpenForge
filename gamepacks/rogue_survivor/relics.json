@@ -1,0 +1,114 @@
+[
+  {
+	"id": "prophets_eye",
+	"name_key": "RELIC_PROPHETS_EYE",
+	"desc_key": "RELIC_PROPHETS_EYE_DESC",
+	"rarity": "common",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_phys_crit", "base_points": 0.08, "mode": "add"}
+	]
+  },
+  {
+	"id": "blood_pendant",
+	"name_key": "RELIC_BLOOD_PENDANT",
+	"desc_key": "RELIC_BLOOD_PENDANT_DESC",
+	"rarity": "common",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_life_steal", "base_points": 0.05, "mode": "add"}
+	]
+  },
+  {
+	"id": "swift_boots",
+	"name_key": "RELIC_SWIFT_BOOTS",
+	"desc_key": "RELIC_SWIFT_BOOTS_DESC",
+	"rarity": "common",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_attack_speed_pct", "base_points": 0.12, "mode": "add"}
+	]
+  },
+  {
+	"id": "iron_heart",
+	"name_key": "RELIC_IRON_HEART",
+	"desc_key": "RELIC_IRON_HEART_DESC",
+	"rarity": "common",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_hp_regen", "base_points": 3.0, "mode": "add"}
+	]
+  },
+  {
+	"id": "thunder_hammer",
+	"name_key": "RELIC_THUNDER_HAMMER",
+	"desc_key": "RELIC_THUNDER_HAMMER_DESC",
+	"rarity": "uncommon",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_chain_chance", "base_points": 0.1, "mode": "add"}
+	]
+  },
+  {
+	"id": "frost_crown",
+	"name_key": "RELIC_FROST_CROWN",
+	"desc_key": "RELIC_FROST_CROWN_DESC",
+	"rarity": "uncommon",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_slow_chance", "base_points": 0.2, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_slow_pct", "base_points": 0.15, "mode": "add"}
+	]
+  },
+  {
+	"id": "gamblers_dice",
+	"name_key": "RELIC_GAMBLERS_DICE",
+	"desc_key": "RELIC_GAMBLERS_DICE_DESC",
+	"rarity": "uncommon",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_phys_crit", "base_points": 0.15, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_crit_damage_bonus", "base_points": 0.5, "mode": "add"}
+	]
+  },
+  {
+	"id": "soul_lantern",
+	"name_key": "RELIC_SOUL_LANTERN",
+	"desc_key": "RELIC_SOUL_LANTERN_DESC",
+	"rarity": "uncommon",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_permanent_damage_per_kill", "base_points": 0.3, "mode": "add"}
+	]
+  },
+  {
+	"id": "phoenix_feather",
+	"name_key": "RELIC_PHOENIX_FEATHER",
+	"desc_key": "RELIC_PHOENIX_FEATHER_DESC",
+	"rarity": "rare",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_death_rewind", "base_points": 1, "mode": "set"}
+	]
+  },
+  {
+	"id": "void_shard",
+	"name_key": "RELIC_VOID_SHARD",
+	"desc_key": "RELIC_VOID_SHARD_DESC",
+	"rarity": "rare",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_execute_threshold", "base_points": 0.15, "mode": "add"}
+	]
+  },
+  {
+	"id": "dragon_scale",
+	"name_key": "RELIC_DRAGON_SCALE",
+	"desc_key": "RELIC_DRAGON_SCALE_DESC",
+	"rarity": "rare",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_ignite_chance", "base_points": 0.25, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_burn_damage_amp", "base_points": 0.3, "mode": "add"}
+	]
+  },
+  {
+	"id": "time_hourglass",
+	"name_key": "RELIC_TIME_HOURGLASS",
+	"desc_key": "RELIC_TIME_HOURGLASS_DESC",
+	"rarity": "legendary",
+	"effects": [
+	  {"type": "SET_VARIABLE", "key": "hero_time_slow_aura", "base_points": 0.25, "mode": "add"},
+	  {"type": "SET_VARIABLE", "key": "hero_attack_speed_pct", "base_points": 0.2, "mode": "add"}
+	]
+  }
+]

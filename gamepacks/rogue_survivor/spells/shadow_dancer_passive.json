@@ -1,0 +1,13 @@
+{
+  "id": "shadow_dancer_passive",
+  "name": "Shadow Step",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_shadow_step",
+      "base_points": 1,
+      "mode": "set",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

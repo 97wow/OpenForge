@@ -1,0 +1,27 @@
+{
+  "id": "blood_moon_set_bonus",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_low_hp_damage_bonus",
+      "base_points": 0.3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_low_hp_attack_speed",
+      "base_points": 0.5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_low_hp_invincible_duration",
+      "base_points": 3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

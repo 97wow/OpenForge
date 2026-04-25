@@ -1,0 +1,13 @@
+{
+  "id": "genesis_4_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_phys_crit",
+      "base_points": 0.15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

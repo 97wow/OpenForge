@@ -1,0 +1,59 @@
+{
+  "id": "void_titan",
+  "name": "Void Titan",
+  "tags": [
+    "enemy",
+    "mobile",
+    "ground",
+    "boss"
+  ],
+  "components": {
+    "visual": {
+      "color": "#e040fb",
+      "size": 52,
+      "shape_hint": "cylinder",
+      "scene": "res://assets/models/enemies/Skeleton_Warrior.glb",
+      "model_scale": 3.0,
+      "anim_attack": "1H_Melee_Attack_Chop",
+      "anim_run": "Running_A",
+      "anim_idle": "Idle",
+      "anim_death": "Death_A",
+      "anim_spell": "Spellcast_Shoot"
+    },
+    "health": {
+      "max_hp": 2500,
+      "armor": 15,
+      "magic_resist": 10
+    },
+    "movement": {
+      "speed": 0.8
+    },
+    "ai_move_to": {
+      "target_tag": "fountain",
+      "attack_range": 3.5
+    },
+    "combat": {
+      "damage": 80,
+      "attack_speed": 0.4,
+      "range": 3.5,
+      "attack_type": "single",
+      "target_filter_tag": "fountain",
+      "targeting": "closest"
+    },
+    "collision": {
+      "shape": "circle",
+      "radius": 0.8
+    }
+  },
+  "meta": {
+    "xp_reward": 500,
+    "gold_reward": 150,
+    "loot_table": "boss_loot",
+    "boss": true,
+    "boss_name_key": "BOSS_VOID_TITAN",
+    "boss_spells": [
+      "void_titan_slam",
+      "void_titan_drain"
+    ]
+  }
+}

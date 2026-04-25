@@ -1,0 +1,132 @@
+{
+  "season_id": "s1_2026",
+  "season_name": "SEASON_NAME_S1",
+  "season_start": 1743379200,
+  "season_end": 1745971200,
+  "max_level": 30,
+  "xp_per_level": 100,
+
+  "daily_quest_pool": [
+	{
+	  "id": "daily_kill_100",
+	  "name_key": "QUEST_DAILY_KILL_100",
+	  "trigger": "enemy_killed",
+	  "target": 100,
+	  "xp_reward": 30
+	},
+	{
+	  "id": "daily_complete_1",
+	  "name_key": "QUEST_DAILY_COMPLETE_1",
+	  "trigger": "game_completed",
+	  "target": 1,
+	  "xp_reward": 30
+	},
+	{
+	  "id": "daily_collect_3",
+	  "name_key": "QUEST_DAILY_COLLECT_3",
+	  "trigger": "card_collected",
+	  "target": 3,
+	  "xp_reward": 30
+	},
+	{
+	  "id": "daily_damage_5000",
+	  "name_key": "QUEST_DAILY_DAMAGE_5000",
+	  "trigger": "damage_dealt",
+	  "target": 5000,
+	  "xp_reward": 30
+	},
+	{
+	  "id": "daily_survive_5",
+	  "name_key": "QUEST_DAILY_SURVIVE_5",
+	  "trigger": "survive_minutes",
+	  "target": 5,
+	  "xp_reward": 30
+	}
+  ],
+
+  "weekly_quest_pool": [
+	{
+	  "id": "weekly_boss_1",
+	  "name_key": "QUEST_WEEKLY_BOSS_1",
+	  "trigger": "boss_killed",
+	  "target": 1,
+	  "xp_reward": 100
+	},
+	{
+	  "id": "weekly_n5_1",
+	  "name_key": "QUEST_WEEKLY_N5_1",
+	  "trigger": "n5_completed",
+	  "target": 1,
+	  "xp_reward": 100
+	},
+	{
+	  "id": "weekly_set_1",
+	  "name_key": "QUEST_WEEKLY_SET_1",
+	  "trigger": "set_completed",
+	  "target": 1,
+	  "xp_reward": 100
+	},
+	{
+	  "id": "weekly_relic_3",
+	  "name_key": "QUEST_WEEKLY_RELIC_3",
+	  "trigger": "relic_obtained",
+	  "target": 3,
+	  "xp_reward": 100
+	}
+  ],
+
+  "free_rewards": [
+	{"level": 4, "type": "currency", "currency": "star_dust", "amount": 50, "name_key": "REWARD_STAR_DUST_50"},
+	{"level": 9, "type": "currency", "currency": "star_dust", "amount": 100, "name_key": "REWARD_STAR_DUST_100"},
+	{"level": 14, "type": "currency", "currency": "star_dust", "amount": 200, "name_key": "REWARD_STAR_DUST_200"},
+	{"level": 19, "type": "currency", "currency": "star_dust", "amount": 500, "name_key": "REWARD_STAR_DUST_500"},
+	{"level": 24, "type": "currency", "currency": "star_dust", "amount": 1000, "name_key": "REWARD_STAR_DUST_1000"},
+	{"level": 29, "type": "bundle", "items": [
+	  {"type": "currency", "currency": "star_dust", "amount": 2000},
+	  {"type": "title", "title_key": "REWARD_SEASON_TITLE"}
+	], "name_key": "REWARD_SEASON_BUNDLE"}
+  ],
+
+  "premium_rewards": [
+	{"level": 0, "type": "currency", "currency": "star_dust", "amount": 20, "gold": 50, "name_key": "REWARD_PREMIUM_LV1"},
+	{"level": 1, "type": "currency", "currency": "star_dust", "amount": 20, "gold": 50, "name_key": "REWARD_PREMIUM_LV2"},
+	{"level": 2, "type": "currency", "currency": "star_dust", "amount": 25, "gold": 60, "name_key": "REWARD_PREMIUM_LV3"},
+	{"level": 3, "type": "currency", "currency": "star_dust", "amount": 25, "gold": 60, "name_key": "REWARD_PREMIUM_LV4"},
+	{"level": 4, "type": "currency", "currency": "star_dust", "amount": 30, "gold": 70, "name_key": "REWARD_PREMIUM_LV5"},
+	{"level": 5, "type": "currency", "currency": "star_dust", "amount": 30, "gold": 70, "name_key": "REWARD_PREMIUM_LV6"},
+	{"level": 6, "type": "currency", "currency": "star_dust", "amount": 35, "gold": 80, "name_key": "REWARD_PREMIUM_LV7"},
+	{"level": 7, "type": "currency", "currency": "star_dust", "amount": 35, "gold": 80, "name_key": "REWARD_PREMIUM_LV8"},
+	{"level": 8, "type": "currency", "currency": "star_dust", "amount": 40, "gold": 90, "name_key": "REWARD_PREMIUM_LV9"},
+	{"level": 9, "type": "bundle", "items": [
+	  {"type": "currency", "currency": "star_dust", "amount": 50, "gold": 100},
+	  {"type": "cosmetic", "cosmetic_id": "avatar_s1"}
+	], "name_key": "REWARD_PREMIUM_LV10"},
+	{"level": 10, "type": "currency", "currency": "star_dust", "amount": 40, "gold": 90, "name_key": "REWARD_PREMIUM_LV11"},
+	{"level": 11, "type": "currency", "currency": "star_dust", "amount": 45, "gold": 95, "name_key": "REWARD_PREMIUM_LV12"},
+	{"level": 12, "type": "currency", "currency": "star_dust", "amount": 45, "gold": 95, "name_key": "REWARD_PREMIUM_LV13"},
+	{"level": 13, "type": "currency", "currency": "star_dust", "amount": 50, "gold": 100, "name_key": "REWARD_PREMIUM_LV14"},
+	{"level": 14, "type": "currency", "currency": "star_dust", "amount": 50, "gold": 100, "name_key": "REWARD_PREMIUM_LV15"},
+	{"level": 15, "type": "currency", "currency": "star_dust", "amount": 55, "gold": 110, "name_key": "REWARD_PREMIUM_LV16"},
+	{"level": 16, "type": "currency", "currency": "star_dust", "amount": 55, "gold": 110, "name_key": "REWARD_PREMIUM_LV17"},
+	{"level": 17, "type": "currency", "currency": "star_dust", "amount": 60, "gold": 120, "name_key": "REWARD_PREMIUM_LV18"},
+	{"level": 18, "type": "currency", "currency": "star_dust", "amount": 60, "gold": 120, "name_key": "REWARD_PREMIUM_LV19"},
+	{"level": 19, "type": "bundle", "items": [
+	  {"type": "currency", "currency": "star_dust", "amount": 80, "gold": 150},
+	  {"type": "cosmetic", "cosmetic_id": "card_back_s1"}
+	], "name_key": "REWARD_PREMIUM_LV20"},
+	{"level": 20, "type": "currency", "currency": "star_dust", "amount": 65, "gold": 130, "name_key": "REWARD_PREMIUM_LV21"},
+	{"level": 21, "type": "currency", "currency": "star_dust", "amount": 65, "gold": 130, "name_key": "REWARD_PREMIUM_LV22"},
+	{"level": 22, "type": "currency", "currency": "star_dust", "amount": 70, "gold": 140, "name_key": "REWARD_PREMIUM_LV23"},
+	{"level": 23, "type": "currency", "currency": "star_dust", "amount": 70, "gold": 140, "name_key": "REWARD_PREMIUM_LV24"},
+	{"level": 24, "type": "currency", "currency": "star_dust", "amount": 75, "gold": 150, "name_key": "REWARD_PREMIUM_LV25"},
+	{"level": 25, "type": "currency", "currency": "star_dust", "amount": 75, "gold": 150, "name_key": "REWARD_PREMIUM_LV26"},
+	{"level": 26, "type": "currency", "currency": "star_dust", "amount": 80, "gold": 160, "name_key": "REWARD_PREMIUM_LV27"},
+	{"level": 27, "type": "currency", "currency": "star_dust", "amount": 80, "gold": 160, "name_key": "REWARD_PREMIUM_LV28"},
+	{"level": 28, "type": "currency", "currency": "star_dust", "amount": 90, "gold": 180, "name_key": "REWARD_PREMIUM_LV29"},
+	{"level": 29, "type": "bundle", "items": [
+	  {"type": "currency", "currency": "star_dust", "amount": 200, "gold": 500},
+	  {"type": "cosmetic", "cosmetic_id": "hero_skin_s1"},
+	  {"type": "cosmetic", "cosmetic_id": "badge_s1"}
+	], "name_key": "REWARD_PREMIUM_LV30"}
+  ]
+}

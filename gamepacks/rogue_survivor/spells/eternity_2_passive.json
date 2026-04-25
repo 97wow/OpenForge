@@ -1,0 +1,13 @@
+{
+  "id": "eternity_2_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_invincible_interval",
+      "base_points": 30,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

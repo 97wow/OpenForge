@@ -1,0 +1,13 @@
+{
+  "id": "shadow_blade_1_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_shadow_damage_pct",
+      "base_points": 0.15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

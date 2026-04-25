@@ -1,0 +1,13 @@
+{
+  "id": "war_machine_3_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_aoe_damage_pct",
+      "base_points": 0.4,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -3,21 +3,21 @@
   "name": "Warrior",
   "tags": ["hero", "player", "friendly"],
   "components": {
-    "visual": { "color": "#e53935", "size": 28 },
+    "visual": { "color": "#e53935", "size": 28, "shape_hint": "capsule", "scene": "res://assets/models/characters/Knight.glb", "model_scale": 1.2, "anim_attack": "1H_Melee_Attack_Chop", "anim_run": "Running_A", "anim_idle": "Idle", "anim_death": "Death_A", "anim_spell": "Spellcast_Shoot" },
     "health": { "max_hp": 250, "armor": 8 },
-    "movement": { "speed": 170 },
+    "movement": { "speed": 3.5 },
     "player_input": {
-      "shoot_cooldown": 2.4,
+      "shoot_cooldown": 1.4,
       "projectile_id": "heavy_bolt",
-      "projectile_speed": 700,
+      "projectile_speed": 12.0,
       "projectile_damage": 35,
-      "attack_range": 250,
+      "attack_range": 4.0,
       "target_tag": "enemy"
     },
-    "collision": { "shape": "circle", "radius": 12 },
+    "collision": { "shape": "circle", "radius": 0.4 },
     "alert": {
-      "alert_range": 400,
-      "attack_range": 250,
+      "alert_range": 8.0,
+      "attack_range": 4.0,
       "target_tag": "enemy",
       "max_auto_approaches": 2
     }

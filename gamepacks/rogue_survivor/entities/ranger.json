@@ -3,21 +3,21 @@
   "name": "Ranger",
   "tags": ["hero", "player", "friendly"],
   "components": {
-    "visual": { "color": "#43a047", "size": 26 },
+    "visual": { "color": "#43a047", "size": 26, "shape_hint": "capsule", "scene": "res://assets/models/characters/Rogue_Hooded.glb", "model_scale": 1.1, "anim_attack": "1H_Ranged_Aiming", "anim_run": "Running_A", "anim_idle": "Idle", "anim_death": "Death_A", "anim_spell": "Spellcast_Shoot" },
     "health": { "max_hp": 150, "armor": 3 },
-    "movement": { "speed": 220 },
+    "movement": { "speed": 4.5 },
     "player_input": {
-      "shoot_cooldown": 1.6,
+      "shoot_cooldown": 1.0,
       "projectile_id": "arrow",
-      "projectile_speed": 1100,
+      "projectile_speed": 15.0,
       "projectile_damage": 12,
-      "attack_range": 420,
+      "attack_range": 7.0,
       "target_tag": "enemy"
     },
-    "collision": { "shape": "circle", "radius": 10 },
+    "collision": { "shape": "circle", "radius": 0.35 },
     "alert": {
-      "alert_range": 570,
-      "attack_range": 420,
+      "alert_range": 10.0,
+      "attack_range": 7.0,
       "target_tag": "enemy",
       "max_auto_approaches": 2
     }

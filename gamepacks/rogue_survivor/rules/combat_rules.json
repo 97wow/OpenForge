@@ -1,24 +1,24 @@
 [
   {
-    "id": "enemy_killed_reward",
-    "event": "entity_destroyed",
-    "conditions": [
-      { "type": "has_tag", "entity": "$event.entity", "tag": "enemy" }
-    ],
-    "actions": [
-      { "type": "add_resource", "resource": "gold", "amount": "$event.entity.meta.gold_reward" },
-      { "type": "add_resource", "resource": "xp", "amount": "$event.entity.meta.xp_reward" }
-    ]
+	"id": "enemy_killed_reward",
+	"event": "entity_destroyed",
+	"conditions": [
+	  { "type": "has_tag", "entity": "$event.entity", "tag": "enemy" }
+	],
+	"actions": [
+	  { "type": "add_resource", "resource": "gold", "amount": "$event.entity.meta.gold_reward" },
+	  { "type": "add_resource", "resource": "xp", "amount": "$event.entity.meta.xp_reward" }
+	]
   },
   {
-    "id": "fountain_destroyed_defeat",
-    "event": "entity_destroyed",
-    "conditions": [
-      { "type": "has_tag", "entity": "$event.entity", "tag": "fountain" }
-    ],
-    "actions": [
-      { "type": "set_game_state", "state": "defeat" },
-      { "type": "emit_event", "event": "game_defeat", "data": {} }
-    ]
+	"id": "fountain_destroyed_defeat",
+	"event": "entity_destroyed",
+	"conditions": [
+	  { "type": "has_tag", "entity": "$event.entity", "tag": "fountain" }
+	],
+	"actions": [
+	  { "type": "set_game_state", "state": "defeat" },
+	  { "type": "emit_event", "event": "game_defeat", "data": {} }
+	]
   }
 ]

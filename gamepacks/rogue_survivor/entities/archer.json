@@ -1,0 +1,52 @@
+{
+  "id": "archer",
+  "name": "Dark Archer",
+  "tags": [
+	"enemy",
+	"mobile",
+	"ground",
+    "ranged"
+  ],
+  "components": {
+	"visual": {
+	  "color": "#8d6e63",
+	  "size": 15,
+	  "shape_hint": "capsule",
+	  "scene": "res://assets/models/enemies/Skeleton_Rogue.glb",
+	  "model_scale": 1.0,
+	  "anim_attack": "1H_Ranged_Aiming",
+	  "anim_run": "Running_A",
+	  "anim_idle": "Idle",
+	  "anim_death": "Death_A"
+	},
+	"health": {
+	  "max_hp": 30,
+	  "armor": 1
+	},
+	"movement": {
+	  "speed": 1.5
+	},
+	"ai_move_to": {
+	  "target_tag": "player",
+	  "attack_range": 5.0,
+	  "keep_distance": true
+	},
+	"combat": {
+	  "damage": 10,
+	  "attack_speed": 1.2,
+	  "range": 5.0,
+	  "attack_type": "single",
+	  "target_filter_tag": "player",
+	  "targeting": "closest"
+	},
+	"collision": {
+	  "shape": "circle",
+	  "radius": 0.3
+	}
+  },
+  "meta": {
+	"xp_reward": 5,
+	"gold_reward": 3,
+	"loot_table": "skeleton_loot"
+  }
+}

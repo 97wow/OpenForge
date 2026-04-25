@@ -1,1 +1,1 @@
-{"id":"storm_4_passive","school":"holy","effects":[{"type":"SET_VARIABLE","key":"hero_shockwave_radius","base_points":200,"mode":"set","target":{"category":"SELF"}}]}
+{"id":"storm_4_passive","school":"holy","effects":[{"type":"SET_VARIABLE","key":"hero_shockwave_radius","base_points":5.0,"mode":"set","target":{"category":"SELF"}}]}

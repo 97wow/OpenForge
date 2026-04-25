@@ -1,0 +1,27 @@
+{
+  "id": "ice_fire_set_bonus",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_ice_fire_alternate",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_ice_fire_amp",
+      "base_points": 0.25,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_fusion_explosion_damage",
+      "base_points": 40,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

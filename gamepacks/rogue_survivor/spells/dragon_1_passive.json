@@ -1,0 +1,13 @@
+{
+  "id": "dragon_1_passive",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_dragon_breath_damage",
+      "base_points": 25,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "eternity_3_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_all_stats_pct",
+      "base_points": 0.1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

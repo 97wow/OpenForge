@@ -3,21 +3,21 @@
   "name": "Hero",
   "tags": ["hero", "player", "friendly"],
   "components": {
-    "visual": { "color": "#42a5f5", "size": 28 },
+    "visual": { "color": "#42a5f5", "size": 28, "shape_hint": "capsule", "scene": "res://assets/models/characters/Barbarian.glb", "model_scale": 1.2, "anim_attack": "1H_Melee_Attack_Chop", "anim_run": "Running_A", "anim_idle": "Idle", "anim_death": "Death_A", "anim_spell": "Spellcast_Shoot" },
     "health": { "max_hp": 150, "armor": 2 },
-    "movement": { "speed": 200 },
+    "movement": { "speed": 4.0 },
     "player_input": {
       "shoot_cooldown": 0.35,
       "projectile_id": "arrow",
-      "projectile_speed": 975,
+      "projectile_speed": 14.0,
       "projectile_damage": 12,
-      "attack_range": 350,
+      "attack_range": 5.0,
       "target_tag": "enemy"
     },
-    "collision": { "shape": "circle", "radius": 10 },
+    "collision": { "shape": "circle", "radius": 0.4 },
     "alert": {
-      "alert_range": 500,
-      "attack_range": 350,
+      "alert_range": 8.0,
+      "attack_range": 5.0,
       "target_tag": "enemy",
       "max_auto_approaches": 2
     }

@@ -1,0 +1,13 @@
+{
+  "id": "blood_moon_3_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_low_hp_invincible_duration",
+      "base_points": 3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

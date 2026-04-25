@@ -1,0 +1,56 @@
+{
+  "id": "shaman",
+  "name": "Orc Shaman",
+  "tags": [
+    "enemy",
+    "mobile",
+    "ground",
+    "healer"
+  ],
+  "components": {
+    "visual": {
+      "color": "#66bb6a",
+      "size": 17,
+      "shape_hint": "capsule",
+      "scene": "res://assets/models/enemies/Skeleton_Mage.glb",
+      "model_scale": 1.0,
+      "anim_attack": "Spellcast_Shoot",
+      "anim_run": "Running_A",
+      "anim_idle": "Idle",
+      "anim_death": "Death_A",
+      "anim_spell": "Spellcast_Shoot"
+    },
+    "health": {
+      "max_hp": 50,
+      "armor": 2
+    },
+    "movement": {
+      "speed": 1.0
+    },
+    "ai_move_to": {
+      "target_tag": "fountain",
+      "attack_range": 2.0
+    },
+    "combat": {
+      "damage": 5,
+      "attack_speed": 0.6,
+      "range": 2.0,
+      "attack_type": "single",
+      "target_filter_tag": "fountain",
+      "targeting": "closest"
+    },
+    "collision": {
+      "shape": "circle",
+      "radius": 0.35
+    }
+  },
+  "meta": {
+    "xp_reward": 8,
+    "gold_reward": 5,
+    "loot_table": "shadow_loot",
+    "healer": true,
+    "heal_range": 4.0,
+    "heal_amount": 8,
+    "heal_interval": 2.0
+  }
+}

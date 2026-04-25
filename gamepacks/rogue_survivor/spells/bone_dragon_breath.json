@@ -1,0 +1,15 @@
+{
+  "id": "bone_dragon_breath",
+  "name": "Dragon Breath",
+  "description": "Breathes fire in a cone, dealing Fire damage to all enemies",
+  "cooldown": 5.0,
+  "effects": [
+    {
+      "type": "AREA_DAMAGE",
+      "damage_type": "fire",
+      "base_value": 30,
+      "radius": 4.5,
+      "target_category": "enemy_of_caster"
+    }
+  ]
+}

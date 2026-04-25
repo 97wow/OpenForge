@@ -3,15 +3,17 @@
   "name": "Arrow",
   "tags": ["projectile", "friendly_projectile"],
   "components": {
-    "visual": { "color": "#ffee58", "size": 8, "show_hp_bar": false },
-    "projectile": {
-      "speed": 975,
-      "damage": 12,
-      "max_range": 800,
-      "pierce_count": 0,
-      "target_tag": "enemy",
-      "hit_radius": 14
-    }
+	"visual": { "color": "#ffee58", "size": 8, "show_hp_bar": false, "shape_hint": "sphere" },
+	"projectile": {
+	  "speed": 14.0,
+	  "damage": 12,
+	  "max_range": 9.0,
+	  "pierce_count": 0,
+	  "target_tag": "enemy",
+	  "hit_radius": 0.42,
+	  "splash_radius": 3.0,
+	  "splash_damage_pct": 0.4
+	}
   },
   "meta": {}
 }

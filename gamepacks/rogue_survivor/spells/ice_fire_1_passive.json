@@ -1,0 +1,13 @@
+{
+  "id": "ice_fire_1_passive",
+  "school": "frost",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_ice_fire_alternate",
+      "base_points": 1,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

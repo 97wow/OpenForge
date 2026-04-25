@@ -1,0 +1,85 @@
+{
+  "talents": {
+	"max_hp": {
+	  "name_key": "TALENT_MAX_HP",
+	  "desc_key": "TALENT_MAX_HP_DESC",
+	  "max_level": 10,
+	  "cost_base": 5,
+	  "cost_per_level": 3,
+	  "effect_per_level": 10,
+	  "stat": "max_hp",
+	  "icon_color": "#e53935"
+	},
+	"damage": {
+	  "name_key": "TALENT_DAMAGE",
+	  "desc_key": "TALENT_DAMAGE_DESC",
+	  "max_level": 10,
+	  "cost_base": 5,
+	  "cost_per_level": 3,
+	  "effect_per_level": 2,
+	  "stat": "damage",
+	  "icon_color": "#ff6f00"
+	},
+	"armor": {
+	  "name_key": "TALENT_ARMOR",
+	  "desc_key": "TALENT_ARMOR_DESC",
+	  "max_level": 5,
+	  "cost_base": 8,
+	  "cost_per_level": 5,
+	  "effect_per_level": 1,
+	  "stat": "armor",
+	  "icon_color": "#78909c"
+	},
+	"attack_speed": {
+	  "name_key": "TALENT_ASPD",
+	  "desc_key": "TALENT_ASPD_DESC",
+	  "max_level": 5,
+	  "cost_base": 10,
+	  "cost_per_level": 8,
+	  "effect_per_level": 0.05,
+	  "stat": "attack_speed_pct",
+	  "icon_color": "#00bfa5"
+	},
+	"crit_chance": {
+	  "name_key": "TALENT_CRIT",
+	  "desc_key": "TALENT_CRIT_DESC",
+	  "max_level": 5,
+	  "cost_base": 10,
+	  "cost_per_level": 8,
+	  "effect_per_level": 0.03,
+	  "stat": "crit_chance",
+	  "icon_color": "#ffd600"
+	},
+	"move_speed": {
+	  "name_key": "TALENT_MOVE",
+	  "desc_key": "TALENT_MOVE_DESC",
+	  "max_level": 5,
+	  "cost_base": 6,
+	  "cost_per_level": 4,
+	  "effect_per_level": 5,
+	  "stat": "move_speed",
+	  "icon_color": "#42a5f5"
+	},
+	"life_steal": {
+	  "name_key": "TALENT_LIFESTEAL",
+	  "desc_key": "TALENT_LIFESTEAL_DESC",
+	  "max_level": 3,
+	  "cost_base": 15,
+	  "cost_per_level": 12,
+	  "effect_per_level": 0.02,
+	  "stat": "life_steal",
+	  "icon_color": "#ab47bc"
+	}
+  },
+  "wishing_well": {
+	"cost": 100,
+	"pool": [
+	  {"type": "star_dust", "amount": 5, "weight": 30},
+	  {"type": "star_dust", "amount": 15, "weight": 15},
+	  {"type": "star_dust", "amount": 50, "weight": 5},
+	  {"type": "card_unlock", "card_pool": "random_rare", "weight": 20},
+	  {"type": "card_unlock", "card_pool": "random_legendary", "weight": 5},
+	  {"type": "gold_bonus", "amount": 200, "weight": 25}
+	]
+  }
+}

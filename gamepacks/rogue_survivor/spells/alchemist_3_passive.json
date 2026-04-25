@@ -1,0 +1,13 @@
+{
+  "id": "alchemist_3_passive",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_element_fusion_damage",
+      "base_points": 40,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

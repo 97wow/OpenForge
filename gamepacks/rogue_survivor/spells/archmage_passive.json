@@ -1,0 +1,13 @@
+{
+  "id": "archmage_passive",
+  "name": "Arcane Mastery",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_spell_amp",
+      "base_points": 0.2,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

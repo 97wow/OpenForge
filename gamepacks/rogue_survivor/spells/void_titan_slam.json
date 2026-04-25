@@ -1,0 +1,15 @@
+{
+  "id": "void_titan_slam",
+  "name": "Void Slam",
+  "description": "Slams the ground, dealing massive Physical damage and stunning nearby enemies",
+  "cooldown": 7.0,
+  "effects": [
+    {
+      "type": "AREA_DAMAGE",
+      "damage_type": "physical",
+      "base_value": 60,
+      "radius": 5.4,
+      "target_category": "enemy_of_caster"
+    }
+  ]
+}

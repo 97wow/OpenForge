@@ -1,0 +1,13 @@
+{
+  "id": "ice_fire_2_passive",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_ice_fire_amp",
+      "base_points": 0.2,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

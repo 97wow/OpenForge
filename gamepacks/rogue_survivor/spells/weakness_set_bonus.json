@@ -1,0 +1,20 @@
+{
+  "id": "weakness_set_bonus",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_mark_damage_amp",
+      "base_points": 0.15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_mark_duration",
+      "base_points": 6,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "genesis_3_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_hp_regen",
+      "base_points": 8,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

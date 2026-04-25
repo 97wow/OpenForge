@@ -1,0 +1,13 @@
+{
+  "id": "blood_moon_1_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_low_hp_damage_bonus",
+      "base_points": 0.25,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

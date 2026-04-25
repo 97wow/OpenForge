@@ -1,0 +1,13 @@
+{
+  "id": "war_machine_2_passive",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_armor_shred",
+      "base_points": 3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

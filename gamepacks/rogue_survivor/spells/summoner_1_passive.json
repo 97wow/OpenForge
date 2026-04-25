@@ -1,0 +1,13 @@
+{
+  "id": "summoner_1_passive",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_summon_on_kill_chance",
+      "base_points": 0.15,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

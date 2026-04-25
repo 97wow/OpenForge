@@ -1,0 +1,27 @@
+{
+  "id": "war_machine_set_bonus",
+  "school": "physical",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_knockback_force",
+      "base_points": 0.8,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_armor_shred",
+      "base_points": 5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_aoe_damage_pct",
+      "base_points": 0.5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

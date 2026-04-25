@@ -1,0 +1,504 @@
+{
+    "1": {
+        "type": "card", "subclass": "preparation",
+        "bond_id": 19, "tier": 1,
+        "stats": {"atk": 25, "gold_per_sec": 1, "wood": 25},
+        "consume_condition": {"type": "bond_count", "bond_id": 19, "count": 3}
+    },
+    "2": {
+        "type": "card", "subclass": "preparation",
+        "bond_id": 19, "tier": 1,
+        "stats": {"hp": 200, "all_stat": 5},
+        "consume_condition": {"type": "bond_count", "bond_id": 19, "count": 3}
+    },
+    "3": {
+        "type": "card", "subclass": "preparation",
+        "bond_id": 19, "tier": 1,
+        "stats": {"armor": 5, "regen": 5, "wood": 50},
+        "consume_condition": {"type": "bond_count", "bond_id": 19, "count": 3}
+    },
+    "19": {
+        "type": "bond", "subclass": "preparation",
+        "required": 3,
+        "stats": {"wood": 100}
+    },
+
+    "4": {
+        "type": "card", "subclass": "economy",
+        "bond_id": 20, "tier": 1,
+        "stats": {"armor": 5, "regen": 10, "gold_per_sec": 5},
+        "consume_condition": {"type": "bond_count", "bond_id": 20, "count": 3},
+        "on_obtain": [{"action": "register_modifier", "target_spell": "6", "key": "target_count", "value": 3}]
+    },
+    "5": {
+        "type": "card", "subclass": "economy",
+        "bond_id": 20, "tier": 1,
+        "stats": {"hp": 200},
+        "proc": {"trigger": "on_hit_and_kill", "effect": "bonus_gold", "hit_gold": 1, "kill_gold": 1},
+        "consume_condition": {"type": "bond_count", "bond_id": 20, "count": 3}
+    },
+    "6": {
+        "type": "card", "subclass": "economy",
+        "bond_id": 20, "tier": 2,
+        "stats": {"gold": 1500},
+        "proc": {"trigger": "on_hit", "chance": 0.02, "cooldown": 10.0, "effect": "instant_kill_minion", "bonus_mult": 5},
+        "consume_condition": {"type": "bond_count", "bond_id": 20, "count": 3}
+    },
+    "20": {
+        "type": "bond", "subclass": "economy",
+        "required": 3,
+        "stats": {}
+    },
+
+    "7": {
+        "type": "card", "subclass": "artillery",
+        "bond_id": 21, "tier": 1,
+        "stats": {"int_pct": 0.20, "regen": 10, "splash_pct": 0.06},
+        "consume_condition": {"type": "bond_count", "bond_id": 21, "count": 3}
+    },
+    "8": {
+        "type": "card", "subclass": "artillery",
+        "bond_id": 21, "tier": 1,
+        "stats": {"str_pct": 0.20, "armor": 5},
+        "consume_condition": {"type": "bond_count", "bond_id": 21, "count": 3}
+    },
+    "9": {
+        "type": "card", "subclass": "artillery",
+        "bond_id": 21, "tier": 2,
+        "stats": {"agi_pct": 0.20, "aspd_pct": 0.15},
+        "proc": {"trigger": "on_hit", "chance": 0.10, "effect": "double_damage"},
+        "consume_condition": {"type": "bond_count", "bond_id": 21, "count": 3}
+    },
+    "21": {
+        "type": "bond", "subclass": "artillery",
+        "required": 3,
+        "stats": {}
+    },
+
+    "10": {
+        "type": "card", "subclass": "vitamin",
+        "bond_id": 22, "tier": 1,
+        "stats": {"str": 30},
+        "proc": {"trigger": "on_level_up", "effect": "add_percent", "stat": "str", "value": 0.001},
+        "consume_condition": {"type": "bond_count", "bond_id": 22, "count": 3}
+    },
+    "11": {
+        "type": "card", "subclass": "vitamin",
+        "bond_id": 22, "tier": 1,
+        "stats": {"agi": 30},
+        "proc": {"trigger": "on_level_up", "effect": "add_percent", "stat": "agi", "value": 0.001},
+        "consume_condition": {"type": "bond_count", "bond_id": 22, "count": 3}
+    },
+    "12": {
+        "type": "card", "subclass": "vitamin",
+        "bond_id": 22, "tier": 1,
+        "stats": {"int": 30},
+        "proc": {"trigger": "on_level_up", "effect": "add_percent", "stat": "int", "value": 0.001},
+        "consume_condition": {"type": "bond_count", "bond_id": 22, "count": 3}
+    },
+    "22": {
+        "type": "bond", "subclass": "vitamin",
+        "required": 3,
+        "stats": {}
+    },
+
+    "13": {
+        "type": "card", "subclass": "master",
+        "bond_id": 23, "tier": 2,
+        "stats": {"int": 20, "atk": 25},
+        "proc": {"trigger": "on_hit", "chance": 0.07, "effect": "chain_bounce", "count": 3, "damage_pct": 1.0},
+        "consume_condition": {"type": "bond_count_repeating", "bond_id": 23, "count": 3}
+    },
+    "14": {
+        "type": "card", "subclass": "master",
+        "bond_id": 23, "tier": 2,
+        "stats": {"agi": 20, "atk": 25},
+        "proc": {"trigger": "periodic", "interval": 5.0, "effect": "scatter_shot", "count": 3, "damage_pct": 1.0},
+        "consume_condition": {"type": "bond_count_repeating", "bond_id": 23, "count": 3}
+    },
+    "15": {
+        "type": "card", "subclass": "master",
+        "bond_id": 23, "tier": 2,
+        "stats": {"aspd_pct": 0.30, "atk": 25},
+        "proc": {"trigger": "on_hit", "chance": 0.07, "cooldown": 10.0, "effect": "aspd_buff", "value": 5.0, "duration": 3.0},
+        "consume_condition": {"type": "bond_count_repeating", "bond_id": 23, "count": 3}
+    },
+    "16": {
+        "type": "card", "subclass": "master",
+        "bond_id": 23, "tier": 2,
+        "stats": {"str": 20, "atk": 25},
+        "proc": {"trigger": "periodic", "interval": 6.0, "effect": "aoe_damage", "range": 3.5, "damage_pct": 1.0},
+        "consume_condition": {"type": "bond_count_repeating", "bond_id": 23, "count": 3}
+    },
+    "17": {
+        "type": "card", "subclass": "master",
+        "bond_id": 23, "tier": 2,
+        "stats": {},
+        "proc": {"trigger": "timer", "delay": 300.0, "effect": "grant_item", "item_id": 100},
+        "consume_condition": {"type": "bond_count_repeating", "bond_id": 23, "count": 3}
+    },
+    "18": {
+        "type": "card", "subclass": "master",
+        "bond_id": 23, "tier": 2,
+        "stats": {},
+        "proc": {"trigger": "on_level_up", "effect": "add_growth", "stats": {"str": 1, "agi": 1, "int": 1}},
+        "consume_condition": {"type": "bond_count_repeating", "bond_id": 23, "count": 3}
+    },
+    "23": {
+        "type": "bond", "subclass": "master",
+        "required": 3,
+        "stats": {}
+    },
+
+    "25": {
+        "type": "skill", "subclass": "talent",
+        "proc": {"trigger": "periodic", "interval": 2.0, "effect": "aoe_damage", "range": 3.5, "damage_pct": 0.5, "chance_aoe": 0.15}
+    },
+    "26": {
+        "type": "skill", "subclass": "active",
+        "cooldown": 0.5, "mp_cost": 10, "distance": 5.0, "hotkey": "T"
+    },
+    "27": {
+        "type": "skill", "subclass": "active",
+        "cooldown": 0, "cost_resource": "wood", "hotkey": "F"
+    },
+
+    "100": {
+        "type": "item", "subclass": "consumable",
+        "effect": "random_devour"
+    },
+
+    "28": {
+        "type": "card", "subclass": "wuxia",
+        "bond_id": 30, "tier": 2,
+        "stats": {"wood": 200},
+        "consume_condition": {"type": "auto"},
+        "on_obtain": [{"action": "unlock_set", "set_id": "tianlong"}]
+    },
+    "30": {
+        "type": "bond", "subclass": "wuxia",
+        "required": 1,
+        "stats": {}
+    },
+
+    "31": {
+        "type": "card", "subclass": "dragon_ball",
+        "bond_id": 38, "tier": 2,
+        "stats": {"str": 15, "agi": 15, "int": 15},
+        "consume_condition": {"type": "card_count", "count": 2},
+        "on_obtain": [{"action": "unlock_card", "card_id": "32"}]
+    },
+    "32": {
+        "type": "card", "subclass": "dragon_ball",
+        "bond_id": 38, "tier": 2,
+        "stats": {"atk": 30, "hp": 150},
+        "consume_condition": {"type": "card_count", "count": 2},
+        "on_obtain": [{"action": "unlock_card", "card_id": "33"}]
+    },
+    "33": {
+        "type": "card", "subclass": "dragon_ball",
+        "bond_id": 38, "tier": 3,
+        "stats": {"str": 25, "agi": 25, "int": 25},
+        "consume_condition": {"type": "card_count", "count": 3},
+        "on_obtain": [{"action": "unlock_card", "card_id": "34"}]
+    },
+    "34": {
+        "type": "card", "subclass": "dragon_ball",
+        "bond_id": 38, "tier": 3,
+        "stats": {"atk": 50, "hp": 300},
+        "consume_condition": {"type": "card_count", "count": 4},
+        "on_obtain": [{"action": "unlock_card", "card_id": "35"}]
+    },
+    "35": {
+        "type": "card", "subclass": "dragon_ball",
+        "bond_id": 38, "tier": 4,
+        "stats": {"str": 50, "agi": 50, "int": 50, "atk": 80},
+        "consume_condition": {"type": "card_count", "count": 4}
+    },
+    "38": {
+        "type": "bond", "subclass": "dragon_ball",
+        "required": 7,
+        "stats": {}
+    },
+
+    "39": {
+        "type": "card", "subclass": "tianlong",
+        "bond_id": 42, "tier": 3,
+        "stats": {"str": 60, "hp": 500, "armor": 10},
+        "proc": {"trigger": "on_hit", "chance": 0.08, "cooldown": 8.0, "effect": "aoe_damage", "range": 3.5, "damage_pct": 1.5},
+        "consume_condition": {"type": "bond_count", "bond_id": 42, "count": 3}
+    },
+    "40": {
+        "type": "card", "subclass": "tianlong",
+        "bond_id": 42, "tier": 3,
+        "stats": {"int": 60, "mp": 50},
+        "proc": {"trigger": "periodic", "interval": 4.0, "effect": "spell_damage", "damage_pct": 1.2, "count": 3},
+        "consume_condition": {"type": "bond_count", "bond_id": 42, "count": 3}
+    },
+    "41": {
+        "type": "card", "subclass": "tianlong",
+        "bond_id": 42, "tier": 3,
+        "stats": {"agi": 60, "aspd_pct": 0.20},
+        "proc": {"trigger": "on_hit", "chance": 0.10, "effect": "chain_bounce", "count": 4, "damage_pct": 0.8},
+        "consume_condition": {"type": "bond_count", "bond_id": 42, "count": 3}
+    },
+    "42": {
+        "type": "bond", "subclass": "tianlong",
+        "required": 3,
+        "stats": {}
+    },
+
+    "43": {
+        "type": "card", "subclass": "navy_admiral",
+        "bond_id": 51, "tier": 3,
+        "stats": {"int": 50, "atk": 40},
+        "proc": {"trigger": "on_hit", "chance": 0.08, "cooldown": 6.0, "effect": "aoe_spell_damage", "damage_pct": 1.5, "range": 3.5, "count": 6},
+        "consume_condition": {"type": "bond_count", "bond_id": 51, "count": 3}
+    },
+    "44": {
+        "type": "card", "subclass": "navy_admiral",
+        "bond_id": 51, "tier": 3,
+        "stats": {"str": 50, "atk": 40},
+        "proc": {"trigger": "on_hit", "chance": 0.08, "cooldown": 6.0, "effect": "spell_damage", "damage_pct": 2.0},
+        "consume_condition": {"type": "bond_count", "bond_id": 51, "count": 3}
+    },
+    "45": {
+        "type": "card", "subclass": "navy_admiral",
+        "bond_id": 51, "tier": 3,
+        "stats": {"agi": 50, "atk": 40},
+        "proc": {"trigger": "on_cast", "cooldown": 0.5, "effect": "spell_damage_at_origin_and_dest", "damage_pct": 1.75},
+        "consume_condition": {"type": "bond_count", "bond_id": 51, "count": 3}
+    },
+    "51": {
+        "type": "bond", "subclass": "navy_admiral",
+        "required": 3,
+        "stats": {}
+    },
+
+    "46": {
+        "type": "card", "subclass": "yonko",
+        "bond_id": 56, "tier": 4,
+        "stats": {"str": 80, "hp": 800, "armor": 15},
+        "proc": {"trigger": "on_hit", "chance": 0.12, "cooldown": 5.0, "effect": "bonus_damage", "base_damage": 300, "scaling_stat": "str", "scaling_coef": 0.4},
+        "consume_condition": {"type": "bond_count", "bond_id": 56, "count": 2}
+    },
+    "47": {
+        "type": "card", "subclass": "yonko",
+        "bond_id": 56, "tier": 4,
+        "stats": {"agi": 80, "aspd_pct": 0.25},
+        "proc": {"trigger": "on_hit", "chance": 0.15, "cooldown": 4.0, "effect": "bonus_damage", "base_damage": 250, "scaling_stat": "agi", "scaling_coef": 0.35},
+        "consume_condition": {"type": "bond_count", "bond_id": 56, "count": 2}
+    },
+    "48": {
+        "type": "card", "subclass": "yonko",
+        "bond_id": 56, "tier": 4,
+        "stats": {"int": 80, "mp": 80},
+        "proc": {"trigger": "on_hit", "chance": 0.10, "cooldown": 6.0, "effect": "aoe_spell_damage", "damage_pct": 2.5, "range": 4.0, "count": 8},
+        "consume_condition": {"type": "bond_count", "bond_id": 56, "count": 2}
+    },
+    "49": {
+        "type": "card", "subclass": "yonko",
+        "bond_id": 56, "tier": 4,
+        "stats": {"str": 60, "agi": 60, "hp": 600},
+        "proc": {"trigger": "on_damage_taken", "cooldown": 180.0, "effect": "cheat_death"},
+        "consume_condition": {"type": "bond_count", "bond_id": 56, "count": 2}
+    },
+    "56": {
+        "type": "bond", "subclass": "yonko",
+        "required": 2,
+        "stats": {}
+    },
+
+    "57": {
+        "type": "card", "subclass": "akatsuki",
+        "bond_id": 64, "tier": 3,
+        "stats": {"int": 45, "atk": 35},
+        "proc": {"trigger": "on_hit", "chance": 0.06, "cooldown": 8.0, "effect": "line_spell_damage", "damage_pct": 1.2},
+        "consume_condition": {"type": "bond_count", "bond_id": 64, "count": 3}
+    },
+    "58": {
+        "type": "card", "subclass": "akatsuki",
+        "bond_id": 64, "tier": 3,
+        "stats": {"agi": 45, "aspd_pct": 0.15},
+        "proc": {"trigger": "on_hit", "chance": 0.08, "cooldown": 7.0, "effect": "multi_projectile", "count": 3, "damage_pct": 1.35},
+        "consume_condition": {"type": "bond_count", "bond_id": 64, "count": 3}
+    },
+    "59": {
+        "type": "card", "subclass": "akatsuki",
+        "bond_id": 64, "tier": 3,
+        "stats": {"str": 45, "hp": 400},
+        "proc": {"trigger": "periodic", "interval": 15.0, "effect": "summon_puppet", "duration": 15.0},
+        "consume_condition": {"type": "bond_count", "bond_id": 64, "count": 3}
+    },
+    "60": {
+        "type": "card", "subclass": "akatsuki",
+        "bond_id": 64, "tier": 3,
+        "stats": {"int": 40, "mp": 40},
+        "proc": {"trigger": "periodic", "interval": 8.0, "effect": "multi_area_spell_damage", "area_count": 3, "damage_pct": 2.4},
+        "consume_condition": {"type": "bond_count", "bond_id": 64, "count": 3}
+    },
+    "61": {
+        "type": "card", "subclass": "akatsuki",
+        "bond_id": 64, "tier": 3,
+        "stats": {"agi": 40, "crit_rate": 0.10},
+        "proc": {"trigger": "on_hit", "chance": 0.06, "cooldown": 10.0, "effect": "reduce_spell_cooldowns", "reduction": 2.5},
+        "consume_condition": {"type": "bond_count", "bond_id": 64, "count": 3}
+    },
+    "62": {
+        "type": "card", "subclass": "akatsuki",
+        "bond_id": 64, "tier": 3,
+        "stats": {"gold_per_sec": 10, "wood": 100},
+        "proc": {"trigger": "periodic", "interval": 60.0, "effect": "grant_resource", "resource": "wood", "amount": 210},
+        "consume_condition": {"type": "bond_count", "bond_id": 64, "count": 3}
+    },
+    "63": {
+        "type": "card", "subclass": "akatsuki",
+        "bond_id": 64, "tier": 3,
+        "stats": {"str": 40, "atk": 30},
+        "proc": {"trigger": "on_hit", "chance": 0.10, "cooldown": 5.0, "effect": "bonus_damage", "base_damage": 200, "scaling_stat": "str", "scaling_coef": 0.3},
+        "consume_condition": {"type": "bond_count", "bond_id": 64, "count": 3}
+    },
+    "64": {
+        "type": "bond", "subclass": "akatsuki",
+        "required": 3,
+        "stats": {}
+    },
+
+    "65": {
+        "type": "card", "subclass": "wuxia_legend",
+        "bond_id": 71, "tier": 3,
+        "stats": {"str": 55, "hp": 450, "armor": 8},
+        "proc": {"trigger": "on_hit", "chance": 0.10, "cooldown": 6.0, "effect": "aoe_damage", "range": 3.0, "damage_pct": 1.8},
+        "consume_condition": {"type": "bond_count", "bond_id": 71, "count": 3}
+    },
+    "66": {
+        "type": "card", "subclass": "wuxia_legend",
+        "bond_id": 71, "tier": 3,
+        "stats": {"agi": 55, "crit_rate": 0.08, "crit_dmg": 0.20},
+        "proc": {"trigger": "on_crit", "chance": 0.15, "cooldown": 5.0, "effect": "bonus_spell_damage", "base_damage": 250, "scaling_stat": "agi", "scaling_coef": 0.35},
+        "consume_condition": {"type": "bond_count", "bond_id": 71, "count": 3}
+    },
+    "67": {
+        "type": "card", "subclass": "wuxia_legend",
+        "bond_id": 71, "tier": 3,
+        "stats": {"int": 55, "mp": 60},
+        "proc": {"trigger": "periodic", "interval": 5.0, "effect": "orbiting_damage", "damage_pct": 3.0},
+        "consume_condition": {"type": "bond_count", "bond_id": 71, "count": 3}
+    },
+    "68": {
+        "type": "card", "subclass": "wuxia_legend",
+        "bond_id": 71, "tier": 3,
+        "stats": {"agi": 50, "aspd_pct": 0.20},
+        "proc": {"trigger": "on_hit", "chance": 0.08, "cooldown": 8.0, "effect": "spell_damage", "damage_pct": 1.5, "count": 5},
+        "consume_condition": {"type": "bond_count", "bond_id": 71, "count": 3}
+    },
+    "71": {
+        "type": "bond", "subclass": "wuxia_legend",
+        "required": 3,
+        "stats": {}
+    },
+
+    "72": {
+        "type": "card", "subclass": "realm",
+        "bond_id": 80, "tier": 3,
+        "stats": {"str": 40, "agi": 40, "int": 40},
+        "proc": {"trigger": "on_level_up", "effect": "add_growth", "stats": {"str": 3, "agi": 3, "int": 3}},
+        "consume_condition": {"type": "bond_count", "bond_id": 80, "count": 3}
+    },
+    "73": {
+        "type": "card", "subclass": "realm",
+        "bond_id": 80, "tier": 3,
+        "stats": {"hp": 600, "armor": 10, "regen": 20},
+        "proc": {"trigger": "on_level_up", "effect": "add_percent", "stat": "hp", "value": 0.002},
+        "consume_condition": {"type": "bond_count", "bond_id": 80, "count": 3}
+    },
+    "74": {
+        "type": "card", "subclass": "realm",
+        "bond_id": 80, "tier": 3,
+        "stats": {"atk": 60, "crit_rate": 0.10},
+        "proc": {"trigger": "on_level_up", "effect": "add_percent", "stat": "atk", "value": 0.002},
+        "consume_condition": {"type": "bond_count", "bond_id": 80, "count": 3}
+    },
+    "75": {
+        "type": "card", "subclass": "realm",
+        "bond_id": 80, "tier": 4,
+        "stats": {"str_pct": 0.15, "agi_pct": 0.15, "int_pct": 0.15},
+        "proc": {"trigger": "on_level_up", "effect": "add_percent", "stat": "str", "value": 0.003},
+        "consume_condition": {"type": "bond_count", "bond_id": 80, "count": 3}
+    },
+    "80": {
+        "type": "bond", "subclass": "realm",
+        "required": 3,
+        "stats": {}
+    },
+
+    "81": {
+        "type": "card", "subclass": "hero_legend",
+        "bond_id": 89, "tier": 4,
+        "stats": {"str": 80, "atk": 60, "hp": 600},
+        "proc": {"trigger": "on_hit", "chance": 0.10, "cooldown": 5.0, "effect": "aoe_damage", "range": 4.0, "damage_pct": 2.0},
+        "consume_condition": {"type": "bond_count", "bond_id": 89, "count": 2}
+    },
+    "82": {
+        "type": "card", "subclass": "hero_legend",
+        "bond_id": 89, "tier": 4,
+        "stats": {"agi": 80, "aspd_pct": 0.30, "crit_rate": 0.12},
+        "proc": {"trigger": "on_crit", "chance": 0.20, "cooldown": 4.0, "effect": "multi_projectile", "count": 5, "damage_pct": 1.5},
+        "consume_condition": {"type": "bond_count", "bond_id": 89, "count": 2}
+    },
+    "83": {
+        "type": "card", "subclass": "hero_legend",
+        "bond_id": 89, "tier": 4,
+        "stats": {"int": 80, "mp": 100},
+        "proc": {"trigger": "periodic", "interval": 6.0, "effect": "multi_area_spell_damage", "area_count": 4, "damage_pct": 2.8},
+        "consume_condition": {"type": "bond_count", "bond_id": 89, "count": 2}
+    },
+    "89": {
+        "type": "bond", "subclass": "hero_legend",
+        "required": 2,
+        "stats": {}
+    },
+
+    "90": {
+        "type": "bond", "subclass": "healer",
+        "name_key": "SET_HEALER",
+        "desc_key": "SET_HEALER_DESC",
+        "required": 2,
+        "stats": {}
+    },
+    "91": {
+        "type": "bond", "subclass": "tracker",
+        "name_key": "SET_TRACKER",
+        "desc_key": "SET_TRACKER_DESC",
+        "required": 2,
+        "stats": {}
+    },
+    "93": {
+        "type": "bond", "subclass": "weakness_hunter",
+        "name_key": "SET_WEAKNESS_HUNTER",
+        "desc_key": "SET_WEAKNESS_HUNTER_DESC",
+        "required": 2,
+        "stats": {}
+    },
+    "96": {
+        "type": "bond", "subclass": "war_machine",
+        "name_key": "SET_WAR_MACHINE",
+        "desc_key": "SET_WAR_MACHINE_DESC",
+        "required": 3,
+        "stats": {}
+    },
+    "97": {
+        "type": "bond", "subclass": "soul_harvest",
+        "name_key": "SET_SOUL_HARVEST",
+        "desc_key": "SET_SOUL_HARVEST_DESC",
+        "required": 3,
+        "stats": {}
+    },
+    "99": {
+        "type": "bond", "subclass": "blood_moon",
+        "name_key": "SET_BLOOD_MOON",
+        "desc_key": "SET_BLOOD_MOON_DESC",
+        "required": 3,
+        "stats": {}
+    }
+}

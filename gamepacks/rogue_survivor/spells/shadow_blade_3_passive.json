@@ -1,0 +1,13 @@
+{
+  "id": "shadow_blade_3_passive",
+  "school": "shadow",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_stealth_kill_mana",
+      "base_points": 8,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

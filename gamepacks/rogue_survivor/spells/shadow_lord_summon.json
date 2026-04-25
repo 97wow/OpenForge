@@ -1,0 +1,12 @@
+{
+  "id": "shadow_lord_summon",
+  "name": "Shadow Summon",
+  "description": "Summons shadow minions to aid in battle",
+  "cooldown": 8.0,
+  "effects": [
+    {
+      "type": "TRIGGER_SPELL",
+      "trigger_spell": "shadow_lord_summon_effect"
+    }
+  ]
+}

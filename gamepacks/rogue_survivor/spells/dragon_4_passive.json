@@ -1,0 +1,13 @@
+{
+  "id": "dragon_4_passive",
+  "school": "fire",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_element_immune_duration",
+      "base_points": 5,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

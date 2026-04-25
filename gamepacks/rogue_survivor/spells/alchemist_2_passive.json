@@ -1,0 +1,13 @@
+{
+  "id": "alchemist_2_passive",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_element_damage_pct",
+      "base_points": 0.2,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

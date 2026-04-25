@@ -1,15 +1,13 @@
 {
-  "id": "piercer_2_passive",
+  "id": "tracker_1_passive",
   "school": "physical",
   "effects": [
     {
       "type": "SET_VARIABLE",
-      "key": "hero_pierce_damage_ratio",
+      "key": "hero_attack_range",
       "base_points": 0.8,
       "mode": "add",
-      "target": {
-        "category": "SELF"
-      }
+      "target": { "category": "SELF" }
     }
   ]
 }

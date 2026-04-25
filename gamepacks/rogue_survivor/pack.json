@@ -5,18 +5,24 @@
   "description": "Roguelike survival shooter - defend the Life Fountain for 10 minutes",
   "main_script": "scripts/rogue_game_mode.gd",
   "resources": {
-    "gold": { "initial": 0, "min": 0 },
-    "xp": { "initial": 0, "min": 0 },
-    "fountain_hp": { "initial": 500, "min": 0, "max": 500 },
-    "hero_level": { "initial": 1, "min": 1 }
+	"gold": { "initial": 0, "min": 0 },
+	"wood": { "initial": 0, "min": 0 },
+	"kills": { "initial": 0, "min": 0 },
+	"xp": { "initial": 0, "min": 0 },
+	"fountain_hp": { "initial": 500, "min": 0, "max": 500 },
+	"hero_level": { "initial": 1, "min": 1 }
   },
   "events": [
-    "wave_started", "wave_completed",
-    "player_shoot", "projectile_hit",
-    "enemy_reached_target", "ai_reached_target",
-    "hero_level_up", "card_offered", "card_selected",
-    "fountain_damaged", "game_victory", "game_defeat"
+	"wave_started", "wave_completed", "draft_available", "all_waves_complete",
+	"player_shoot", "projectile_hit",
+	"enemy_reached_target", "ai_reached_target",
+	"hero_level_up", "card_offered", "card_selected",
+	"fountain_damaged", "game_victory", "game_defeat"
   ],
+  "scenes": {
+	"character_select": "scenes/character_select/character_select.tscn",
+	"difficulty_select": "scenes/difficulty_select/difficulty_select.tscn"
+  },
   "item_dir": "items",
   "loot_dir": "loot_tables",
   "entity_dir": "entities",

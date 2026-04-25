@@ -1,0 +1,13 @@
+{
+  "id": "healer_2_passive",
+  "school": "holy",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_shield_interval",
+      "base_points": 20,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

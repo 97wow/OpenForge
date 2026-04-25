@@ -1,0 +1,13 @@
+{
+  "id": "paladin_passive",
+  "name": "Holy Shield",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_hp_regen",
+      "base_points": 2.0,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

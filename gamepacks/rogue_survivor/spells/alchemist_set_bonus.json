@@ -1,0 +1,27 @@
+{
+  "id": "alchemist_set_bonus",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_random_element_chance",
+      "base_points": 0.3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_element_damage_pct",
+      "base_points": 0.25,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    },
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_element_fusion_damage",
+      "base_points": 50,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}

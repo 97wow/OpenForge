@@ -1,0 +1,13 @@
+{
+  "id": "dragon_3_passive",
+  "school": "nature",
+  "effects": [
+    {
+      "type": "SET_VARIABLE",
+      "key": "hero_flight_speed_pct",
+      "base_points": 0.3,
+      "mode": "add",
+      "target": { "category": "SELF" }
+    }
+  ]
+}
