@@ -19,3 +19,19 @@ export/
 
 # Debug
 *.log
+
+# Claude Code session/state
+.claude/
+
+# Generated test reports
+reports/
+
+# Third-party CC0/CC-BY asset packs (~830MB, see tools/setup/ASSET_MANIFEST.md)
+addons/
+assets/fonts/
+assets/models/
+assets/shaders/
+assets/sprites/
+
+# Local AI environment
+.openforge-ai-env/
