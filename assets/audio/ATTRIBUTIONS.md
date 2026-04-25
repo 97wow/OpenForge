@@ -25,7 +25,9 @@ every row is recorded in the matching `<file>.source.json` sidecar.
 
 | Filename | Relative path | Source | License | Description |
 |---|---|---|---|---|
+| `boss_death.wav` | `assets/audio/boss_death.wav` | Kenney "Sci-Fi Sounds" pack (file `explosionCrunch_001.ogg`, https://kenney.nl/assets/sci-fi-sounds) | CC0 1.0 | Boss-kill dramatic explosion crunch (was broken call at `rogue_rewards.gd:475`, wired 2026-04-25) |
 | `death.wav` | `assets/audio/death.wav` | Kenney "Impact Sounds" pack (file `impactSoft_heavy_000.ogg`, https://kenney.nl/assets/impact-sounds) | CC0 1.0 | Generic enemy-death thud auto-played on `entity_killed` |
+| `hit_holy.wav` | `assets/audio/hit_holy.wav` | Kenney "Impact Sounds" pack (file `impactGlass_heavy_000.ogg`, https://kenney.nl/assets/impact-sounds) | CC0 1.0 | Holy-school damage tick, bright glass-strike (6th school SFX, wired 2026-04-25) |
 | `hit_fire.wav` | `assets/audio/hit_fire.wav` | Kenney "Sci-Fi Sounds" pack (file `laserRetro_000.ogg`, https://kenney.nl/assets/sci-fi-sounds) | CC0 1.0 | Fire-school damage tick, energy/zap transient |
 | `hit_frost.wav` | `assets/audio/hit_frost.wav` | Kenney "Impact Sounds" pack (file `impactGlass_light_001.ogg`, https://kenney.nl/assets/impact-sounds) | CC0 1.0 | Frost-school damage tick, glassy crackle |
 | `hit_nature.wav` | `assets/audio/hit_nature.wav` | Kenney "Sci-Fi Sounds" pack (file `slime_000.ogg`, https://kenney.nl/assets/sci-fi-sounds) | CC0 1.0 | Nature/poison damage tick, organic squelch |

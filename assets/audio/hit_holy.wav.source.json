@@ -1,0 +1,13 @@
+{
+  "source": "Kenney Impact Sounds",
+  "source_url": "https://kenney.nl/assets/impact-sounds",
+  "source_file": "impactGlass_heavy_000.ogg",
+  "source_sha256": "b44b39a940e8948e74b9bd3776bff980df43cf220abdaf0d467dc4c43c0244a5",
+  "license": "CC0 1.0 Universal",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "transform": "afconvert -d LEI16 -c 1 -f WAVE (mono 44.1kHz 16-bit PCM)",
+  "output_sha256": "f76c94340b9340cbaf9a62a89f3aea2a8fbbf1489bcabe5fcf1b240f32eb4cb9",
+  "output_duration_sec": 0.238322,
+  "picked_at": "2026-04-25",
+  "picked_by": "feat(audio): wire holy school SFX (6th damage type)"
+}

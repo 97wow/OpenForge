@@ -83,6 +83,7 @@ func _on_entity_damaged(data: Dictionary) -> void:
 		2: sfx_name = "hit_fire" if _audio_cache.has("hit_fire") else "hit_generic"
 		3: sfx_name = "hit_nature" if _audio_cache.has("hit_nature") else "hit_generic"
 		4: sfx_name = "hit_shadow" if _audio_cache.has("hit_shadow") else "hit_generic"
+		5: sfx_name = "hit_holy" if _audio_cache.has("hit_holy") else "hit_generic"
 	_play_sfx(sfx_name)
 
 	# 击退已移除默认行为 — 仅在 GamePack 显式调用时生效
@@ -374,7 +375,7 @@ func _preload_audio() -> void:
 	var audio_dir := "res://assets/audio/"
 	var sfx_dir := "res://assets/audio/sfx/"
 	# 原有音效（wav）
-	var files := ["hit_physical", "hit_fire", "hit_frost", "hit_nature", "hit_shadow", "shoot", "death", "level_up"]
+	var files := ["hit_physical", "hit_fire", "hit_frost", "hit_nature", "hit_shadow", "hit_holy", "shoot", "death", "level_up", "boss_death"]
 	for fname in files:
 		for ext in [".wav", ".ogg"]:
 			var path: String = audio_dir + fname + ext
