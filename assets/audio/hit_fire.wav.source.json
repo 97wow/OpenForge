@@ -1,0 +1,13 @@
+{
+  "source": "Kenney Sci-Fi Sounds",
+  "source_url": "https://kenney.nl/assets/sci-fi-sounds",
+  "source_file": "laserRetro_000.ogg",
+  "source_sha256": "2a203a007d24cc7e607eb8bec1d86bedba7f551911217ce2c4c1f31393aed32c",
+  "license": "CC0 1.0 Universal",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "transform": "afconvert -d LEI16 -c 1 -f WAVE (mono 44.1kHz 16-bit PCM)",
+  "output_sha256": "ada39ab131819dde8858f1a3cfebec3f7a948af82e0629d7814a618c8fc25615",
+  "output_duration_sec": 0.235420,
+  "picked_at": "2026-04-25",
+  "picked_by": "fix(audio): swap unknown-provenance SFX with Kenney CC0"
+}

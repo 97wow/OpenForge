@@ -1,0 +1,13 @@
+{
+  "source": "Kenney Impact Sounds",
+  "source_url": "https://kenney.nl/assets/impact-sounds",
+  "source_file": "impactBell_heavy_004.ogg",
+  "source_sha256": "49fe4fafa2001bd0d312976796824571ca8429851f285997e1327d17bb34fd00",
+  "license": "CC0 1.0 Universal",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "transform": "afconvert -d LEI16 -c 1 -f WAVE (mono 44.1kHz 16-bit PCM)",
+  "output_sha256": "5b078b256e3d20271633b47ed3a416dc682bc144c50ca1f9cf42b529d84c1e18",
+  "output_duration_sec": 0.298549,
+  "picked_at": "2026-04-25",
+  "picked_by": "fix(audio): swap unknown-provenance SFX with Kenney CC0"
+}

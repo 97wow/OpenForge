@@ -1,38 +1,38 @@
 # Audio Attributions — assets/audio/
 
 Source-of-truth attribution table for every audio file currently shipped under
-`assets/audio/`. Generated as part of Task #16 (audio-pipeline gap re-audit,
-2026-04-25).
+`assets/audio/`. Originally generated as part of Task #16 (audio-pipeline gap
+re-audit, 2026-04-25).
 
-No `.source.json` sidecars were present at audit time, so attribution column
-records the most plausible origin based on internal documentation
-(`docs/ROGUE_SURVIVOR_GAPS.md` §2.1 calls `assets/audio/sfx/` "the Kenney
-library") together with what could be verified against the file itself. Where
-even that is insufficient, the entry is marked `unknown — needs follow-up`
-rather than guessed. Future asset additions should drop a sidecar JSON next
-to the file recording prompt/source/license at promotion time.
+`.source.json` sidecars live next to each replaced asset and capture the
+canonical record `{source, source_url, source_file, source_sha256, license,
+transform, output_sha256, output_duration_sec, picked_at}`. This table reflects
+the sidecar contents — if they ever drift, the sidecar is authoritative.
 
 ## BGM
 
 | Filename | Relative path | Plausible source | License | Description |
 |---|---|---|---|---|
-| `battle_01.mp3` | `assets/audio/bgm/battle_01.mp3` | unknown — needs follow-up | unknown | Looping orchestral combat track (~3.0 MB) used as the only live BGM today |
+| `battle_01.mp3` | `assets/audio/bgm/battle_01.mp3` | unknown — deferred to MusicGen render task (see `docs/AUDIO_REPLACEMENT_PLAN.md` §12 Option A) | unknown | Looping orchestral combat track (~3.0 MB) used as the only live BGM today |
 
 ## SFX — framework layer (top-level `assets/audio/`)
 
-These were added before the Kenney pack landed and have no recoverable
-provenance. Treat as `unknown` until somebody confirms or replaces them.
+Replaced 2026-04-25 with Kenney CC0 picks per `docs/AUDIO_REPLACEMENT_PLAN.md`.
+All sources are CC0 1.0 Universal (no attribution required), audited against
+the per-file selection criteria in the plan. Each WAV is mono / 44.1 kHz /
+16-bit PCM (re-encoded via `afconvert -d LEI16 -c 1 -f WAVE`). Provenance for
+every row is recorded in the matching `<file>.source.json` sidecar.
 
-| Filename | Relative path | Plausible source | License | Description |
+| Filename | Relative path | Source | License | Description |
 |---|---|---|---|---|
-| `death.wav` | `assets/audio/death.wav` | unknown — needs follow-up | unknown | Generic enemy-death thud auto-played on `entity_killed` |
-| `hit_fire.wav` | `assets/audio/hit_fire.wav` | unknown — needs follow-up | unknown | Fire-school damage tick, sizzle/impact, ~6.5 KB |
-| `hit_frost.wav` | `assets/audio/hit_frost.wav` | unknown — needs follow-up | unknown | Frost-school damage tick, icy crackle, ~5.2 KB |
-| `hit_nature.wav` | `assets/audio/hit_nature.wav` | unknown — needs follow-up | unknown | Nature/poison damage tick, organic squelch, ~4.4 KB |
-| `hit_physical.wav` | `assets/audio/hit_physical.wav` | unknown — needs follow-up | unknown | Physical damage tick, dull thump, ~3.5 KB |
-| `hit_shadow.wav` | `assets/audio/hit_shadow.wav` | unknown — needs follow-up | unknown | Shadow-school damage tick, dark whoosh, ~7.8 KB |
-| `level_up.wav` | `assets/audio/level_up.wav` | unknown — needs follow-up | unknown | Hero level-up celebratory sting, ~17 KB |
-| `shoot.wav` | `assets/audio/shoot.wav` | unknown — needs follow-up | unknown | Generic projectile-launch zap auto-played on `spell_cast` |
+| `death.wav` | `assets/audio/death.wav` | Kenney "Impact Sounds" pack (file `impactSoft_heavy_000.ogg`, https://kenney.nl/assets/impact-sounds) | CC0 1.0 | Generic enemy-death thud auto-played on `entity_killed` |
+| `hit_fire.wav` | `assets/audio/hit_fire.wav` | Kenney "Sci-Fi Sounds" pack (file `laserRetro_000.ogg`, https://kenney.nl/assets/sci-fi-sounds) | CC0 1.0 | Fire-school damage tick, energy/zap transient |
+| `hit_frost.wav` | `assets/audio/hit_frost.wav` | Kenney "Impact Sounds" pack (file `impactGlass_light_001.ogg`, https://kenney.nl/assets/impact-sounds) | CC0 1.0 | Frost-school damage tick, glassy crackle |
+| `hit_nature.wav` | `assets/audio/hit_nature.wav` | Kenney "Sci-Fi Sounds" pack (file `slime_000.ogg`, https://kenney.nl/assets/sci-fi-sounds) | CC0 1.0 | Nature/poison damage tick, organic squelch |
+| `hit_physical.wav` | `assets/audio/hit_physical.wav` | Kenney "Impact Sounds" pack (file `impactPunch_medium_000.ogg`, https://kenney.nl/assets/impact-sounds) | CC0 1.0 | Physical damage tick, dull body thump |
+| `hit_shadow.wav` | `assets/audio/hit_shadow.wav` | Kenney "Impact Sounds" pack (file `impactBell_heavy_004.ogg`, https://kenney.nl/assets/impact-sounds) | CC0 1.0 | Shadow-school damage tick, dark resonant tone |
+| `level_up.wav` | `assets/audio/level_up.wav` | Kenney "Interface Sounds" pack (file `confirmation_002.ogg`, https://kenney.nl/assets/interface-sounds) | CC0 1.0 | Hero level-up confirmation stinger (placeholder — upgrade to true fanfare in Wave B) |
+| `shoot.wav` | `assets/audio/shoot.wav` | Kenney "Sci-Fi Sounds" pack (file `laserSmall_001.ogg`, https://kenney.nl/assets/sci-fi-sounds) | CC0 1.0 | Generic projectile-launch zap auto-played on `spell_cast` |
 
 ## SFX — `assets/audio/sfx/`
 
@@ -64,12 +64,21 @@ without a fresh CC0 audit.
 
 ## Follow-up actions
 
-1. Locate the original download/commit for the eight top-level `.wav` files
-   and `bgm/battle_01.mp3` and record source + license, or replace them with
-   provenance-clean equivalents (Pixabay / Kenney / MusicGen render).
-2. When the Kenney sourcing is confirmed, replace the
+1. ~~Locate the original download/commit for the eight top-level `.wav` files
+   and `bgm/battle_01.mp3` and record source + license.~~ **Done 2026-04-25 for
+   the 8 SFX (Kenney CC0 swap).** `bgm/battle_01.mp3` is still pending —
+   defer to the MusicGen-render task per `docs/AUDIO_REPLACEMENT_PLAN.md` §12
+   Option A (or §12 Option B FMA fallback) before commercial launch.
+2. When the Kenney sourcing in `assets/audio/sfx/` is confirmed, replace the
    `(per gaps doc; unverified)` qualifier with the specific Kenney pack name
    and version each file came from.
 3. Adopt the `<file>.source.json` sidecar convention from
    `docs/AUDIO_GAP_REPORT.md` §1 for all future audio additions so this
-   table can be regenerated automatically.
+   table can be regenerated automatically. **Already adopted for the 8 SFX
+   replaced 2026-04-25** — extend to `assets/audio/sfx/` next.
+4. `level_up.wav` is currently a short confirmation stinger (~0.54 s) rather
+   than a true 1–2 s ascending fanfare — flagged as placeholder. Upgrade in
+   Wave B with a proper level-up motif (Pixabay search or MusicGen render).
+5. In-game audition: boot `rogue_survivor`, force-trigger each cue
+   (`DebugOverlay` or matching event) and confirm the new SFX reads the same
+   role as the original. Roll back any cue that doesn't pass.

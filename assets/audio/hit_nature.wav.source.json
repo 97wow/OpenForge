@@ -1,0 +1,13 @@
+{
+  "source": "Kenney Sci-Fi Sounds",
+  "source_url": "https://kenney.nl/assets/sci-fi-sounds",
+  "source_file": "slime_000.ogg",
+  "source_sha256": "480ee82b690136ea9db6966a3c3033356b8274752795c4e37afd6b6defcfacff",
+  "license": "CC0 1.0 Universal",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "transform": "afconvert -d LEI16 -c 1 -f WAVE (mono 44.1kHz 16-bit PCM)",
+  "output_sha256": "fb275420493e4ff904210bcfac28ab59ca28f750022df5c18732efa1fbe9a065",
+  "output_duration_sec": 0.499229,
+  "picked_at": "2026-04-25",
+  "picked_by": "fix(audio): swap unknown-provenance SFX with Kenney CC0"
+}

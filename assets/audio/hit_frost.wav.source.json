@@ -1,0 +1,13 @@
+{
+  "source": "Kenney Impact Sounds",
+  "source_url": "https://kenney.nl/assets/impact-sounds",
+  "source_file": "impactGlass_light_001.ogg",
+  "source_sha256": "05e513fbd42829060eb37855f8c3866722ec5c39a8937c9bfde518cc609effa2",
+  "license": "CC0 1.0 Universal",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "transform": "afconvert -d LEI16 -c 1 -f WAVE (mono 44.1kHz 16-bit PCM)",
+  "output_sha256": "444badf05293fc711a7b7e4968149e41ab5141dee3d0cecedbefb26aaf027db1",
+  "output_duration_sec": 0.206689,
+  "picked_at": "2026-04-25",
+  "picked_by": "fix(audio): swap unknown-provenance SFX with Kenney CC0"
+}

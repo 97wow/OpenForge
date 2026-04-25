@@ -1,0 +1,13 @@
+{
+  "source": "Kenney Impact Sounds",
+  "source_url": "https://kenney.nl/assets/impact-sounds",
+  "source_file": "impactPunch_medium_000.ogg",
+  "source_sha256": "486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c",
+  "license": "CC0 1.0 Universal",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "transform": "afconvert -d LEI16 -c 1 -f WAVE (mono 44.1kHz 16-bit PCM)",
+  "output_sha256": "3816ba0b27fb5c4e3f338fd28e1cca368ac1388aaa888c99b39ec0f89fa59f80",
+  "output_duration_sec": 0.430544,
+  "picked_at": "2026-04-25",
+  "picked_by": "fix(audio): swap unknown-provenance SFX with Kenney CC0"
+}
