@@ -67,6 +67,8 @@ func create_hud() -> void:
 
 	_announce = AnnounceClass.new()
 	_announce.create(ui_layer)
+	# 订阅框架级 ui_toast 事件（TriggerSystem show_toast 动作派发）
+	EventBus.connect_event("ui_toast", _on_ui_toast)
 
 	# 小地图占位
 	_create_minimap(ui_layer)
@@ -127,6 +129,19 @@ func update_hud() -> void:
 
 func add_announcement(msg: String, color: Color = Color(0.85, 0.85, 0.9)) -> void:
 	if _announce: _announce.add(msg, color)
+
+func _on_ui_toast(data: Dictionary) -> void:
+	## TriggerSystem show_toast 动作的渲染入口（onboarding 等数据驱动 UX 的统一通道）
+	if _announce == null:
+		return
+	var text: String = str(data.get("text", ""))
+	if text.is_empty():
+		return
+	var color := Color(0.85, 0.85, 0.9)
+	var hex: String = str(data.get("color", ""))
+	if hex.begins_with("#") and hex.length() >= 7:
+		color = Color.html(hex)
+	_announce.add(text, color)
 
 # === 小地图 ===
 

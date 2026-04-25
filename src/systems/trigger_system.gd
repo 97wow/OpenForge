@@ -169,6 +169,8 @@ func _register_builtin_conditions() -> void:
 	register_condition_evaluator("has_tag", _cond_has_tag)
 	register_condition_evaluator("compare_resource", _cond_compare_resource)
 	register_condition_evaluator("check_variable", _cond_check_variable)
+	register_condition_evaluator("compare_event_value", _cond_compare_event_value)
+	register_condition_evaluator("check_save_flag", _cond_check_save_flag)
 	register_condition_evaluator("is_game_state", _cond_is_game_state)
 	register_condition_evaluator("has_component", _cond_has_component)
 	register_condition_evaluator("and", _cond_and)
@@ -197,6 +199,39 @@ func _cond_check_variable(cond: Dictionary, event_data: Dictionary) -> bool:
 	if current is float or current is int:
 		return _compare(float(current), op, float(value))
 	return str(current) == str(value)
+
+func _cond_compare_event_value(cond: Dictionary, event_data: Dictionary) -> bool:
+	## 通用 event-field 过滤：{ "path": "$event.wave", "op": "==", "value": 1 }
+	## value 也可是 "$event.xxx" 引用。path 解析失败返回 false（null ≠ 任何值）。
+	var path_val: Variant = resolve_value(cond.get("path", ""), event_data)
+	var op: String = cond.get("op", "==")
+	var rhs: Variant = resolve_value(cond.get("value", null), event_data)
+	if path_val == null:
+		return false
+	if (path_val is float or path_val is int) and (rhs is float or rhs is int):
+		return _compare(float(path_val), op, float(rhs))
+	# 字符串/布尔走严格相等，仅支持 == / !=
+	match op:
+		"==": return str(path_val) == str(rhs)
+		"!=": return str(path_val) != str(rhs)
+	return false
+
+func _cond_check_save_flag(cond: Dictionary, event_data: Dictionary) -> bool:
+	## 跨存档 one-shot 守门：直读 SaveSystem，绕过 EngineAPI._variables（pack unload 会清）
+	var ns: String = cond.get("namespace", "")
+	var key: String = cond.get("key", "")
+	var op: String = cond.get("op", "==")
+	var value = resolve_value(cond.get("value", true), event_data)
+	var save_sys: Node = get_node_or_null("/root/SaveSystem")
+	var current: Variant = null
+	if save_sys and save_sys.has_method("load_data"):
+		current = save_sys.call("load_data", ns, key, null)
+	if (current is float or current is int) and (value is float or value is int):
+		return _compare(float(current), op, float(value))
+	match op:
+		"==": return str(current) == str(value)
+		"!=": return str(current) != str(value)
+	return false
 
 func _cond_is_game_state(cond: Dictionary, _event_data: Dictionary) -> bool:
 	return EngineAPI.get_game_state() == cond.get("state", "")
@@ -242,6 +277,8 @@ func _register_builtin_actions() -> void:
 	register_action_executor("subtract_resource", _act_subtract_resource)
 	register_action_executor("set_resource", _act_set_resource)
 	register_action_executor("set_variable", _act_set_variable)
+	register_action_executor("set_save_flag", _act_set_save_flag)
+	register_action_executor("show_toast", _act_show_toast)
 	register_action_executor("emit_event", _act_emit_event)
 	register_action_executor("set_game_state", _act_set_game_state)
 	register_action_executor("apply_buff", _act_apply_buff)
@@ -283,6 +320,36 @@ func _act_set_variable(action: Dictionary, event_data: Dictionary) -> void:
 	var key: String = action.get("key", "")
 	var value = resolve_value(action.get("value", null), event_data)
 	EngineAPI.set_variable(key, value)
+
+func _act_set_save_flag(action: Dictionary, event_data: Dictionary) -> void:
+	## 把布尔/数值 flag 写到 SaveSystem 的指定 namespace（跨存档持久）
+	var ns: String = action.get("namespace", "")
+	var key: String = action.get("key", "")
+	if ns == "" or key == "":
+		return
+	var value = resolve_value(action.get("value", null), event_data)
+	var save_sys: Node = get_node_or_null("/root/SaveSystem")
+	if save_sys and save_sys.has_method("save_data"):
+		save_sys.call("save_data", ns, key, value)
+
+func _act_show_toast(action: Dictionary, event_data: Dictionary) -> void:
+	## 通过 EventBus 派 "ui_toast" 给已注册的 HUD（rogue_hud 等订阅它）。
+	## 没 HUD 时退化到 print，不阻塞。
+	var i18n_key: String = str(resolve_value(action.get("i18n_key", ""), event_data))
+	var args_raw: Variant = action.get("args", [])
+	var args_arr: Array = args_raw if args_raw is Array else []
+	var color: String = action.get("color", "#d8d8e6")
+	var duration: float = float(action.get("duration", 5.0))
+	var i18n_node: Node = get_node_or_null("/root/I18n")
+	var text: String = i18n_key
+	if i18n_node and i18n_node.has_method("t"):
+		text = str(i18n_node.call("t", i18n_key, args_arr))
+	EventBus.emit_event("ui_toast", {
+		"text": text,
+		"i18n_key": i18n_key,
+		"color": color,
+		"duration": duration,
+	})
 
 func _act_emit_event(action: Dictionary, event_data: Dictionary) -> void:
 	var event_name: String = action.get("event", "")

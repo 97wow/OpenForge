@@ -788,6 +788,7 @@
 		"BOND_ACTIVATED": "羁绊激活: {0}！",
 		"POOL_UNLOCKED": "新卡组解锁: {0}",
 		"WAVE_START": "=== 第 {0} 波开始 === ({1}秒)",
+		"TUTORIAL_WELCOME_MOVE": "欢迎！用 WASD 移动。敌人会靠近——撑过这一波。",
 		"WAVE_DISPLAY": "第 {0}/{1} 波  {2}秒",
 		"BOSS_SPAWN": "BOSS出现: {0}！",
 		"FINAL_BOSS_SPAWN": "终极BOSS: {0}！",

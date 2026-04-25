@@ -1,0 +1,16 @@
+[
+  {
+    "id": "onboarding_welcome_movement",
+    "event": "wave_started",
+    "once": true,
+    "conditions": [
+      { "type": "compare_event_value", "path": "$event.wave", "op": "==", "value": 1 },
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "tutorials_disabled", "op": "!=", "value": true },
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_welcome", "op": "!=", "value": true }
+    ],
+    "actions": [
+      { "type": "show_toast", "i18n_key": "TUTORIAL_WELCOME_MOVE", "color": "#66ccff", "duration": 5.0 },
+      { "type": "set_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_welcome", "value": true }
+    ]
+  }
+]

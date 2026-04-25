@@ -788,6 +788,7 @@
 		"BOND_ACTIVATED": "Bond activated: {0}!",
 		"POOL_UNLOCKED": "New card set unlocked: {0}",
 		"WAVE_START": "=== Wave {0} Start === ({1}s)",
+		"TUTORIAL_WELCOME_MOVE": "Welcome! Move with WASD. Enemies close in — survive the wave.",
 		"WAVE_DISPLAY": "Wave {0}/{1}  {2}s",
 		"BOSS_SPAWN": "BOSS appeared: {0}!",
 		"FINAL_BOSS_SPAWN": "FINAL BOSS: {0}!",

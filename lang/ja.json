@@ -777,6 +777,7 @@
 		"DRAW_CARD_DESC": "木材を消費してスキルカードを引く",
 		"DRAW_CARD_BTN": "カードを引く [{0}/{1} 木材]",
 		"WAVE_START": "=== 第{0}ウェーブ開始 === ({1}秒)",
+		"TUTORIAL_WELCOME_MOVE": "ようこそ！WASDで移動。敵が迫る——このウェーブを生き延びよう。",
 		"WAVE_DISPLAY": "第{0}/{1}ウェーブ {2}秒",
 		"BOSS_SPAWN": "ボス出現: {0}！",
 		"FINAL_BOSS_SPAWN": "最終ボス: {0}！",

@@ -777,6 +777,7 @@
 		"DRAW_CARD_DESC": "나무를 소모하여 스킬 카드를 뽑기",
 		"DRAW_CARD_BTN": "카드 뽑기 [{0}/{1} 나무]",
 		"WAVE_START": "=== {0}웨이브 시작 === ({1}초)",
+		"TUTORIAL_WELCOME_MOVE": "환영합니다! WASD로 이동. 적이 다가옵니다 — 이번 웨이브를 살아남으세요.",
 		"WAVE_DISPLAY": "{0}/{1}웨이브 {2}초",
 		"BOSS_SPAWN": "보스 출현: {0}!",
 		"FINAL_BOSS_SPAWN": "최종 보스: {0}!",
