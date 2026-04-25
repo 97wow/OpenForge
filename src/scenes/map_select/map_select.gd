@@ -5,29 +5,37 @@ extends Control
 @onready var map_list: VBoxContainer = $ScrollContainer/MapList
 
 func _ready() -> void:
+	back_btn.text = I18n.t("BACK")
+	$TopBar/TitleLabel.text = I18n.t("SELECT_MAP") if $TopBar.has_node("TitleLabel") else ""
 	back_btn.pressed.connect(_on_back)
 	_populate_maps()
 
 func _populate_maps() -> void:
-	# 当前只有一张地图，后续可从服务器/本地扫描
 	_add_map_card(
 		"demo_plains",
-		"Demo Plains - Tower Defense",
-		"Classic tower defense on open plains.\nDefend against 6 waves of enemies.",
-		"Difficulty: Easy",
+		I18n.t("MAP_DEMO_PLAINS"),
+		I18n.t("MAP_DEMO_PLAINS_DESC"),
+		I18n.t("DIFFICULTY") + ": " + I18n.t("DIFF_N1"),
 		"tower_defense"
 	)
 	_add_map_card(
 		"dark_forest",
-		"Dark Forest - Rogue Survivor",
-		"A corrupted forest teeming with dark creatures.\nDefend the Life Fountain for 10 minutes.",
-		"Difficulty: Normal",
+		I18n.t("MAP_DARK_FOREST"),
+		I18n.t("MAP_DARK_FOREST_DESC"),
+		I18n.t("DIFFICULTY") + ": " + I18n.t("DIFF_N2"),
+		"rogue_survivor"
+	)
+	_add_map_card(
+		"test_arena",
+		"[DEBUG] Test Arena",
+		"Framework test: UnitFlags / CC / Faction / TargetUtil / Damage Pipeline",
+		"",
 		"rogue_survivor"
 	)
 	_add_map_card(
 		"coming_soon",
-		"More Maps Coming...",
-		"New maps will be available in future updates.",
+		I18n.t("COMING_SOON"),
+		I18n.t("MAP_COMING_SOON_DESC"),
 		"",
 		"",
 		true
@@ -77,7 +85,7 @@ func _add_map_card(map_id: String, title: String, desc: String,
 	# 开始按钮
 	if not locked:
 		var btn := Button.new()
-		btn.text = "Enter"
+		btn.text = I18n.t("ENTER")
 		btn.custom_minimum_size = Vector2(100, 40)
 		btn.pressed.connect(_on_map_selected.bind(pack_id, map_id))
 		hbox.add_child(btn)
@@ -85,7 +93,31 @@ func _add_map_card(map_id: String, title: String, desc: String,
 	map_list.add_child(card)
 
 func _on_map_selected(pack_id: String, map_id: String) -> void:
-	SceneManager.goto_scene("character_select", {"pack_id": pack_id, "map_id": map_id})
+	# 测试地图直接进入战斗（跳过角色/难度选择）
+	if map_id == "test_arena":
+		SceneManager.goto_scene("battle", {
+			"pack_id": pack_id, "map_id": map_id,
+			"hero_class": "warrior", "test_mode": true,
+			"difficulty": {"level": 1, "hp_mult": 1.0, "dmg_mult": 1.0, "count_mult": 1.0, "reward_mult": 1.0, "name": "TEST"}
+		})
+		return
+	# 直接进入战斗场景（难度和英雄在游戏内选择）
+	SceneManager.goto_scene("battle", {"pack_id": pack_id, "map_id": map_id})
+
+func _register_pack_scenes(pack_id: String) -> void:
+	var pack_path := "res://gamepacks/%s" % pack_id
+	var json_path := pack_path + "/pack.json"
+	if not FileAccess.file_exists(json_path):
+		return
+	var file := FileAccess.open(json_path, FileAccess.READ)
+	if file == null:
+		return
+	var json := JSON.new()
+	if json.parse(file.get_as_text()) != OK or not (json.data is Dictionary):
+		return
+	var scenes: Dictionary = (json.data as Dictionary).get("scenes", {})
+	for scene_id in scenes:
+		SceneManager.register_scene(scene_id, pack_path + "/" + str(scenes[scene_id]))
 
 func _on_back() -> void:
 	SceneManager.goto_scene("lobby")

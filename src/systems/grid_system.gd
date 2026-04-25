@@ -2,7 +2,7 @@
 ## Tile 状态用字符串表示，GamePack 自定义语义
 ## TD 用 "buildable"/"path"/"occupied"，RPG 用 "walkable"/"wall" 等
 class_name GridSystem
-extends Node2D
+extends Node3D
 
 var cell_size: Vector2 = Vector2(64, 64)
 var _grid: Dictionary = {}  # Vector2i -> String (state)
@@ -59,11 +59,20 @@ func is_valid_pos(pos: Vector2i) -> bool:
 func set_cell_size(size: Vector2) -> void:
 	cell_size = size
 
-func grid_to_world(pos: Vector2i) -> Vector2:
-	return Vector2(pos) * cell_size + cell_size * 0.5
+func grid_to_world(pos: Vector2i) -> Vector3:
+	## 网格坐标 → 3D 世界坐标（XZ 平面，Y=0）
+	return Vector3(
+		pos.x * cell_size.x + cell_size.x * 0.5,
+		0,
+		pos.y * cell_size.y + cell_size.y * 0.5
+	)
 
-func world_to_grid(world_pos: Vector2) -> Vector2i:
-	return Vector2i((world_pos / cell_size).floor())
+func world_to_grid(world_pos: Vector3) -> Vector2i:
+	## 3D 世界坐标 → 网格坐标（使用 X 和 Z）
+	return Vector2i(
+		int(floor(world_pos.x / cell_size.x)),
+		int(floor(world_pos.z / cell_size.y))
+	)
 
 # === 查询 ===
 

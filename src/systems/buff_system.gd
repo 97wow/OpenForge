@@ -1,5 +1,5 @@
 ## BuffSystem - 通用 Buff/Debuff 管理
-## 效果通过 StatSystem 修改器实现，不硬编码任何特定效果
+## 效果通过 StatSystem 绿字属性实现，不硬编码任何特定效果
 class_name BuffSystem
 extends Node
 
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # === 应用/移除 ===
 
-func apply_buff(target: Node2D, buff_id: String, duration: float, data: Dictionary = {}) -> void:
+func apply_buff(target: Node3D, buff_id: String, duration: float, data: Dictionary = {}) -> void:
 	if not is_instance_valid(target) or not target is GameEntity:
 		return
 	var entity := target as GameEntity
@@ -45,7 +45,8 @@ func apply_buff(target: Node2D, buff_id: String, duration: float, data: Dictiona
 		return
 
 	merged["stacks"] = 1
-	merged["modifier_ids"] = []
+	merged["applied_mods"] = []  # [{stat, type, value}] — 用于精确移除
+	merged["entity_ref"] = entity  # 保存实体引用，移除时使用
 	entity_buffs[buff_id] = merged
 
 	# 应用 stat modifiers
@@ -53,7 +54,7 @@ func apply_buff(target: Node2D, buff_id: String, duration: float, data: Dictiona
 
 	EventBus.emit_event("buff_applied", {"entity": target, "buff_id": buff_id})
 
-func remove_buff(target: Node2D, buff_id: String) -> void:
+func remove_buff(target: Node3D, buff_id: String) -> void:
 	if not is_instance_valid(target) or not target is GameEntity:
 		return
 	var eid: int = (target as GameEntity).runtime_id
@@ -66,7 +67,7 @@ func remove_buff(target: Node2D, buff_id: String) -> void:
 
 	EventBus.emit_event("buff_removed", {"entity": target, "buff_id": buff_id})
 
-func has_buff(target: Node2D, buff_id: String) -> bool:
+func has_buff(target: Node3D, buff_id: String) -> bool:
 	if not target is GameEntity:
 		return false
 	var eid: int = (target as GameEntity).runtime_id
@@ -101,22 +102,35 @@ func _process(delta: float) -> void:
 
 func _apply_stat_modifiers(entity: GameEntity, _buff_id: String, buff: Dictionary) -> void:
 	var stat_mods: Array = buff.get("stat_modifiers", [])
-	var stat_system := EngineAPI.get_system("stat")
-	if stat_system == null:
-		return
 	for mod in stat_mods:
-		if mod is Dictionary:
-			var mod_id: String = stat_system.call("add_modifier", entity, mod.get("stat", ""), mod)
-			buff["modifier_ids"].append(mod_id)
+		if not mod is Dictionary:
+			continue
+		var stat_name: String = mod.get("stat", "")
+		var mod_type: String = mod.get("type", "flat")
+		var mod_value: float = mod.get("value", 0.0)
+		if stat_name == "" or mod_value == 0.0:
+			continue
+		if mod_type == "percent":
+			EngineAPI.add_green_percent(entity, stat_name, mod_value)
+		else:
+			EngineAPI.add_green_stat(entity, stat_name, mod_value)
+		buff["applied_mods"].append({"stat": stat_name, "type": mod_type, "value": mod_value})
 
 func _remove_stat_modifiers(buff: Dictionary) -> void:
-	var stat_system := EngineAPI.get_system("stat")
-	if stat_system == null:
+	var entity = buff.get("entity_ref")
+	if entity == null or not is_instance_valid(entity):
 		return
-	for mod_id in buff.get("modifier_ids", []):
-		stat_system.call("remove_modifier", mod_id)
+	for mod in buff.get("applied_mods", []):
+		var stat_name: String = mod.get("stat", "")
+		var mod_type: String = mod.get("type", "flat")
+		var mod_value: float = mod.get("value", 0.0)
+		if mod_type == "percent":
+			EngineAPI.remove_green_percent(entity, stat_name, mod_value)
+		else:
+			EngineAPI.remove_green_stat(entity, stat_name, mod_value)
+	buff["applied_mods"].clear()
 
-func clear_entity_buffs(entity: Node2D) -> void:
+func clear_entity_buffs(entity: Node3D) -> void:
 	if not entity is GameEntity:
 		return
 	var eid: int = (entity as GameEntity).runtime_id

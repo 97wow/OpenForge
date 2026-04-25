@@ -4,30 +4,32 @@ extends Node
 
 enum State { IDLE, WAIT_APPROACH, APPROACHING, IN_COMBAT, WAIT_RETURN, RETURNING }
 
-var alert_range: float = 500.0
-var attack_range: float = 350.0
+var alert_range: float = 5.0
+var attack_range: float = 3.5
 var target_tag: String = "enemy"
 var max_auto_approaches: int = 2
 var alert_enabled: bool = true
 
-var _entity: Node2D = null
+var _entity: Node3D = null
 var _movement: Node = null
 var _state: State = State.IDLE
 var _approach_count: int = 0
-var _current_target: Node2D = null
-var _home_position: Vector2 = Vector2.ZERO
+var _current_target: Node3D = null
+var _home_position: Vector3 = Vector3.ZERO
 var _has_home: bool = false
 var _delay_timer: float = 0.0
 var _delay_target: float = 0.0
+var _scan_timer: float = 0.0
+const SCAN_INTERVAL := 0.3
 
 func setup(data: Dictionary) -> void:
-	alert_range = data.get("alert_range", 500.0)
-	attack_range = data.get("attack_range", 350.0)
+	alert_range = data.get("alert_range", 5.0)
+	attack_range = data.get("attack_range", 3.5)
 	target_tag = data.get("target_tag", "enemy")
 	max_auto_approaches = data.get("max_auto_approaches", 2)
 	alert_enabled = data.get("alert_enabled", true)
 
-func _on_attached(entity: Node2D) -> void:
+func _on_attached(entity: Node3D) -> void:
 	_entity = entity
 
 func set_alert_enabled(enabled: bool) -> void:
@@ -92,11 +94,17 @@ func _process_approaching() -> void:
 		_current_target = null
 
 func _process_in_combat() -> void:
-	# 战斗中：等待警戒范围内所有敌人消失
+	if not _has_home:
+		return
+	# 低频扫描
+	_scan_timer += get_process_delta_time()
+	if _scan_timer < SCAN_INTERVAL:
+		return
+	_scan_timer = 0.0
 	var enemies: Array = EngineAPI.find_entities_in_area(
 		_entity.global_position, alert_range, target_tag
 	)
-	if enemies.is_empty() and _has_home:
+	if enemies.is_empty():
 		_start_delay(State.WAIT_RETURN)
 
 func _process_returning() -> void:
@@ -104,11 +112,14 @@ func _process_returning() -> void:
 		_state = State.IDLE
 		return
 	var dist := _entity.global_position.distance_to(_home_position)
-	if dist <= 10.0:
+	if dist <= 0.1:
 		_state = State.IDLE
 		_has_home = false
 		return
-	# 返回途中如果又发现敌人，停止返回进入战斗
+	_scan_timer += get_process_delta_time()
+	if _scan_timer < SCAN_INTERVAL:
+		return
+	_scan_timer = 0.0
 	var enemies: Array = EngineAPI.find_entities_in_area(
 		_entity.global_position, alert_range, target_tag
 	)
@@ -127,7 +138,7 @@ func _start_delay(wait_state: State) -> void:
 
 # === 给 PlayerInput 读取的接口 ===
 
-func get_approach_direction() -> Vector2:
+func get_approach_direction() -> Vector3:
 	match _state:
 		State.APPROACHING:
 			if _current_target and is_instance_valid(_current_target):
@@ -135,20 +146,22 @@ func get_approach_direction() -> Vector2:
 		State.RETURNING:
 			if _has_home:
 				return _entity.global_position.direction_to(_home_position)
-	return Vector2.ZERO
+	return Vector3.ZERO
 
 func is_approaching() -> bool:
 	return _state == State.APPROACHING or _state == State.RETURNING
 
-func _find_nearest_in_alert_range() -> Node2D:
+func _find_nearest_in_alert_range() -> Node3D:
 	var enemies: Array = EngineAPI.find_entities_in_area(
 		_entity.global_position, alert_range, target_tag
 	)
 	if enemies.is_empty():
 		return null
-	var closest: Node2D = null
+	var closest: Node3D = null
 	var closest_dist := INF
 	for e in enemies:
+		if not is_instance_valid(e):
+			continue
 		var d := _entity.global_position.distance_squared_to(e.global_position)
 		if d < closest_dist:
 			closest_dist = d

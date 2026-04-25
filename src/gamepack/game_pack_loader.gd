@@ -125,6 +125,14 @@ func load_pack(pack_id: String) -> GamePack:
 	for event_name in events:
 		EventBus.register_event(str(event_name))
 
+	# 4.5 注册 GamePack 自定义场景（角色选择/难度选择等）
+	var pack_scenes: Dictionary = pack_json.get("scenes", {})
+	for scene_id in pack_scenes:
+		var scene_path: String = pack_path.path_join(str(pack_scenes[scene_id]))
+		SceneManager.register_scene(scene_id, scene_path)
+	if not pack_scenes.is_empty():
+		print("[GamePackLoader] Registered %d custom scenes" % pack_scenes.size())
+
 	# 5. 加载触发规则
 	var rules_dir: String = pack_json.get("rules_dir", "rules")
 	_load_rules(pack_path.path_join(rules_dir))

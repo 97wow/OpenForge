@@ -20,6 +20,7 @@ const PROC_FLAG := {
 	"ON_HEAL":          "on_heal",           # 治疗时
 	"ON_SPELL_CAST":    "on_spell_cast",     # 施法时
 	"PERIODIC_TICK":    "periodic_tick",      # DoT/HoT tick 时
+	"ON_LEVEL_UP":      "on_level_up",       # 升级时
 }
 
 # 注册的 proc
@@ -36,15 +37,19 @@ func _ready() -> void:
 	# 监听战斗事件
 	EventBus.connect_event("entity_damaged", _on_entity_damaged)
 	EventBus.connect_event("entity_destroyed", _on_entity_destroyed)
+	EventBus.connect_event("entity_killed", _on_entity_killed)
 	EventBus.connect_event("entity_healed", _on_entity_healed)
 	EventBus.connect_event("projectile_hit", _on_projectile_hit)
 	EventBus.connect_event("spell_cast", _on_spell_cast)
+	EventBus.connect_event("hero_level_up", _on_hero_level_up)
+	EventBus.connect_event("damage_crit", _on_damage_crit)
 
 # === Proc 注册 ===
 
 func register_proc(aura: Dictionary, proc_data: Dictionary) -> String:
 	var proc_id := "proc_%d" % _next_id
 	_next_id += 1
+	# proc registered
 
 	var flags: Array = proc_data.get("flags", [])
 	var chance: float = proc_data.get("chance", 100.0)
@@ -73,6 +78,17 @@ func register_proc(aura: Dictionary, proc_data: Dictionary) -> String:
 func unregister_proc(proc_id: String) -> void:
 	_procs.erase(proc_id)
 
+func get_procs_for_owner(entity: Node3D) -> Array:
+	## 返回指定实体的所有 proc 条目（用于 UI 显示 CD 状态）
+	if entity == null or not is_instance_valid(entity):
+		return []
+	var oid: int = entity.get_instance_id()
+	var result: Array = []
+	for proc_id in _procs:
+		if _procs[proc_id]["owner_id"] == oid:
+			result.append(_procs[proc_id])
+	return result
+
 # === 冷却递减 ===
 
 func _process(delta: float) -> void:
@@ -84,6 +100,10 @@ func _process(delta: float) -> void:
 # === 事件处理 → Proc 检查 ===
 
 func _on_entity_damaged(data: Dictionary) -> void:
+	# PROC 产生的伤害不再触发新的 PROC（防止 A→B→A 无限级联）
+	if data.get("is_proc", false):
+		return
+
 	var target = data.get("entity")
 	var source = data.get("source")
 	var amount: float = data.get("amount", 0.0)
@@ -94,9 +114,9 @@ func _on_entity_damaged(data: Dictionary) -> void:
 			"target": target, "source": source, "amount": amount
 		})
 
-	# 攻击者的 proc（DEAL_DAMAGE, ON_HIT）
+	# 攻击者的 proc（仅 DEAL_DAMAGE）
 	if source != null and is_instance_valid(source):
-		_check_procs(source.get_instance_id(), ["deal_damage", "on_hit"], {
+		_check_procs(source.get_instance_id(), ["deal_damage"], {
 			"target": target, "source": source, "amount": amount
 		})
 
@@ -112,13 +132,12 @@ func _on_entity_destroyed(data: Dictionary) -> void:
 	for proc_id in to_remove:
 		_procs.erase(proc_id)
 
-	# 检查击杀者的 ON_KILL proc（通过 source 在 damage 事件中）
-	# 注意：entity_destroyed 没有 source，需要通过最近的 damage 事件关联
-	# 这里简化处理：遍历所有 proc 检查 ON_KILL flag
-	for proc_id in _procs:
-		var proc: Dictionary = _procs[proc_id]
-		if "on_kill" in proc["flags"]:
-			_try_fire_proc(proc, {"target": entity, "source": proc.get("caster")})
+func _on_entity_killed(data: Dictionary) -> void:
+	## entity_killed 携带 killer 信息，用于 ON_KILL proc（替代旧的 workaround）
+	var killer = data.get("killer")
+	if killer == null or not is_instance_valid(killer):
+		return
+	_check_procs(killer.get_instance_id(), ["on_kill"], data)
 
 func _on_entity_healed(data: Dictionary) -> void:
 	var source = data.get("source")
@@ -135,9 +154,27 @@ func _on_spell_cast(data: Dictionary) -> void:
 	if caster != null and is_instance_valid(caster):
 		_check_procs(caster.get_instance_id(), ["on_spell_cast"], data)
 
+func _on_damage_crit(data: Dictionary) -> void:
+	var attacker = data.get("attacker")
+	if attacker != null and is_instance_valid(attacker):
+		_check_procs(attacker.get_instance_id(), ["on_crit"], data)
+
+func _on_hero_level_up(data: Dictionary) -> void:
+	# 找到英雄实体，触发 on_level_up procs
+	var level: int = data.get("level", 1)
+	# 遍历所有 proc 找 on_level_up
+	for proc_id in _procs:
+		var entry: Dictionary = _procs[proc_id]
+		var flags: Array = entry.get("flags", [])
+		if "on_level_up" in flags:
+			var _owner_id: int = entry.get("owner_id", 0)
+			_try_fire_proc(entry, {"level": level})
+
 # === Proc 检查与触发 ===
 
 func _check_procs(owner_id: int, event_flags: Array, event_data: Dictionary) -> void:
+	if _procs.is_empty():
+		return
 	for proc_id in _procs:
 		var proc: Dictionary = _procs[proc_id]
 		if proc["owner_id"] != owner_id:
@@ -184,7 +221,7 @@ func _execute_proc(proc: Dictionary, event_data: Dictionary) -> void:
 			if spell_id != "" and caster != null and is_instance_valid(caster):
 				var spell_system: Node = EngineAPI.get_system("spell")
 				if spell_system:
-					spell_system.call("cast", spell_id, caster, target if is_instance_valid(target) else null)
+					spell_system.call("cast", spell_id, caster, target if is_instance_valid(target) else null, {"_is_proc": true})
 		"reflect":
 			# 伤害反弹
 			var amount: float = event_data.get("amount", 0.0)

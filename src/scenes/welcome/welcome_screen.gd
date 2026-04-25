@@ -8,6 +8,10 @@ extends Control
 var _can_proceed: bool = false
 
 func _ready() -> void:
+	# 多语言文本
+	title_label.text = I18n.t("GAME_TITLE")
+	subtitle_label.text = I18n.t("CREATE_PLAY_SHARE")
+	hint_label.text = I18n.t("PRESS_ANY_KEY")
 	# 淡入动画
 	modulate.a = 0
 	var tween := create_tween()

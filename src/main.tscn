@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://main_scene"]
+[gd_scene load_steps=19 format=3 uid="uid://main_scene"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1"]
 [ext_resource type="Script" path="res://src/systems/grid_system.gd" id="2"]
@@ -14,19 +14,57 @@
 [ext_resource type="Script" path="res://src/systems/proc_manager.gd" id="12"]
 [ext_resource type="Script" path="res://src/systems/vfx_system.gd" id="13"]
 [ext_resource type="Script" path="res://src/systems/item_system.gd" id="14"]
+[ext_resource type="Script" path="res://src/systems/camera_system.gd" id="15"]
+[ext_resource type="Script" path="res://src/systems/selection_system.gd" id="16"]
+[ext_resource type="Script" path="res://src/systems/spell_script.gd" id="17"]
+[ext_resource type="Script" path="res://src/systems/map_loader.gd" id="17"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="Environment" id="env_1"]
+background_mode = 1
+background_color = Color(0.5, 0.65, 0.88, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.72, 0.72, 0.8, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 2
+tonemap_white = 5.0
+tonemap_exposure = 1.1
+adjustment_enabled = true
+adjustment_brightness = 1.08
+adjustment_contrast = 1.2
+adjustment_saturation = 1.3
+ssao_enabled = true
+ssao_radius = 0.8
+ssao_intensity = 1.2
+glow_enabled = true
+glow_intensity = 0.5
+glow_strength = 0.8
+glow_bloom = 0.1
+glow_blend_mode = 1
+glow_hdr_threshold = 0.9
+
+[node name="Main" type="Node3D"]
 script = ExtResource("1")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 540)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, -0.433, 0.25, 0, 0.5, 0.866, -0.5, -0.75, 0.433, 0, 20, 0)
+light_color = Color(1.0, 0.93, 0.8, 1)
+light_energy = 1.8
+shadow_enabled = true
+shadow_bias = 0.02
+shadow_normal_bias = 1.0
+shadow_blur = 1.5
+directional_shadow_max_distance = 80
+directional_shadow_mode = 2
 
 [node name="Systems" type="Node" parent="."]
 
-[node name="GridSystem" type="Node2D" parent="Systems"]
+[node name="GridSystem" type="Node3D" parent="Systems"]
 script = ExtResource("2")
 
-[node name="EntitySystem" type="Node2D" parent="Systems"]
+[node name="EntitySystem" type="Node3D" parent="Systems"]
 script = ExtResource("3")
 
 [node name="ComponentRegistry" type="Node" parent="Systems"]
@@ -53,7 +91,10 @@ script = ExtResource("11")
 [node name="ProcManager" type="Node" parent="Systems"]
 script = ExtResource("12")
 
-[node name="VFXSystem" type="Node2D" parent="Systems"]
+[node name="SpellScript" type="Node" parent="Systems"]
+script = ExtResource("17")
+
+[node name="VFXSystem" type="Node3D" parent="Systems"]
 script = ExtResource("13")
 
 [node name="ItemSystem" type="Node" parent="Systems"]
@@ -61,6 +102,16 @@ script = ExtResource("14")
 
 [node name="GamePackLoader" type="Node" parent="Systems"]
 script = ExtResource("9")
+
+[node name="SelectionSystem" type="Node" parent="Systems"]
+script = ExtResource("16")
+
+[node name="MapLoader" type="Node" parent="Systems"]
+script = ExtResource("17")
+
+[node name="CameraSystem" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.574, 0.819, 0, -0.819, 0.574, 24, 20.5, 27)
+script = ExtResource("15")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10

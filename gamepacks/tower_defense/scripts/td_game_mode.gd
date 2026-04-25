@@ -8,7 +8,7 @@ var _spawn_queue: Array = []
 var _spawn_timer: float = 0.0
 var _is_spawning: bool = false
 var _enemies_alive: int = 0
-var _paths: Array[Path2D] = []
+var _paths: Array[Path3D] = []
 var _current_path_index: int = 0
 
 func _pack_ready() -> void:
@@ -60,12 +60,12 @@ func _setup_paths(path_data: Array) -> void:
 	var parent := get_parent()
 	for i in range(path_data.size()):
 		var points: Array = path_data[i]
-		var path := Path2D.new()
+		var path := Path3D.new()
 		path.name = "EnemyPath_%d" % i
-		var curve := Curve2D.new()
+		var curve := Curve3D.new()
 		for point in points:
 			if point is Dictionary:
-				curve.add_point(Vector2(point.get("x", 0), point.get("y", 0)))
+				curve.add_point(Vector3(point.get("x", 0), 0, point.get("y", 0)))
 		path.curve = curve
 		parent.add_child(path)
 		_paths.append(path)
@@ -114,7 +114,7 @@ func start_next_wave() -> void:
 	emit("wave_started", {"wave_index": _current_wave, "wave_name": wave.get("name", "")})
 	EngineAPI.show_message("第 %d 波: %s" % [_current_wave + 1, wave.get("name", "")])
 
-func build_tower(tower_id: String, grid_pos: Vector2i) -> Node2D:
+func build_tower(tower_id: String, grid_pos: Vector2i) -> Node3D:
 	var tile := EngineAPI.get_tile_state(grid_pos)
 	if tile != "buildable":
 		return null
@@ -134,7 +134,7 @@ func build_tower(tower_id: String, grid_pos: Vector2i) -> Node2D:
 		emit("tower_placed", {"tower": tower, "grid_pos": grid_pos})
 	return tower
 
-func sell_tower(tower: Node2D) -> void:
+func sell_tower(tower: Node3D) -> void:
 	if tower == null or not tower is GameEntity:
 		return
 	var entity := tower as GameEntity
@@ -166,10 +166,10 @@ func _pack_process(delta: float) -> void:
 func _spawn_enemy(enemy_id: String) -> void:
 	if _paths.is_empty():
 		return
-	var path: Path2D = _paths[_current_path_index % _paths.size()]
+	var path: Path3D = _paths[_current_path_index % _paths.size()]
 	_current_path_index += 1
 
-	var start_pos := path.curve.get_point_position(0) if path.curve.point_count > 0 else Vector2.ZERO
+	var start_pos := path.curve.get_point_position(0) if path.curve.point_count > 0 else Vector3.ZERO
 	var enemy := spawn(enemy_id, start_pos)
 	if enemy:
 		_enemies_alive += 1

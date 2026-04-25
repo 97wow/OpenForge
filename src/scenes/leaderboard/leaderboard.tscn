@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://src/scenes/character_select/character_select.gd" id="1"]
+[ext_resource type="Script" path="res://src/scenes/leaderboard/leaderboard.gd" id="1"]
 
-[node name="CharacterSelect" type="Control"]
+[node name="Leaderboard" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

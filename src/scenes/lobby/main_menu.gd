@@ -10,6 +10,7 @@ const LANGUAGES := [
 
 @onready var play_btn: Button = $CenterPanel/VBox/PlayButton
 @onready var collection_btn: Button = $CenterPanel/VBox/CollectionButton
+@onready var battle_pass_btn: Button = $CenterPanel/VBox/BattlePassButton
 @onready var leaderboard_btn: Button = $CenterPanel/VBox/LeaderboardButton
 @onready var settings_btn: Button = $CenterPanel/VBox/SettingsButton
 @onready var quit_btn: Button = $CenterPanel/VBox/QuitButton
@@ -17,8 +18,19 @@ const LANGUAGES := [
 var _settings_panel: Control = null
 
 func _ready() -> void:
+	# 多语言文本
+	$TitleLabel.text = I18n.t("GAME_TITLE")
+	$VersionLabel.text = I18n.t("VERSION", [ProjectSettings.get_setting("application/config/version", "0.1.0")])
+	play_btn.text = I18n.t("START_GAME")
+	collection_btn.text = I18n.t("COLLECTION")
+	battle_pass_btn.text = I18n.t("SEASON_BATTLE_PASS")
+	leaderboard_btn.text = I18n.t("LEADERBOARD")
+	settings_btn.text = I18n.t("SETTINGS")
+	quit_btn.text = I18n.t("QUIT")
+
 	play_btn.pressed.connect(_on_play)
 	collection_btn.pressed.connect(_on_collection)
+	battle_pass_btn.pressed.connect(_on_battle_pass)
 	leaderboard_btn.pressed.connect(_on_leaderboard)
 	settings_btn.pressed.connect(_on_settings)
 	quit_btn.pressed.connect(_on_quit)
@@ -28,10 +40,13 @@ func _on_play() -> void:
 	SceneManager.goto_scene("map_select")
 
 func _on_collection() -> void:
-	print("[Menu] Collection - coming soon")
+	SceneManager.goto_scene("talents")
+
+func _on_battle_pass() -> void:
+	SceneManager.goto_scene("battle_pass")
 
 func _on_leaderboard() -> void:
-	print("[Menu] Leaderboard - coming soon")
+	SceneManager.goto_scene("leaderboard")
 
 func _on_settings() -> void:
 	if _settings_panel:
@@ -54,14 +69,14 @@ func _on_settings() -> void:
 	_settings_panel.add_child(vbox)
 
 	var title := Label.new()
-	title.text = tr("SETTINGS")
+	title.text = I18n.t("SETTINGS")
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 28)
 	vbox.add_child(title)
 
 	# 语言选择
 	var lang_label := Label.new()
-	lang_label.text = tr("LANGUAGE")
+	lang_label.text = I18n.t("LANGUAGE")
 	lang_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lang_label.add_theme_font_size_override("font_size", 16)
 	vbox.add_child(lang_label)
@@ -71,7 +86,7 @@ func _on_settings() -> void:
 	lang_hbox.add_theme_constant_override("separation", 10)
 	vbox.add_child(lang_hbox)
 
-	var current_locale := TranslationServer.get_locale()
+	var current_locale := I18n.get_locale()
 	for lang in LANGUAGES:
 		var btn := Button.new()
 		btn.text = lang["label"]
@@ -83,14 +98,13 @@ func _on_settings() -> void:
 
 	# 关闭按钮
 	var close_btn := Button.new()
-	close_btn.text = tr("BACK")
+	close_btn.text = I18n.t("BACK")
 	close_btn.custom_minimum_size = Vector2(160, 40)
 	close_btn.pressed.connect(_close_settings)
 	vbox.add_child(close_btn)
 
 func _on_language_selected(locale: String) -> void:
-	TranslationServer.set_locale(locale)
-	# 关闭设置重新加载菜单以刷新所有文本
+	I18n.set_locale(locale)
 	_close_settings()
 	SceneManager.goto_scene_instant("lobby")
 

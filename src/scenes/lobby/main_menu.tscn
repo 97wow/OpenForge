@@ -72,32 +72,38 @@ layout_mode = 2
 custom_minimum_size = Vector2(280, 50)
 theme_override_font_sizes/font_size = 20
 text = "START_GAME"
-auto_translate_mode = 1
+
 
 [node name="CollectionButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
 text = "COLLECTION"
-auto_translate_mode = 1
+
+
+[node name="BattlePassButton" type="Button" parent="CenterPanel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(280, 45)
+theme_override_font_sizes/font_size = 16
+text = "BATTLE PASS"
 
 [node name="LeaderboardButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
 text = "LEADERBOARD"
-auto_translate_mode = 1
+
 
 [node name="SettingsButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
 text = "SETTINGS"
-auto_translate_mode = 1
+
 
 [node name="QuitButton" type="Button" parent="CenterPanel/VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(280, 45)
 theme_override_font_sizes/font_size = 16
 text = "QUIT"
-auto_translate_mode = 1
+

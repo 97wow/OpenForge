@@ -20,10 +20,10 @@ func _pack_process(_delta: float) -> void:
 
 # === 便捷方法 ===
 
-func spawn(def_id: String, pos: Vector2 = Vector2.ZERO, overrides: Dictionary = {}) -> Node2D:
+func spawn(def_id: String, pos: Vector3 = Vector3.ZERO, overrides: Dictionary = {}) -> Node3D:
 	return EngineAPI.spawn_entity(def_id, pos, overrides)
 
-func destroy(entity: Node2D) -> void:
+func destroy(entity: Node3D) -> void:
 	EngineAPI.destroy_entity(entity)
 
 func emit(event_name: String, data: Dictionary = {}) -> void:

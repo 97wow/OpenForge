@@ -24,6 +24,7 @@ func _register_builtin_components() -> void:
 	register_component("projectile", base + "projectile_component.gd")
 	register_component("ai_move_to", base + "ai_move_to_component.gd")
 	register_component("alert", base + "alert_component.gd")
+	register_component("pickup", base + "pickup_component.gd")
 
 # === 注册 ===
 

@@ -153,7 +153,7 @@ func _resolve_path(path: String, data: Variant) -> Variant:
 		elif current is Object and part in current:
 			# 访问对象的属性（如 current_hp, damage 等）
 			current = current.get(part)
-		elif current is Node2D and current.has_method("get_component"):
+		elif current is Node3D and current.has_method("get_component"):
 			var comp = current.call("get_component", part)
 			if comp != null:
 				current = comp
@@ -178,7 +178,7 @@ func _register_builtin_conditions() -> void:
 func _cond_has_tag(cond: Dictionary, event_data: Dictionary) -> bool:
 	var entity = resolve_value(cond.get("entity", ""), event_data)
 	var tag: String = cond.get("tag", "")
-	if entity is Node2D and entity.has_method("has_tag"):
+	if entity is Node3D and entity.has_method("has_tag"):
 		return entity.call("has_tag", tag)
 	return false
 
@@ -204,7 +204,7 @@ func _cond_is_game_state(cond: Dictionary, _event_data: Dictionary) -> bool:
 func _cond_has_component(cond: Dictionary, event_data: Dictionary) -> bool:
 	var entity = resolve_value(cond.get("entity", ""), event_data)
 	var comp_name: String = cond.get("component", "")
-	if entity is Node2D and entity.has_method("has_component"):
+	if entity is Node3D and entity.has_method("has_component"):
 		return entity.call("has_component", comp_name)
 	return false
 
@@ -252,15 +252,16 @@ func _register_builtin_actions() -> void:
 func _act_spawn_entity(action: Dictionary, event_data: Dictionary) -> void:
 	var def_id = resolve_value(action.get("entity_id", ""), event_data)
 	var pos_data = action.get("position", {})
-	var pos := Vector2(
+	var pos := Vector3(
 		float(resolve_value(pos_data.get("x", 0), event_data)),
+		0,
 		float(resolve_value(pos_data.get("y", 0), event_data))
 	)
 	EngineAPI.spawn_entity(str(def_id), pos)
 
 func _act_destroy_entity(action: Dictionary, event_data: Dictionary) -> void:
 	var entity = resolve_value(action.get("entity", ""), event_data)
-	if entity is Node2D:
+	if entity is Node3D:
 		EngineAPI.destroy_entity(entity)
 
 func _act_add_resource(action: Dictionary, event_data: Dictionary) -> void:
@@ -298,7 +299,7 @@ func _act_set_game_state(action: Dictionary, _event_data: Dictionary) -> void:
 
 func _act_apply_buff(action: Dictionary, event_data: Dictionary) -> void:
 	var entity = resolve_value(action.get("entity", ""), event_data)
-	if entity is Node2D:
+	if entity is Node3D:
 		EngineAPI.apply_buff(
 			entity,
 			action.get("buff_id", ""),
@@ -308,7 +309,7 @@ func _act_apply_buff(action: Dictionary, event_data: Dictionary) -> void:
 
 func _act_remove_buff(action: Dictionary, event_data: Dictionary) -> void:
 	var entity = resolve_value(action.get("entity", ""), event_data)
-	if entity is Node2D:
+	if entity is Node3D:
 		EngineAPI.remove_buff(entity, action.get("buff_id", ""))
 
 func _act_show_message(action: Dictionary, event_data: Dictionary) -> void:

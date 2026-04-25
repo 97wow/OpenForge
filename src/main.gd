@@ -1,6 +1,6 @@
 ## Main - OpenForge 战斗场景启动器
 ## 从 SceneManager.pending_data 读取 pack_id，加载对应 GamePack
-extends Node2D
+extends Node3D
 
 func _ready() -> void:
 	# 等所有子系统 _ready 完成
@@ -36,7 +36,7 @@ func _get_pack_id() -> String:
 func _show_error(msg: String) -> void:
 	var ui_layer: CanvasLayer = $UI
 	var label := Label.new()
-	label.text = "Error: %s" % msg
+	label.text = I18n.t("ERROR_PREFIX", [msg])
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	label.add_theme_color_override("font_color", Color(1, 0.3, 0.3))
@@ -44,7 +44,7 @@ func _show_error(msg: String) -> void:
 	ui_layer.add_child(label)
 
 	var back_btn := Button.new()
-	back_btn.text = "Back to Menu"
+	back_btn.text = I18n.t("BACK_TO_MENU")
 	back_btn.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 	back_btn.offset_top = 40
 	back_btn.offset_bottom = 75

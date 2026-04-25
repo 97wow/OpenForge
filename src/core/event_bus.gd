@@ -23,6 +23,17 @@ func _ready() -> void:
 	register_event("gamepack_loaded", "GamePack加载完成", ["pack_id"])
 	register_event("gamepack_unloaded", "GamePack卸载", ["pack_id"])
 	register_event("trigger_fired", "触发器触发", ["trigger_id", "event_name"])
+	# AI 状态事件（ThreatManager）
+	register_event("ai_entered_combat", "AI进入战斗", ["entity", "aggro"])
+	register_event("ai_enter_evade", "AI脱战回家", ["entity"])
+	register_event("ai_returned_home", "AI回到出生点", ["entity"])
+	# 伤害流水线事件（DamagePipeline）
+	register_event("damage_calculating", "伤害计算前(可修改)", ["params"])
+	register_event("entity_killed", "实体被击杀", ["entity", "killer", "ability", "overkill"])
+	register_event("spell_interrupted", "施法被打断", ["caster", "spell_id"])
+	register_event("spell_cast_start", "开始读条", ["caster", "target", "spell_id", "cast_time"])
+	register_event("spell_channel_start", "开始引导", ["caster", "target", "spell_id", "channel_time"])
+	register_event("spell_channel_tick", "引导tick", ["caster", "target", "spell_id"])
 
 # === 事件注册 ===
 
@@ -103,11 +114,24 @@ func clear_all_custom_events() -> void:
 		"entity_damaged", "entity_healed", "resource_changed",
 		"game_state_changed", "variable_changed",
 		"gamepack_loaded", "gamepack_unloaded", "trigger_fired",
+		# 框架组件发出的事件（ProcManager/SpellSystem 依赖）
+		"projectile_hit", "spell_cast", "aura_applied", "proc_triggered",
+		# AI 状态事件（ThreatManager 依赖）
+		"ai_entered_combat", "ai_enter_evade", "ai_returned_home",
+		# 伤害流水线事件（DamagePipeline 依赖）
+		"damage_calculating", "entity_killed", "spell_interrupted",
 	]
 	var to_remove: Array[String] = []
 	for event_name in _listeners:
 		if event_name not in core_events:
 			to_remove.append(event_name)
+		else:
+			# 清理 core event 中已失效的 listener（旧 GamePack 的回调）
+			var valid_listeners: Array = []
+			for cb: Callable in _listeners[event_name]:
+				if cb.is_valid():
+					valid_listeners.append(cb)
+			_listeners[event_name] = valid_listeners
 	for event_name in to_remove:
 		_listeners.erase(event_name)
 		_event_meta.erase(event_name)

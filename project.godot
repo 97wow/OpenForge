@@ -24,6 +24,27 @@ EngineAPI="*res://src/core/engine_api.gd"
 DataRegistry="*res://src/core/data_registry.gd"
 SceneManager="*res://src/scenes/shared/scene_manager.gd"
 DebugOverlay="*res://src/core/debug_overlay.gd"
+SaveSystem="*res://src/systems/save_system.gd"
+I18n="*res://src/core/i18n_manager.gd"
+SeasonSystem="*res://src/systems/season_system.gd"
+ThreatMgr="*res://src/systems/threat_manager.gd"
+AreaAuraSys="*res://src/systems/area_aura_system.gd"
+ImmunitySys="*res://src/systems/immunity_system.gd"
+RespawnSys="*res://src/systems/respawn_system.gd"
+FactionSys="*res://src/systems/faction_system.gd"
+MovementGen="*res://src/systems/movement_generator.gd"
+DRSystem="*res://src/systems/diminishing_returns.gd"
+EncounterSys="*res://src/systems/encounter_system.gd"
+QuestSys="*res://src/systems/quest_system.gd"
+AchievementSys="*res://src/systems/achievement_system.gd"
+PathfindingSys="*res://src/systems/pathfinding_system.gd"
+NetworkSys="*res://src/systems/network_system.gd"
+RoomSys="*res://src/systems/room_system.gd"
+ChatSys="*res://src/systems/chat_system.gd"
+ReplaySys="*res://src/systems/replay_system.gd"
+LevelSys="*res://src/systems/level_system.gd"
+DialogueSys="*res://src/systems/dialogue_system.gd"
+AudioMgr="*res://src/systems/audio_manager.gd"
 
 [display]
 
@@ -32,6 +53,10 @@ window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 [input]
 
