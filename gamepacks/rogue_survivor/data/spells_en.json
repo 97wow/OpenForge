@@ -1,94 +1,378 @@
 {
-    "1": {"name": "Sharpen Blade", "desc": ""},
-    "2": {"name": "Study Scrolls", "desc": ""},
-    "3": {"name": "Don Armor", "desc": ""},
-    "19": {"name": "Battle Ready", "desc": "Gain starting turret weapon"},
-
-    "4": {"name": "Investment", "desc": "Midas Touch now targets 3 enemies"},
-    "5": {"name": "Plunder", "desc": "Hit gold +1, kill gold +1"},
-    "6": {"name": "Midas Touch", "desc": "2% chance to instantly kill a minion for 5x gold and XP, 10s CD"},
-    "20": {"name": "Fortune", "desc": "Economy card set"},
-
-    "7": {"name": "Mortar", "desc": ""},
-    "8": {"name": "Heavy Barrel", "desc": ""},
-    "9": {"name": "Black Powder", "desc": "10% chance to deal double damage (stacks with crit)"},
-    "21": {"name": "Artillery Studies", "desc": "Artillery enhancement set"},
-
-    "10": {"name": "Vitamin A", "desc": "Gain 0.1% STR per level up"},
-    "11": {"name": "Vitamin B", "desc": "Gain 0.1% AGI per level up"},
-    "12": {"name": "Vitamin C", "desc": "Gain 0.1% INT per level up"},
-    "22": {"name": "Multivitamin", "desc": "Growth stat set"},
-
-    "13": {"name": "Ricochet Master", "desc": "7% chance to trigger 3 chain bounces"},
-    "14": {"name": "Scatter Master", "desc": "Fire scatter shot at 3 enemies every 5s"},
-    "15": {"name": "Wing Chun Master", "desc": "7% chance for +500% ASPD for 3s, 10s CD"},
-    "16": {"name": "Splitter Master", "desc": "AOE damage to nearby enemies every 6s"},
-    "17": {"name": "Devour Master", "desc": "Gain 1 Devour Pill after 5 minutes"},
-    "18": {"name": "Growth Master", "desc": "+1 STR/AGI/INT per level up"},
-    "23": {"name": "Master of Masters", "desc": "Repeatable master set"},
-
-    "25": {"name": "Iron Axe", "desc": "15% chance to deal 50% ATK AOE damage every 2s"},
-    "26": {"name": "Blink", "desc": "Spend MP to teleport a short distance"},
-    "27": {"name": "Draw Card", "desc": "Spend wood to draw a card"},
-
-    "100": {"name": "Devour Pill", "desc": "Randomly devour a held card"},
-
-    "28": {"name": "Heroic Spirit", "desc": "Gain 200 wood, unlock Demi-Gods set"},
-    "30": {"name": "Heroic Spirit", "desc": "Wuxia entry"},
-
-    "31": {"name": "One-Star Ball", "desc": "Collect dragon balls, unlock next"},
-    "32": {"name": "Two-Star Ball", "desc": "Collect dragon balls, unlock next"},
-    "33": {"name": "Three-Star Ball", "desc": "Collect dragon balls, unlock next"},
-    "34": {"name": "Four-Star Ball", "desc": "Collect dragon balls, unlock next"},
-    "35": {"name": "Five-Star Ball", "desc": "Final dragon ball"},
-    "38": {"name": "Dragon Balls", "desc": "Collect all 7 to summon Shenron"},
-
-    "39": {"name": "Qiao Feng", "desc": "8% chance for Dragon Palm AOE, 8s CD"},
-    "40": {"name": "Duan Yu", "desc": "Six Meridians Divine Sword hits 3 enemies every 4s"},
-    "41": {"name": "Xu Zhu", "desc": "10% chance to trigger 4 chain bounces"},
-    "42": {"name": "Demi-Gods", "desc": "Wuxia legend set"},
-
-    "43": {"name": "Aokiji", "desc": "8% chance for Ice Age AOE, 6s CD"},
-    "44": {"name": "Akainu", "desc": "8% chance for Magma Fist, 6s CD"},
-    "45": {"name": "Kizaru", "desc": "Light Speed Kick on Blink origin and destination"},
-    "51": {"name": "Navy Admirals", "desc": "Three admirals set"},
-
-    "46": {"name": "Whitebeard", "desc": "12% chance for Quake Punch, 5s CD"},
-    "47": {"name": "Shanks", "desc": "15% chance for Haki Slash, 4s CD"},
-    "48": {"name": "Kaido", "desc": "10% chance for Blazing Breath AOE, 6s CD"},
-    "49": {"name": "Big Mom", "desc": "Cheat death and full heal on fatal damage, 180s CD"},
-    "56": {"name": "Four Emperors", "desc": "Yonko legend set"},
-
-    "57": {"name": "Zangetsu", "desc": "6% chance for Getsuga Tensho, 8s CD"},
-    "58": {"name": "Ryujin Jakka", "desc": "8% chance to fire 3 flame bolts, 7s CD"},
-    "59": {"name": "Sasori", "desc": "Summon a puppet every 15s for 15s"},
-    "60": {"name": "Pain", "desc": "Shinra Tensei in 3 areas every 8s"},
-    "61": {"name": "Kyoka Suigetsu", "desc": "6% chance to reduce other spell CDs by 2.5s, 10s CD"},
-    "62": {"name": "Kakuzu", "desc": "Gain 210 wood every 60s"},
-    "63": {"name": "Kisame", "desc": "10% chance for bonus damage, 5s CD"},
-    "64": {"name": "Akatsuki", "desc": "Akatsuki organization set"},
-
-    "65": {"name": "Guo Jing", "desc": "10% chance for Dragon Palm AOE, 6s CD"},
-    "66": {"name": "Huang Rong", "desc": "15% chance on crit for Dog Beating Staff, 5s CD"},
-    "67": {"name": "Jinlun Guoshi", "desc": "Orbiting wheel damage every 5s"},
-    "68": {"name": "Linghu Chong", "desc": "8% chance for Dugu Nine Swords hitting 5 enemies, 8s CD"},
-    "71": {"name": "Wuxia Legends", "desc": "Jin Yong wuxia set"},
-
-    "72": {"name": "Qi Refining", "desc": "+3 STR/AGI/INT per level up"},
-    "73": {"name": "Foundation", "desc": "+0.2% HP per level up"},
-    "74": {"name": "Golden Core", "desc": "+0.2% ATK per level up"},
-    "75": {"name": "Nascent Soul", "desc": "+0.3% STR per level up"},
-    "80": {"name": "Cultivation", "desc": "Cultivation realm set"},
-
-    "81": {"name": "Garen", "desc": "10% chance for Judgment AOE, 5s CD"},
-    "82": {"name": "Vayne", "desc": "20% chance on crit to fire 5 silver bolts, 4s CD"},
-    "83": {"name": "Veigar", "desc": "Dark Matter in 4 areas every 6s"},
-    "89": {"name": "League of Heroes", "desc": "Hero legend set"},
-
-    "90": {"name": "Healer", "desc": "Healer set: kill heal + periodic shield"},
-    "91": {"name": "Tracker", "desc": "Tracker set: extra range + homing projectiles"},
-    "93": {"name": "Weakness Hunter", "desc": "Weakness Hunter set: mark debuff amplifies damage"},
-    "96": {"name": "War Machine", "desc": "War Machine set: knockback + armor shred + AOE"},
-    "97": {"name": "Soul Harvest", "desc": "Soul Harvest set: kill stacks + soul shockwave"},
-    "99": {"name": "Blood Moon", "desc": "Blood Moon set: low-HP damage + attack speed + invincibility"}
+	"1": {
+		"name": "Sharpen Blade",
+		"desc": ""
+	},
+	"2": {
+		"name": "Study Scrolls",
+		"desc": ""
+	},
+	"3": {
+		"name": "Don Armor",
+		"desc": ""
+	},
+	"19": {
+		"name": "Battle Ready",
+		"desc": "Gain starting turret weapon"
+	},
+	"4": {
+		"name": "Investment",
+		"desc": "Midas Touch now targets 3 enemies"
+	},
+	"5": {
+		"name": "Plunder",
+		"desc": "Hit gold +1, kill gold +1"
+	},
+	"6": {
+		"name": "Midas Touch",
+		"desc": "2% chance to instantly kill a minion for 5x gold and XP, 10s CD"
+	},
+	"20": {
+		"name": "Fortune",
+		"desc": "Economy card set"
+	},
+	"7": {
+		"name": "Mortar",
+		"desc": ""
+	},
+	"8": {
+		"name": "Heavy Barrel",
+		"desc": ""
+	},
+	"9": {
+		"name": "Black Powder",
+		"desc": "10% chance to deal double damage (stacks with crit)"
+	},
+	"21": {
+		"name": "Artillery Studies",
+		"desc": "Artillery enhancement set"
+	},
+	"10": {
+		"name": "Vitamin A",
+		"desc": "Gain 0.1% STR per level up"
+	},
+	"11": {
+		"name": "Vitamin B",
+		"desc": "Gain 0.1% AGI per level up"
+	},
+	"12": {
+		"name": "Vitamin C",
+		"desc": "Gain 0.1% INT per level up"
+	},
+	"22": {
+		"name": "Multivitamin",
+		"desc": "Growth stat set"
+	},
+	"13": {
+		"name": "Ricochet Master",
+		"desc": "7% chance to trigger 3 chain bounces"
+	},
+	"14": {
+		"name": "Scatter Master",
+		"desc": "Fire scatter shot at 3 enemies every 5s"
+	},
+	"15": {
+		"name": "Wing Chun Master",
+		"desc": "7% chance for +500% ASPD for 3s, 10s CD"
+	},
+	"16": {
+		"name": "Splitter Master",
+		"desc": "AOE damage to nearby enemies every 6s"
+	},
+	"17": {
+		"name": "Devour Master",
+		"desc": "Gain 1 Devour Pill after 5 minutes"
+	},
+	"18": {
+		"name": "Growth Master",
+		"desc": "+1 STR/AGI/INT per level up"
+	},
+	"23": {
+		"name": "Master of Masters",
+		"desc": "Repeatable master set"
+	},
+	"25": {
+		"name": "Iron Axe",
+		"desc": "15% chance to deal 50% ATK AOE damage every 2s"
+	},
+	"26": {
+		"name": "Blink",
+		"desc": "Spend MP to teleport a short distance"
+	},
+	"27": {
+		"name": "Draw Card",
+		"desc": "Spend wood to draw a card"
+	},
+	"100": {
+		"name": "Devour Pill",
+		"desc": "Randomly devour a held card"
+	},
+	"28": {
+		"name": "Heroic Spirit",
+		"desc": "Gain 200 wood, unlock Demi-Gods set"
+	},
+	"30": {
+		"name": "Heroic Spirit",
+		"desc": "Wuxia entry"
+	},
+	"31": {
+		"name": "One-Star Ball",
+		"desc": "Collect dragon balls, unlock next"
+	},
+	"32": {
+		"name": "Two-Star Ball",
+		"desc": "Collect dragon balls, unlock next"
+	},
+	"33": {
+		"name": "Three-Star Ball",
+		"desc": "Collect dragon balls, unlock next"
+	},
+	"34": {
+		"name": "Four-Star Ball",
+		"desc": "Collect dragon balls, unlock next"
+	},
+	"35": {
+		"name": "Five-Star Ball",
+		"desc": "Final dragon ball"
+	},
+	"38": {
+		"name": "Dragon Balls",
+		"desc": "Collect all 7 to summon Shenron"
+	},
+	"39": {
+		"name": "Qiao Feng",
+		"desc": "8% chance for Dragon Palm AOE, 8s CD"
+	},
+	"40": {
+		"name": "Duan Yu",
+		"desc": "Six Meridians Divine Sword hits 3 enemies every 4s"
+	},
+	"41": {
+		"name": "Xu Zhu",
+		"desc": "10% chance to trigger 4 chain bounces"
+	},
+	"42": {
+		"name": "Demi-Gods",
+		"desc": "Wuxia legend set"
+	},
+	"43": {
+		"name": "Aokiji",
+		"desc": "8% chance for Ice Age AOE, 6s CD"
+	},
+	"44": {
+		"name": "Akainu",
+		"desc": "8% chance for Magma Fist, 6s CD"
+	},
+	"45": {
+		"name": "Kizaru",
+		"desc": "Light Speed Kick on Blink origin and destination"
+	},
+	"51": {
+		"name": "Navy Admirals",
+		"desc": "Three admirals set"
+	},
+	"46": {
+		"name": "Whitebeard",
+		"desc": "12% chance for Quake Punch, 5s CD"
+	},
+	"47": {
+		"name": "Shanks",
+		"desc": "15% chance for Haki Slash, 4s CD"
+	},
+	"48": {
+		"name": "Kaido",
+		"desc": "10% chance for Blazing Breath AOE, 6s CD"
+	},
+	"49": {
+		"name": "Big Mom",
+		"desc": "Cheat death and full heal on fatal damage, 180s CD"
+	},
+	"56": {
+		"name": "Four Emperors",
+		"desc": "Yonko legend set"
+	},
+	"57": {
+		"name": "Zangetsu",
+		"desc": "6% chance for Getsuga Tensho, 8s CD"
+	},
+	"58": {
+		"name": "Ryujin Jakka",
+		"desc": "8% chance to fire 3 flame bolts, 7s CD"
+	},
+	"59": {
+		"name": "Sasori",
+		"desc": "Summon a puppet every 15s for 15s"
+	},
+	"60": {
+		"name": "Pain",
+		"desc": "Shinra Tensei in 3 areas every 8s"
+	},
+	"61": {
+		"name": "Kyoka Suigetsu",
+		"desc": "6% chance to reduce other spell CDs by 2.5s, 10s CD"
+	},
+	"62": {
+		"name": "Kakuzu",
+		"desc": "Gain 210 wood every 60s"
+	},
+	"63": {
+		"name": "Kisame",
+		"desc": "10% chance for bonus damage, 5s CD"
+	},
+	"64": {
+		"name": "Akatsuki",
+		"desc": "Akatsuki organization set"
+	},
+	"65": {
+		"name": "Guo Jing",
+		"desc": "10% chance for Dragon Palm AOE, 6s CD"
+	},
+	"66": {
+		"name": "Huang Rong",
+		"desc": "15% chance on crit for Dog Beating Staff, 5s CD"
+	},
+	"67": {
+		"name": "Jinlun Guoshi",
+		"desc": "Orbiting wheel damage every 5s"
+	},
+	"68": {
+		"name": "Linghu Chong",
+		"desc": "8% chance for Dugu Nine Swords hitting 5 enemies, 8s CD"
+	},
+	"71": {
+		"name": "Wuxia Legends",
+		"desc": "Jin Yong wuxia set"
+	},
+	"72": {
+		"name": "Qi Refining",
+		"desc": "+3 STR/AGI/INT per level up"
+	},
+	"73": {
+		"name": "Foundation",
+		"desc": "+0.2% HP per level up"
+	},
+	"74": {
+		"name": "Golden Core",
+		"desc": "+0.2% ATK per level up"
+	},
+	"75": {
+		"name": "Nascent Soul",
+		"desc": "+0.3% STR per level up"
+	},
+	"80": {
+		"name": "Cultivation",
+		"desc": "Cultivation realm set"
+	},
+	"81": {
+		"name": "Garen",
+		"desc": "10% chance for Judgment AOE, 5s CD"
+	},
+	"82": {
+		"name": "Vayne",
+		"desc": "20% chance on crit to fire 5 silver bolts, 4s CD"
+	},
+	"83": {
+		"name": "Veigar",
+		"desc": "Dark Matter in 4 areas every 6s"
+	},
+	"89": {
+		"name": "League of Heroes",
+		"desc": "Hero legend set"
+	},
+	"90": {
+		"name": "Healer",
+		"desc": "Healer set: kill heal + periodic shield"
+	},
+	"91": {
+		"name": "Tracker",
+		"desc": "Tracker set: extra range + homing projectiles"
+	},
+	"93": {
+		"name": "Weakness Hunter",
+		"desc": "Weakness Hunter set: mark debuff amplifies damage"
+	},
+	"96": {
+		"name": "War Machine",
+		"desc": "War Machine set: knockback + armor shred + AOE"
+	},
+	"97": {
+		"name": "Soul Harvest",
+		"desc": "Soul Harvest set: kill stacks + soul shockwave"
+	},
+	"99": {
+		"name": "Blood Moon",
+		"desc": "Blood Moon set: low-HP damage + attack speed + invincibility"
+	},
+	"201": {
+		"name": "Vital Tincture",
+		"desc": "Permanent +5 INT and +80 HP. Healer set progress."
+	},
+	"202": {
+		"name": "Hallowed Moment",
+		"desc": "+60 HP, +4 ATK. 10% chance on kill: +1 HP growth."
+	},
+	"203": {
+		"name": "Eagle's Mark",
+		"desc": "+8 AGI, +4 ATK. Tracker set progress."
+	},
+	"204": {
+		"name": "Returning Shaft",
+		"desc": "+6 AGI, +6 ATK. 15% chance on hit: chain to 1 nearby target."
+	},
+	"205": {
+		"name": "Sundering Arrow",
+		"desc": "+6 AGI, +4 STR. Weakness Hunter set progress."
+	},
+	"206": {
+		"name": "Marker's Eye",
+		"desc": "+4 AGI, +8 ATK. 18% on hit: +80 dmg + 30% ATK scaling."
+	},
+	"207": {
+		"name": "Heavy Plate",
+		"desc": "+8 STR, +100 HP, +3 armor. War Machine set progress."
+	},
+	"208": {
+		"name": "Sundershot",
+		"desc": "+6 STR, +6 ATK. 18% on hit: +100 dmg + 35% STR scaling."
+	},
+	"209": {
+		"name": "Shockwave Launcher",
+		"desc": "+8 STR, +8 ATK. Every 6s: AoE 3.5m, 140% ATK damage."
+	},
+	"210": {
+		"name": "Soul Brand",
+		"desc": "+8 INT, +4 ATK. On kill: +0.3 permanent ATK growth."
+	},
+	"211": {
+		"name": "Reaper's Dividend",
+		"desc": "+6 INT, +100 HP. 25% on kill: +5 gold."
+	},
+	"212": {
+		"name": "Soul Burst",
+		"desc": "+8 INT, +8 ATK. 10% on hit: 4m AoE, 200% damage (4s CD)."
+	},
+	"213": {
+		"name": "Crimson Resolve",
+		"desc": "+10 STR, +200 HP. Blood Moon set progress."
+	},
+	"214": {
+		"name": "Undying Blood",
+		"desc": "+6 STR, +300 HP. Cheat death every 30s (full heal at 0 HP)."
+	},
+	"215": {
+		"name": "Lunar Frenzy",
+		"desc": "+10 STR, +6 AGI. 15% on hit: +40% aspd 4s (8s CD)."
+	},
+	"216": {
+		"name": "Spirit Pact",
+		"desc": "+10 INT, +80 HP. Summoner set progress."
+	},
+	"217": {
+		"name": "Skitter Chorus",
+		"desc": "+6 INT, +100 HP. Every 12s: summon a puppet for 10s."
+	},
+	"92": {
+		"name": "Summoner",
+		"desc": "20% summon on kill, +30% summon dmg"
+	}
 }
