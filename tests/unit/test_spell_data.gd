@@ -106,3 +106,31 @@ func test_cooldowns_are_positive() -> void:
 		var cd: float = proc.get("cooldown", -1.0)
 		if cd >= 0:
 			assert_float(cd).is_greater_equal(0.0)
+
+func test_every_bond_has_at_least_required_cards() -> void:
+	## 防 Wave A "paper shipped" 重现：每个 bond 必须有 ≥required 张
+	## bond_id 指向自己的 card，否则玩家永远抽不到，set bonus 永远不
+	## 触发，commit 落地的 bond 等于死代码。dragon_ball #38 暂跳过
+	## (pre-existing 5/7 under-supply, 跟 Wave A 无关)。
+	var card_count: Dictionary = {}
+	for sid: String in _spells:
+		var entry: Dictionary = _spells[sid]
+		if entry.get("type") != "card":
+			continue
+		var bid: int = int(entry.get("bond_id", 0))
+		if bid == 0:
+			continue
+		card_count[bid] = card_count.get(bid, 0) + 1
+	for sid: String in _spells:
+		var entry: Dictionary = _spells[sid]
+		if entry.get("type") != "bond":
+			continue
+		var bid: int = int(sid)
+		if bid == 38:
+			continue  # known under-supply
+		var req: int = int(entry.get("required", 1))
+		var have: int = int(card_count.get(bid, 0))
+		assert_int(have).override_failure_message(
+			"Bond #%d (%s) has %d cards but needs %d — paper-shipped, players can't activate" % [
+				bid, str(entry.get("subclass", "")), have, req
+			]).is_greater_equal(req)
