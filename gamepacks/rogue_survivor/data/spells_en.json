@@ -374,5 +374,13 @@
 	"92": {
 		"name": "Summoner",
 		"desc": "20% summon on kill, +30% summon dmg"
+	},
+	"218": {
+		"name": "Dragon Ball Saiyan",
+		"desc": "All stats +70."
+	},
+	"219": {
+		"name": "Dragon Ball Spirit Bomb",
+		"desc": "+100 ATK, +500 HP."
 	}
 }

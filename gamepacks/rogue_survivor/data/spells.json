@@ -1614,5 +1614,36 @@
 		"desc_key": "SET_SUMMONER_DESC",
 		"required": 2,
 		"stats": {}
+	},
+	"218": {
+		"type": "card",
+		"subclass": "dragon_ball",
+		"bond_id": 38,
+		"tier": 4,
+		"stats": {
+			"str": 70,
+			"agi": 70,
+			"int": 70
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 38,
+			"count": 7
+		}
+	},
+	"219": {
+		"type": "card",
+		"subclass": "dragon_ball",
+		"bond_id": 38,
+		"tier": 4,
+		"stats": {
+			"atk": 100,
+			"hp": 500
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 38,
+			"count": 7
+		}
 	}
 }
