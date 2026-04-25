@@ -783,6 +783,7 @@
 		"TUTORIAL_DRAFT_SETS": "カードにはセットがあり、同セットを集めると羈絆ボーナスが発動。",
 		"TUTORIAL_BOND_FIRST": "羈絆発動！同セットのカードを集めるほど効果が積み上がる。",
 		"TUTORIAL_BOSS_FIRST": "ボス出現！ボス撃破でレア戦利品——カイトで攻略しよう。",
+		"TUTORIAL_SKIP_TOGGLE": "チュートリアルをスキップ",
 		"WAVE_DISPLAY": "第{0}/{1}ウェーブ {2}秒",
 		"BOSS_SPAWN": "ボス出現: {0}！",
 		"FINAL_BOSS_SPAWN": "最終ボス: {0}！",

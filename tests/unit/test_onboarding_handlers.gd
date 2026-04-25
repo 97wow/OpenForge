@@ -97,6 +97,7 @@ func test_tutorial_keys_present_in_all_langs() -> void:
 		"TUTORIAL_DRAFT_SETS",         # §A2
 		"TUTORIAL_BOND_FIRST",         # §A3
 		"TUTORIAL_BOSS_FIRST",         # §A4
+		"TUTORIAL_SKIP_TOGGLE",        # §A5
 	]
 	for lang in ["en", "zh_CN", "ja", "ko"]:
 		var path := "res://lang/%s.json" % lang
@@ -129,3 +130,12 @@ func test_boss_spawned_event_emitted_in_spawner() -> void:
 	## §A4 依赖 boss_spawned 事件——验证 rogue_spawner.gd 真发了它
 	var src: String = FileAccess.get_file_as_string("res://gamepacks/rogue_survivor/scripts/rogue_spawner.gd")
 	assert_str(src).contains('EventBus.emit_event("boss_spawned"')
+
+func test_tutorial_skip_toggle_wired_in_character_select() -> void:
+	## §A5 escape hatch：character_select 必须有 SaveSystem-backed toggle
+	## 写入 namespace=rogue_survivor_onboarding key=tutorials_disabled
+	var src: String = FileAccess.get_file_as_string("res://gamepacks/rogue_survivor/scenes/character_select/character_select.gd")
+	assert_str(src).contains("TUTORIAL_SKIP_TOGGLE")
+	assert_str(src).contains("rogue_survivor_onboarding")
+	assert_str(src).contains("tutorials_disabled")
+	assert_str(src).contains("SaveSystem.save_data")

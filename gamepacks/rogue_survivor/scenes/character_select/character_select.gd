@@ -71,6 +71,24 @@ func _build_ui() -> void:
 	back_btn.pressed.connect(func() -> void: SceneManager.goto_scene("map_select"))
 	add_child(back_btn)
 
+	# 教程开关 — onboarding 跳过 toggle（spec §A5），所有 §A1-A4 trigger 读这个 flag
+	_create_tutorial_toggle()
+
+func _create_tutorial_toggle() -> void:
+	var toggle := CheckBox.new()
+	toggle.text = I18n.t("TUTORIAL_SKIP_TOGGLE")
+	toggle.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
+	toggle.offset_left = -260
+	toggle.offset_top = -50
+	toggle.offset_right = -20
+	toggle.offset_bottom = -15
+	# 读现有 flag（默认 false = 显示教程）
+	toggle.button_pressed = bool(SaveSystem.load_data(
+		"rogue_survivor_onboarding", "tutorials_disabled", false))
+	toggle.toggled.connect(func(pressed: bool) -> void:
+		SaveSystem.save_data("rogue_survivor_onboarding", "tutorials_disabled", pressed))
+	add_child(toggle)
+
 func _create_class_card(cls: Dictionary) -> PanelContainer:
 	var card := PanelContainer.new()
 	card.custom_minimum_size = Vector2(280, 380)

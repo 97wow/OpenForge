@@ -794,6 +794,7 @@
 		"TUTORIAL_DRAFT_SETS": "卡片有套装——集齐同套卡触发羁绊加成。",
 		"TUTORIAL_BOND_FIRST": "羁绊激活！抽到更多同套卡能继续叠加加成。",
 		"TUTORIAL_BOSS_FIRST": "BOSS 来了！击败 BOSS 掉好货——风筝走位最稳。",
+		"TUTORIAL_SKIP_TOGGLE": "跳过教程",
 		"WAVE_DISPLAY": "第 {0}/{1} 波  {2}秒",
 		"BOSS_SPAWN": "BOSS出现: {0}！",
 		"FINAL_BOSS_SPAWN": "终极BOSS: {0}！",
