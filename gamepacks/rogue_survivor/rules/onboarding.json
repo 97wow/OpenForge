@@ -41,5 +41,18 @@
       { "type": "show_toast", "i18n_key": "TUTORIAL_BOND_FIRST", "color": "#cc99ff", "duration": 5.0 },
       { "type": "set_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_first_bond", "value": true }
     ]
+  },
+  {
+    "id": "onboarding_first_boss",
+    "event": "boss_spawned",
+    "once": true,
+    "conditions": [
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "tutorials_disabled", "op": "!=", "value": true },
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_first_boss", "op": "!=", "value": true }
+    ],
+    "actions": [
+      { "type": "show_toast", "i18n_key": "TUTORIAL_BOSS_FIRST", "color": "#ff6666", "duration": 6.0 },
+      { "type": "set_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_first_boss", "value": true }
+    ]
   }
 ]

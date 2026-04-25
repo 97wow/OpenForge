@@ -122,6 +122,7 @@ func get_wave_def(wave: int) -> Array:
 
 func spawn_boss_wave(boss_id: String, hp_mult: float, dmg_mult: float) -> int:
 	show_boss_warning(boss_id)
+	EventBus.emit_event("boss_spawned", {"boss_id": boss_id, "is_final": false})
 	var sp: Vector3 = _gm.SPAWN_POINTS[0]
 	var boss: Node3D = _gm.spawn(boss_id, sp)
 	if boss == null:
@@ -164,6 +165,7 @@ func spawn_boss_wave(boss_id: String, hp_mult: float, dmg_mult: float) -> int:
 func spawn_final_boss() -> void:
 	final_boss_spawned = true
 	show_boss_warning("void_titan")
+	EventBus.emit_event("boss_spawned", {"boss_id": "void_titan", "is_final": true})
 	_gm._combat_log_module._add_log("=== FINAL BOSS! DEFEAT TO WIN! ===", Color(1, 0.2, 0.1))
 	var hp_mult: float = _gm._difficulty.get("hp_mult", 1.0)
 	var dmg_mult: float = _gm._difficulty.get("dmg_mult", 1.0)

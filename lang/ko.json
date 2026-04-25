@@ -782,6 +782,7 @@
 		"TUTORIAL_DRAFT_RARITY": "등급 색상: 회색 < 녹색 < 파랑 < 보라 < 주황.",
 		"TUTORIAL_DRAFT_SETS": "카드에는 세트가 있으며, 같은 세트를 모으면 결속 효과가 발동.",
 		"TUTORIAL_BOND_FIRST": "결속 발동! 같은 세트 카드를 모을수록 효과가 누적됩니다.",
+		"TUTORIAL_BOSS_FIRST": "보스 출현! 보스 처치 시 좋은 전리품 — 카이팅으로 승리.",
 		"WAVE_DISPLAY": "{0}/{1}웨이브 {2}초",
 		"BOSS_SPAWN": "보스 출현: {0}!",
 		"FINAL_BOSS_SPAWN": "최종 보스: {0}!",

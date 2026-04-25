@@ -96,6 +96,7 @@ func test_tutorial_keys_present_in_all_langs() -> void:
 		"TUTORIAL_DRAFT_RARITY",       # §A2
 		"TUTORIAL_DRAFT_SETS",         # §A2
 		"TUTORIAL_BOND_FIRST",         # §A3
+		"TUTORIAL_BOSS_FIRST",         # §A4
 	]
 	for lang in ["en", "zh_CN", "ja", "ko"]:
 		var path := "res://lang/%s.json" % lang
@@ -109,8 +110,8 @@ func test_tutorial_keys_present_in_all_langs() -> void:
 			assert_bool(strings.has(key)).is_true()
 			assert_str(str(strings[key])).is_not_empty()
 
-func test_onboarding_json_has_all_three_beats() -> void:
-	## A1 (welcome) + A2 (first_draft) + A3 (first_bond) 都到位
+func test_onboarding_json_has_all_four_beats() -> void:
+	## A1 (welcome) + A2 (first_draft) + A3 (first_bond) + A4 (first_boss) 都到位
 	var path := "res://gamepacks/rogue_survivor/rules/onboarding.json"
 	var json := JSON.new()
 	var text: String = FileAccess.get_file_as_string(path)
@@ -122,3 +123,9 @@ func test_onboarding_json_has_all_three_beats() -> void:
 	assert_bool("onboarding_welcome_movement" in ids).is_true()
 	assert_bool("onboarding_first_draft" in ids).is_true()
 	assert_bool("onboarding_first_bond" in ids).is_true()
+	assert_bool("onboarding_first_boss" in ids).is_true()
+
+func test_boss_spawned_event_emitted_in_spawner() -> void:
+	## §A4 依赖 boss_spawned 事件——验证 rogue_spawner.gd 真发了它
+	var src: String = FileAccess.get_file_as_string("res://gamepacks/rogue_survivor/scripts/rogue_spawner.gd")
+	assert_str(src).contains('EventBus.emit_event("boss_spawned"')

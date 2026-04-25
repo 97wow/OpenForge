@@ -793,6 +793,7 @@
 		"TUTORIAL_DRAFT_RARITY": "Rarity colors: gray < green < blue < purple < orange.",
 		"TUTORIAL_DRAFT_SETS": "Cards belong to sets — collect copies to unlock bonus effects.",
 		"TUTORIAL_BOND_FIRST": "Bond activated! Set bonuses keep stacking as you draft more set cards.",
+		"TUTORIAL_BOSS_FIRST": "BOSS incoming! Boss kills drop better loot — kite to win.",
 		"WAVE_DISPLAY": "Wave {0}/{1}  {2}s",
 		"BOSS_SPAWN": "BOSS appeared: {0}!",
 		"FINAL_BOSS_SPAWN": "FINAL BOSS: {0}!",
