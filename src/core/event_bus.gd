@@ -60,6 +60,20 @@ func connect_event(event_name: String, callback: Callable) -> void:
 	if not _listeners.has(event_name):
 		register_event(event_name)
 	var listeners: Array = _listeners[event_name]
+	# 防御：先剔失效 callback（freed object），否则下面 `callback not in listeners`
+	# 走 Callable == 比较时，对悬空 Object 解引用会段错（跨 GamePack 重载/测试 suite 时高发）
+	var has_invalid: bool = false
+	for cb: Callable in listeners:
+		if not cb.is_valid():
+			has_invalid = true
+			break
+	if has_invalid:
+		var valid: Array[Callable] = []
+		for cb: Callable in listeners:
+			if cb.is_valid():
+				valid.append(cb)
+		_listeners[event_name] = valid
+		listeners = valid
 	if callback not in listeners:
 		listeners.append(callback)
 

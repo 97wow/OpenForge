@@ -61,6 +61,11 @@ func _ready() -> void:
 	_register_builtin_effects()
 	EventBus.connect_event("entity_damaged", _on_caster_damaged)
 
+func _exit_tree() -> void:
+	# 解绑 EventBus 监听，防止节点 free 后 callback 悬空导致跨 suite 测试崩溃
+	if EventBus:
+		EventBus.disconnect_event("entity_damaged", _on_caster_damaged)
+
 # === Spell 数据管理 ===
 
 func load_spells_from_directory(dir_path: String) -> int:

@@ -5,7 +5,7 @@ var _stat_sys: Node
 
 func before_test() -> void:
 	_stat_sys = auto_free(StatSystem.new()) as Node
-	_stat_sys._ready()
+	add_child(_stat_sys)
 
 func _make_entity() -> GameEntity:
 	var e: GameEntity = auto_free(GameEntity.new()) as GameEntity
