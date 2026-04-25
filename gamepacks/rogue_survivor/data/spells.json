@@ -1995,5 +1995,363 @@
 			"bond_id": 104,
 			"count": 4
 		}
+	},
+	"101": {
+		"type": "bond",
+		"subclass": "fate_wheel",
+		"name_key": "SET_FATE_WHEEL",
+		"desc_key": "SET_FATE_WHEEL_DESC",
+		"required": 4,
+		"stats": {}
+	},
+	"102": {
+		"type": "bond",
+		"subclass": "void_walker",
+		"name_key": "SET_VOID_WALKER",
+		"desc_key": "SET_VOID_WALKER_DESC",
+		"required": 4,
+		"stats": {}
+	},
+	"105": {
+		"type": "bond",
+		"subclass": "genesis",
+		"name_key": "SET_GENESIS",
+		"desc_key": "SET_GENESIS_DESC",
+		"required": 5,
+		"stats": {}
+	},
+	"106": {
+		"type": "bond",
+		"subclass": "apocalypse",
+		"name_key": "SET_APOCALYPSE",
+		"desc_key": "SET_APOCALYPSE_DESC",
+		"required": 5,
+		"stats": {}
+	},
+	"237": {
+		"type": "card",
+		"subclass": "fate_wheel",
+		"bond_id": 101,
+		"tier": 3,
+		"stats": {
+			"int": 12,
+			"atk": 8
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 101,
+			"count": 4
+		}
+	},
+	"238": {
+		"type": "card",
+		"subclass": "fate_wheel",
+		"bond_id": 101,
+		"tier": 3,
+		"stats": {
+			"int": 8,
+			"atk": 8
+		},
+		"proc": {
+			"trigger": "on_hit",
+			"chance": 0.1,
+			"cooldown": 1.5,
+			"effect": "double_damage"
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 101,
+			"count": 4
+		}
+	},
+	"239": {
+		"type": "card",
+		"subclass": "fate_wheel",
+		"bond_id": 101,
+		"tier": 4,
+		"stats": {
+			"int": 14,
+			"hp": 200
+		},
+		"proc": {
+			"trigger": "on_hit_and_kill",
+			"chance": 0.15,
+			"effect": "bonus_gold",
+			"amount": 10
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 101,
+			"count": 4
+		}
+	},
+	"240": {
+		"type": "card",
+		"subclass": "fate_wheel",
+		"bond_id": 101,
+		"tier": 4,
+		"stats": {
+			"int": 16,
+			"atk": 12
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 101,
+			"count": 4
+		}
+	},
+	"241": {
+		"type": "card",
+		"subclass": "void_walker",
+		"bond_id": 102,
+		"tier": 3,
+		"stats": {
+			"agi": 12,
+			"atk": 8
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 102,
+			"count": 4
+		}
+	},
+	"242": {
+		"type": "card",
+		"subclass": "void_walker",
+		"bond_id": 102,
+		"tier": 3,
+		"stats": {
+			"agi": 10,
+			"atk": 10
+		},
+		"proc": {
+			"trigger": "on_hit",
+			"chance": 0.15,
+			"cooldown": 4.0,
+			"effect": "aspd_buff",
+			"value": 0.5,
+			"duration": 3.0
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 102,
+			"count": 4
+		}
+	},
+	"243": {
+		"type": "card",
+		"subclass": "void_walker",
+		"bond_id": 102,
+		"tier": 4,
+		"stats": {
+			"agi": 14,
+			"hp": 200
+		},
+		"proc": {
+			"trigger": "periodic",
+			"interval": 8.0,
+			"effect": "summon_puppet",
+			"duration": 6.0
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 102,
+			"count": 4
+		}
+	},
+	"244": {
+		"type": "card",
+		"subclass": "void_walker",
+		"bond_id": 102,
+		"tier": 4,
+		"stats": {
+			"agi": 16,
+			"atk": 14
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 102,
+			"count": 4
+		}
+	},
+	"245": {
+		"type": "card",
+		"subclass": "genesis",
+		"bond_id": 105,
+		"tier": 4,
+		"stats": {
+			"str": 12,
+			"agi": 12,
+			"int": 12
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 105,
+			"count": 5
+		}
+	},
+	"246": {
+		"type": "card",
+		"subclass": "genesis",
+		"bond_id": 105,
+		"tier": 4,
+		"stats": {
+			"str": 14,
+			"hp": 300,
+			"atk": 10
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 105,
+			"count": 5
+		}
+	},
+	"247": {
+		"type": "card",
+		"subclass": "genesis",
+		"bond_id": 105,
+		"tier": 5,
+		"stats": {
+			"int": 18,
+			"atk": 16
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 105,
+			"count": 5
+		}
+	},
+	"248": {
+		"type": "card",
+		"subclass": "genesis",
+		"bond_id": 105,
+		"tier": 5,
+		"stats": {
+			"str": 16,
+			"agi": 16,
+			"int": 16,
+			"hp": 200
+		},
+		"proc": {
+			"trigger": "on_hit_and_kill",
+			"effect": "add_growth",
+			"stats": {
+				"str": 0.2,
+				"agi": 0.2,
+				"int": 0.2
+			}
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 105,
+			"count": 5
+		}
+	},
+	"249": {
+		"type": "card",
+		"subclass": "genesis",
+		"bond_id": 105,
+		"tier": 5,
+		"stats": {
+			"hp": 500,
+			"atk": 14,
+			"armor": 6
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 105,
+			"count": 5
+		}
+	},
+	"250": {
+		"type": "card",
+		"subclass": "apocalypse",
+		"bond_id": 106,
+		"tier": 4,
+		"stats": {
+			"str": 14,
+			"atk": 12
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 106,
+			"count": 5
+		}
+	},
+	"251": {
+		"type": "card",
+		"subclass": "apocalypse",
+		"bond_id": 106,
+		"tier": 4,
+		"stats": {
+			"int": 14,
+			"atk": 12
+		},
+		"proc": {
+			"trigger": "periodic",
+			"interval": 6.0,
+			"effect": "aoe_damage",
+			"range": 4.0,
+			"damage_pct": 1.6
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 106,
+			"count": 5
+		}
+	},
+	"252": {
+		"type": "card",
+		"subclass": "apocalypse",
+		"bond_id": 106,
+		"tier": 5,
+		"stats": {
+			"str": 16,
+			"atk": 16
+		},
+		"proc": {
+			"trigger": "on_hit",
+			"chance": 0.1,
+			"cooldown": 3.0,
+			"effect": "aoe_spell_damage",
+			"range": 4.0,
+			"damage_pct": 2.0
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 106,
+			"count": 5
+		}
+	},
+	"253": {
+		"type": "card",
+		"subclass": "apocalypse",
+		"bond_id": 106,
+		"tier": 5,
+		"stats": {
+			"int": 18,
+			"atk": 14
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 106,
+			"count": 5
+		}
+	},
+	"254": {
+		"type": "card",
+		"subclass": "apocalypse",
+		"bond_id": 106,
+		"tier": 5,
+		"stats": {
+			"str": 18,
+			"agi": 12,
+			"atk": 16
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 106,
+			"count": 5
+		}
 	}
 }

@@ -470,5 +470,93 @@
 	"104": {
 		"name": "Eternity",
 		"desc": "Revive, invincible, +15% all stats, time rewind"
+	},
+	"237": {
+		"name": "Spin the Wheel",
+		"desc": "+12 INT, +8 ATK. Wheel of Fate set progress."
+	},
+	"238": {
+		"name": "Lucky Strike",
+		"desc": "+8 INT, +8 ATK. 10% on hit: double damage."
+	},
+	"239": {
+		"name": "Fortuna's Blessing",
+		"desc": "+14 INT, +200 HP. 15% on kill: +10 gold."
+	},
+	"240": {
+		"name": "Roulette Mastery",
+		"desc": "+16 INT, +12 ATK. Wheel of Fate set progress."
+	},
+	"241": {
+		"name": "Blink Step",
+		"desc": "+12 AGI, +8 ATK. Void Walker set progress."
+	},
+	"242": {
+		"name": "Phase Strike",
+		"desc": "+10 AGI, +10 ATK. 15% on hit: +50% aspd 3s (4s CD)."
+	},
+	"243": {
+		"name": "Shadow Clone",
+		"desc": "+14 AGI, +200 HP. Every 8s: summon a clone for 6s."
+	},
+	"244": {
+		"name": "Void Trespass",
+		"desc": "+16 AGI, +14 ATK. Void Walker set progress."
+	},
+	"245": {
+		"name": "Primordial Spark",
+		"desc": "+12 all stats. Genesis set progress."
+	},
+	"246": {
+		"name": "First Light",
+		"desc": "+14 STR, +300 HP, +10 ATK. Genesis set progress."
+	},
+	"247": {
+		"name": "World Breath",
+		"desc": "+18 INT, +16 ATK. Genesis set progress."
+	},
+	"248": {
+		"name": "Creator's Mantle",
+		"desc": "+16 all stats, +200 HP. On kill: +0.2 all stat growth."
+	},
+	"249": {
+		"name": "Old Earth",
+		"desc": "+500 HP, +14 ATK, +6 armor. Genesis set progress."
+	},
+	"250": {
+		"name": "Doom Sigil",
+		"desc": "+14 STR, +12 ATK. Apocalypse set progress."
+	},
+	"251": {
+		"name": "Damage Aura",
+		"desc": "+14 INT, +12 ATK. Every 6s: 4m AoE 160% damage."
+	},
+	"252": {
+		"name": "Crit Annihilation",
+		"desc": "+16 STR, +16 ATK. 10% on hit: 4m AoE 200% damage (3s CD)."
+	},
+	"253": {
+		"name": "Ragnarok",
+		"desc": "+18 INT, +14 ATK. Apocalypse set progress."
+	},
+	"254": {
+		"name": "Final Sentence",
+		"desc": "+18 STR, +12 AGI, +16 ATK. Apocalypse set progress."
+	},
+	"101": {
+		"name": "Wheel of Fate",
+		"desc": "Random effects on hit/buff/crit/kill"
+	},
+	"102": {
+		"name": "Void Walker",
+		"desc": "Blink 4s, +60% aspd, clone, slow field"
+	},
+	"105": {
+		"name": "Genesis",
+		"desc": "+30% dmg & def, battlefield reshape"
+	},
+	"106": {
+		"name": "Apocalypse",
+		"desc": "Damage aura, crit explosion, screen nuke"
 	}
 }
