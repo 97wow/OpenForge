@@ -36,31 +36,37 @@ every row is recorded in the matching `<file>.source.json` sidecar.
 
 ## SFX — `assets/audio/sfx/`
 
-`docs/ROGUE_SURVIVOR_GAPS.md` §2.1 explicitly labels this folder "SFX —
-Kenney library." Kenney's audio packs (Interface Sounds, RPG Audio, Impact
-Sounds, etc.) are CC0. No per-file source records exist, so the attribution
-is documented-but-unverified. Keep this in mind before shipping commercially
-without a fresh CC0 audit.
+All 17 files identified 2026-04-25 by **sha256 cross-check** against four
+Kenney CC0 packs downloaded directly from kenney.nl: Impact Sounds, RPG
+Audio, UI Audio, Interface Sounds. Every binary in this folder hashes
+identically to a known file in one of those packs. License: CC0 1.0
+Universal (no attribution required).
 
-| Filename | Relative path | Plausible source | License | Description |
+| Filename | Relative path | Source pack / file | License | Description |
 |---|---|---|---|---|
-| `footstep_01.ogg` | `assets/audio/sfx/footstep_01.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Footfall variant 1 for movement loop (currently unwired) |
-| `footstep_02.ogg` | `assets/audio/sfx/footstep_02.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Footfall variant 2 for movement loop (currently unwired) |
-| `footstep_03.ogg` | `assets/audio/sfx/footstep_03.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Footfall variant 3 for movement loop (currently unwired) |
-| `gold_pickup.ogg` | `assets/audio/sfx/gold_pickup.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Coin/gold pickup chime, in audio cache, no live caller yet |
-| `hit_generic.ogg` | `assets/audio/sfx/hit_generic.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Generic hit fallback for damage types without dedicated SFX |
-| `hit_light.ogg` | `assets/audio/sfx/hit_light.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Light-impact hit, currently unused by framework |
-| `hit_metal.ogg` | `assets/audio/sfx/hit_metal.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Metal clang preferred for physical hits when present |
-| `hit_metal_alt.ogg` | `assets/audio/sfx/hit_metal_alt.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Alternate metal hit variant for hit-stack variety, unwired |
-| `melee_swing.ogg` | `assets/audio/sfx/melee_swing.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Melee swing whoosh, in audio cache, no caller yet |
-| `move_command.ogg` | `assets/audio/sfx/move_command.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | RTS-style move-command click (framework selection_system) |
-| `select_unit.ogg` | `assets/audio/sfx/select_unit.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | RTS-style unit-select click (framework selection_system) |
-| `spell_cast.ogg` | `assets/audio/sfx/spell_cast.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Generic magic cast whoosh, in cache, never directly invoked |
-| `ui_click.ogg` | `assets/audio/sfx/ui_click.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | UI button click, in audio cache, no caller wired |
-| `ui_click_alt.ogg` | `assets/audio/sfx/ui_click_alt.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Alternate UI click variant for click-stack variety, unwired |
-| `ui_hover.ogg` | `assets/audio/sfx/ui_hover.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | UI hover blip — present despite gap report saying missing |
-| `ui_hover_alt.ogg` | `assets/audio/sfx/ui_hover_alt.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | Alternate UI hover variant for stack variety, unwired |
-| `ui_toggle.ogg` | `assets/audio/sfx/ui_toggle.ogg` | Kenney CC0 (per gaps doc; unverified) | CC0 | UI toggle/switch click for checkbox-style controls, unwired |
+| `footstep_01.ogg` | `assets/audio/sfx/footstep_01.ogg` | Kenney "Impact Sounds" / `footstep_grass_000.ogg` | CC0 1.0 | Footfall variant 1 for movement loop (currently unwired) |
+| `footstep_02.ogg` | `assets/audio/sfx/footstep_02.ogg` | Kenney "Impact Sounds" / `footstep_grass_001.ogg` | CC0 1.0 | Footfall variant 2 for movement loop (currently unwired) |
+| `footstep_03.ogg` | `assets/audio/sfx/footstep_03.ogg` | Kenney "Impact Sounds" / `footstep_grass_002.ogg` | CC0 1.0 | Footfall variant 3 for movement loop (currently unwired) |
+| `gold_pickup.ogg` | `assets/audio/sfx/gold_pickup.ogg` | Kenney "RPG Audio" / `handleCoins.ogg` | CC0 1.0 | Coin/gold pickup chime, in audio cache, no live caller yet |
+| `hit_generic.ogg` | `assets/audio/sfx/hit_generic.ogg` | Kenney "Impact Sounds" / `impactGeneric_light_002.ogg` | CC0 1.0 | Generic hit fallback for damage types without dedicated SFX |
+| `hit_light.ogg` | `assets/audio/sfx/hit_light.ogg` | Kenney "Impact Sounds" / `impactGeneric_light_000.ogg` | CC0 1.0 | Light-impact hit, currently unused by framework |
+| `hit_metal.ogg` | `assets/audio/sfx/hit_metal.ogg` | Kenney "Impact Sounds" / `impactMetal_heavy_000.ogg` | CC0 1.0 | Metal clang preferred for physical hits when present |
+| `hit_metal_alt.ogg` | `assets/audio/sfx/hit_metal_alt.ogg` | Kenney "Impact Sounds" / `impactMetal_heavy_002.ogg` | CC0 1.0 | Alternate metal hit variant for hit-stack variety, unwired |
+| `melee_swing.ogg` | `assets/audio/sfx/melee_swing.ogg` | Kenney "RPG Audio" / `chop.ogg` | CC0 1.0 | Melee swing whoosh, in audio cache, no caller yet |
+| `move_command.ogg` | `assets/audio/sfx/move_command.ogg` | Kenney "UI Audio" / `click5.ogg` | CC0 1.0 | RTS-style move-command click (framework selection_system) |
+| `select_unit.ogg` | `assets/audio/sfx/select_unit.ogg` | Kenney "UI Audio" / `click2.ogg` | CC0 1.0 | RTS-style unit-select click (framework selection_system) |
+| `spell_cast.ogg` | `assets/audio/sfx/spell_cast.ogg` | Kenney "RPG Audio" / `metalClick.ogg` | CC0 1.0 | Generic magic cast whoosh, in cache, never directly invoked |
+| `ui_click.ogg` | `assets/audio/sfx/ui_click.ogg` | Kenney "UI Audio" / `click1.ogg` | CC0 1.0 | UI button click, in audio cache, no caller wired |
+| `ui_click_alt.ogg` | `assets/audio/sfx/ui_click_alt.ogg` | Kenney "UI Audio" / `click3.ogg` | CC0 1.0 | Alternate UI click variant for click-stack variety, unwired |
+| `ui_hover.ogg` | `assets/audio/sfx/ui_hover.ogg` | Kenney "UI Audio" / `rollover1.ogg` | CC0 1.0 | UI hover blip — present despite gap report saying missing |
+| `ui_hover_alt.ogg` | `assets/audio/sfx/ui_hover_alt.ogg` | Kenney "UI Audio" / `rollover3.ogg` | CC0 1.0 | Alternate UI hover variant for stack variety, unwired |
+| `ui_toggle.ogg` | `assets/audio/sfx/ui_toggle.ogg` | Kenney "UI Audio" / `switch3.ogg` | CC0 1.0 | UI toggle/switch click for checkbox-style controls, unwired |
+
+Pack URLs (download to verify):
+- Impact Sounds: https://kenney.nl/assets/impact-sounds
+- RPG Audio: https://kenney.nl/assets/rpg-audio
+- UI Audio: https://kenney.nl/assets/ui-audio
+- Interface Sounds: https://kenney.nl/assets/interface-sounds (used for replaced top-level SFX)
 
 ## Follow-up actions
 
@@ -69,9 +75,11 @@ without a fresh CC0 audit.
    the 8 SFX (Kenney CC0 swap).** `bgm/battle_01.mp3` is still pending —
    defer to the MusicGen-render task per `docs/AUDIO_REPLACEMENT_PLAN.md` §12
    Option A (or §12 Option B FMA fallback) before commercial launch.
-2. When the Kenney sourcing in `assets/audio/sfx/` is confirmed, replace the
+2. ~~When the Kenney sourcing in `assets/audio/sfx/` is confirmed, replace the
    `(per gaps doc; unverified)` qualifier with the specific Kenney pack name
-   and version each file came from.
+   and version each file came from.~~ **Done 2026-04-25** — all 17 files
+   verified by sha256 against the live pack ZIPs (Impact Sounds, RPG Audio,
+   UI Audio). 0 unmatched.
 3. Adopt the `<file>.source.json` sidecar convention from
    `docs/AUDIO_GAP_REPORT.md` §1 for all future audio additions so this
    table can be regenerated automatically. **Already adopted for the 8 SFX
