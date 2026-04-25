@@ -139,3 +139,31 @@ func test_tutorial_skip_toggle_wired_in_character_select() -> void:
 	assert_str(src).contains("rogue_survivor_onboarding")
 	assert_str(src).contains("tutorials_disabled")
 	assert_str(src).contains("SaveSystem.save_data")
+
+func test_theme_bonds_i18n_keys_all_present() -> void:
+	## 防 SHIP_READINESS_v3 §4 #2 重现：theme_bonds.json 引用的所有
+	## name_key / desc_key 必须在 4 国 lang 包都有非空翻译。
+	## 之前缺 23 keys × 4 langs = 92 字符串，会让 bond panel 显示原始 KEY。
+	var json := JSON.new()
+	var text: String = FileAccess.get_file_as_string("res://gamepacks/rogue_survivor/theme_bonds.json")
+	assert_int(json.parse(text)).is_equal(OK)
+	var bonds: Array = json.data
+	var required: Array[String] = []
+	for b: Dictionary in bonds:
+		var nk: String = str(b.get("name_key", ""))
+		var dk: String = str(b.get("desc_key", ""))
+		if nk != "" and not (nk in required):
+			required.append(nk)
+		if dk != "" and not (dk in required):
+			required.append(dk)
+	assert_int(required.size()).is_greater(0)
+	for lang in ["en", "zh_CN", "ja", "ko"]:
+		var lj := JSON.new()
+		var lt: String = FileAccess.get_file_as_string("res://lang/%s.json" % lang)
+		assert_int(lj.parse(lt)).is_equal(OK)
+		var strings: Dictionary = lj.data.get("strings", {})
+		for k in required:
+			assert_bool(strings.has(k)).override_failure_message(
+				"%s.json missing key: %s" % [lang, k]).is_true()
+			assert_str(str(strings[k])).override_failure_message(
+				"%s.json key %s is empty" % [lang, k]).is_not_empty()
