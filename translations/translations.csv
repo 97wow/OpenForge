@@ -1,7 +1,7 @@
 keys,en,zh_CN,ja,ko
 GAME_TITLE,OpenForge,OpenForge,OpenForge,OpenForge
 PRESS_ANY_KEY,Press any key to continue,按任意键继续,何かキーを押してください,아무 키나 누르세요
-CREATE_PLAY_SHARE,"Create. Play. Share.",创造·游玩·分享,創る・遊ぶ・共有する,만들고 · 플레이 · 공유
+CREATE_PLAY_SHARE,Create. Play. Share.,创造·游玩·分享,創る・遊ぶ・共有する,만들고 · 플레이 · 공유
 START_GAME,Start Game,开始游戏,ゲーム開始,게임 시작
 COLLECTION,Collection,收藏,コレクション,컬렉션
 LEADERBOARD,Leaderboard,排行榜,ランキング,랭킹
@@ -54,7 +54,6 @@ DIFF_N5,Inferno,炼狱,インフェルノ,지옥
 DIFF_N10,Apocalypse,末日,アポカリプス,종말
 REWARD,Reward,奖励,報酬,보상
 KILLS,Kills,击杀,キル,처치
-DIFFICULTY,Difficulty,难度,難易度,난이도
 RETRY,Retry,再来一局,リトライ,재도전
 SET_BONUS,Set Bonus,套装效果,セットボーナス,세트 보너스
 SET_EFFECT_pierce,100% pierce through 3 enemies,100%穿透3个敌人,100%で3体貫通,100% 3체 관통
@@ -66,7 +65,7 @@ SET_EFFECT_freeze_shatter,"40% slow, ice shatter AoE",40%减速·冰碎范围伤
 SET_EFFECT_chain_lightning,"30% chain 3 targets, 1s stun",30%闪电链3体·1秒眩晕,30%連鎖3体・1秒気絶,30% 연쇄 3체·1초 기절
 SET_EFFECT_random_element,35% random element on hit,35%命中随机附加元素,35%ランダム属性付与,35% 랜덤 속성 부여
 SET_EFFECT_reaper,"Execute <15% HP, +2% dmg/kill",处决15%以下·击杀永久+2%伤害,HP15%以下処刑・キル毎+2%,15% 이하 처형·처치당 +2%
-SET_EFFECT_storm,"Every 3 hits: AoE + 2s stun",每3击冲击波·2秒眩晕,3回毎に衝撃波・2秒気絶,매 3타 충격파·2초 기절
+SET_EFFECT_storm,Every 3 hits: AoE + 2s stun,每3击冲击波·2秒眩晕,3回毎に衝撃波・2秒気絶,매 3타 충격파·2초 기절
 SET_EFFECT_time_lord,"Time stop 3s, survive lethal once",时停3秒·致命伤存活一次,3秒時間停止・致死1回耐え,시정지 3초·치명타 1회 생존
 DMG_PHYSICAL,Physical,物理,物理,물리
 DMG_FROST,Frost,冰霜,フロスト,냉기
@@ -75,9 +74,12 @@ DMG_NATURE,Nature,自然,自然,자연
 DMG_SHADOW,Shadow,暗影,シャドウ,암흑
 DMG_HOLY,Holy,神圣,ホーリー,신성
 CARDS_FULL_HINT,"Cards full! Pick a new card, then click a held card to replace.",卡片已满！先选择新卡，再点击已持有的卡来替换。,カードが一杯！新カードを選んだ後、持っているカードをクリックして入れ替え。,카드 가득! 새 카드를 선택한 후 보유 카드를 클릭하여 교체.
-WARRIOR_DESC,"High damage, slow attack.\nTanky with heavy armor.\n\n+3 STR / +2 STA / +1 DEF per level",高伤害低攻速\n厚甲重装\n\n每级 +3力量 / +2耐力 / +1护甲,高ダメージ・低攻撃速度\n重装甲\n\n毎Lv: +3力 / +2耐 / +1防,높은 피해 느린 공속\n중장갑\n\n레벨당 +3힘 / +2체 / +1방
-RANGER_DESC,"Extremely fast attacks.\nLong range, high mobility.\n\n+3 AGI / +1 STR / +1 STA per level",极速攻击\n远射程·高机动\n\n每级 +3敏捷 / +1力量 / +1耐力,超高速攻撃\n長射程・高機動\n\n毎Lv: +3敏 / +1力 / +1耐,초고속 공격\n장거리·고기동\n\n레벨당 +3민 / +1힘 / +1체
-MAGE_DESC,"High burst damage.\nSlow attack, very fragile.\n\n+3 INT / +1 AGI / +1 STA per level",高爆发伤害\n攻速慢·非常脆弱\n\n每级 +3智力 / +1敏捷 / +1耐力,高バースト\n低攻撃速度・脆い\n\n毎Lv: +3知 / +1敏 / +1耐,높은 폭딜\n느린 공속·매우 약함\n\n레벨당 +3지 / +1민 / +1체
+WARRIOR_STATS,HP: 250 | DMG: 35 | SPD: 1.4s | Range: 250,HP: 250 | 伤害: 35 | 攻速: 1.4秒 | 射程: 250,HP: 250 | DMG: 35 | SPD: 1.4s | 射程: 250,HP: 250 | 피해: 35 | 공속: 1.4초 | 사거리: 250
+RANGER_STATS,HP: 150 | DMG: 12 | SPD: 1.0s | Range: 420,HP: 150 | 伤害: 12 | 攻速: 1.0秒 | 射程: 420,HP: 150 | DMG: 12 | SPD: 1.0s | 射程: 420,HP: 150 | 피해: 12 | 공속: 1.0초 | 사거리: 420
+MAGE_STATS,HP: 120 | DMG: 25 | SPD: 1.2s | Range: 350,HP: 120 | 伤害: 25 | 攻速: 1.2秒 | 射程: 350,HP: 120 | DMG: 25 | SPD: 1.2s | 射程: 350,HP: 120 | 피해: 25 | 공속: 1.2초 | 사거리: 350
+WARRIOR_DESC,Heavy hitter (1.4s). DMG 35\nTanky with heavy armor.\n\n+3 STR / +2 STA / +1 DEF per level,重击手(1.4秒) 伤害35\n厚甲重装\n\n每级 +3力量 / +2耐力 / +1护甲,ヘビーヒッター(1.4s) DMG35\n重装甲\n\n毎Lv: +3力 / +2耐 / +1防,강타자(1.4초) 피해 35\n중장갑\n\n레벨당 +3힘 / +2체 / +1방
+RANGER_DESC,"Fastest attacks (1.0s). DMG 12\nLong range, high mobility.\n\n+3 AGI / +1 STR / +1 STA per level",极速攻击(1.0秒) 伤害12\n远射程·高机动\n\n每级 +3敏捷 / +1力量 / +1耐力,最速攻撃(1.0s) DMG12\n長射程・高機動\n\n毎Lv: +3敏 / +1力 / +1耐,최고속 공격(1.0초) 피해 12\n장거리·고기동\n\n레벨당 +3민 / +1힘 / +1체
+MAGE_DESC,"High burst (1.2s). DMG 25\nMedium range, very fragile.\n\n+3 INT / +1 AGI / +1 STA per level",高爆发(1.2秒) 伤害25\n中射程·非常脆弱\n\n每级 +3智力 / +1敏捷 / +1耐力,高バースト(1.2s) DMG25\n中射程・脆い\n\n毎Lv: +3知 / +1敏 / +1耐,높은 폭딜(1.2초) 피해 25\n중거리·매우 약함\n\n레벨당 +3지 / +1민 / +1체
 LANGUAGE,Language,语言,言語,언어
 LANG_EN,English,English,English,English
 LANG_ZH,中文,中文,中文,中文
@@ -185,3 +187,588 @@ CARD_TIME_3_NAME,Haste,加速,ヘイスト,가속
 CARD_TIME_3_DESC,+30% movement and attack speed,移速和攻速+30%,移動速度と攻撃速度+30%,이동 및 공격 속도 +30%
 CARD_TIME_4_NAME,Time Stop,时间停止,タイムストップ,시간 정지
 CARD_TIME_4_DESC,Stop time for 3s (60s cooldown),停止时间3秒(冷却60秒),3秒間時間停止(CD60秒),시간 3초 정지 (쿨타임 60초)
+PROMOTION_TITLE,Class Promotion!,职业转职！,転職！,직업 전직!
+PROMOTION_SUBTITLE,Choose your advanced class,选择你的进阶职业,上級職を選べ,상위 직업을 선택하세요
+PROMOTION_COMPLETE,Promoted to {0}!,成功转职为{0}！,{0}に転職！,{0}으로 전직 완료!
+CLASS_BERSERKER,Berserker,狂战士,バーサーカー,광전사
+CLASS_BERSERKER_DESC,"Unbridled fury. +40% damage, faster attacks. Low HP = even more damage.",狂暴之力。伤害+40%·攻速提升。低血量时伤害更高。,狂気の力。ダメージ+40%・攻撃速度UP。低HPでさらにダメージUP。,광기의 힘. 피해 +40%·공속 증가. 낮은 HP에서 추가 피해.
+CLASS_PALADIN,Paladin,圣骑士,パラディン,성기사
+CLASS_PALADIN_DESC,"Holy protector. +50% HP, +5 armor. Regenerate 2 HP/s.",神圣守护者。生命+50%·护甲+5。每秒回复2点生命。,聖なる守護者。HP+50%・防御+5。毎秒HP2回復。,신성한 수호자. HP +50%·방어 +5. 초당 HP 2 회복.
+CLASS_SHADOW_DANCER,Shadow Dancer,影舞者,シャドウダンサー,그림자 무용수
+CLASS_SHADOW_DANCER_DESC,"Swift and deadly. -25% cooldown, +30 move speed. Every 4th hit deals double.",迅捷致命。冷却-25%·移速+30。每4次攻击伤害翻倍。,素早く致命的。CD-25%・移動+30。4回毎に2倍ダメージ。,빠르고 치명적. 쿨타임 -25%·이속 +30. 매 4타 2배 피해.
+CLASS_WINDRUNNER,Windrunner,风行者,ウィンドランナー,바람의 주자
+CLASS_WINDRUNNER_DESC,"Master of range. +80 attack range, +30% projectile speed. Arrows pierce by default.",远程大师。射程+80·弹速+30%。箭矢默认穿透。,射程の達人。射程+80・弾速+30%。矢がデフォルトで貫通。,사거리의 달인. 사거리 +80·투사체 속도 +30%. 기본 관통.
+CLASS_ARCHMAGE,Archmage,大法师,アークメイジ,대마법사
+CLASS_ARCHMAGE_DESC,"Supreme magical power. +50% spell damage, faster casting. Spells amplified by 20%.",至高魔力。法术伤害+50%·施法加速。法术增幅20%。,至高の魔力。魔法ダメージ+50%・詠唱速度UP。魔法20%増幅。,최고의 마력. 주문 피해 +50%·시전 가속. 주문 20% 증폭.
+CLASS_NECROMANCER,Necromancer,死灵法师,ネクロマンサー,강령술사
+CLASS_NECROMANCER_DESC,Master of death. +8% life steal. Kills have 30% chance to raise shadow minions.,死亡主宰。吸血+8%。击杀有30%概率召唤暗影仆从。,死の支配者。ライフスティール+8%。キル時30%で影の従者を召喚。,죽음의 지배자. 흡혈 +8%. 처치 시 30% 확률로 그림자 소환.
+BOSS_BONE_DRAGON,Bone Dragon,骨龙,ボーンドラゴン,뼈 용
+BOSS_SHADOW_LORD,Shadow Lord,暗影领主,シャドウロード,그림자 군주
+BOSS_VOID_TITAN,Void Titan,虚空泰坦,ヴォイドタイタン,공허의 거인
+BOSS_INCOMING,BOSS INCOMING!,BOSS 来袭！,ボス出現！,보스 등장!
+BOSS_DEFEATED,BOSS DEFEATED!,BOSS 已击败！,ボス撃破！,보스 격파!
+FINAL_BOSS_DEFEATED,Final Boss defeated! Victory!,终极BOSS已击败！胜利！,最終ボス撃破！勝利！,최종 보스 격파! 승리!
+PAUSED,PAUSED,暂停,ポーズ,일시정지
+RESUME,Resume,继续,再開,계속
+CHALLENGE_WAVE,Challenge Wave,挑战怪物,ウェーブ挑戦,웨이브 도전
+CHALLENGE_BOSS,Challenge Boss,挑战BOSS,ボス挑戦,보스 도전
+LOG_YOU,You,你,あなた,당신
+LOG_DMG,{0} hit {1} for {2} {3} damage.,{0} 的攻击命中 {1} 造成了 {2} {3}伤害。,{0} の攻撃が {1} に命中 {2} {3}ダメージ,{0} 의 공격이 {1} 에게 적중 {2} {3} 피해
+LOG_CRIT_DMG,{0} crit {1} for {2} {3} damage! (Critical),{0} 暴击 {1} 造成了 {2} {3}伤害！（暴击）,{0} が {1} にクリティカル {2} {3}ダメージ！（会心）,{0} 이 {1} 에게 치명타 {2} {3} 피해! (치명타)
+LOG_HEAL,{0} healed {1} for {2} HP.,{0} 治疗了 {1} {2} 点生命值。,{0} が {1} を {2} HP回復した。,{0} 이 {1} 을 {2} HP 치유함.
+LOG_DEATH,{0} has died.,{0} 死亡了。,{0} が倒れた。,{0} 사망.
+LOG_SPELL_CAST,{0} cast {1}.,{0} 施放了 {1}。,{0} が {1} を唱えた。,{0} 이 {1} 시전.
+LOG_AURA_GAIN,{0} gained {1}.,{0} 获得了 {1} 效果。,{0} が {1} を得た。,{0} 이 {1} 획득.
+LOG_PROC_TRIGGER,Proc triggered: {0}.,触发特效：{0}。,プロック発動：{0}。,발동：{0}.
+LOG_WAVE,Wave {0} ({1} enemies),第 {0} 波（{1} 个敌人）,ウェーブ {0}（{1} 体）,웨이브 {0} ({1} 적)
+LOG_BOSS_WAVE,BOSS Wave {0},BOSS 第 {0} 波,ボスウェーブ {0},보스 웨이브 {0}
+STAT_CHAIN_CHANCE,Chain Lightning %,闪电链概率,チェインライトニング率,연쇄 번개 확률
+STAT_CHAIN_COUNT,Chain targets,弹射目标数,チェイン数,연쇄 대상 수
+STAT_CHAIN_STUN,Chain stun (s),闪电链眩晕(秒),チェインスタン(秒),연쇄 기절(초)
+STAT_CHAIN_RANGE,Chain range,弹射范围,チェイン範囲,연쇄 범위
+STAT_CRIT_CHANCE,Crit %,暴击率,クリ率,치명타 확률
+STAT_CRIT_DAMAGE_BONUS,Crit DMG bonus,暴击伤害加成,クリダメージ加算,치명타 피해 보너스
+STAT_PIERCE_CHANCE,Pierce %,穿透概率,貫通率,관통 확률
+STAT_PIERCE_COUNT,Pierce count,穿透数,貫通数,관통 수
+STAT_LIFE_STEAL,Life steal %,吸血率,ライフスティール率,흡혈 비율
+STAT_ATTACK_SPEED_PCT,Attack speed %,攻速加成,攻撃速度加算,공격 속도 증가
+STAT_POISON_CHANCE,Poison %,中毒概率,毒付与率,중독 확률
+STAT_IGNITE_CHANCE,Ignite %,点燃概率,点火率,점화 확률
+STAT_SLOW_CHANCE,Slow %,减速概率,スロー率,감속 확률
+STAT_SLOW_PCT,Slow amount,减速幅度,スロー量,감속량
+STAT_EXTRA_PROJECTILES,Extra projectiles,额外弹体,追加弾,추가 투사체
+STAT_BERSERKER_RAGE,Berserker rage,狂战士怒气,バーサーカーレイジ,광전사 분노
+STAT_HP_REGEN,HP regen/s,生命回复/秒,HP回復/秒,초당 HP 회복
+STAT_SHADOW_STEP,Shadow step,暗影步,シャドウステップ,그림자 걸음
+STAT_SPELL_AMP,Spell amplify %,法术增幅,魔法増幅,주문 증폭
+STAT_NECRO_RAISE,Raise dead %,召唤亡灵概率,アンデッド召喚率,언데드 소환 확률
+TALENTS_TITLE,Talents & Progress,天赋与进度,タレント＆進捗,재능 및 진행
+UPGRADE,Upgrade,升级,アップグレード,업그레이드
+RESET_TALENTS,Reset Talents,重置天赋,タレントリセット,재능 초기화
+WISHING_WELL,Wishing Well,许愿池,願いの泉,소원의 우물
+WISH,Wish,许愿,お願い,소원
+NOT_ENOUGH_GOLD,Not enough gold!,金币不足！,ゴールドが足りない！,골드가 부족합니다!
+CARD_UNLOCKED,Card Unlocked!,解锁新卡片��,カード解放！,카드 해금!
+TALENT_MAX_HP,Max HP,最大生命,最大HP,최대 HP
+TALENT_MAX_HP_DESC,+10 Max HP per level,每级+10最大生命,レベル毎に最大HP+10,레벨당 최대 HP +10
+TALENT_DAMAGE,Damage,伤害,ダメージ,피해
+TALENT_DAMAGE_DESC,+2 damage per level,每级+2伤害,レベル毎にダメージ+2,레벨당 피해 +2
+TALENT_ARMOR,Armor,护甲,防御,방어
+TALENT_ARMOR_DESC,+1 armor per level,每级+1护甲,レベル毎に防御+1,레벨당 방어 +1
+TALENT_ASPD,Attack Speed,攻击速度,攻撃速度,공격 속도
+TALENT_ASPD_DESC,+5% attack speed per level,每级+5%攻速,レベル毎に攻撃速度+5%,레벨당 공격 속도 +5%
+TALENT_CRIT,Crit Chance,暴击率,クリティカル率,치명타 확률
+TALENT_CRIT_DESC,+3% crit chance per level,每级+3%暴击率,レベル毎にクリ率+3%,레벨당 치명타 +3%
+TALENT_MOVE,Move Speed,移动速度,移動速度,이동 속도
+TALENT_MOVE_DESC,+5 move speed per level,每级+5移速,レベル毎に移動速度+5,레벨당 이동 속도 +5
+TALENT_LIFESTEAL,Life Steal,吸血,ライフスティール,생명력 흡수
+TALENT_LIFESTEAL_DESC,+2% life steal per level,每级+2%吸血,レベル毎にLS+2%,레벨당 흡혈 +2%
+TOTAL_GAMES,Games,总局数,総ゲーム数,총 게임
+TOTAL_WINS,Wins,胜场,勝利,승리
+WIN_RATE,Win Rate,胜率,勝率,승률
+BEST_WAVE,Best Wave,最高波次,最高ウェーブ,최고 웨이브
+NO_RECORDS,No records yet. Play a game!,暂无记录，去打一局吧！,記録なし。ゲームをプレイしよう！,기록 없음. 게임을 플레이하세요!
+MAP_DEMO_PLAINS,Demo Plains - Tower Defense,演示平原 - 塔防,デモ平原 - タワーディフェンス,데모 평원 - 타워 디펜스
+MAP_DEMO_PLAINS_DESC,"Classic tower defense on open plains.
+Defend against 6 waves of enemies.","经典塔防模式。
+抵御6波敌人的进攻。","オープンフィールドのクラシックTD。
+6ウェーブの敵を防衛。","평원 위 클래식 타워 디펜스.
+6웨이브의 적을 방어하세요."
+MAP_DARK_FOREST,Dark Forest - Rogue Survivor,暗黑森林 - 肉鸽生存,ダークフォレスト - ローグサバイバー,어둠의 숲 - 로그 서바이버
+MAP_DARK_FOREST_DESC,"A corrupted forest teeming with dark creatures.
+Survive 10 minutes and defeat the Final Boss.","充满黑暗生物的腐化森林。
+存活10分钟并击败终极BOSS。","闇の生物が蠢く腐敗の森。
+10分間生存し最終ボスを倒せ。","어둠의 생물이 가득한 부패한 숲.
+10분 생존 후 최종 보스를 처치하세요."
+MAP_COMING_SOON_DESC,New maps will be available in future updates.,新地图将在后续更新中推出。,新マップは今後のアップデートで追加予定。,새로운 맵이 향후 업데이트에서 추가됩니다.
+SPELL_DETAIL_PROC,{0}% chance to trigger,{0}% 概率触发,{0}% 発動,{0}% 확률 발동
+SPELL_DETAIL_DOT,DoT {0} per {1}s ({2}s),持续伤害 每{1}秒{0}点 ({2}秒),DoT {0}/{1}秒 ({2}秒),DoT {0}/{1}초 ({2}초)
+SPELL_DETAIL_SLOW,Slow {0}% ({1}s),减速{0}% ({1}秒),スロー{0}% ({1}秒),감속 {0}% ({1}초)
+SPELL_DETAIL_DMG,Damage: {0},伤害：{0},ダメージ：{0},피해: {0}
+STAT_CRIT_DMG_BONUS,Crit DMG bonus,暴击伤害加成,クリダメ加算,치명타 피해 보너스
+STAT_CRIT_ARMOR_REDUCE,Crit armor reduce,暴击破甲,クリ装甲低下,치명타 방어 감소
+STAT_ATTACK_SPEED,Attack speed,攻击速度,攻撃速度,공격 속도
+STAT_EXTRA_PROJ,Extra projectiles,额外弹体,追加弾,추가 투사체
+STAT_SPREAD_ANGLE,Spread angle,扩散角度,拡散角度,확산 각도
+STAT_PIERCE_DMG_RATIO,Pierce DMG ratio,穿透伤害比,貫通ダメ比,관통 피해 비율
+STAT_SPLIT_CHANCE,Split chance,分裂概率,分裂率,분열 확률
+STAT_SPLIT_COUNT,Split targets,分裂目标数,分裂数,분열 대상 수
+STAT_SPLIT_DMG_RATIO,Split DMG ratio,分裂伤害比,分裂ダメ比,분열 피해 비율
+STAT_BURN_DMG_AMP,Burn DMG amp,燃烧伤害增幅,燃焼ダメ増幅,화상 피해 증폭
+STAT_BURN_SPREAD,Burn spread,火焰传播,延焼,화상 전이
+STAT_SLOW_AMOUNT,Slow amount,减速幅度,スロー量,감속량
+STAT_SLOW_DMG_AMP,Slow DMG amp,减速伤害增幅,スロー時ダメ増,감속 시 피해 증폭
+STAT_FREEZE_SHATTER,Freeze shatter,冰碎爆发,氷砕爆発,빙결 파쇄
+STAT_POISON_STACKS,Poison max stacks,毒素最大层数,毒最大スタック,독 최대 중첩
+STAT_POISON_SLOW,Poison slow,毒素减速,毒スロー,독 감속
+STAT_LOW_HP_LS_MULT,Low HP lifesteal x,低血量吸血倍率,低HPでLS倍率,저체력 흡혈 배수
+STAT_DEATH_REWIND,Death rewind,死亡回溯,死亡巻き戻し,죽음의 되감기
+STAT_EXECUTE_THRESHOLD,Execute threshold,处决血线,処刑閾値,처형 기준
+STAT_KILL_DMG_BONUS,Kill DMG bonus,击杀伤害加成,キルダメボーナス,처치 피해 보너스
+STAT_KILL_STACK_DMG,Kill stack DMG,击杀叠加伤害,キルスタックダメ,처치 누적 피해
+STAT_KILL_STREAK_CRIT,Kill streak crit,连杀暴击,連キルクリ,연속 처치 치명타
+STAT_PERM_DMG_PER_KILL,Perm DMG/kill,永久伤害/击杀,永久ダメ/キル,영구 피해/처치
+STAT_SHOCKWAVE_EVERY_N,Shockwave every N hits,每N击冲击波,N回毎衝撃波,N회 공격마다 충격파
+STAT_SHOCKWAVE_RADIUS,Shockwave radius,冲击波范围,衝撃波範囲,충격파 범위
+STAT_SHOCKWAVE_STUN,Shockwave stun (s),冲击波眩晕(秒),衝撃波スタン(秒),충격파 기절(초)
+STAT_SHOCKWAVE_PULL,Shockwave pull,冲击波牵引,衝撃波引き寄せ,충격파 끌어당김
+STAT_TIME_SLOW_AURA,Time slow aura,时间减速光环,時間減速オーラ,시간 감속 오라
+STAT_TIME_STOP,Time stop,时间停止,時間停止,시간 정지
+STAT_TIME_STOP_DUR,Time stop duration,时间停止持续,時間停止持続,시간 정지 지속
+AURA_PROC_TRIGGER_SPELL,Proc Trigger,触发特效,プロック,발동
+AURA_PERIODIC_DAMAGE,DoT,持续伤害,持続ダメージ,지속 피해
+AURA_PERIODIC_HEAL,HoT,持续回复,持続回復,지속 회복
+AURA_MOD_SPEED,Haste,加速,ヘイスト,가속
+AURA_MOD_SPEED_SLOW,Slow,减速,スロー,감속
+AURA_MOD_STAT,Stat Buff,属性增益,ステUP,능력치 강화
+AURA_SCHOOL_ABSORB,Shield,护盾,シールド,보호막
+AURA_DAMAGE_SHIELD,Reflect,伤害反弹,リフレクト,반사
+SPELL_DETAIL_HOT,HoT {0} per {1}s ({2}s),持续回复 每{1}秒{0}点 ({2}秒),HoT {0}/{1}秒 ({2}秒),HoT {0}/{1}초 ({2}초)
+SPELL_DETAIL_HASTE,Haste +{0}% ({1}s),加速+{0}% ({1}秒),ヘイスト+{0}% ({1}秒),가속 +{0}% ({1}초)
+SPELL_DETAIL_ABSORB,Absorb {0} ({1}s),吸收{0}点伤害 ({1}秒),{0}吸収 ({1}秒),{0} 흡수 ({1}초)
+SPELL_DETAIL_REFLECT,Reflect {0}% DMG,反弹{0}%伤害,{0}%反射,{0}% 반사
+STAT_POISON_DPS,Poison DPS,毒素每秒伤害,毒DPS,독 초당 피해
+STAT_SHIELD_INTERVAL,Shield interval (s),护盾间隔(秒),シールド間隔(秒),보호막 간격(초)
+STAT_REFLECT_DMG,Reflect DMG,反弹伤害,反射ダメ,반사 피해
+STAT_KILL_HEAL,Kill heal %,击杀回血比,キル回復%,처치 회복%
+LOG_ABILITY_DMG,{0}'s {1} hit {2} for {3} {4} damage.,{0} 的 {1} 命中 {2} 造成了 {3} {4}伤害。,{0} の {1} が {2} に命中 {3} {4}ダメージ,{0} 의 {1} 이 {2} 에게 적중 {3} {4} 피해
+LOG_ABILITY_HEAL,{0}'s {1} healed {2} for {3} HP.,{0} 的 {1} 治疗了 {2} {3} 点生命值。,{0} の {1} が {2} を {3} HP回復,{0} 의 {1} 이 {2} 을 {3} HP 치유
+ABILITY_BURN,Burn,燃烧,燃焼,화상
+ABILITY_POISON,Poison,中毒,毒,독
+ABILITY_CHAIN_LIGHTNING,Chain Lightning,闪电链,チェイン,연쇄 번개
+ABILITY_SHOCKWAVE,Shockwave,冲击波,衝撃波,충격파
+ABILITY_EXECUTE,Execute,斩杀,処刑,처형
+ABILITY_CRIT,Crit,暴击,会心,치명타
+ABILITY_BOSS_AOE,Boss AoE,BOSS范围,ボス範囲,보스 광역
+ABILITY_LIFE_STEAL,Life Steal,吸血,LS,흡혈
+ABILITY_REGEN,Regen,回复,再生,재생
+ABILITY_SHAMAN_HEAL,Shaman Heal,萨满治疗,シャーマン,주술사
+ABILITY_KILL_HEAL,Kill Heal,击杀回血,キル回復,처치 회복
+BONDS,Bonds,已获羁绊,絆,유대
+ABILITY_ATTACK,Attack,攻击,攻撃,공격
+ENTITY_GOBLIN,Goblin,哥布林,ゴブリン,고블린
+ENTITY_SKELETON,Skeleton,骷髅战士,スケルトン,해골 전사
+ENTITY_SHADOW,Shadow,暗影刺客,シャドウ,그림자
+ENTITY_ARCHER,Archer,弓箭手,アーチャー,궁수
+ENTITY_SHAMAN,Shaman,萨满,シャーマン,주술사
+ENTITY_GOLEM,Golem,石像鬼,ゴーレム,골렘
+ENTITY_BONE_DRAGON,Bone Dragon,骨龙,ボーンドラゴン,뼈 용
+ENTITY_SHADOW_LORD,Shadow Lord,暗影领主,シャドウロード,그림자 군주
+ENTITY_VOID_TITAN,Void Titan,虚空泰坦,ヴォイドタイタン,공허의 거인
+ENTITY_WARRIOR,Warrior,战士,ウォリアー,전사
+ENTITY_RANGER,Ranger,游侠,レンジャー,레인저
+ENTITY_MAGE,Mage,法师,メイジ,마법사
+ENTITY_HERO,Hero,英雄,ヒーロー,영웅
+ENTITY_LIFE_FOUNTAIN,Life Fountain,生命之泉,生命の泉,생명의 분수
+ENTITY_ARROW,Arrow,箭矢,矢,화살
+ENTITY_FIREBALL,Fireball,火球,火球,화염구
+ENTITY_HEAVY_BOLT,Heavy Bolt,重型弩箭,重矢,중화살
+ABILITY_FLAME_BURN,Flame Burn,燃烧,燃焼,화상
+ABILITY_POISON_DOT,Poison DoT,中毒,毒,독
+ABILITY_FROST_SLOW_SPELL,Frost Slow,冰霜减速,氷結,빙결
+ABILITY_BONE_DRAGON_BREATH,Dragon Breath,龙息术,ドラゴンブレス,용의 숨결
+ABILITY_SHADOW_LORD_NOVA,Shadow Nova,暗影新星,シャドウノヴァ,암흑 폭발
+ABILITY_SHADOW_LORD_SUMMON,Shadow Summon,暗影召唤,影召喚,그림자 소환
+ABILITY_VOID_TITAN_SLAM,Void Slam,虚空践踏,ヴォイドスラム,공허의 강타
+ABILITY_VOID_TITAN_DRAIN,Void Drain,虚空吸取,ヴォイドドレイン,공허 흡수
+ABILITY_STORM_SHOCKWAVE,Storm Wave,风暴冲击,ストーム,폭풍파
+ABILITY_REAPER_EXECUTE,Reaper Execute,死神斩杀,リーパー処刑,사신 처형
+ABILITY_GUARDIAN_REFLECT,Reflect,反弹,反射,반사
+ABILITY_GUARDIAN_REGEN,Holy Regen,神圣回复,聖なる再生,신성 재생
+LOG_CRIT,Crit!,暴击！,会心！,치명타!
+ABILITY_ARROW,Arrow,箭矢,矢,화살
+ABILITY_FIREBALL,Fireball,火球术,ファイアボール,화염구
+ABILITY_HEAVY_BOLT,Heavy Bolt,重型弩箭,重矢,중화살
+ABILITY_SPLIT,Split,分裂,分裂,분열
+ABILITY_PHYSICAL,Attack,攻击,攻撃,공격
+ABILITY_MELEE,Melee,近战,近接,근접
+IN_PROGRESS,In Progress,收集中,収集中,수집 중
+HIDE_CARDS,Hide (continue),暂时隐藏,一時非表示,숨기기
+RELIC_CHOOSE,Choose a Relic,选择一个宝物,遺物を選択,유물 선택
+RELIC_PROPHETS_EYE,Prophet's Eye,先知之眼,預言者の目,예언자의 눈
+RELIC_PROPHETS_EYE_DESC,Increases crit chance by 8%,暴击率提高8%,クリ率+8%,치명타 확률 +8%
+RELIC_BLOOD_PENDANT,Blood Pendant,血色吊坠,血のペンダント,피의 목걸이
+RELIC_BLOOD_PENDANT_DESC,Gain 5% life steal,获得5%吸血效果,LS+5%,흡혈 +5%
+RELIC_SWIFT_BOOTS,Swift Boots,疾风之靴,疾風のブーツ,질풍의 부츠
+RELIC_SWIFT_BOOTS_DESC,Attack 12% faster,攻击速度提高12%,攻撃速度+12%,공격 속도 +12%
+RELIC_IRON_HEART,Iron Heart,铁石之心,鉄の心臓,강철 심장
+RELIC_IRON_HEART_DESC,Regenerate 3 HP per second,每秒回复3点生命,毎秒HP3回復,초당 HP 3 회복
+RELIC_THUNDER_HAMMER,Thunder Hammer,雷神之锤,雷神のハンマー,뇌신의 망치
+RELIC_THUNDER_HAMMER_DESC,+10% chance to trigger chain lightning,闪电链触发概率+10%,チェイン発動+10%,연쇄 번개 +10%
+RELIC_FROST_CROWN,Frost Crown,霜之王冠,霜の王冠,서리 왕관
+RELIC_FROST_CROWN_DESC,"+20% slow chance, +15% slow power",减速概率+20%，减速幅度+15%,スロー率+20%、スロー量+15%,"감속 +20%, 감속량 +15%"
+RELIC_GAMBLERS_DICE,Gambler's Dice,赌徒之骰,ギャンブラーの賽,도박사의 주사위
+RELIC_GAMBLERS_DICE_DESC,"+15% crit chance, +50% crit damage",暴击率+15%，暴击伤害+50%,クリ率+15%、クリダメ+50%,"치명타 +15%, 치명타 피해 +50%"
+RELIC_SOUL_LANTERN,Soul Lantern,魂灯,魂のランタン,영혼의 등불
+RELIC_SOUL_LANTERN_DESC,Each kill permanently adds 0.3 damage,每次击杀永久增加0.3点伤害,キル毎に永久ダメ+0.3,처치마다 영구 피해 +0.3
+RELIC_PHOENIX_FEATHER,Phoenix Feather,凤凰之羽,フェニックスの羽,불사조의 깃털
+RELIC_PHOENIX_FEATHER_DESC,Revive once upon death with full HP,死亡时复活一次（满血）,死亡時1回復活(全快),사망 시 1회 부활 (만피)
+RELIC_VOID_SHARD,Void Shard,虚空碎片,ヴォイドの欠片,공허의 파편
+RELIC_VOID_SHARD_DESC,Execute enemies below 15% HP,斩杀血量低于15%的敌人,HP15%以下の敵を即死,HP 15% 이하 적 처형
+RELIC_DRAGON_SCALE,Dragon Scale,龙鳞,竜の鱗,용의 비늘
+RELIC_DRAGON_SCALE_DESC,"+25% ignite, +30% burn damage",点燃概率+25%，燃烧伤害+30%,点火+25%、燃焼ダメ+30%,"점화 +25%, 화상 피해 +30%"
+RELIC_TIME_HOURGLASS,Hourglass of Time,时之沙漏,時の砂時計,시간의 모래시계
+RELIC_TIME_HOURGLASS_DESC,"Slow nearby enemies 25%, attack 20% faster",减速周围敌人25%，攻速+20%,周囲の敵を25%スロー、攻撃速度+20%,"주변 적 25% 감속, 공속 +20%"
+SET_HEALER,Healer,治愈者,ヒーラー,치유사
+SET_TRACKER,Tracker,追踪者,トラッカー,추적자
+SET_SUMMONER_NEW,Summoner,召唤师,サモナー,소환사
+SET_WEAKNESS,Weakness Hunter,弱点猎手,弱点ハンター,약점 사냥꾼
+SET_SHADOW_BLADE,Shadow Blade,影刃,シャドウブレード,그림자 칼날
+SET_ALCHEMIST,Alchemist,炼金师,アルケミスト,연금술사
+SET_WAR_MACHINE,War Machine,战争机器,ウォーマシン,전쟁 기계
+SET_SOUL_HARVEST,Soul Harvest,灵魂收割,ソウルハーベスト,영혼 수확
+SET_ICE_FIRE,Ice & Fire,冰火双重,氷炎二重,빙화 이중
+SET_BLOOD_MOON,Blood Moon,血月,ブラッドムーン,핏빛 달
+SET_FATE_WHEEL,Fate's Wheel,命运之轮,運命の輪,운명의 바퀴
+SET_VOID_WALKER,Void Walker,虚空行者,ヴォイドウォーカー,공허의 보행자
+SET_DRAGON_FORCE,Dragon Force,龙之力,ドラゴンフォース,용의 힘
+SET_ETERNITY,Eternity,永恒,エタニティ,영원
+SET_GENESIS,Genesis,创世,ジェネシス,창세
+SET_APOCALYPSE,Apocalypse,毁灭,アポカリプス,파멸
+SET_EFFECT_healer,Kill heal 5% + shield every 15s,击杀回血5%·每15秒护盾,キル回復5%・15秒毎シールド,처치 회복 5%·15초마다 보호막
+SET_EFFECT_tracker,"Range +80, homing projectiles",射程+80·弹道自动追踪,射程+80・ホーミング弾,사거리 +80·유도 투사체
+SET_EFFECT_summoner_new,"20% summon on kill, +30% summon dmg",击杀20%召唤·召唤物伤害+30%,キル時20%召喚・召喚ダメ+30%,처치 시 20% 소환·소환체 피해 +30%
+SET_EFFECT_weakness,"Mark +15% dmg amp, 6s duration",标记增伤15%·持续6秒,マーク増ダメ15%・6秒持続,표식 증폭 15%·6초 지속
+SET_EFFECT_shadow_blade,"Shadow +20%, backstab +30%, stealth kill restore",暗影+20%·背刺+30%·隐杀回蓝,シャドウ+20%・背面+30%・暗殺回復,암흑 +20%·배후 +30%·은밀 처치 회복
+SET_EFFECT_alchemist,"30% random element, +25% ele dmg, fusion burst",30%随机元素·元素伤害+25%·融合爆发,30%ランダム属性・属性ダメ+25%・融合爆発,30% 랜덤 속성·속성 피해 +25%·융합 폭발
+SET_EFFECT_war_machine,"Knockback, -5 armor shred, +50% AoE",击退·护甲碎裂-5·范围伤害+50%,ノックバック・装甲-5・範囲+50%,밀치기·방어 -5·범위 +50%
+SET_EFFECT_soul_harvest,"+0.8 perm dmg/kill, +8% crit/100 kills, soul wave",击杀+0.8永久攻击·百杀+8%暴击·灵魂冲击波,キル+0.8永久ダメ・100キルで+8%クリ・魂衝撃波,처치 +0.8 영구 피해·100처치 +8% 치명타·영혼파
+SET_EFFECT_ice_fire,"Alternate ice/fire, +25% amp, fusion explosion",冰火交替·增伤25%·融合爆炸,氷炎交互・増ダメ25%・融合爆発,빙화 교대·증폭 25%·융합 폭발
+SET_EFFECT_blood_moon,"Low HP: +30% dmg, +50% aspd, 3s invincible",低血量：伤害+30%·攻速+50%·无敌3秒,低HP：ダメ+30%・攻速+50%・3秒無敵,저체력: 피해 +30%·공속 +50%·3초 무적
+SET_EFFECT_fate_wheel,Random effects on hit/buff/crit/kill,攻击/增益/暴击/击杀随机效果,攻撃/バフ/クリ/キルにランダム効果,공격/버프/치명타/처치에 랜덤 효과
+SET_EFFECT_void_walker,"Blink 4s, +60% aspd, clone, slow field",闪烁4秒·攻速+60%·分身·减速场,ブリンク4秒・攻速+60%・分身・減速フィールド,점멸 4초·공속 +60%·분신·감속장
+SET_EFFECT_dragon_force,"Dragon breath, +12 armor, +35% speed, ele immune",龙息·护甲+12·移速+35%·元素免疫,ドラゴンブレス・防御+12・速度+35%・属性免疫,용의 숨결·방어 +12·이속 +35%·속성 면역
+SET_EFFECT_eternity,"Revive, invincible, +15% all stats, time rewind",复活·无敌·全属性+15%·时间回溯,復活・無敵・全ステ+15%・時間巻き戻し,부활·무적·전 능력 +15%·시간 되감기
+SET_EFFECT_genesis,"+30% dmg & def, battlefield reshape",伤害与防御+30%·重塑战场,ダメと防御+30%・戦場再構築,피해와 방어 +30%·전장 재구성
+SET_EFFECT_apocalypse,"Damage aura, crit explosion, screen nuke",伤害光环·暴击爆炸·全屏毁灭,ダメージオーラ・クリ爆発・全画面殲滅,피해 오라·치명타 폭발·전체 섬멸
+CARD_HEALER_1_NAME,Healing Touch,治愈之手,癒しの手,치유의 손길
+CARD_HEALER_1_DESC,Killing enemies restores 3% HP,击杀敌人回复3%生命值,キルで3%HP回復,적 처치 시 HP 3% 회복
+CARD_HEALER_2_NAME,Holy Shield,圣光护盾,聖なるシールド,신성 보호막
+CARD_HEALER_2_DESC,Gain a shield every 20 seconds,每20秒获得一个护盾,20秒毎にシールド獲得,20초마다 보호막 획득
+CARD_TRACKER_1_NAME,Eagle Eye,鹰眼,イーグルアイ,매의 눈
+CARD_TRACKER_1_DESC,Attack range +80,攻击射程+80,攻撃射程+80,공격 사거리 +80
+CARD_TRACKER_2_NAME,Homing Arrow,追踪箭,ホーミングアロー,유도 화살
+CARD_TRACKER_2_DESC,Projectiles track nearest enemy,弹道自动追踪最近敌人,弾が最も近い敵を追尾,투사체가 가장 가까운 적 추적
+CARD_SUMMONER_1_NAME,Soul Caller,唤灵者,ソウルコーラー,영혼 소환사
+CARD_SUMMONER_1_DESC,15% chance to summon ally on kill,击杀时15%概率召唤友方单位,キル時15%で味方を召喚,처치 시 15% 확률로 아군 소환
+CARD_SUMMONER_2_NAME,Spirit Empowerment,灵体强化,精霊強化,정령 강화
+CARD_SUMMONER_2_DESC,Summons deal 25% more damage,召唤物伤害+25%,召喚体のダメージ+25%,소환체 피해 +25%
+CARD_WEAKNESS_1_NAME,Weak Point,弱点标记,弱点狙い,약점 표식
+CARD_WEAKNESS_1_DESC,"Attacks mark targets, +10% damage taken",攻击标记目标，受到10%额外伤害,攻撃でマーク付与、被ダメ+10%,"공격 시 표식 부여, 피해 +10%"
+CARD_WEAKNESS_2_NAME,Deep Wound,深层创伤,深い傷,깊은 상처
+CARD_WEAKNESS_2_DESC,Marks last 5 seconds,标记持续5秒,マーク持続5秒,표식 지속 5초
+CARD_SHADOW_BLADE_1_NAME,Shadow Strike,暗影打击,シャドウストライク,그림자 타격
+CARD_SHADOW_BLADE_1_DESC,Shadow damage +15%,暗影伤害+15%,シャドウダメージ+15%,암흑 피해 +15%
+CARD_SHADOW_BLADE_2_NAME,Backstab,背刺,バックスタブ,배후 습격
+CARD_SHADOW_BLADE_2_DESC,Attacks from behind deal +25% damage,从背后攻击额外造成25%伤害,背面攻撃で+25%ダメージ,후방 공격 시 피해 +25%
+CARD_SHADOW_BLADE_3_NAME,Shadow Drain,暗影汲取,シャドウドレイン,그림자 흡수
+CARD_SHADOW_BLADE_3_DESC,Stealth kills restore 8 mana,隐身击杀回复8点法力,ステルスキルでMP8回復,은신 처치 시 마나 8 회복
+CARD_ALCHEMIST_1_NAME,Element Infusion,元素注入,エレメント注入,원소 주입
+CARD_ALCHEMIST_1_DESC,20% chance to add random element to attacks,20%概率为攻击附加随机元素,20%でランダム属性を付与,20% 확률로 랜덤 속성 부여
+CARD_ALCHEMIST_2_NAME,Catalysis,催化,触媒,촉매
+CARD_ALCHEMIST_2_DESC,Elemental damage +20%,元素伤害+20%,属性ダメージ+20%,속성 피해 +20%
+CARD_ALCHEMIST_3_NAME,Fusion Burst,融合爆发,融合爆発,융합 폭발
+CARD_ALCHEMIST_3_DESC,Mixing 2 elements causes 40 bonus damage,混合2种元素造成40点额外伤害,2属性混合で40追加ダメージ,2속성 혼합 시 40 추가 피해
+CARD_WAR_MACHINE_1_NAME,Impact Force,冲击力,衝撃力,충격력
+CARD_WAR_MACHINE_1_DESC,Attacks knock enemies back,攻击击退敌人,攻撃で敵をノックバック,공격 시 적 밀치기
+CARD_WAR_MACHINE_2_NAME,Armor Crush,护甲粉碎,装甲粉砕,갑옷 분쇄
+CARD_WAR_MACHINE_2_DESC,Attacks reduce target armor by 3,攻击降低目标3点护甲,攻撃で対象の防御-3,공격 시 대상 방어 -3
+CARD_WAR_MACHINE_3_NAME,Demolition,毁灭打击,破壊,파괴
+CARD_WAR_MACHINE_3_DESC,Area damage +40%,范围伤害+40%,範囲ダメージ+40%,범위 피해 +40%
+CARD_SOUL_HARVEST_1_NAME,Soul Siphon,灵魂虹吸,魂吸引,영혼 흡수
+CARD_SOUL_HARVEST_1_DESC,Each kill permanently adds +0.5 damage,每次击杀永久增加0.5点攻击,キル毎に永久ダメ+0.5,처치마다 영구 피해 +0.5
+CARD_SOUL_HARVEST_2_NAME,Soul Resonance,灵魂共鸣,魂共鳴,영혼 공명
+CARD_SOUL_HARVEST_2_DESC,Every 100 kills grants +5% crit chance,每100次击杀获得5%暴击率,100キル毎にクリ率+5%,100처치마다 치명타 +5%
+CARD_SOUL_HARVEST_3_NAME,Soul Shockwave,灵魂冲击波,魂衝撃波,영혼 충격파
+CARD_SOUL_HARVEST_3_DESC,"At 100 souls, release a devastating shockwave",灵魂满100时释放毁灭冲击波,魂100で衝撃波を放出,영혼 100 충전 시 충격파 방출
+CARD_ICE_FIRE_1_NAME,Dual Elements,双元素,二重属性,이중 속성
+CARD_ICE_FIRE_1_DESC,Attacks alternate between ice and fire,攻击交替附加冰霜和火焰,攻撃が氷と炎を交互に付与,공격이 냉기와 화염을 번갈아 부여
+CARD_ICE_FIRE_2_NAME,Thermal Shock,热力冲击,サーマルショック,열충격
+CARD_ICE_FIRE_2_DESC,Ice and fire coexistence: +20% damage,冰火共存时伤害+20%,氷炎共存でダメージ+20%,빙화 공존 시 피해 +20%
+CARD_ICE_FIRE_3_NAME,Fusion Explosion,融合爆炸,融合爆発,융합 폭발
+CARD_ICE_FIRE_3_DESC,Ice+fire on same target causes 35 explosion damage,冰火同时作用于目标造成35点爆炸伤害,氷炎同時で35爆発ダメージ,빙화 동시 적용 시 35 폭발 피해
+CARD_BLOOD_MOON_1_NAME,Berserker's Fury,狂暴之怒,狂戦士の怒り,광전사의 분노
+CARD_BLOOD_MOON_1_DESC,Below 50% HP: damage +25%,生命值低于50%时伤害+25%,HP50%以下でダメージ+25%,체력 50% 이하 시 피해 +25%
+CARD_BLOOD_MOON_2_NAME,Blood Frenzy,血之狂热,血の狂乱,피의 광란
+CARD_BLOOD_MOON_2_DESC,Below 30% HP: attack speed +40%,生命值低于30%时攻速+40%,HP30%以下で攻撃速度+40%,체력 30% 이하 시 공속 +40%
+CARD_BLOOD_MOON_3_NAME,Undying Rage,不死之怒,不死の怒り,불사의 분노
+CARD_BLOOD_MOON_3_DESC,Below 10% HP: invincible for 3 seconds,生命值低于10%时无敌3秒,HP10%以下で3秒間無敵,체력 10% 이하 시 3초 무적
+CARD_FATE_1_NAME,Chaos Touch,混沌触碰,カオスタッチ,혼돈의 손길
+CARD_FATE_1_DESC,Attacks randomly apply one of several effects,攻击随机附加一种效果,攻撃にランダム効果付与,공격 시 랜덤 효과 부여
+CARD_FATE_2_NAME,Fortune's Favor,命运眷顾,運命の寵愛,운명의 은총
+CARD_FATE_2_DESC,Gain a random buff every 10 seconds,每10秒获得随机增益,10秒毎にランダムバフ,10초마다 랜덤 버프
+CARD_FATE_3_NAME,Lucky Strike,幸运一击,ラッキーストライク,행운의 일격
+CARD_FATE_3_DESC,Critical hits trigger a random bonus effect,暴击时随机触发额外效果,クリティカル時ランダム追加効果,치명타 시 랜덤 추가 효과
+CARD_FATE_4_NAME,Jackpot,大奖,ジャックポット,대박
+CARD_FATE_4_DESC,Kill rewards have a chance to double,击杀奖励有概率翻倍,キル報酬が2倍になる確率,처치 보상 2배 확률
+CARD_VOID_1_NAME,Phase Shift,相位转移,フェイズシフト,위상 전환
+CARD_VOID_1_DESC,Blink to a random position every 5 seconds,每5秒闪烁到随机位置,5秒毎にランダム位置へブリンク,5초마다 랜덤 위치로 점멸
+CARD_VOID_2_NAME,Void Rush,虚空冲刺,ヴォイドラッシュ,공허 돌진
+CARD_VOID_2_DESC,After blinking: attack speed +50% for 3s,闪烁后攻速+50%持续3秒,ブリンク後攻撃速度+50%（3秒）,점멸 후 공속 +50% (3초)
+CARD_VOID_3_NAME,Shadow Clone,影分身,シャドウクローン,그림자 분신
+CARD_VOID_3_DESC,Create a shadow clone that mimics attacks,创造一个模仿攻击的影分身,攻撃を模倣する分身を生成,공격을 모방하는 분신 생성
+CARD_VOID_4_NAME,Rift Zone,裂隙领域,リフトゾーン,균열 지대
+CARD_VOID_4_DESC,Leave a slow field at blink location,闪烁位置留下减速区域,ブリンク位置に減速フィールド,점멸 위치에 감속장 생성
+CARD_DRAGON_1_NAME,Dragon Breath,龙息术,ドラゴンブレス,용의 숨결
+CARD_DRAGON_1_DESC,Periodically breathe fire in a cone (25 damage),周期性释放锥形火焰吐息(25伤害),周期的に炎の吐息（25ダメージ）,주기적으로 화염 브레스 (25 피해)
+CARD_DRAGON_2_NAME,Dragon Scale,龙鳞甲,ドラゴンスケイル,용의 비늘
+CARD_DRAGON_2_DESC,Armor +10 from dragon scales,龙鳞提供护甲+10,竜鱗で防御+10,용비늘로 방어 +10
+CARD_DRAGON_3_NAME,Dragon Wings,龙翼,ドラゴンウィング,용의 날개
+CARD_DRAGON_3_DESC,Movement speed +30% (flight),飞行移动速度+30%,飛行で移動速度+30%,비행 이동 속도 +30%
+CARD_DRAGON_4_NAME,Elemental Ward,元素守护,エレメンタルワード,원소 수호
+CARD_DRAGON_4_DESC,Immune to elemental damage for 5s (cooldown),免疫元素伤害5秒(有冷却),属性ダメージ5秒免疫（CD有）,속성 피해 5초 면역 (쿨타임)
+CARD_ETERNITY_1_NAME,Resurrection,复活,復活,부활
+CARD_ETERNITY_1_DESC,Revive once upon death with full HP,死亡时满血复活一次,死亡時に全快で1回復活,사망 시 만피로 1회 부활
+CARD_ETERNITY_2_NAME,Divine Shield,圣盾术,ディバインシールド,신성 보호막
+CARD_ETERNITY_2_DESC,Become invincible for 2s every 30s,每30秒无敌2秒,30秒毎に2秒間無敵,30초마다 2초 무적
+CARD_ETERNITY_3_NAME,Eternal Blessing,永恒祝福,永遠の祝福,영원의 축복
+CARD_ETERNITY_3_DESC,All stats +10%,全属性+10%,全ステータス+10%,전 능력치 +10%
+CARD_ETERNITY_4_NAME,Time Rewind,时间回溯,タイムリワインド,시간 되감기
+CARD_ETERNITY_4_DESC,Rewind to 3s ago state when taking fatal damage,受到致命伤害时回溯到3秒前状态,致死ダメージで3秒前に巻き戻し,치명적 피해 시 3초 전으로 되감기
+CARD_GENESIS_1_NAME,Creation Force,创造之力,創造の力,창조의 힘
+CARD_GENESIS_1_DESC,All damage +15%,全部伤害+15%,全ダメージ+15%,전체 피해 +15%
+CARD_GENESIS_2_NAME,Primordial Shield,原初之盾,原初の盾,원초의 방패
+CARD_GENESIS_2_DESC,All defense +15%,全部防御+15%,全防御+15%,전체 방어 +15%
+CARD_GENESIS_3_NAME,Life Spring,生命之泉,命の泉,생명의 샘
+CARD_GENESIS_3_DESC,HP regeneration +8 per second,每秒回复8点生命值,毎秒HP8回復,초당 HP 8 회복
+CARD_GENESIS_4_NAME,Cosmic Sight,星辰之眼,星辰の目,성진의 눈
+CARD_GENESIS_4_DESC,Critical chance +15%,暴击率+15%,クリティカル率+15%,치명타 확률 +15%
+CARD_GENESIS_5_NAME,Genesis Pulse,创世脉冲,ジェネシスパルス,창세 파동
+CARD_GENESIS_5_DESC,Attack speed +20%,攻击速度+20%,攻撃速度+20%,공격 속도 +20%
+CARD_APOCALYPSE_1_NAME,Death Aura,死亡光环,死のオーラ,죽음의 오라
+CARD_APOCALYPSE_1_DESC,Deal 10 damage per second to nearby enemies,对周围敌人造成每秒10点伤害,周囲の敵に毎秒10ダメージ,주변 적에게 초당 10 피해
+CARD_APOCALYPSE_2_NAME,Crit Explosion,暴击爆炸,クリ爆発,치명타 폭발
+CARD_APOCALYPSE_2_DESC,Critical hits cause area explosions,暴击时产生范围爆炸,クリティカルで範囲爆発,치명타 시 범위 폭발
+CARD_APOCALYPSE_3_NAME,Hellfire,地狱烈焰,ヘルファイア,지옥불
+CARD_APOCALYPSE_3_DESC,Fire damage +20%,火焰伤害+20%,炎ダメージ+20%,화염 피해 +20%
+CARD_APOCALYPSE_4_NAME,Void Corruption,虚空腐蚀,ヴォイド侵蝕,공허 부식
+CARD_APOCALYPSE_4_DESC,Shadow damage +20%,暗影伤害+20%,シャドウダメージ+20%,암흑 피해 +20%
+CARD_APOCALYPSE_5_NAME,Annihilation,湮灭,消滅,소멸
+CARD_APOCALYPSE_5_DESC,Area damage +25%,范围伤害+25%,範囲ダメージ+25%,범위 피해 +25%
+THEME_BONDS,Theme Bonds,主题羁绊,テーマ絆,테마 인연
+BOND_ELEMENTAL_MASTER,Elemental Master,元素大师,元素マスター,원소 마스터
+BOND_ELEMENTAL_MASTER_DESC,"Flame+Frost+Lightning: Ignite +10%, Slow +10%, Chain +5%",烈焰+寒冰+闪电链：点燃+10%，减速+10%，连锁+5%,炎+氷+雷：発火+10%、減速+10%、連鎖+5%,"화염+빙결+번개: 점화 +10%, 둔화 +10%, 연쇄 +5%"
+BOND_WARRIOR_SPIRIT,Warrior Spirit,战魂,闘魂,전사의 혼
+BOND_WARRIOR_SPIRIT_DESC,"4 warrior sets: All DMG +5%, DEF +5%, ASPD +5%",4个战士套装：全伤害+5%，全防御+5%，攻速+5%,戦士セット4種：全DMG+5%、防御+5%、攻速+5%,"전사 세트 4종: 전체 DMG +5%, 방어 +5%, 공속 +5%"
+BOND_SHADOW_ARTS,Shadow Arts,暗影之术,影の術,그림자 술법
+BOND_SHADOW_ARTS_DESC,"Shadow Blade+Poison+Vampire: Shadow DMG +15%, Life Steal +3%",影刃+毒刺+吸血：暗影伤害+15%，吸血+3%,影刃+毒+吸血：シャドウDMG+15%、ライフスティール+3%,"그림자검+독침+흡혈: 암흑 DMG +15%, 흡혈 +3%"
+BOND_DIVINE_PROTECTION,Divine Protection,神圣庇护,神聖庇護,신성한 보호
+BOND_DIVINE_PROTECTION_DESC,"Guardian+Healer: Shield CD -3s, HP Regen +3, Reflect +10%",守护者+治愈者：护盾CD-3秒，回血+3，反弹+10%,守護者+癒し手：盾CD-3秒、HP回復+3、反射+10%,"수호자+치유사: 방패 CD -3초, HP 재생 +3, 반사 +10%"
+BOND_BERSERKER_FURY,Berserker Fury,狂战之怒,狂戦士の怒り,광전사의 분노
+BOND_BERSERKER_FURY_DESC,"Blood Moon+Reaper+Crit: Low HP DMG +20%, Crit DMG +30%",血月+死神+暴击：低血量伤害+20%，暴击伤害+30%,血月+死神+クリ：低HP時DMG+20%、クリDMG+30%,"혈월+사신+치명타: 저HP DMG +20%, 치명타 DMG +30%"
+BOND_TIME_SPACE,Time-Space,时空之力,時空の力,시공간의 힘
+BOND_TIME_SPACE_DESC,"Time Lord+Void Walker: ASPD +10%, Move Speed +15%",时间领主+虚空行者：攻速+10%，移速+15%,タイムロード+ヴォイドウォーカー：攻速+10%、移速+15%,"시간의 군주+공허 행자: 공속 +10%, 이속 +15%"
+BOND_DRAGON_SLAYER,Dragon Slayer,屠龙者,竜殺し,용 사냥꾼
+BOND_DRAGON_SLAYER_DESC,"Dragon Force+Flame+Crit: Boss DMG +25%, Ignite +10%",龙之力+烈焰+暴击：BOSS伤害+25%，点燃+10%,龍の力+炎+クリ：ボスDMG+25%、発火+10%,"용의 힘+화염+치명타: 보스 DMG +25%, 점화 +10%"
+BOND_CHAOS_WEAVER,Chaos Weaver,混沌织者,混沌織り,혼돈의 직공
+BOND_CHAOS_WEAVER_DESC,"Fate+Alchemist+Elementalist: Random effect x1.3, Ele DMG +15%",命运+炼金+元素使：随机效果x1.3，元素伤害+15%,運命+錬金+元素使い：ランダム効果x1.3、元素DMG+15%,"운명+연금술+원소사: 랜덤 효과 x1.3, 원소 DMG +15%"
+BOND_SOUL_REAVER,Soul Reaver,噬魂者,魂喰い,영혼 포식자
+BOND_SOUL_REAVER_DESC,"Soul Harvest+Reaper+Vampire: Perm DMG/kill +0.5, Kill Heal +3%",灵魂收割+死神+吸血：永久攻击/杀+0.5，击杀回血+3%,魂刈り+死神+吸血：永続DMG/キル+0.5、キル回復+3%,"영혼 수확+사신+흡혈: 영구 DMG/킬 +0.5, 킬 회복 +3%"
+BOND_STORM_CALLER,Storm Caller,风暴召唤者,嵐の呼び手,폭풍 소환사
+BOND_STORM_CALLER_DESC,"Storm+Lightning+Swift Wind: Chain +10%, Wave radius +50, ASPD +8%",风暴+闪电链+疾风：连锁+10%，冲击波范围+50，攻速+8%,嵐+雷鎖+疾風：連鎖+10%、衝撃波範囲+50、攻速+8%,"폭풍+번개+질풍: 연쇄 +10%, 충격파 범위 +50, 공속 +8%"
+SEASON_BATTLE_PASS,Battle Pass,战令,バトルパス,배틀패스
+SEASON_NAME_S1,Season 1: Dawn of Heroes,赛季1：英雄黎明,シーズン1：英雄の夜明け,시즌 1: 영웅의 여명
+SEASON_LEVEL,Lv.{0},Lv.{0},Lv.{0},Lv.{0}
+SEASON_MAX_LEVEL,MAX LEVEL,已满级,最大レベル,최대 레벨
+SEASON_DAYS_LEFT,{0} days left,剩余{0}天,残り{0}日,{0}일 남음
+SEASON_TAB_QUESTS,Quests,任务,クエスト,퀘스트
+SEASON_TAB_REWARDS,Rewards,奖励,報酬,보상
+SEASON_DAILY_QUESTS,Daily Quests,每日任务,デイリークエスト,일일 퀘스트
+SEASON_WEEKLY_QUESTS,Weekly Quests,每周任务,ウィークリークエスト,주간 퀘스트
+SEASON_CLAIM,Claim,领取,受取,수령
+SEASON_CLAIMED,Claimed,已领取,受取済,수령 완료
+SEASON_IN_PROGRESS,In Progress,进行中,進行中,진행 중
+SEASON_LOCKED,Locked,未解锁,未解放,잠금
+SEASON_FREE_TRACK,Free Track,免费轨道,無料トラック,무료 트랙
+SEASON_PREMIUM_TRACK,Premium Track,付费轨道,プレミアムトラック,프리미엄 트랙
+SEASON_PREMIUM_ONLY,Premium,付费,プレミアム,프리미엄
+SEASON_PREMIUM_ACTIVE,Premium Active,已激活付费战令,プレミアム有効,프리미엄 활성화
+SEASON_BUY_PREMIUM,Upgrade to Premium,升级付费战令,プレミアムにアップグレード,프리미엄 업그레이드
+SEASON_PREMIUM_DESC,Unlock exclusive rewards at every level!,解锁每级专属奖励！,全レベルの限定報酬を解放！,모든 레벨의 한정 보상을 잠금 해제!
+QUEST_DAILY_KILL_100,Defeat 100 enemies,击杀100个敌人,敵を100体倒す,적 100마리 처치
+QUEST_DAILY_COMPLETE_1,Complete 1 game,完成1局游戏,1回ゲームをクリア,게임 1회 클리어
+QUEST_DAILY_COLLECT_3,Collect 3 cards,收集3张卡片,カードを3枚収集,카드 3장 수집
+QUEST_DAILY_DAMAGE_5000,Deal 5000 damage,造成5000点伤害,5000ダメージを与える,5000 데미지 가하기
+QUEST_DAILY_SURVIVE_5,Survive 5 minutes,存活5分钟,5分間生存,5분 생존
+QUEST_WEEKLY_BOSS_1,Defeat 1 Boss,击败1个BOSS,ボスを1体撃破,보스 1마리 처치
+QUEST_WEEKLY_N5_1,Complete Inferno difficulty,完成炼狱难度,煉獄難易度をクリア,지옥 난이도 클리어
+QUEST_WEEKLY_SET_1,Collect a full card set,集齐1个套装,セットを1つ完成,세트 1개 완성
+QUEST_WEEKLY_RELIC_3,Obtain 3 relics,获取3个宝物,レリックを3個入手,유물 3개 획득
+REWARD_STAR_DUST_50,50 Star Dust,50 星尘,50 スターダスト,50 스타더스트
+REWARD_STAR_DUST_100,100 Star Dust,100 星尘,100 スターダスト,100 스타더스트
+REWARD_STAR_DUST_200,200 Star Dust,200 星尘,200 スターダスト,200 스타더스트
+REWARD_STAR_DUST_500,500 Star Dust,500 星尘,500 スターダスト,500 스타더스트
+REWARD_STAR_DUST_1000,1000 Star Dust,1000 星尘,1000 スターダスト,1000 스타더스트
+REWARD_SEASON_BUNDLE,2000 Star Dust + Season Title,2000 星尘 + 赛季称号,2000 スターダスト + シーズン称号,2000 스타더스트 + 시즌 칭호
+REWARD_SEASON_TITLE,Dawn Hero,黎明英雄,夜明けの英雄,여명의 영웅
+REWARD_PREMIUM_LV1,20 Star Dust + 50 Gold,20 星尘 + 50 金币,20 スターダスト + 50 ゴールド,20 스타더스트 + 50 골드
+REWARD_PREMIUM_LV2,20 Star Dust + 50 Gold,20 星尘 + 50 金币,20 スターダスト + 50 ゴールド,20 스타더스트 + 50 골드
+REWARD_PREMIUM_LV3,25 Star Dust + 60 Gold,25 星尘 + 60 金币,25 スターダスト + 60 ゴールド,25 스타더스트 + 60 골드
+REWARD_PREMIUM_LV4,25 Star Dust + 60 Gold,25 星尘 + 60 金币,25 スターダスト + 60 ゴールド,25 스타더스트 + 60 골드
+REWARD_PREMIUM_LV5,30 Star Dust + 70 Gold,30 星尘 + 70 金币,30 スターダスト + 70 ゴールド,30 스타더스트 + 70 골드
+REWARD_PREMIUM_LV6,30 Star Dust + 70 Gold,30 星尘 + 70 金币,30 スターダスト + 70 ゴールド,30 스타더스트 + 70 골드
+REWARD_PREMIUM_LV7,35 Star Dust + 80 Gold,35 星尘 + 80 金币,35 スターダスト + 80 ゴールド,35 스타더스트 + 80 골드
+REWARD_PREMIUM_LV8,35 Star Dust + 80 Gold,35 星尘 + 80 金币,35 スターダスト + 80 ゴールド,35 스타더스트 + 80 골드
+REWARD_PREMIUM_LV9,40 Star Dust + 90 Gold,40 星尘 + 90 金币,40 スターダスト + 90 ゴールド,40 스타더스트 + 90 골드
+REWARD_PREMIUM_LV10,50 Star Dust + 100 Gold + Avatar,50 星尘 + 100 金币 + 专属头像,50 スターダスト + 100 ゴールド + 限定アバター,50 스타더스트 + 100 골드 + 한정 아바타
+REWARD_PREMIUM_LV11,40 Star Dust + 90 Gold,40 星尘 + 90 金币,40 スターダスト + 90 ゴールド,40 스타더스트 + 90 골드
+REWARD_PREMIUM_LV12,45 Star Dust + 95 Gold,45 星尘 + 95 金币,45 スターダスト + 95 ゴールド,45 스타더스트 + 95 골드
+REWARD_PREMIUM_LV13,45 Star Dust + 95 Gold,45 星尘 + 95 金币,45 スターダスト + 95 ゴールド,45 스타더스트 + 95 골드
+REWARD_PREMIUM_LV14,50 Star Dust + 100 Gold,50 星尘 + 100 金币,50 スターダスト + 100 ゴールド,50 스타더스트 + 100 골드
+REWARD_PREMIUM_LV15,50 Star Dust + 100 Gold,50 星尘 + 100 金币,50 スターダスト + 100 ゴールド,50 스타더스트 + 100 골드
+REWARD_PREMIUM_LV16,55 Star Dust + 110 Gold,55 星尘 + 110 金币,55 スターダスト + 110 ゴールド,55 스타더스트 + 110 골드
+REWARD_PREMIUM_LV17,55 Star Dust + 110 Gold,55 星尘 + 110 金币,55 スターダスト + 110 ゴールド,55 스타더스트 + 110 골드
+REWARD_PREMIUM_LV18,60 Star Dust + 120 Gold,60 星尘 + 120 金币,60 スターダスト + 120 ゴールド,60 스타더스트 + 120 골드
+REWARD_PREMIUM_LV19,60 Star Dust + 120 Gold,60 星尘 + 120 金币,60 スターダスト + 120 ゴールド,60 스타더스트 + 120 골드
+REWARD_PREMIUM_LV20,80 Star Dust + 150 Gold + Card Back,80 星尘 + 150 金币 + 专属卡背,80 スターダスト + 150 ゴールド + 限定カード背面,80 스타더스트 + 150 골드 + 한정 카드 뒷면
+REWARD_PREMIUM_LV21,65 Star Dust + 130 Gold,65 星尘 + 130 金币,65 スターダスト + 130 ゴールド,65 스타더스트 + 130 골드
+REWARD_PREMIUM_LV22,65 Star Dust + 130 Gold,65 星尘 + 130 金币,65 スターダスト + 130 ゴールド,65 스타더스트 + 130 골드
+REWARD_PREMIUM_LV23,70 Star Dust + 140 Gold,70 星尘 + 140 金币,70 スターダスト + 140 ゴールド,70 스타더스트 + 140 골드
+REWARD_PREMIUM_LV24,70 Star Dust + 140 Gold,70 星尘 + 140 金币,70 スターダスト + 140 ゴールド,70 스타더스트 + 140 골드
+REWARD_PREMIUM_LV25,75 Star Dust + 150 Gold,75 星尘 + 150 金币,75 スターダスト + 150 ゴールド,75 스타더스트 + 150 골드
+REWARD_PREMIUM_LV26,75 Star Dust + 150 Gold,75 星尘 + 150 金币,75 スターダスト + 150 ゴールド,75 스타더스트 + 150 골드
+REWARD_PREMIUM_LV27,80 Star Dust + 160 Gold,80 星尘 + 160 金币,80 スターダスト + 160 ゴールド,80 스타더스트 + 160 골드
+REWARD_PREMIUM_LV28,80 Star Dust + 160 Gold,80 星尘 + 160 金币,80 スターダスト + 160 ゴールド,80 스타더스트 + 160 골드
+REWARD_PREMIUM_LV29,90 Star Dust + 180 Gold,90 星尘 + 180 金币,90 スターダスト + 180 ゴールド,90 스타더스트 + 180 골드
+REWARD_PREMIUM_LV30,200 Star Dust + 500 Gold + Hero Skin + Badge,200 星尘 + 500 金币 + 专属皮肤 + 赛季徽章,200 スターダスト + 500 ゴールド + 限定スキン + バッジ,200 스타더스트 + 500 골드 + 한정 스킨 + 배지
+ELITE_TAG,ELITE,精英,エリート,엘리트
+ELITE_SPAWN,Elite {0} appeared! [{1}],精英 {0} 出现了！[{1}],エリート {0} が出現！[{1}],엘리트 {0} 출현! [{1}]
+ELITE_KILLED,Elite slain!,精英已击杀！,エリート撃破！,엘리트 처치!
+AFFIX_REFLECT,Reflect,反射,反射,반사
+AFFIX_REFLECT_DESC,Reflects 15% melee damage,反弹15%近战伤害,近接ダメージの15%を反射,근접 피해의 15% 반사
+AFFIX_LIGHTNING_SHIELD,Lightning Shield,闪电盾,雷の盾,번개 방패
+AFFIX_LIGHTNING_SHIELD_DESC,Zaps nearest enemy every 3s,每3秒对最近敌人释放闪电,3秒ごとに最も近い敵に雷を放つ,3초마다 가장 가까운 적에게 번개 방출
+AFFIX_SPLITTING,Splitting,分裂,分裂,분열
+AFFIX_SPLITTING_DESC,Splits into 2 minions on death,死亡时分裂为2个小怪,死亡時に2体の小型モンスターに分裂,사망 시 2마리의 소형 몬스터로 분열
+AFFIX_VAMPIRIC,Vampiric,吸血,吸血,흡혈
+AFFIX_VAMPIRIC_DESC,Heals 5% of damage dealt,攻击回复5%伤害的HP,与ダメージの5%を回復,가한 피해의 5% 회복
+AFFIX_FROST_AURA,Frost Aura,冰冻光环,氷のオーラ,빙결 오라
+AFFIX_FROST_AURA_DESC,Slows nearby enemies by 15%,减速附近敌人15%,周囲の敵を15%減速,주변 적 15% 둔화
+AFFIX_ENRAGE,Enrage,狂暴,激怒,격노
+AFFIX_ENRAGE_DESC,Double attack speed below 50% HP,HP低于50%时攻速翻倍,HP50%���下で攻撃速度2倍,HP 50% 이하 시 공격 속도 2배
+AFFIX_SHIELDED,Shielded,护盾,シールド,보호막
+AFFIX_SHIELDED_DESC,Regenerates 20% max HP shield every 10s,每10秒恢复20%最大HP的护盾,10秒ごとに最大HPの20%のシールドを回復,10초마다 최대 HP의 20% 보호막 재생
+AFFIX_THORNS,Thorns,荆棘,棘,가시
+AFFIX_THORNS_DESC,Deals 10 damage to attackers,被攻击时对攻击者造成10点伤害,攻撃者に10ダメージを与える,공격자에게 10 피해
+STAT_CLASS,Class,职业,クラス,직업
+STAT_LEVEL,Level,等级,レベル,레벨
+STAT_TIME,Time,时间,時間,시간
+STAT_BOSS_KILLS,BOSS Kills,BOSS击杀,BOSS撃破,보스 처치
+STAT_DMG_DEALT,DMG Dealt,造成伤害,与ダメージ,가한 피해
+STAT_DMG_TAKEN,DMG Taken,承受伤害,被ダメージ,받은 피해
+STAT_HEALING,Healing,治疗量,回復量,치유량
+STAT_MAX_HIT,Max Hit,最高单次,最大ヒット,최대 피해
+STAT_DPS,DPS,每秒伤害,DPS,초당 피해
+STAT_SCORE,Score,评分,スコア,점수
+STAT_WAVES,Waves,波次,ウェーブ,웨이브
+BACK_TO_MENU,Back to Menu,返回菜单,メニューに戻る,메뉴로 돌아가기
+ERROR_PREFIX,Error: {0},错误：{0},エラー: {0},오류: {0}
+STAR_DUST,Star Dust,星尘,スターダスト,스타더스트
+STAR_DUST_AMOUNT,+{0} Star Dust!,+{0} 星尘！,+{0} スターダスト！,+{0} 스타더스트!
+TALENT_MAX,MAX,已满级,最大,최대
+HP_DMG_MULT,HP×{0} DMG×{1},血量×{0} 伤害×{1},HP×{0} DMG×{1},HP×{0} DMG×{1}
+EXPORT,EXPORT,导出,エクスポート,내보내기
+CARDS_SUMMARY,Cards ({0}),卡片 ({0}),カード ({0}),카드 ({0})
+HUD_HP,HP: {0}/{1},血量: {0}/{1},HP: {0}/{1},HP: {0}/{1}
+HUD_LV,Lv.{0},Lv.{0},Lv.{0},Lv.{0}
+HUD_XP,XP: {0}/{1},经验: {0}/{1},XP: {0}/{1},XP: {0}/{1}
+FINAL_BOSS,FINAL BOSS!,最终BOSS！,ファイナルボス！,최종 보스!
+HUD_MOBS,Mobs: {0},怪物: {0},敵数: {0},몬스터: {0}
+HUD_DMG,DMG: {0},伤害: {0},DMG: {0},DMG: {0}
+HUD_SPD,SPD: {0}s,速度: {0}s,SPD: {0}s,SPD: {0}s
+HUD_RNG,RNG: {0},射程: {0},RNG: {0},RNG: {0}
+HUD_DPS,DPS: {0},DPS: {0},DPS: {0},DPS: {0}
+REWARD_LV,Lv.{0},Lv.{0},Lv.{0},Lv.{0}
+DEAD,DEAD,已摧毁,破壊,파괴됨
+LOG_FILTER_ALL,ALL,全部,全て,전체
+LOG_FILTER_DMG,DMG,伤害,DMG,피해
+LOG_FILTER_HEAL,HEAL,治疗,回復,치유
+LOG_FILTER_STATUS,STATUS,状态,状態,상태
+LOG_FILTER_SYS,SYS,系统,SYS,시스템
+STAT_ALL_DMG_PCT,All Damage,全伤害,全ダメージ,전체 피해
+STAT_ALL_DEF_PCT,All Defense,全防御,全防御,전체 방어
+STAT_ALL_STATS_PCT,All Stats,全属性,全ステータス,전체 능력치
+STAT_AOE_DMG_PCT,AoE Damage,范围伤害,範囲ダメージ,범위 피해
+STAT_ARMOR_SHRED,Armor Shred,护甲碎裂,装甲破壊,방어구 파쇄
+STAT_ATTACK_RANGE,Attack Range,攻击射程,攻撃射程,공격 사거리
+STAT_BACKSTAB_DMG,Backstab Damage,背刺伤害,バックスタブ,백스탭 피해
+STAT_BATTLEFIELD_RESHAPE,Battlefield Reshape,重塑战场,戦場改変,전장 재구성
+STAT_BLINK_ASPD,Blink Atk Speed,闪烁攻速,ブリンク攻速,점멸 공속
+STAT_BLINK_INTERVAL,Blink Interval,闪烁间隔,ブリンク間隔,점멸 간격
+STAT_CRIT_EXPLOSION,Crit Explosion,暴击爆炸,クリ爆発,치명타 폭발
+STAT_DAMAGE_AURA,Damage Aura,伤害光环,ダメージオーラ,피해 오라
+STAT_DRAGON_ARMOR,Dragon Armor,龙鳞护甲,竜鎧,용 갑옷
+STAT_DRAGON_BREATH,Dragon Breath,龙息伤害,ドラゴンブレス,드래곤 브레스
+STAT_ELEMENT_DMG,Element Damage,元素伤害,属性ダメージ,원소 피해
+STAT_ELEMENT_FUSION,Element Fusion,元素融合,属性融合,원소 융합
+STAT_ELEMENT_IMMUNE,Element Immune,元素免疫,属性免疫,원소 면역
+STAT_FIRE_DMG_PCT,Fire Damage,火焰伤害,火ダメージ,화염 피해
+STAT_FLIGHT_SPEED,Move Speed,移动速度,移動速度,이동 속도
+STAT_FUSION_EXPLOSION,Fusion Explosion,融合爆发,融合爆発,융합 폭발
+STAT_HOMING,Homing Projectile,追踪弹道,ホーミング,유도 투사체
+STAT_ICE_FIRE_ALT,Ice/Fire Alt,冰火交替,氷火交互,빙화 교대
+STAT_ICE_FIRE_AMP,Ice/Fire Amp,冰火增伤,氷火増幅,빙화 증폭
+STAT_INVINCIBLE_CD,Invincible CD,无敌间隔,無敵間隔,무적 간격
+STAT_KILL_CRIT,Kill Crit Bonus,击杀暴击,キルクリ,처치 치명타
+STAT_KNOCKBACK,Knockback,击退力,ノックバック,넉백
+STAT_LOW_HP_ASPD,Low HP Atk Speed,低血量攻速,低HP攻速,저체력 공속
+STAT_LOW_HP_DMG,Low HP Damage,低血量增伤,低HPダメージ,저체력 피해
+STAT_LOW_HP_INVINCIBLE,Low HP Invincible,低血量无敌,低HP無敵,저체력 무적
+STAT_MARK_DMG_AMP,Mark Damage Amp,标记增伤,マーク増幅,표식 증폭
+STAT_MARK_DURATION,Mark Duration,标记持续,マーク時間,표식 지속
+STAT_RANDOM_BUFF_CD,Random Buff CD,随机增益间隔,ランダムバフ間隔,랜덤 버프 간격
+STAT_RANDOM_CRIT_EFF,Random Crit Effect,暴击随机效果,クリランダム効果,치명타 랜덤 효과
+STAT_RANDOM_ON_HIT,Random On Hit,命中随机效果,ヒットランダム,적중 랜덤 효과
+STAT_RANDOM_ELEMENT,Random Element,随机元素概率,ランダム属性,랜덤 원소
+STAT_RANDOM_KILL_REWARD,Random Kill Reward,击杀随机奖励,キル報酬ランダム,처치 랜덤 보상
+STAT_REVIVE,Revive on Death,死亡复活,復活,부활
+STAT_SCREEN_NUKE_CD,Screen Nuke CD,全屏毁灭冷却,全画面破壊CD,화면 폭격 쿨
+STAT_SHADOW_CLONE,Shadow Clone,暗影分身,影分身,그림자 분신
+STAT_SHADOW_DMG_PCT,Shadow Damage,暗影伤害,闇ダメージ,암흑 피해
+STAT_SLOW_FIELD,Slow Field,减速场范围,減速フィールド,감속 장판
+STAT_SOUL_SHOCKWAVE,Soul Shockwave,灵魂冲击波,ソウルショック,영혼 충격파
+STAT_STEALTH_KILL,Stealth Kill,隐杀回蓝,ステルスキル,은신 처치
+STAT_SUMMON_DMG,Summon Damage,召唤物伤害,召喚ダメージ,소환수 피해
+STAT_SUMMON_ON_KILL,Summon on Kill,击杀召唤,キル召喚,처치 소환
+STAT_TIME_REWIND,Time Rewind,时间回溯,タイムリワインド,시간 되감기
+STAT_POISON_DPS_VAR,Poison DPS,毒伤/秒,毒DPS,독 DPS
+STAT_SHIELD_INTERVAL_VAR,Shield Interval,护盾间隔,シールド間隔,보호막 간격
+ABILITY_DAMAGE_AURA,Damage Aura,伤害光环,ダメージオーラ,피해 오라
+ABILITY_ELITE_LIGHTNING,Elite Lightning,精英闪电,エリート雷,정예 번개
+ABILITY_ELITE_REFLECT,Elite Reflect,精英反射,エリート反射,정예 반사
+ABILITY_ELITE_SHIELD,Elite Shield,精英护盾,エリートシールド,정예 보호막
+ABILITY_ELITE_THORNS,Elite Thorns,精英荆棘,エリート棘,정예 가시
+ABILITY_ELITE_VAMPIRIC,Elite Vampiric,精英吸血,エリート吸血,정예 흡혈
+ABILITY_PASSIVE_SHIELD,Passive Shield,被动护盾,パッシブシールド,패시브 보호막
+ABILITY_RANDOM_ELEMENT,Random Element,随机元素,ランダム属性,랜덤 원소
+ABILITY_CRIT_EXPLOSION,Crit Explosion,暴击爆炸,クリ爆発,치명타 폭발
+ABILITY_MARK_AMP,Mark Amp,标记增伤,マーク増幅,표식 증폭
+ABILITY_GOBLIN,Goblin,哥布林,ゴブリン,고블린
+ABILITY_SKELETON,Skeleton,骷髅,スケルトン,스켈레톤
+ABILITY_ARCHER,Archer,弓箭手,アーチャー,궁수
+ABILITY_SHADOW,Shadow,暗影,シャドウ,그림자
+ABILITY_SHAMAN,Shaman,萨满,シャーマン,주술사
+ABILITY_GOLEM,Golem,石像鬼,ゴーレム,골렘
+ABILITY_BONE_DRAGON,Bone Dragon,骨龙,ボーンドラゴン,골룡
+ABILITY_SHADOW_LORD,Shadow Lord,暗影领主,シャドウロード,그림자 군주
+ABILITY_VOID_TITAN,Void Titan,虚空泰坦,ヴォイドタイタン,공허 타이탄
+ABILITY_HERO,Hero,英雄,ヒーロー,영웅
+ABILITY_WARRIOR,Warrior,战士,ウォリアー,전사
+ABILITY_RANGER,Ranger,游侠,レンジャー,레인저
+ABILITY_MAGE,Mage,法师,メイジ,마법사
+ABILITY_LIFE_FOUNTAIN,Fountain,泉水,泉,샘
+ABILITY_ENEMY_FOUNTAIN,Enemy Fountain,敌方泉水,敵の泉,적 샘
+ABILITY_FROST_BOLT,Frost Bolt,冰霜弹,フロストボルト,서리 화살
+ABILITY_FIRE_BOLT,Fire Bolt,火焰弹,ファイアボルト,화염 화살
+ABILITY_NATURE_BOLT,Nature Bolt,自然弹,ネイチャーボルト,자연 화살
+ABILITY_SHADOW_BOLT,Shadow Bolt,暗影弹,シャドウボルト,암흑 화살
+ABILITY_HOLY_BOLT,Holy Bolt,神圣弹,ホーリーボルト,신성 화살
+ABILITY_GOBLIN_ATK,Goblin Attack,哥布林攻击,ゴブリン攻撃,고블린 공격
+ABILITY_SKELETON_ATK,Skeleton Attack,骷髅攻击,スケルトン攻撃,스켈레톤 공격
+ABILITY_ARCHER_ATK,Archer Attack,弓箭手攻击,アーチャー攻撃,궁수 공격
+ABILITY_SHADOW_ATK,Shadow Attack,暗影兽攻击,シャドウ攻撃,그림자 공격
+ABILITY_SHAMAN_ATK,Shaman Attack,萨满攻击,シャーマン攻撃,주술사 공격
+ABILITY_GOLEM_ATK,Golem Attack,石像鬼攻击,ゴーレム攻撃,골렘 공격
+ABILITY_BONE_DRAGON_ATK,Bone Dragon Attack,骨龙攻击,ボーンドラゴン攻撃,골룡 공격
+ABILITY_SHADOW_LORD_ATK,Shadow Lord Attack,暗影领主攻击,シャドウロード攻撃,그림자 군주 공격
+ABILITY_VOID_TITAN_ATK,Void Titan Attack,虚空泰坦攻击,ヴォイドタイタン攻撃,공허 타이탄 공격
