@@ -12,5 +12,34 @@
       { "type": "show_toast", "i18n_key": "TUTORIAL_WELCOME_MOVE", "color": "#66ccff", "duration": 5.0 },
       { "type": "set_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_welcome", "value": true }
     ]
+  },
+  {
+    "id": "onboarding_first_draft",
+    "event": "hero_level_up",
+    "once": true,
+    "conditions": [
+      { "type": "compare_event_value", "path": "$event.level", "op": "==", "value": 2 },
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "tutorials_disabled", "op": "!=", "value": true },
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_first_draft", "op": "!=", "value": true }
+    ],
+    "actions": [
+      { "type": "show_toast", "i18n_key": "TUTORIAL_DRAFT_TITLE", "color": "#ffcc66", "duration": 6.0 },
+      { "type": "show_toast", "i18n_key": "TUTORIAL_DRAFT_RARITY", "color": "#ffcc66", "duration": 6.0 },
+      { "type": "show_toast", "i18n_key": "TUTORIAL_DRAFT_SETS", "color": "#ffcc66", "duration": 6.0 },
+      { "type": "set_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_first_draft", "value": true }
+    ]
+  },
+  {
+    "id": "onboarding_first_bond",
+    "event": "bond_activated",
+    "once": true,
+    "conditions": [
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "tutorials_disabled", "op": "!=", "value": true },
+      { "type": "check_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_first_bond", "op": "!=", "value": true }
+    ],
+    "actions": [
+      { "type": "show_toast", "i18n_key": "TUTORIAL_BOND_FIRST", "color": "#cc99ff", "duration": 5.0 },
+      { "type": "set_save_flag", "namespace": "rogue_survivor_onboarding", "key": "seen_first_bond", "value": true }
+    ]
   }
 ]

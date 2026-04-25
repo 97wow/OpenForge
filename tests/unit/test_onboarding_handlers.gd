@@ -90,6 +90,13 @@ func test_onboarding_json_parses_and_uses_registered_types() -> void:
 # === i18n key 完整性：4 国都得有 TUTORIAL_WELCOME_MOVE ===
 
 func test_tutorial_keys_present_in_all_langs() -> void:
+	var required_keys := [
+		"TUTORIAL_WELCOME_MOVE",       # §A1
+		"TUTORIAL_DRAFT_TITLE",        # §A2
+		"TUTORIAL_DRAFT_RARITY",       # §A2
+		"TUTORIAL_DRAFT_SETS",         # §A2
+		"TUTORIAL_BOND_FIRST",         # §A3
+	]
 	for lang in ["en", "zh_CN", "ja", "ko"]:
 		var path := "res://lang/%s.json" % lang
 		assert_bool(FileAccess.file_exists(path)).is_true()
@@ -98,5 +105,20 @@ func test_tutorial_keys_present_in_all_langs() -> void:
 		assert_int(lj.parse(lt)).is_equal(OK)
 		var d: Dictionary = lj.data
 		var strings: Dictionary = d.get("strings", {})
-		assert_bool(strings.has("TUTORIAL_WELCOME_MOVE")).is_true()
-		assert_str(str(strings["TUTORIAL_WELCOME_MOVE"])).is_not_empty()
+		for key in required_keys:
+			assert_bool(strings.has(key)).is_true()
+			assert_str(str(strings[key])).is_not_empty()
+
+func test_onboarding_json_has_all_three_beats() -> void:
+	## A1 (welcome) + A2 (first_draft) + A3 (first_bond) 都到位
+	var path := "res://gamepacks/rogue_survivor/rules/onboarding.json"
+	var json := JSON.new()
+	var text: String = FileAccess.get_file_as_string(path)
+	assert_int(json.parse(text)).is_equal(OK)
+	var arr: Array = json.data
+	var ids: Array[String] = []
+	for trig: Dictionary in arr:
+		ids.append(str(trig.get("id", "")))
+	assert_bool("onboarding_welcome_movement" in ids).is_true()
+	assert_bool("onboarding_first_draft" in ids).is_true()
+	assert_bool("onboarding_first_bond" in ids).is_true()
