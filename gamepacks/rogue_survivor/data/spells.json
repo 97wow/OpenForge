@@ -1645,5 +1645,355 @@
 			"bond_id": 38,
 			"count": 7
 		}
+	},
+	"94": {
+		"type": "bond",
+		"subclass": "shadow_blade",
+		"name_key": "SET_SHADOW_BLADE",
+		"desc_key": "SET_SHADOW_BLADE_DESC",
+		"required": 3,
+		"stats": {}
+	},
+	"95": {
+		"type": "bond",
+		"subclass": "alchemist",
+		"name_key": "SET_ALCHEMIST",
+		"desc_key": "SET_ALCHEMIST_DESC",
+		"required": 3,
+		"stats": {}
+	},
+	"98": {
+		"type": "bond",
+		"subclass": "ice_fire",
+		"name_key": "SET_ICE_FIRE",
+		"desc_key": "SET_ICE_FIRE_DESC",
+		"required": 3,
+		"stats": {}
+	},
+	"103": {
+		"type": "bond",
+		"subclass": "dragon_force",
+		"name_key": "SET_DRAGON_FORCE",
+		"desc_key": "SET_DRAGON_FORCE_DESC",
+		"required": 4,
+		"stats": {}
+	},
+	"104": {
+		"type": "bond",
+		"subclass": "eternity",
+		"name_key": "SET_ETERNITY",
+		"desc_key": "SET_ETERNITY_DESC",
+		"required": 4,
+		"stats": {}
+	},
+	"220": {
+		"type": "card",
+		"subclass": "shadow_blade",
+		"bond_id": 94,
+		"tier": 2,
+		"stats": {
+			"agi": 10,
+			"atk": 6
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 94,
+			"count": 3
+		}
+	},
+	"221": {
+		"type": "card",
+		"subclass": "shadow_blade",
+		"bond_id": 94,
+		"tier": 2,
+		"stats": {
+			"agi": 6,
+			"atk": 10
+		},
+		"proc": {
+			"trigger": "on_hit",
+			"chance": 0.18,
+			"cooldown": 1.5,
+			"effect": "double_damage"
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 94,
+			"count": 3
+		}
+	},
+	"222": {
+		"type": "card",
+		"subclass": "shadow_blade",
+		"bond_id": 94,
+		"tier": 3,
+		"stats": {
+			"agi": 12,
+			"atk": 8
+		},
+		"proc": {
+			"trigger": "on_hit_and_kill",
+			"effect": "add_growth",
+			"stats": {
+				"atk": 0.2
+			}
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 94,
+			"count": 3
+		}
+	},
+	"223": {
+		"type": "card",
+		"subclass": "alchemist",
+		"bond_id": 95,
+		"tier": 2,
+		"stats": {
+			"int": 10,
+			"atk": 6
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 95,
+			"count": 3
+		}
+	},
+	"224": {
+		"type": "card",
+		"subclass": "alchemist",
+		"bond_id": 95,
+		"tier": 2,
+		"stats": {
+			"int": 6,
+			"atk": 10
+		},
+		"proc": {
+			"trigger": "on_hit",
+			"chance": 0.15,
+			"cooldown": 2.0,
+			"effect": "bonus_damage",
+			"base_damage": 100,
+			"scaling_stat": "int",
+			"scaling_coef": 0.35
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 95,
+			"count": 3
+		}
+	},
+	"225": {
+		"type": "card",
+		"subclass": "alchemist",
+		"bond_id": 95,
+		"tier": 3,
+		"stats": {
+			"int": 12,
+			"hp": 100
+		},
+		"proc": {
+			"trigger": "on_hit_and_kill",
+			"chance": 0.1,
+			"effect": "grant_resource",
+			"resource": "wood",
+			"amount": 50
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 95,
+			"count": 3
+		}
+	},
+	"226": {
+		"type": "card",
+		"subclass": "ice_fire",
+		"bond_id": 98,
+		"tier": 2,
+		"stats": {
+			"int": 10,
+			"atk": 6
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 98,
+			"count": 3
+		}
+	},
+	"227": {
+		"type": "card",
+		"subclass": "ice_fire",
+		"bond_id": 98,
+		"tier": 2,
+		"stats": {
+			"int": 8,
+			"atk": 8
+		},
+		"proc": {
+			"trigger": "on_hit",
+			"chance": 0.18,
+			"cooldown": 2.5,
+			"effect": "aoe_damage",
+			"range": 2.5,
+			"damage_pct": 1.6
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 98,
+			"count": 3
+		}
+	},
+	"228": {
+		"type": "card",
+		"subclass": "ice_fire",
+		"bond_id": 98,
+		"tier": 3,
+		"stats": {
+			"int": 14,
+			"atk": 10
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 98,
+			"count": 3
+		}
+	},
+	"229": {
+		"type": "card",
+		"subclass": "dragon_force",
+		"bond_id": 103,
+		"tier": 3,
+		"stats": {
+			"str": 12,
+			"hp": 200,
+			"armor": 4
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 103,
+			"count": 4
+		}
+	},
+	"230": {
+		"type": "card",
+		"subclass": "dragon_force",
+		"bond_id": 103,
+		"tier": 3,
+		"stats": {
+			"str": 10,
+			"atk": 12
+		},
+		"proc": {
+			"trigger": "on_hit",
+			"chance": 0.12,
+			"cooldown": 3.0,
+			"effect": "aoe_damage",
+			"range": 3.0,
+			"damage_pct": 1.8
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 103,
+			"count": 4
+		}
+	},
+	"231": {
+		"type": "card",
+		"subclass": "dragon_force",
+		"bond_id": 103,
+		"tier": 4,
+		"stats": {
+			"str": 16,
+			"hp": 300,
+			"atk": 14
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 103,
+			"count": 4
+		}
+	},
+	"232": {
+		"type": "card",
+		"subclass": "dragon_force",
+		"bond_id": 103,
+		"tier": 4,
+		"stats": {
+			"str": 12,
+			"agi": 12,
+			"atk": 12
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 103,
+			"count": 4
+		}
+	},
+	"233": {
+		"type": "card",
+		"subclass": "eternity",
+		"bond_id": 104,
+		"tier": 3,
+		"stats": {
+			"int": 12,
+			"hp": 250
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 104,
+			"count": 4
+		}
+	},
+	"234": {
+		"type": "card",
+		"subclass": "eternity",
+		"bond_id": 104,
+		"tier": 3,
+		"stats": {
+			"int": 8,
+			"hp": 400
+		},
+		"proc": {
+			"trigger": "on_damage_taken",
+			"cooldown": 25.0,
+			"effect": "cheat_death"
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 104,
+			"count": 4
+		}
+	},
+	"235": {
+		"type": "card",
+		"subclass": "eternity",
+		"bond_id": 104,
+		"tier": 4,
+		"stats": {
+			"int": 16,
+			"atk": 12,
+			"hp": 300
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 104,
+			"count": 4
+		}
+	},
+	"236": {
+		"type": "card",
+		"subclass": "eternity",
+		"bond_id": 104,
+		"tier": 4,
+		"stats": {
+			"int": 14,
+			"agi": 14,
+			"hp": 200
+		},
+		"consume_condition": {
+			"type": "bond_count",
+			"bond_id": 104,
+			"count": 4
+		}
 	}
 }

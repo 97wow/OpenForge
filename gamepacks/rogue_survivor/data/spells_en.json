@@ -382,5 +382,93 @@
 	"219": {
 		"name": "Dragon Ball Spirit Bomb",
 		"desc": "+100 ATK, +500 HP."
+	},
+	"220": {
+		"name": "Shade Walk",
+		"desc": "+10 AGI, +6 ATK. Shadow Blade set progress."
+	},
+	"221": {
+		"name": "Spinepiercer",
+		"desc": "+6 AGI, +10 ATK. 18% on hit: double damage (1.5s CD)."
+	},
+	"222": {
+		"name": "Lethal Reap",
+		"desc": "+12 AGI, +8 ATK. On kill: +0.2 permanent ATK growth."
+	},
+	"223": {
+		"name": "Elemental Glamour",
+		"desc": "+10 INT, +6 ATK. Alchemist set progress."
+	},
+	"224": {
+		"name": "Catalysis",
+		"desc": "+6 INT, +10 ATK. 15% on hit: +100 dmg + 35% INT scaling."
+	},
+	"225": {
+		"name": "Transmutation",
+		"desc": "+12 INT, +100 HP. 10% on kill: +50 wood."
+	},
+	"226": {
+		"name": "Hot-Cold Cycle",
+		"desc": "+10 INT, +6 ATK. Ice & Fire set progress."
+	},
+	"227": {
+		"name": "Steam Burst",
+		"desc": "+8 INT, +8 ATK. 18% on hit: 2.5m AoE 160% damage."
+	},
+	"228": {
+		"name": "Dual Mastery",
+		"desc": "+14 INT, +10 ATK. Ice & Fire set progress."
+	},
+	"229": {
+		"name": "Dragon Scale",
+		"desc": "+12 STR, +200 HP, +4 armor. Dragon Force set progress."
+	},
+	"230": {
+		"name": "Dragon Breath",
+		"desc": "+10 STR, +12 ATK. 12% on hit: 3m AoE 180% damage."
+	},
+	"231": {
+		"name": "Wyrm's Wrath",
+		"desc": "+16 STR, +300 HP, +14 ATK. Dragon Force set progress."
+	},
+	"232": {
+		"name": "Wing Beat",
+		"desc": "+12 STR, +12 AGI, +12 ATK. Dragon Force set progress."
+	},
+	"233": {
+		"name": "Hourglass",
+		"desc": "+12 INT, +250 HP. Eternity set progress."
+	},
+	"234": {
+		"name": "Phoenix Heart",
+		"desc": "+8 INT, +400 HP. Cheat death every 25s (full heal at 0 HP)."
+	},
+	"235": {
+		"name": "Time Anchor",
+		"desc": "+16 INT, +12 ATK, +300 HP. Eternity set progress."
+	},
+	"236": {
+		"name": "Eternal Vow",
+		"desc": "+14 INT, +14 AGI, +200 HP. Eternity set progress."
+	},
+	"94": {
+		"name": "Shadow Blade",
+		"desc": "Shadow +20%, backstab +30%, stealth kill mana"
+	},
+	"95": {
+		"name": "Alchemist",
+		"desc": "30% random element, +25% ele dmg, fusion burst"
+	},
+	"98": {
+		"name": "Ice & Fire",
+		"desc": "Alternate ice/fire, +25% amp, fusion explosion"
+	},
+	"103": {
+		"name": "Dragon Force",
+		"desc": "Dragon breath, +12 armor, +35% speed, ele immune"
+	},
+	"104": {
+		"name": "Eternity",
+		"desc": "Revive, invincible, +15% all stats, time rewind"
 	}
 }
